@@ -1,17 +1,17 @@
 @extends('member.layouts.main')
-@section('title', 'Trading Bonus Income')
+@section('title', 'Direct Income')
 @section('container')
     <div class="main-content app-content">
         <div class="container-fluid"> <!-- Page Header -->
             <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                <h1 class="page-title fw-semibold fs-18 mb-0">Trading Bonus Income</h1>
-                <span>{{ __('Trading Bonus Income details') }}</span>
+                <h1 class="page-title fw-semibold fs-18 mb-0">Direct Income</h1>
+                <span>{{ __('Direct Income details') }}</span>
 
                 <div class="ms-md-1 ms-0">
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Trading Bonus Income</li>
+                            <li class="breadcrumb-item active" aria-current="page">Direct Income</li>
                         </ol>
                     </nav>
                 </div>
@@ -31,7 +31,7 @@
                     @endif
                     <div class="card custom-card">
                         <div class="card-header justify-content-between">
-                            <div class="card-title">Trading Bonus Income </div>
+                            <div class="card-title">Direct Income </div>
                         </div>
                         <div class="card-body" style="overflow: auto;">
                             <table id="file-export" class="table table-bordered text-nowrap w-100 dataTable no-footer"
