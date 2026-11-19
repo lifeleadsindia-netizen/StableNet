@@ -74,29 +74,18 @@
                                     <!-- Slot Selection -->
                                     <div class="col-12">
                                         <label for="amount" class="form-label text-default fw-semibold d-flex justify-content-between">
-                                            <span>Select Slot</span>
-                                            <span class="text-muted fs-11">One-by-one sequential unlock</span>
+                                            <span>Available Slot</span>
+                                            <span class="text-muted fs-11">Sequential Progression</span>
                                         </label>
                                         <select class="form-select form-control" name="amount" id="amount" required {{ $allSlotsCompleted ? 'disabled' : '' }}>
                                             @if ($allSlotsCompleted)
                                                 <option value="" selected>✓ All 10 Slots Activated</option>
+                                            @elseif (!empty($nextSlot))
+                                                <option value="{{ $nextSlot['amount'] }}" selected>
+                                                    {{ $nextSlot['name'] }} ({{ $nextSlot['price'] }}) — Available
+                                                </option>
                                             @else
-                                                <option value="">-- Choose Slot --</option>
-                                                @foreach ($slots as $slot)
-                                                    @if ($slot['is_purchased'])
-                                                        <option value="{{ $slot['amount'] }}" disabled class="text-success">
-                                                            ✓ {{ $slot['name'] }} ({{ $slot['price'] }}) — Activated
-                                                        </option>
-                                                    @elseif ($slot['is_next'])
-                                                        <option value="{{ $slot['amount'] }}" selected class="text-primary fw-bold">
-                                                            ★ {{ $slot['name'] }} ({{ $slot['price'] }}) — Available (Next)
-                                                        </option>
-                                                    @else
-                                                        <option value="{{ $slot['amount'] }}" disabled class="text-muted">
-                                                            🔒 {{ $slot['name'] }} ({{ $slot['price'] }}) — Locked
-                                                        </option>
-                                                    @endif
-                                                @endforeach
+                                                <option value="" disabled selected>No slots available</option>
                                             @endif
                                         </select>
                                         @error('amount')
