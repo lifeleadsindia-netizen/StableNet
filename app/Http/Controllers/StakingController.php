@@ -170,10 +170,10 @@ class StakingController extends Controller
 
         walletTransfer($memberid, $amount, 'credit', $p2p_wallet, $expectedSlot['name'] . ' Investment', $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') activated from Fund Wallet');
 
-        // monthlyTradingBonus($memberid, $amount);
-        // $pid = GlobalPoolMatrice($memberid);
+        GlobalPoolMatrice($memberid);
+        directIncome($sponsorid, $memberid, $name, $amount, "Slot Investment");
         levelIncome($sponsorid, $memberid, $name, $amount);
-        // profitDetails($memberid, $name, $pid);
+        team_biz_update($sponsorid, $amount);
 
         session()->flash('successMsg', $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') has been activated successfully!');
         return redirect()->back();
