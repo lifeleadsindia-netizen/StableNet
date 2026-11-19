@@ -26,16 +26,12 @@ class WithdrawalController extends Controller
             'amount' => 'required',
             'txn_password' => 'required',
         ]);
-        $wallet_type = $request->post('wallet_type');
+        $wallet_type = 'Income Wallet';
         $txnPass = $request->post('txn_password');
         $amount = $request->post('amount');
         $memberid = session('MEMBER_ID');
 
-        if ($wallet_type == 'Income Wallet') {
-            $service = $amount / 100 * 4;
-        } else {
-            $service = $amount / 100 * 10;
-        }
+        $service = ($amount / 100) * 15;
 
         $netAmount = $amount - $service;
         $totalAmount = $amount;
@@ -83,23 +79,13 @@ class WithdrawalController extends Controller
             return redirect()->back();
         }
 
-        if ($wallet_type == 'Income Wallet') {
-            if ($amount > $wallet) {
-                session()->flash('failedMsg', 'Invalid Amount Entered. Amount can not be greater than wallet balance');
-                return redirect()->back();
-            }
-            $mem->wallet -= $totalAmount;
-            walletTransfer($memberid, $totalAmount, 'credit', $wallet, 'Withdrawal', ' $ ' . $totalAmount . ' have been withdrawn by Member from wallet.');
-            session()->flash('successMsg', 'Amount has been transferred to your wallet successfully.');
-        } else {
-            if ($amount > $level_wallet) {
-                session()->flash('failedMsg', 'Invalid Amount Entered. Amount can not be greater than level wallet balance');
-                return redirect()->back();
-            }
-            $mem->level_wallet -= $totalAmount;
-            walletTransfer($memberid, $totalAmount, 'credit', $level_wallet, 'Withdrawal', ' $ ' . $totalAmount . ' have been withdrawn by Member from level wallet.');
-            session()->flash('successMsg', 'Amount has been transferred to your level wallet successfully.');
+        if ($amount > $wallet) {
+            session()->flash('failedMsg', 'Invalid Amount Entered. Amount can not be greater than wallet balance');
+            return redirect()->back();
         }
+        $mem->wallet -= $totalAmount;
+        walletTransfer($memberid, $totalAmount, 'credit', $wallet, 'Withdrawal', ' $ ' . $totalAmount . ' have been withdrawn by Member from wallet.');
+        session()->flash('successMsg', 'Amount has been transferred to your wallet successfully.');
         $mem->save();
 
         $var = new WithdrawalRequest();

@@ -242,6 +242,7 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
     //   Route::get('/p2p-wallet-history', [FundController::class, 'activationWalletHistory']);
 
     // wallet Section
+    Route::get('/wallet/main-wallet', [WithdrawalController::class, 'mainWallets']);
     Route::get('/wallet/sell-sbt', [WithdrawalController::class, 'mainWallets']);
     Route::post('initWithdrawal', [WithdrawalController::class, 'initWithdrawal'])->name('initWithdrawal');
     Route::get('/wallet/coin-wallet', [WithdrawalController::class, 'coinWallets']);

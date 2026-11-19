@@ -601,7 +601,7 @@
                 <!-- Start::header-content-right -->
                 <div class="header-content-right">
 
-                
+
                     <!-- Start::header-element -->
                     <div class="header-element">
                         <!-- Start::header-link|dropdown-toggle -->
@@ -614,8 +614,7 @@
                                             width="32" height="32" class="rounded-circle">
                                     @else
                                         <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}"
-                                             alt="img"
-                                            width="32" height="32" class="rounded-circle">
+                                            alt="img" width="32" height="32" class="rounded-circle">
                                     @endif
                                 </div>
                                 <div class="d-sm-block d-none">
@@ -627,9 +626,9 @@
                         <!-- End::header-link|dropdown-toggle -->
                         <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
                             aria-labelledby="mainHeaderProfile">
-                            <li><a class="dropdown-item d-flex" href="{{url('member/profile/user-summary')}}"><i
+                            <li><a class="dropdown-item d-flex" href="{{ url('member/profile/user-summary') }}"><i
                                         class="ti ti-user-circle fs-18 me-2 op-7"></i>Profile</a></li>
-                            <li><a class="dropdown-item d-flex" href="{{url('/member/logout')}}"><i
+                            <li><a class="dropdown-item d-flex" href="{{ url('/member/logout') }}"><i
                                         class="ti ti-logout fs-18 me-2 op-7"></i>Log Out</a></li>
                         </ul>
                     </div>
@@ -662,18 +661,18 @@
             <!-- Start::main-sidebar-header -->
             <div class="main-sidebar-header">
                 <a href="{{ url('member/dashboard') }}" class="header-logo">
-                    <img src="{{ asset('logo/logo.png') }}" alt="logo"
-                        class="desktop-logo" style="height: 60px">
-                    <img src="{{ asset('logo/logo.png') }}" alt="logo"
-                        class="toggle-logo" style="height: 60px">
-                    <img src="{{ asset('logo/logo.png') }}" alt="logo"
-                        class="desktop-dark" style="height: 60px">
-                    <img src="{{ asset('logo/logo.png') }}" alt="logo"
-                        class="toggle-dark" style="height: 60px">
-                    <img src="{{ asset('logo/logo.png') }}" alt="logo"
-                        class="desktop-white" style="height: 60px">
-                    <img src="{{ asset('logo/logo.png') }}" alt="logo"
-                        class="toggle-white" style="height: 60px">
+                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="desktop-logo"
+                        style="height: 60px">
+                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="toggle-logo"
+                        style="height: 60px">
+                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="desktop-dark"
+                        style="height: 60px">
+                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="toggle-dark"
+                        style="height: 60px">
+                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="desktop-white"
+                        style="height: 60px">
+                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="toggle-white"
+                        style="height: 60px">
                 </a>
             </div>
             <!-- End::main-sidebar-header -->
@@ -753,8 +752,8 @@
                                     <a href="javascript:void(0);">Import Section</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/fund/deposit-fund') }}"
-                                        class="side-menu__item">Import Fund</a>
+                                    <a href="{{ url('/member/fund/deposit-fund') }}" class="side-menu__item">Import
+                                        Fund</a>
                                 </li>
                                 <li class="slide">
                                     <a href="{{ url('/member/fund/deposit-fund-history') }}"
@@ -776,7 +775,8 @@
                                     <a href="javascript:void(0);">Invest Coin</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/invest-slot') }}" class="side-menu__item">Investment Slot</a>
+                                    <a href="{{ url('/member/invest-slot') }}" class="side-menu__item">Investment
+                                        Slot</a>
                                 </li>
                                 <li class="slide">
                                     <a href="{{ url('/member/investment-details') }}"
@@ -786,7 +786,7 @@
                             </ul>
                         </li>
                         <!-- End::slide -->
-                         <!-- Start::slide -->
+                        <!-- Start::slide -->
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <i class="bx bx-grid side-menu__icon"></i>
@@ -798,7 +798,8 @@
                                     <a href="javascript:void(0);">Trade Details</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/trade/trade-details') }}" class="side-menu__item">Trade Details</a>
+                                    <a href="{{ url('/member/trade/trade-details') }}" class="side-menu__item">Trade
+                                        Details</a>
                                 </li>
 
                             </ul>
@@ -817,8 +818,8 @@
                                     <a href="javascript:void(0);">Income Section</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/income/level-incomes') }}"
-                                        class="side-menu__item">Level Income</a>
+                                    <a href="{{ url('/member/income/level-incomes') }}" class="side-menu__item">Level
+                                        Income</a>
                                 </li>
                                 <li class="slide">
                                     <a href="{{ url('/member/income/trading-bonus-incomes') }}"
@@ -895,16 +896,16 @@
                                     <a href="javascript:void(0);">Wallet</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('member/wallet/sell-sbt') }}"
-                                        class="side-menu__item">Sell SBT</a>
+                                    <a href="{{ url('member/wallet/main-wallet') }}" class="side-menu__item">Main
+                                        Wallet</a>
                                 </li>
                                 <li class="slide">
                                     <a href="{{ url('member/wallet/withdrawal-history') }}"
                                         class="side-menu__item">Withdrawal History</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('member/wallet/all-transaction') }}"
-                                        class="side-menu__item">All Transactions</a>
+                                    <a href="{{ url('member/wallet/all-transaction') }}" class="side-menu__item">All
+                                        Transactions</a>
                                 </li>
 
                             </ul>
