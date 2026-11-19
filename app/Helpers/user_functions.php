@@ -16,7 +16,7 @@ use App\Models\SupportTicket;
 
 function userId()
 {
-    $userid = "SN" . rand(1000000, 9999999);
+    $userid = "SC" . rand(1000000, 9999999);
     $member = MemberDetail::where('memberid', $userid)->count();
     if ($member > 0) {
         userId();
@@ -67,7 +67,7 @@ function updateDownline($sponsorid)
 
 function updateUpline($sponsorid, $memberid)
 {
-    if ($memberid != 'SN1234567') {
+    if ($memberid != 'SC1234567') {
         $pool = UplineMember::where('memberid', $sponsorid)->first();
         $var = new UplineMember();
         $var->memberid = $memberid;

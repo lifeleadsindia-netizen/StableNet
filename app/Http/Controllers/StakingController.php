@@ -27,26 +27,10 @@ class StakingController extends Controller
         ];
     }
 
-    public function buyCoin()
+    public function investSlot()
     {
         $memberid = session('MEMBER_ID');
         $result['data'] = MemberDetail::where('memberid', $memberid)->first();
-        $date = $result['data']['package_activated_at'];
-        $current_time = date('Y-m-d H:i:s');
-        $current = strtotime($current_time);
-        $end_time = date('Y-m-d H:i:s', strtotime($date . '+24 Hours'));
-        $end = strtotime($end_time);
-        $balance = $end > 0 ? ($current / $end) : 0;
-        if ($balance > 1) {
-            $result['balance'] = $current / $end;
-        } else {
-            $result['balance'] = 0;
-        }
-        if ($date != NULL) {
-            $result['rest'] = date('Y-m-d H:i:s', strtotime($date . '+24 Hours'));
-        } else {
-            $result['rest'] = 0;
-        }
 
         $slotDefinitions = self::getSlotDefinition();
 
@@ -96,6 +80,11 @@ class StakingController extends Controller
         $result['allSlotsCompleted'] = ($nextSlotNumber === null);
 
         return view('member.investment.investment-create', $result);
+    }
+
+    public function buyCoin()
+    {
+        return $this->investSlot();
     }
 
     public function createStaking(Request $request)
@@ -186,10 +175,10 @@ class StakingController extends Controller
 
         walletTransfer($memberid, $amount, 'credit', $p2p_wallet, $expectedSlot['name'] . ' Investment', $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') activated from Fund Wallet');
 
-        monthlyTradingBonus($memberid, $amount);
-        $pid = GlobalPoolMatrice($memberid);
+        // monthlyTradingBonus($memberid, $amount);
+        // $pid = GlobalPoolMatrice($memberid);
         levelIncome($sponsorid, $memberid, $name, $amount);
-        profitDetails($memberid, $name, $pid);
+        // profitDetails($memberid, $name, $pid);
 
         session()->flash('successMsg', $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') has been activated successfully!');
         return redirect()->back();
