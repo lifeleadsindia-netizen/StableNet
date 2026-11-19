@@ -251,7 +251,6 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
 
     // buy Coins / Investment Slots
     Route::get('/invest-slot', [StakingController::class, 'investSlot']);
-    Route::get('/buy-sbt', [StakingController::class, 'investSlot']);
     Route::post('createStaking', [StakingController::class, 'createStaking'])->name('createStaking');
     Route::get('/investment-details', [StakingController::class, 'investmentDetails']);
     Route::get('/buy-coin/buy-coin-details', [StakingController::class, 'investmentDetails']);

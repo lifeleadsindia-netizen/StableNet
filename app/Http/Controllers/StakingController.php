@@ -81,12 +81,7 @@ class StakingController extends Controller
 
         return view('member.investment.investment-create', $result);
     }
-
-    public function buyCoin()
-    {
-        return $this->investSlot();
-    }
-
+      
     public function createStaking(Request $request)
     {
         $request->validate([
