@@ -53,17 +53,12 @@ function p2pwalletTransfer($memberid, $amount, $type, $p2pwallet, $walletType, $
 function levelIncome($sponsorid, $memberid, $name, $package)
 {
     if ($sponsorid != 'Root') {
-        // $inc = MemberDetail::where('memberid', $sponsorid)->first();
-        // $sponsorid = $inc['sponsorid'];
-        // $downline = $inc['downline'];
 
-        for ($i = 1; $i < 8; $i++) {
+        for ($i = 2; $i < 15; $i++) {
             $level = $i;
-            $amount = levelamount($level, $package);
+            $amount = $package / 100 * 1;
             if ($sponsorid != 'Root') {
                 $inc = MemberDetail::where('memberid', $sponsorid)->first();
-                $spon_package = $inc['package'];
-                $downline = $inc['downline'];
 
                 $insert = new LevelIncome();
                 $insert->memberid = $sponsorid;
@@ -72,21 +67,15 @@ function levelIncome($sponsorid, $memberid, $name, $package)
                 $insert->amount = $amount;
                 $insert->level_id = $memberid;
                 $insert->name = $name;
-                $insert->downline = $downline;
-                if ($level == 1 && $downline >= 0 || $level == 2 && $downline >= 3 || $level == 3 && $downline >= 5 || $level == 4 && $downline >= 7 || $level == 5 && $downline >= 8 || $level == 6 && $downline >= 9 || $level == 7 && $downline >= 10) {
-                    $insert->status = 'Paid';
-                    $insert->save();
+                $insert->status = 'Paid';
+                $insert->save();
 
-                    $var = MemberDetail::where('memberid', $sponsorid)->first();
-                    $level_wallet = $var->level_wallet;
-                    $var->level_wallet += $amount;
-                    $var->save();
+                $var = MemberDetail::where('memberid', $sponsorid)->first();
+                $level_wallet = $var->level_wallet;
+                $var->level_wallet += $amount;
+                $var->save();
 
-                    walletTransfer($sponsorid, $amount, 'debit', $level_wallet, 'Level Income', '' . $i . ' Level Income Amount Added into Level wallet. Payment Id-' . $insert->id);
-                } else {
-                    $insert->status = 'Flushed';
-                    $insert->save();
-                }
+                walletTransfer($sponsorid, $amount, 'debit', $level_wallet, 'Level Income', '' . $i . ' Level Income Amount Added into Level wallet. Payment Id-' . $insert->id);
 
                 $sponsorid = $inc['sponsorid'];
             } else {
@@ -96,32 +85,42 @@ function levelIncome($sponsorid, $memberid, $name, $package)
     }
 }
 
-function levelamount($level, $package)
-{
+// function levelamount($level, $package)
+// {
+//     if ($level >= 2 && $level <= 15) {
+//          $amount = $package / 100 * 1;
+//     } else {
+//         return $amount;
+//     }
 
-    if ($level == 1) {
-        $amount = $package / 100 * 10;
-    } elseif ($level == 2) {
-        $amount = $package / 100 * 3;
-    } elseif ($level == 3) {
-        $amount = $package / 100 * 2;
-    } elseif ($level == 4) {
-        $amount = $package / 100 * 1.5;
-    } elseif ($level == 5) {
-        $amount = $package / 100 * 1.5;
-    } elseif ($level == 6) {
-        $amount = $package / 100 * 1;
-    } elseif ($level == 7) {
-        $amount = $package / 100 * 1;
-    }
+// }
 
-    return $amount;
-}
+// function levelamount($level, $package)
+// {
+
+//     if ($level == 1) {
+//         $amount = $package / 100 * 10;
+//     } elseif ($level == 2) {
+//         $amount = $package / 100 * 3;
+//     } elseif ($level == 3) {
+//         $amount = $package / 100 * 2;
+//     } elseif ($level == 4) {
+//         $amount = $package / 100 * 1.5;
+//     } elseif ($level == 5) {
+//         $amount = $package / 100 * 1.5;
+//     } elseif ($level == 6) {
+//         $amount = $package / 100 * 1;
+//     } elseif ($level == 7) {
+//         $amount = $package / 100 * 1;
+//     }
+
+//     return $amount;
+// }
 
 
 function profitDetails($memberid, $name)
 {
-    $inc = GlobalPoolMatrice::where('memberid', $memberid)->orderBy('created_at','DESC')->first();
+    $inc = GlobalPoolMatrice::where('memberid', $memberid)->orderBy('created_at', 'DESC')->first();
     $sponsorid = $inc['sponsorid'];
     if ($sponsorid != 'Root') {
         for ($i = 1; $i < 31; $i++) {
@@ -153,7 +152,7 @@ function monthlyTradingBonus($memberid, $package)
     $startDate = date('Y-m-01');
     $lastDate = date('Y-m-d', strtotime('+1 Day'));
     $count = PackageDetail::where('memberid', $memberid)->whereBetween('created_at', [$startDate, $lastDate])->count();
-    if ($count % 2  == 0) {
+    if ($count % 2 == 0) {
         if ($count == 2) {
             $amount = 1;
         } elseif ($count == 4) {
@@ -190,7 +189,7 @@ function GlobalPoolMatrice($memberid)
     $count = PackageDetail::where('memberid', $memberid)->whereBetween('created_at', [$startDate, $lastDate])->count();
     $total = GlobalPoolMatrice::count();
 
-    $sponsor =  GlobalPoolMatrice::orderBy('created_at', 'DESC')->first();
+    $sponsor = GlobalPoolMatrice::orderBy('created_at', 'DESC')->first();
 
     $cmt = new GlobalPoolMatrice();
     $cmt->memberid = $memberid;
