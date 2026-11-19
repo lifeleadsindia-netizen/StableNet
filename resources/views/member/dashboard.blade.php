@@ -394,7 +394,7 @@
                                             </div>
                                             <div>
                                                 <span class="d-block">Income Wallet</span>
-                                                <h4 class="fw-semibold">{{ number_format($data['wallet'], 2) }} SBT</h4>
+                                                <h4 class="fw-semibold">$ {{ number_format($data['wallet'], 2) }}</h4>
                                             </div>
                                         </div>
                                         {{-- <div>
@@ -419,7 +419,7 @@
                                             </div>
                                             <div>
                                                 <span class="d-block">Level Wallet</span>
-                                                <h4 class="fw-semibold">{{ number_format($data['level_wallet'], 2) }} SBT
+                                                <h4 class="fw-semibold">$ {{ number_format($data['level_wallet'], 2) }}
                                                 </h4>
                                             </div>
                                         </div>
@@ -439,8 +439,7 @@
                             <div class="card custom-card overflow-hidden">
                                 <div class="card-body" style="background: #111c43">
                                     <h4 class="text-white my-0 py-0"><strong>Today's Income</strong> <span
-                                            class="float-end me-2">{{ number_format(todayIncome($data['memberid']), 2) }}
-                                            SBT</span></h4>
+                                            class="float-end me-2">$ {{ number_format(todayIncome($data['memberid']), 2) }}</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -461,7 +460,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Today's Level Income</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{ number_format(todayLevelIncome($data['memberid']), 2) }} SBT
+                                                        $ {{ number_format(todayLevelIncome($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div id="crm-total-customers"></div>
@@ -496,7 +495,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Today's Trading Profit</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{ number_format(todayTradingProfit($data['memberid']), 2) }} SBT
+                                                        $ {{ number_format(todayTradingProfit($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div id="crm-total-revenue"></div>
@@ -532,7 +531,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Today's Trading Bonus</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{ number_format(todayTradingBonus($data['memberid']), 2) }} SBT
+                                                        $ {{ number_format(todayTradingBonus($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div id="crm-conversion-ratio"></div>
@@ -560,8 +559,7 @@
                             <div class="card custom-card overflow-hidden">
                                 <div class="card-body" style="background: #111c43">
                                     <h4 class="text-white my-0 py-0"><strong>Total Income</strong><span
-                                            class="float-end me-2">{{ number_format(totalIncome($data['memberid']), 2) }}
-                                            SBT</span></h4>
+                                            class="float-end me-2">$ {{ number_format(totalIncome($data['memberid']), 2) }}</span></h4>
                                 </div>
                             </div>
                         </div>
@@ -582,7 +580,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Total Level Income</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{ number_format(totalLevelIncome($data['memberid']), 2) }} SBT
+                                                        $ {{ number_format(totalLevelIncome($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div>
@@ -620,7 +618,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Total Trading Profit</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{ number_format(totalTradingProfit($data['memberid']), 2) }} SBT
+                                                        $ {{ number_format(totalTradingProfit($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div>
@@ -659,7 +657,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Total Trading Bonus</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{ number_format(totalTradingBonus($data['memberid']), 2) }} SBT
+                                                        $ {{ number_format(totalTradingBonus($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div>
@@ -689,11 +687,11 @@
                         @foreach ($matrix as $value)
                             <div class="col-xl-4 col-md-4 mb-4">
                                 <div class="sbt-card">
-                                    <h4 class="sbt-title text-white">SBT</h4>
+                                    <h4 class="sbt-title text-white">Slot</h4>
                                     <div class="row">
                                         <div class="col-6">
-                                            <p><strong>Amount:</strong><br> 100 USDT</p>
-                                            <p><strong>Received:</strong><br> 100 SBT</p>
+                                            <p><strong>Amount:</strong><br> $100</p>
+                                            <p><strong>Received:</strong><br> $100</p>
                                             <p><strong>Status:</strong><br> {{ $value['status'] }}</p>
                                         </div>
                                         <div class="col-6">

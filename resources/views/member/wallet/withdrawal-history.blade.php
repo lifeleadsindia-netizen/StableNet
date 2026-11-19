@@ -54,9 +54,9 @@
                                                 <td>{{ $list['memberid'] }}</td>
                                                 <td>{{ $list['wallet_address'] }}</td>
                                                 <!--<td><span class="btn btn-sm btn-primary">{{ $list['type'] }}</span></td>-->
-                                                <td>{{ $list['gross_amount'] }} SBT</td>
-                                                <td>{{ $list['service_charge'] }} SBT</td>
-                                                <td>{{ $list['net_amount'] }} SBT</td>
+                                                <td>$ {{ number_format((float)$list['gross_amount'], 2) }}</td>
+                                                <td>$ {{ number_format((float)$list['service_charge'], 2) }}</td>
+                                                <td>$ {{ number_format((float)$list['net_amount'], 2) }}</td>
                                                 <td>
                                                     <label class="btn btn-success">{{ $list['status'] }}</label>
                                                 </td>

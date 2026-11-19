@@ -56,9 +56,9 @@
                                             <td>{{ $i }}</td>
                                             <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
                                             <td>{{ $list['memberid'] }}</td>
-                                            <td>{{ $list['investment'] }} SBT</td>
-                                            <td>{{ $list['profit'] }} SBT</td>
-                                            <td>{{ $list['amount'] }} SBT</td>
+                                            <td>$ {{ number_format((float)$list['investment'], 2) }}</td>
+                                            <td>$ {{ number_format((float)$list['profit'], 2) }}</td>
+                                            <td>$ {{ number_format((float)$list['amount'], 2) }}</td>
                                             <td>{{ $list['pool_id'] }}</td>
                                             <td>{{ $list['buy_no'] }}</td>
 

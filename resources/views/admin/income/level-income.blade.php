@@ -50,10 +50,10 @@
                                             <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
                                             <td>{{ $list['memberid'] }}</td>
                                             <td>{{ getName($list['memberid']) }}</td>
-                                            <td>{{ number_format($list['amount'],2) }} SBT</td>
+                                            <td>$ {{ number_format($list['amount'],2) }}</td>
                                             <td>{{ $list['level'] }}</td>
                                             <td>{{ $list['level_id'] }}</td>
-                                            <td>{{ number_format($list['package'], 2) }} SBT</td>
+                                            <td>$ {{ number_format($list['package'], 2) }}</td>
 
                                             <td>
                                                 @if ($list['status'] == 'Paid')

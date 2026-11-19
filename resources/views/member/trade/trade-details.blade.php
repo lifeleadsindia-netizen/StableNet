@@ -54,7 +54,7 @@
                                                 <td> {{ date('d-m-Y', strtotime($list['activated_at'])) }} | {{ date('d-m-Y', strtotime($list['activated_at'])) }}</td>
                                                 <td>{{ $list['memberid'] }}</td>
                                                 <td>{{ $list['sponsorid'] }}</td>
-                                                <td>100 SBT</td>
+                                                <td>$ 100.00</td>
                                                 <td> 30 Trades / 32 Trades</td>
                                                 <td>
                                                     @if (getPoolCount($list['id']) <= 30)
@@ -71,7 +71,7 @@
                                                         32 Trades
                                                     @endif
                                                 </td>
-                                                <td>{{100 + getTotalProfit($list['id'])}} SBT</td>
+                                                <td>$ {{ number_format(100 + (function_exists('getTotalProfit') ? getTotalProfit($list['id']) : 0), 2) }}</td>
                                                 <td>
                                                     @if ($list['status'] == 'Open')
                                                         <span class="btn btn-sm btn-success">{{ $list['status'] }}</span>

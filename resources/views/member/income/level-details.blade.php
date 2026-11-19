@@ -49,13 +49,13 @@
                                             <td>{{$i}}</td>
                                             <td>{{date('d-m-Y', strtotime($list['created_at']))}}</td>
                                             <td>{{$list['memberid']}}</td>
-                                            <td>{{$list['package']}} SBT</td>
-                                            <td>{{$list['amount']}} SBT</td>
+                                            <td>$ {{ number_format((float)$list['package'], 2) }}</td>
+                                            <td>$ {{ number_format((float)$list['amount'], 2) }}</td>
                                             <td>{{$list['level']}}</td>
                                             <td>{{$list['level_id']}}</td>
-                                            <td>{{$list['daily_amount']}} SBT</td>
+                                            <td>$ {{ number_format((float)$list['daily_amount'], 2) }}</td>
                                             <td>{{$list['installments']}}</td>
-                                            <td>{{$list['flushed_amount']}} SBT</td>
+                                            <td>$ {{ number_format((float)$list['flushed_amount'], 2) }}</td>
                                             
                                             <td>
                                                 @if ($list['status'] == 'Active')

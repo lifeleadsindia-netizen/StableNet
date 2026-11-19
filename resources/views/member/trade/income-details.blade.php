@@ -52,8 +52,8 @@
                                                 <td> {{ date('d-m-Y', strtotime($list['created_at'])) }} <br>{{ date('H:i:s', strtotime($list['created_at'])) }}</td>
                                                 <td>{{ $list['memberid'] }}</td>
                                                 <td>Level {{ $list['level'] }}</td>
-                                                <td> {{ $list['amount'] }} SBT</td>
-                                                <td> {{ $list['total_amount'] }} SBT</td>
+                                                <td>$ {{ number_format((float)$list['amount'], 2) }}</td>
+                                                <td>$ {{ number_format((float)$list['total_amount'], 2) }}</td>
                                                 <td> {{ $list['downline_id'] }}</td>
                                                 <td> {{ $list['name'] }}</td>
                                             </tr>

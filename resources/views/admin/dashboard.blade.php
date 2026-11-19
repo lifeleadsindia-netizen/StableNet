@@ -147,7 +147,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <p class="mb-0">Total In Level Wallet</p>
-                                                        <h4>{{ number_format(totalinlevelWallet(), 2) }} SBT</h4>
+                                                        <h4>$ {{ number_format(totalinlevelWallet(), 2) }}</h4>
                                                     </div>
                                                     <div>
                                                         {{-- <a class="text-primary" href="javascript:void(0);">View All<i
@@ -172,7 +172,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <p class="mb-0">Today's Withdrawal</p>
-                                                        <h4>{{ number_format(todaysWithdrawal(), 2) }} SBT</h4>
+                                                        <h4>$ {{ number_format(todaysWithdrawal(), 2) }}</h4>
                                                     </div>
                                                     <div>
                                                         {{-- <a class="text-primary" href="javascript:void(0);">View All<i
@@ -196,7 +196,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <p class="mb-0">Total Withdrawal</p>
-                                                        <h4>{{ number_format(totalWithdrawal(), 2) }} SBT</h4>
+                                                        <h4>$ {{ number_format(totalWithdrawal(), 2) }}</h4>
                                                     </div>
                                                     <div>
                                                         {{-- <a class="text-primary" href="javascript:void(0);">View All<i
@@ -242,7 +242,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <p class="mb-0">Total Package Value</p>
-                                                        <h4>{{ number_format(totalpackageValue(), 2) }} SBT</h4>
+                                                        <h4>$ {{ number_format(totalpackageValue(), 2) }}</h4>
                                                     </div>
                                                     <div>
                                                         {{-- <a class="text-primary" href="javascript:void(0);">View All<i
@@ -287,7 +287,7 @@
                                     <div class="row">
                                         <div class="card-body py-2">
                                             <div class="card-title mt-1 pl-3" style="font-size:100px;">
-                                                <h4><b style="text-decoration: underline;">Today's Income</b>&#8628;<b class="float-end mx-4">{{ number_format(todayInc(),2) }} SBT</b></h4>
+                                                <h4><b style="text-decoration: underline;">Today's Income</b>&#8628;<b class="float-end mx-4">$ {{ number_format(todayInc(),2) }}</b></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -304,7 +304,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <h4 class="mb-2 text-green">
-                                                            {{ number_format(todayLevelInc(), 2) }} SBT</h4>
+                                                            $ {{ number_format(todayLevelInc(), 2) }}</h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -342,7 +342,7 @@
                                                     <div class="col-9">
 
                                                         <h4 class="mb-2 text-green">
-                                                            {{ number_format(todaytradebonusInc(), 2) }} SBT</h4>
+                                                            $ {{ number_format(todaytradebonusInc(), 2) }}</h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -379,7 +379,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <h4 class="mb-2 text-green">
-                                                            {{ number_format(todaytradeprofitInc(), 2) }} SBT</h4>
+                                                            $ {{ number_format(todaytradeprofitInc(), 2) }}</h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -413,7 +413,7 @@
                                     <div class="row">
                                         <div class="card-body py-2">
                                             <div class="card-title mt-1 pl-3" style="font-size:100px;">
-                                                <h4><b style="text-decoration: underline;">Total Income</b>&#8628;<b class="float-end mx-4">{{ number_format(totalInc(),2) }} SBT</b></h4>
+                                                <h4><b style="text-decoration: underline;">Total Income</b>&#8628;<b class="float-end mx-4">$ {{ number_format(totalInc(),2) }}</b></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -430,7 +430,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <h4 class="mb-2 text-green">
-                                                            {{ number_format(totalLevelInc(), 2) }} SBT</h4>
+                                                            $ {{ number_format(totalLevelInc(), 2) }}</h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -468,7 +468,7 @@
                                                     <div class="col-9">
 
                                                         <h4 class="mb-2 text-green">
-                                                            {{ number_format(totaltradeBonusInc(), 2) }} SBT</h4>
+                                                            $ {{ number_format(totaltradeBonusInc(), 2) }}</h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -505,7 +505,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <h4 class="mb-2 text-green">
-                                                            {{ number_format(totaltradeprofitInc(), 2) }} SBT</h4>
+                                                            $ {{ number_format(totaltradeprofitInc(), 2) }}</h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -544,7 +544,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <div class="col-9">
-                                                            <h4 class="mb-2">{{ number_format(totalgrossAmount(),2) }} SBT</h4>
+                                                            <h4 class="mb-2">$ {{ number_format(totalgrossAmount(),2) }}</h4>
                                                         </div>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
@@ -582,7 +582,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <div class="col-9">
-                                                            <h4 class="mb-2">{{ number_format(totalnetAmount(),2) }} SBT</h4>
+                                                            <h4 class="mb-2">$ {{ number_format(totalnetAmount(),2) }}</h4>
                                                         </div>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
@@ -620,7 +620,7 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <div class="col-9">
-                                                            <h4 class="mb-2">{{ number_format(totaldeductions(),2) }} SBT</h4>
+                                                            <h4 class="mb-2">$ {{ number_format(totaldeductions(),2) }}</h4>
                                                         </div>
                                                     </div>
                                                     <div id="crm-total-deals"></div>

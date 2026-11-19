@@ -80,8 +80,8 @@
                                             </td>
                                             <td>{{ __($list['mobile']) }}</td>
                                             <td>{{ __($list['email']) }}</td>
-                                            <td>{{ __($list['package']) }} SBT</td>
-                                            <td>{{ __($list['investment']) }} SBT</td>
+                                            <td>$ {{ number_format((float)$list['package'], 2) }}</td>
+                                            <td>$ {{ number_format((float)$list['investment'], 2) }}</td>
                                             <td>
                                                 @if ($list['status'] == 'Active')
                                                     <span

@@ -49,25 +49,13 @@
                                                     {{ date('H:i:s', strtotime($list['created_at'])) }}</td>
                                                 <td>{{ $list['walletType'] }}</td>
                                                 <td>
-                                                    @if ($list['walletType'] == 'Staking Broken')
-                                                        {{ $list['debit'] }} Coins
-                                                    @else
-                                                        {{ $list['debit'] }} SBT
-                                                    @endif
+                                                    $ {{ number_format((float)$list['debit'], 2) }}
                                                 </td>
                                                 <td>
-                                                    @if ($list['walletType'] == 'Staking Broken')
-                                                        {{ $list['credit'] }} Coins
-                                                    @else
-                                                        {{ $list['credit'] }} SBT
-                                                    @endif
+                                                    $ {{ number_format((float)$list['credit'], 2) }}
                                                 </td>
                                                 <td>
-                                                    @if ($list['walletType'] == 'Staking Broken')
-                                                        {{ $list['balance'] }} Coins
-                                                    @else
-                                                        {{ $list['balance'] }} SBT
-                                                    @endif
+                                                    $ {{ number_format((float)$list['balance'], 2) }}
                                                 </td>
                                                 <td>{{ $list['particular'] }}</td>
                                             </tr>

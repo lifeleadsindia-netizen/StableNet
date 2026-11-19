@@ -57,7 +57,7 @@
                                             <td>{{ getName($list['memberid']) }}</td>
                                             <td>{{ $list['order_id'] }}</td>
                                             <td>{{ $list['txnid'] }}</td>
-                                            <td>{{ $list['package'] }} SBT</td>
+                                            <td>$ {{ number_format((float)$list['package'], 2) }}</td>
                                             <td>{{ $list['payment_mode'] }}</td>
                                             <td>
                                                 <div class="btn btn-sm btn-success">{{ $list['status'] }}</div>

@@ -47,11 +47,11 @@
                                             <td>{{$i}}</td>
                                             <td>{{date('d-m-Y', strtotime($list['created_at']))}}</td>
                                             <td>{{$list['memberid']}}</td>
-                                            <td>{{$list['package']}} SBT</td>
+                                            <td>$ {{ number_format((float)$list['package'], 2) }}</td>
                                             <td>{{$list['directid']}}</td>
                                             
                                             <td>{{$list['installment']}}</td>
-                                            <td>{{$list['amount']}} SBT</td>
+                                            <td>$ {{ number_format((float)$list['amount'], 2) }}</td>
                                             <td>
                                                 @if ($list['status'] == 'Active')
                                                 <label class="badge badge-success">{{$list['status']}}</label>

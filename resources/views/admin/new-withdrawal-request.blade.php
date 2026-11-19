@@ -59,9 +59,9 @@
                                             <td>{{ getName($list['memberid']) }}</td>
                                             <!--<td><span class="btn btn-sm btn-primary"><b>{{ $list['type'] }}</b></span></td>-->
                                             <td>{{ $list['wallet_address'] }}</td>
-                                            <td>{{ number_format($list['gross_amount'],2) }} SBT</td>
-                                            <td>{{ number_format($list['service_charge'],2) }} SBT</td>
-                                            <td>{{ number_format($list['net_amount'],2) }} SBT</td>
+                                            <td>$ {{ number_format($list['gross_amount'],2) }}</td>
+                                            <td>$ {{ number_format($list['service_charge'],2) }}</td>
+                                            <td>$ {{ number_format($list['net_amount'],2) }}</td>
                                             <td class="px-0">
                                                 <a href="{{ url('admin/withdrawal/accept-online') }}/{{ $list['id'] }}"
                                                     class="btn btn-sm btn-success mx-0">Online Pay</a>

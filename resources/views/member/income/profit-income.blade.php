@@ -47,9 +47,9 @@
                                             <td>{{ $i }}</td>
                                             <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
                                             <td>{{ $list['memberid'] }}</td>
-                                            <td>{{ $list['package'] }} SBT</td>
+                                            <td>$ {{ number_format((float)$list['package'], 2) }}</td>
                                             <td>{{ $list['buy_no'] }}</td>
-                                            <td>{{ number_format($list['amount'], 2) }} SBT</td>
+                                            <td>$ {{ number_format($list['amount'], 2) }}</td>
                                             <td>
                                                 @if ($list['status'] == 'Unpaid')
                                                     <div class="btn btn-sm btn-danger">{{ $list['status'] }}</div>
