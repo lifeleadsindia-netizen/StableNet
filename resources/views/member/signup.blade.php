@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('user_assets/app-fce3f544.css') }}" />
 
     <!-- 3D GLASS AUTH CSS -->
-    <link rel="stylesheet" href="{{ asset('user_assets/css/glass-auth.css') }}" />
+    <link rel="stylesheet" href="{{ asset('user_assets/css/glass-auth.css') }}?v={{ time() }}" />
 </head>
 
 <body>
@@ -74,26 +74,26 @@
                 <form action="{{ route('userRegister') }}" method="post" class="auth-form" autocomplete="off">
                     @csrf
 
-                    <div class="row g-3">
+                    <div class="row g-2">
                         <!-- Sponsor ID Field -->
-                        <div class="col-12">
+                        <div class="col-md-6 col-12">
                             <div class="glass-form-group mb-0">
                                 <label for="sponsor" class="glass-label">
                                     <span>Sponsor ID</span>
-                                    <span id="sponhtml" class="text-info fw-bold" style="font-size: 0.8rem;"></span>
+                                    <span id="sponhtml" class="text-info fw-bold" style="font-size: 0.725rem;"></span>
                                 </label>
                                 <div class="glass-input-wrapper">
                                     <i class="ri-user-shared-line glass-input-icon"></i>
                                     <input type="text" 
                                            class="glass-input @error('sponsor') is-invalid @enderror" 
                                            id="sponsor"
-                                           placeholder="Enter Sponsor ID" 
+                                           placeholder="Sponsor ID" 
                                            name="sponsor"
                                            value="{{ old('sponsor', $sdata != '1' ? $sdata : '') }}"
                                            required>
                                 </div>
                                 @error('sponsor')
-                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -107,13 +107,13 @@
                                     <input type="text" 
                                            class="glass-input @error('name') is-invalid @enderror" 
                                            id="name"
-                                           placeholder="Enter Full Name" 
+                                           placeholder="Your Name" 
                                            name="name"
                                            value="{{ old('name') }}"
                                            required>
                                 </div>
                                 @error('name')
-                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -127,13 +127,13 @@
                                     <input type="email" 
                                            class="glass-input @error('email') is-invalid @enderror" 
                                            id="email"
-                                           placeholder="name@domain.com" 
+                                           placeholder="name@email.com" 
                                            name="email"
                                            value="{{ old('email') }}"
                                            required>
                                 </div>
                                 @error('email')
-                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                                            required>
                                 </div>
                                 @error('mobile')
-                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -176,21 +176,21 @@
                                     </select>
                                 </div>
                                 @error('country')
-                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
 
                         <!-- Password Field -->
-                        <div class="col-12">
+                        <div class="col-md-6 col-12">
                             <div class="glass-form-group mb-0">
-                                <label for="signup-password" class="glass-label">Security Password</label>
+                                <label for="signup-password" class="glass-label">Password</label>
                                 <div class="glass-input-wrapper">
                                     <i class="ri-lock-password-line glass-input-icon"></i>
                                     <input type="password" 
                                            class="glass-input @error('password') is-invalid @enderror" 
                                            id="signup-password"
-                                           placeholder="Choose a strong password" 
+                                           placeholder="Choose password" 
                                            name="password"
                                            required>
                                     <button class="glass-pw-toggle" 
@@ -201,14 +201,14 @@
                                     </button>
                                 </div>
                                 @error('password')
-                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                     </div>
 
                     <!-- 3D Submit Button -->
-                    <button type="submit" class="btn-3d-glass mt-4">
+                    <button type="submit" class="btn-3d-glass mt-3">
                         <i class="ri-user-add-line"></i>
                         <span>Register Account</span>
                     </button>

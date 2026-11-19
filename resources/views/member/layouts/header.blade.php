@@ -768,19 +768,19 @@
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <i class="bx bx-grid side-menu__icon"></i>
-                                <span class="side-menu__label">Buy Section</span>
+                                <span class="side-menu__label">Investment</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
                                 <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Buy Coin</a>
+                                    <a href="javascript:void(0);">Invest Coin</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/buy-sbt') }}" class="side-menu__item">Buy SBT</a>
+                                    <a href="{{ url('/member/invest-slot') }}" class="side-menu__item">Investment Slot</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/buy-coin/buy-coin-details') }}"
-                                        class="side-menu__item">Buy Orders</a>
+                                    <a href="{{ url('/member/investment-details') }}"
+                                        class="side-menu__item">Investment Details</a>
                                 </li>
 
                             </ul>
