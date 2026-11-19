@@ -700,7 +700,7 @@
                                             <p><strong>Date/ Time:</strong><br>
                                                 {{ date('d-m-Y', strtotime($value['created_at'])) }} |
                                                 {{ date('H:i:s', strtotime($value['created_at'])) }}</p>
-                                            <p><strong>Earnings:</strong><br> {{ getTotalProfit($value['id']) }} SBT</p>
+                                            {{-- <p><strong>Earnings:</strong><br> {{ getTotalProfit($value['id']) }} SBT</p> --}}
 
                                              @if (getPoolCount($value['id']) >= 32 && $value['status'] == 'Open')
                                                 <a href="{{ url('/member/profit-withdrawal') }}/{{ $value['id'] }}"

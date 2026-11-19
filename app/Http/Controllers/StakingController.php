@@ -11,18 +11,32 @@ use Illuminate\Support\Facades\Hash;
 
 class StakingController extends Controller
 {
+    public static function getSlotDefinition(): array
+    {
+        return [
+            1  => ['slot' => 1,  'amount' => 5,     'name' => 'Slot 1',  'price' => '$5'],
+            2  => ['slot' => 2,  'amount' => 15,    'name' => 'Slot 2',  'price' => '$15'],
+            3  => ['slot' => 3,  'amount' => 50,    'name' => 'Slot 3',  'price' => '$50'],
+            4  => ['slot' => 4,  'amount' => 100,   'name' => 'Slot 4',  'price' => '$100'],
+            5  => ['slot' => 5,  'amount' => 300,   'name' => 'Slot 5',  'price' => '$300'],
+            6  => ['slot' => 6,  'amount' => 500,   'name' => 'Slot 6',  'price' => '$500'],
+            7  => ['slot' => 7,  'amount' => 1000,  'name' => 'Slot 7',  'price' => '$1,000'],
+            8  => ['slot' => 8,  'amount' => 3000,  'name' => 'Slot 8',  'price' => '$3,000'],
+            9  => ['slot' => 9,  'amount' => 5000,  'name' => 'Slot 9',  'price' => '$5,000'],
+            10 => ['slot' => 10, 'amount' => 10000, 'name' => 'Slot 10', 'price' => '$10,000'],
+        ];
+    }
+
     public function buyCoin()
     {
         $memberid = session('MEMBER_ID');
         $result['data'] = MemberDetail::where('memberid', $memberid)->first();
         $date = $result['data']['package_activated_at'];
         $current_time = date('Y-m-d H:i:s');
-        // $result['current_time'] = strtotime($current_time);
         $current = strtotime($current_time);
         $end_time = date('Y-m-d H:i:s', strtotime($date . '+24 Hours'));
-        // $result['end_time'] = strtotime($end_time);
         $end = strtotime($end_time);
-        $balance = $current / $end;
+        $balance = $end > 0 ? ($current / $end) : 0;
         if ($balance > 1) {
             $result['balance'] = $current / $end;
         } else {
@@ -34,6 +48,53 @@ class StakingController extends Controller
             $result['rest'] = 0;
         }
 
+        $slotDefinitions = self::getSlotDefinition();
+
+        // Get all accepted packages purchased by this member
+        $purchasedPackages = PackageDetail::where('memberid', $memberid)
+            ->where('status', 'Accepted')
+            ->pluck('package')
+            ->map(function ($val) {
+                return (int) $val;
+            })
+            ->toArray();
+
+        // Sequential one-by-one unlock logic:
+        // Find the lowest slot number not yet purchased
+        $nextSlotNumber = null;
+        foreach ($slotDefinitions as $slotNum => $info) {
+            if (!in_array($info['amount'], $purchasedPackages)) {
+                $nextSlotNumber = $slotNum;
+                break;
+            }
+        }
+
+        $slotList = [];
+        $activatedCount = 0;
+        foreach ($slotDefinitions as $slotNum => $info) {
+            $isPurchased = in_array($info['amount'], $purchasedPackages);
+            $isNext = ($slotNum === $nextSlotNumber);
+            $isLocked = ($nextSlotNumber !== null && $slotNum > $nextSlotNumber) || ($nextSlotNumber === null && !$isPurchased);
+
+            if ($isPurchased) {
+                $activatedCount++;
+            }
+
+            $slotList[$slotNum] = array_merge($info, [
+                'is_purchased' => $isPurchased,
+                'is_next' => $isNext,
+                'is_locked' => $isLocked,
+                'status_label' => $isPurchased ? 'Activated' : ($isNext ? 'Available' : 'Locked'),
+            ]);
+        }
+
+        $result['slots'] = $slotList;
+        $result['nextSlotNumber'] = $nextSlotNumber;
+        $result['nextSlot'] = $nextSlotNumber ? $slotList[$nextSlotNumber] : null;
+        $result['activatedCount'] = $activatedCount;
+        $result['totalSlots'] = count($slotDefinitions);
+        $result['allSlotsCompleted'] = ($nextSlotNumber === null);
+
         return view('member.investment.investment-create', $result);
     }
 
@@ -41,42 +102,57 @@ class StakingController extends Controller
     {
         $request->validate([
             'memberid' => 'required',
-            'amount' => 'required',
+            'amount' => 'required|numeric',
             'txn_password' => 'required'
         ]);
 
         $memberid = session('MEMBER_ID');
-        $amount = $request->post('amount');
+        $amount = (int) $request->post('amount');
         $txn_password = $request->post('txn_password');
 
         $memUpdate = MemberDetail::where('memberid', $memberid)->first();
+        if (!$memUpdate) {
+            session()->flash('failedMsg', 'Member not found.');
+            return redirect()->back();
+        }
+
         $sponsorid = $memUpdate->sponsorid;
-        $p2p_wallet = $memUpdate->p2p_wallet;
-        $date = $memUpdate->package_activated_at;
-        $current_time = date('Y-m-d H:i:s');
-        $end_time = date('Y-m-d H:i:s', strtotime($date . '+24 Hours'));
-
+        $p2p_wallet = (float) $memUpdate->p2p_wallet;
         $name = $memUpdate->name;
-        $type = 'By User';
 
+        $slotDefinitions = self::getSlotDefinition();
 
-        if ($amount < 100) {
-            session()->flash('failedMsg', '*** This amount is not allowed');
+        // Get all accepted packages purchased by this member
+        $purchasedPackages = PackageDetail::where('memberid', $memberid)
+            ->where('status', 'Accepted')
+            ->pluck('package')
+            ->map(function ($val) {
+                return (int) $val;
+            })
+            ->toArray();
+
+        // Sequential one-by-one unlock check
+        $nextSlotNumber = null;
+        foreach ($slotDefinitions as $slotNum => $info) {
+            if (!in_array($info['amount'], $purchasedPackages)) {
+                $nextSlotNumber = $slotNum;
+                break;
+            }
+        }
+
+        if ($nextSlotNumber === null) {
+            session()->flash('failedMsg', 'All 10 investment slots have already been activated.');
+            return redirect()->back();
+        }
+
+        $expectedSlot = $slotDefinitions[$nextSlotNumber];
+        if ($amount !== $expectedSlot['amount']) {
+            session()->flash('failedMsg', 'Slots must be activated one by one in sequence. Next slot to activate is ' . $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ').');
             return redirect()->back();
         }
 
         if ($p2p_wallet < $amount) {
-            session()->flash('failedMsg', 'There is no enough balance in your wallet to stake this amount');
-            return redirect()->back();
-        }
-
-        // if ($date != NULL && $current_time <= $end_time) {
-        //     session()->flash('failedMsg', '*** Coins can be bought only after 24 hours of last coins buy');
-        //     return redirect()->back();
-        // }
-        ;
-        if (PackageCount($memberid) >= 10) {
-            session()->flash('failedMsg', 'You already have 10 open trades.');
+            session()->flash('failedMsg', 'Insufficient balance in Fund Wallet. Required: ' . $expectedSlot['price'] . ', Available: $' . number_format($p2p_wallet, 2));
             return redirect()->back();
         }
 
@@ -108,14 +184,14 @@ class StakingController extends Controller
         $memUpdate->package_activated_at = date('Y-m-d H:i:s');
         $memUpdate->save();
 
-        walletTransfer($memberid, $amount, 'credit', $p2p_wallet, 'Buy Coins', 'Buy Coins amount has been deducted from wallet');
+        walletTransfer($memberid, $amount, 'credit', $p2p_wallet, $expectedSlot['name'] . ' Investment', $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') activated from Fund Wallet');
 
         monthlyTradingBonus($memberid, $amount);
         $pid = GlobalPoolMatrice($memberid);
         levelIncome($sponsorid, $memberid, $name, $amount);
         profitDetails($memberid, $name, $pid);
 
-        session()->flash('successMsg', 'Coins have been buy successfully.');
+        session()->flash('successMsg', $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') has been activated successfully!');
         return redirect()->back();
     }
 

@@ -226,11 +226,11 @@ function getProfileImage($ticket_id)
     return $var['profile_image'];
 }
 
-function getTotalProfit($id)
-{
-      $sum = ProfitDetail::where('pool_id', $id)->sum('amount');
-      return $sum;
-}
+// function getTotalProfit($id)
+// {
+//       $sum = ProfitDetail::where('pool_id', $id)->sum('amount');
+//       return $sum;
+// }
 
 function getCurrentTrade($memberid)
 {
