@@ -84,7 +84,7 @@ function updateUpline($sponsorid, $memberid)
 
 function totalIncome($memberid)
 {
-    $total = totalLevelIncome($memberid) + totalTradingProfit($memberid) + totalTradingBonus($memberid);
+    $total = totalLevelIncome($memberid);
     return $total;
 }
 
@@ -93,19 +93,6 @@ function totalLevelIncome($memberid)
     $var = LevelIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
     return $var;
 }
-
-function totalTradingProfit($memberid)
-{
-    $var = GlobalPoolIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
-    return $var;
-}
-
-function totalTradingBonus($memberid)
-{
-    $var = MonthlyIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
-    return $var;
-}
-
 
 function totalDownlines($memberid)
 {
@@ -146,25 +133,13 @@ function todayDeposit($memberid)
 
 function todayIncome($memberid)
 {
-    $total = todayLevelIncome($memberid)  + todayTradingProfit($memberid) + todayTradingBonus($memberid);
+    $total = todayLevelIncome($memberid);
     return $total;
 }
 
 function todayLevelIncome($memberid)
 {
     $var = LevelIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
-    return $var;
-}
-
-function todayTradingProfit($memberid)
-{
-    $var = GlobalPoolIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
-    return $var;
-}
-
-function todayTradingBonus($memberid)
-{
-    $var = MonthlyIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
     return $var;
 }
 

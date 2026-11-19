@@ -495,7 +495,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Today's Trading Profit</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(todayTradingProfit($data['memberid']), 2) }}
+                                                        {{-- $ {{ number_format(todayTradingProfit($data['memberid']), 2) }} --}}
                                                     </h4>
                                                 </div>
                                                 <div id="crm-total-revenue"></div>
@@ -531,7 +531,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Today's Trading Bonus</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(todayTradingBonus($data['memberid']), 2) }}
+                                                        {{-- $ {{ number_format(todayTradingBonus($data['memberid']), 2) }} --}}
                                                     </h4>
                                                 </div>
                                                 <div id="crm-conversion-ratio"></div>
@@ -618,7 +618,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Total Trading Profit</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(totalTradingProfit($data['memberid']), 2) }}
+                                                        {{-- $ {{ number_format(totalTradingProfit($data['memberid']), 2) }} --}}
                                                     </h4>
                                                 </div>
                                                 <div>
@@ -657,7 +657,7 @@
                                                 <div>
                                                     <p class="text-muted mb-0">Total Trading Bonus</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(totalTradingBonus($data['memberid']), 2) }}
+                                                        {{-- $ {{ number_format(totalTradingBonus($data['memberid']), 2) }} --}}
                                                     </h4>
                                                 </div>
                                                 <div>
