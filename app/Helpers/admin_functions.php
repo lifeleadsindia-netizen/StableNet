@@ -70,33 +70,15 @@ function totalinlevelWallet()
     return $sum;
 }
 
-function totalinCoinWallet()
-{
-    $sum = MemberDetail::where('status', 'Active')->sum('coin_wallet');
-    return $sum;
-}
-
 function totalInc()
 {
-    $total = totalLevelInc() + totaltradeBonusInc() + totaltradeprofitInc();
+    $total = totalLevelInc();
     return $total;
 }
 
 function totalLevelInc()
 {
     $var = LevelIncome::where('status', 'Paid')->sum('amount');
-    return $var;
-}
-
-function totaltradeBonusInc()
-{
-    $var = MonthlyIncome::where('status', 'Paid')->sum('amount');
-    return $var;
-}
-
-function totaltradeprofitInc()
-{
-    $var = GlobalPoolIncome::where('status', 'Paid')->sum('amount');
     return $var;
 }
 
@@ -126,25 +108,13 @@ function totalFundImported()
 
 function todayInc()
 {
-    $total = todayLevelInc() + todaytradebonusInc() + todaytradeprofitInc();
+    $total = todayLevelInc();
     return $total;
 }
 
 function todayLevelInc()
 {
     $var = LevelIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('amount');
-    return $var;
-}
-
-function todaytradebonusInc()
-{
-    $var = MonthlyIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('amount');
-    return $var;
-}
-
-function todaytradeprofitInc()
-{
-    $var = GlobalPoolIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('amount');
     return $var;
 }
 

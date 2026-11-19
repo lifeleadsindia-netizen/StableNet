@@ -342,7 +342,8 @@
                                                     <div class="col-9">
 
                                                         <h4 class="mb-2 text-green">
-                                                            $ {{ number_format(todaytradebonusInc(), 2) }}</h4>
+                                                            {{-- $ {{ number_format(todaytradebonusInc(), 2) }} --}}
+                                                        </h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -379,7 +380,8 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <h4 class="mb-2 text-green">
-                                                            $ {{ number_format(todaytradeprofitInc(), 2) }}</h4>
+                                                            {{-- $ {{ number_format(todaytradeprofitInc(), 2) }} --}}
+                                                        </h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -468,7 +470,8 @@
                                                     <div class="col-9">
 
                                                         <h4 class="mb-2 text-green">
-                                                            $ {{ number_format(totaltradeBonusInc(), 2) }}</h4>
+                                                            {{-- $ {{ number_format(totaltradeBonusInc(), 2) }} --}}
+                                                        </h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
@@ -505,7 +508,8 @@
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <h4 class="mb-2 text-green">
-                                                            $ {{ number_format(totaltradeprofitInc(), 2) }}</h4>
+                                                            {{-- $ {{ number_format(totaltradeprofitInc(), 2) }} --}}
+                                                        </h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>

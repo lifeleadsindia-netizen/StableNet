@@ -78,13 +78,21 @@ function updateUpline($sponsorid, $memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
+        $var->upline_8 = $pool->upline_7;
+        $var->upline_9 = $pool->upline_8;
+        $var->upline_10 = $pool->upline_9;
+        $var->upline_11 = $pool->upline_10;
+        $var->upline_12 = $pool->upline_11;
+        $var->upline_13 = $pool->upline_12;
+        $var->upline_14 = $pool->upline_13;
+        $var->upline_15 = $pool->upline_14;
         $var->save();
     }
 }
 
 function totalIncome($memberid)
 {
-    $total = totalLevelIncome($memberid) + totalTradingProfit($memberid) + totalTradingBonus($memberid);
+    $total = totalLevelIncome($memberid);
     return $total;
 }
 
@@ -93,19 +101,6 @@ function totalLevelIncome($memberid)
     $var = LevelIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
     return $var;
 }
-
-function totalTradingProfit($memberid)
-{
-    $var = GlobalPoolIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
-    return $var;
-}
-
-function totalTradingBonus($memberid)
-{
-    $var = MonthlyIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
-    return $var;
-}
-
 
 function totalDownlines($memberid)
 {
@@ -146,25 +141,13 @@ function todayDeposit($memberid)
 
 function todayIncome($memberid)
 {
-    $total = todayLevelIncome($memberid)  + todayTradingProfit($memberid) + todayTradingBonus($memberid);
+    $total = todayLevelIncome($memberid);
     return $total;
 }
 
 function todayLevelIncome($memberid)
 {
     $var = LevelIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
-    return $var;
-}
-
-function todayTradingProfit($memberid)
-{
-    $var = GlobalPoolIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
-    return $var;
-}
-
-function todayTradingBonus($memberid)
-{
-    $var = MonthlyIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
     return $var;
 }
 

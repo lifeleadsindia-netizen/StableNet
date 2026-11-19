@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\DirectIncome;
 use App\Models\GlobalPoolMatrice;
 use App\Models\LevelIncome;
 use App\Models\MemberDetail;
@@ -85,15 +86,33 @@ function levelIncome($sponsorid, $memberid, $name, $package)
     }
 }
 
-// function levelamount($level, $package)
-// {
-//     if ($level >= 2 && $level <= 15) {
-//          $amount = $package / 100 * 1;
-//     } else {
-//         return $amount;
-//     }
+function directIncome($sponsorid, $memberid, $name, $package, $type)
+{
+    if ($sponsorid != 'Root') {
+        $var = MemberDetail::where('memberid', $sponsorid)->first();
 
-// }
+        $rate = 50;
+        $amount = $package * $rate / 100;
+
+        if ($amount > 0 && $var->status == 'Active') {
+
+            $insert = new DirectIncome();
+            $insert->memberid = $sponsorid;
+            $insert->amount = $amount;
+            $insert->activatingId = $memberid;
+            $insert->package = $package;
+            $insert->type = $type;
+            $insert->name = $name;
+            $insert->status = 'Paid';
+            $insert->save();
+
+            $wallet = $var->wallet;
+            $var->wallet += $amount;
+            $var->save();
+            walletTransfer($sponsorid, $amount, 'debit', $wallet, 'Direct Referral Income', 'Direct Referral Income Amount Added into wallet.');
+        }
+    }
+}
 
 // function levelamount($level, $package)
 // {
