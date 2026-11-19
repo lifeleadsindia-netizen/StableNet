@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('user_assets/app-fce3f544.css') }}" />
 
     <!-- 3D GLASS AUTH CSS -->
-    <link rel="stylesheet" href="{{ asset('user_assets/css/glass-auth.css') }}" />
+    <link rel="stylesheet" href="{{ asset('user_assets/css/glass-auth.css') }}?v={{ time() }}" />
 </head>
 
 <body>
