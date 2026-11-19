@@ -83,7 +83,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Amount</label>
                                     <div class="">
-                                        <input type="text" class="form-control" name="amount" placeholder="Enter Amount"
+                                        <input type="number" step="any" min="1" class="form-control" name="amount" placeholder="Enter Amount (Min $1)"
                                             id="withAmount" required>
                                     </div>
                                     @error('amount')

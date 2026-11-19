@@ -58,8 +58,8 @@ class WithdrawalController extends Controller
             return redirect()->back();
         }
 
-        if ($amount < 10) {
-            session()->flash('failedMsg', 'Invalid Amount Entered. Amount must be grater than 10$');
+        if ($amount < 1) {
+            session()->flash('failedMsg', 'Invalid Amount Entered. Amount must be at least $1');
             return redirect()->back();
         }
 
