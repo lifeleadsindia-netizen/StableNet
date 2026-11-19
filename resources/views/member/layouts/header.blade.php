@@ -787,7 +787,8 @@
                         </li>
                         <!-- End::slide -->
                         <!-- Start::slide -->
-                        <li class="slide has-sub">
+
+                        <!-- <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <i class="bx bx-grid side-menu__icon"></i>
                                 <span class="side-menu__label">Trade Details</span>
@@ -803,7 +804,8 @@
                                 </li>
 
                             </ul>
-                        </li>
+                        </li> -->
+                        
                         <!-- End::slide -->
 
                         <!-- Start::slide -->
