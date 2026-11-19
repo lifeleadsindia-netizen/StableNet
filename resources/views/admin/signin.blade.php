@@ -498,7 +498,7 @@
 
 
                                     <div class="input-group"> <input type="password"
-                                            class="form-control form-control-lg" name="password"
+                                            class="form-control form-control-lg" name="password" id="signin-password"
                                             placeholder="Enter Your Password"> <button class="btn btn-light"
                                             type="button" onclick="createpassword('signin-password',this)"
                                             id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
