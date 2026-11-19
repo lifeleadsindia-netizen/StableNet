@@ -1,5 +1,5 @@
 @extends('member.layouts.main')
-@section('title', 'Sell SBT')
+@section('title', 'Main Wallet')
 @section('container')
 
     <!--**************************Content body start**************************-->
@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <!-- Page Header -->
             <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                <h1 class="page-title fw-semibold fs-18 mb-0">Sell SBT</h1>
+                <h1 class="page-title fw-semibold fs-18 mb-0">Main Wallet</h1>
                 <div class="ms-md-1 ms-0">
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Sell SBT</li>
+                            <li class="breadcrumb-item active" aria-current="page">Main Wallet</li>
                         </ol>
                     </nav>
                 </div>
@@ -41,24 +41,24 @@
                                 <p class="text-muted mb-0"></p>
                             </div>
                             <div >
-                                <h3 class="card-text d-inline" id="wallet_amount"> {{ number_format($data['wallet'], 2) }} </h3>
-                                <h3 class="d-inline">SBT</h3>
+                                <h3 class="card-text d-inline" id="wallet_amount">$ {{ number_format($data['wallet'], 2) }} </h3>
+                                {{-- <h3 class="d-inline">$</h3> --}}
                             </div>
                             
                             <button class="btn btn-warning btn-sm my-3">Total Of All Wallets</button>
                             <div class="border-top py-2">
                                 <div class="row mt-2">
                                     <div class="col-4">
-                                        <h6 class="mb-1">{{ number_format(totalIncome($data['memberid']), 2) }} SBT</h6>
+                                        <h6 class="mb-1">$ {{ number_format(totalIncome($data['memberid']), 2) }}</h6>
                                         <p>Total Income</p>
                                     </div>
                                     <div class="col-4">
-                                        <h6 class="mb-1">{{ number_format(totalWithdrawals($data['memberid']), 2) }} SBT
+                                        <h6 class="mb-1">$ {{ number_format(totalWithdrawals($data['memberid']), 2) }}
                                         </h6>
                                         <p>Total Withdrawal</p>
                                     </div>
                                     <div class="col-4">
-                                        <h6 class="mb-1">{{ number_format(todayWithdrawals($data['memberid']), 2) }} SBT
+                                        <h6 class="mb-1">$ {{ number_format(todayWithdrawals($data['memberid']), 2) }}
                                         </h6>
                                         <p>Today's Withdrawal</p>
                                     </div>
@@ -73,9 +73,7 @@
                                     <label class="form-label">Wallet Type</label>
                                     <div class="">
                                         <select class="form-control" name="wallet_type" id="type">
-                                            {{-- <option>Select Type</option> --}}
-                                            <option value="Income Wallet">Income Wallet</option>
-                                            <option value="Level Wallet">Level Wallet</option>
+                                            <option value="Income Wallet" selected>Income Wallet</option>
                                         </select>
                                     </div>
                                     @error('wallet_type')
@@ -108,12 +106,11 @@
                                             <div class="col-12 ">
                                                 <div class="d-grid gap-2">
                                                     <input type="hidden" id="csrf" value="{{ csrf_token() }}">
-                                                    <input type="hidden" id="level_wallet" value="{{ $data['level_wallet'] }}">
                                                     <input type="hidden" id="wallet" value="{{ $data['wallet'] }}">
                                                     <input type="hidden" name="memberWallet"
                                                         value="{{ $data['member_wallet'] }}" id="memberWallet">
                                                     <button
-                                                        class="btn btn-primary btn-rounded  btn-block mt-3 float-end withdraw_btn subBtn">Sell SBT</button>
+                                                        class="btn btn-primary btn-rounded  btn-block mt-3 float-end withdraw_btn subBtn">Withdraw</button>
                                                 </div>
                                                 <div class="text-center">
                                                     <span id="wMesg" class="text-danger text-center mt-2"></span>

@@ -221,18 +221,9 @@
         });
 
         $('#type').on('change', function() {
-            var type = $(this).val();
-            var level_wallet = parseInt($('#level_wallet').val());
-            var wallet = parseInt($('#wallet').val());
-
-            if (type == 'Income Wallet') {
-                $('#wallet_text').html('Income Wallet');
-                $('#wallet_amount').html(wallet.toFixed(2));
-            } else {
-                $('#wallet_text').html('Level Wallet');
-                $('#wallet_amount').html(level_wallet.toFixed(2));
-            }
-
+            var wallet = parseFloat($('#wallet').val()) || 0;
+            $('#wallet_text').html('Income Wallet');
+            $('#wallet_amount').html('$ ' + wallet.toFixed(2));
         });
 
         // // activation button
