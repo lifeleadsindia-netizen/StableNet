@@ -78,6 +78,14 @@ function updateUpline($sponsorid, $memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
+        $var->upline_8 = $pool->upline_7;
+        $var->upline_9 = $pool->upline_8;
+        $var->upline_10 = $pool->upline_9;
+        $var->upline_11 = $pool->upline_10;
+        $var->upline_12 = $pool->upline_11;
+        $var->upline_13 = $pool->upline_12;
+        $var->upline_14 = $pool->upline_13;
+        $var->upline_15 = $pool->upline_14;
         $var->save();
     }
 }

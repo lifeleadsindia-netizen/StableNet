@@ -115,6 +115,102 @@
                                                     href="{{ url('member/levels/level-members-details') }}/{{ '7' }}">View</a>
                                             </td>
                                         </tr>
+
+                                         <tr>
+                                            <td>8</td>
+                                            <td>{{ __('8th Level') }}</td>
+                                            <td>
+                                                <div class="btn btn-pill btn-success ">
+                                                    {{ levelMembersCount($data['memberid'], '8') }}</div>
+                                            </td>
+                                            <td><a class="btn btn-primary"
+                                                    href="{{ url('member/levels/level-members-details') }}/{{ '8' }}">View</a>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td>9</td>
+                                            <td>{{ __('9th Level') }}</td>
+                                            <td>
+                                                <div class="btn btn-pill btn-success ">
+                                                    {{ levelMembersCount($data['memberid'], '9') }}</div>
+                                            </td>
+                                            <td><a class="btn btn-primary"
+                                                    href="{{ url('member/levels/level-members-details') }}/{{ '9' }}">View</a>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td>10</td>
+                                            <td>{{ __('10th Level') }}</td>
+                                            <td>
+                                                <div class="btn btn-pill btn-success ">
+                                                    {{ levelMembersCount($data['memberid'], '10') }}</div>
+                                            </td>
+                                            <td><a class="btn btn-primary"
+                                                    href="{{ url('member/levels/level-members-details') }}/{{ '10' }}">View</a>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td>11</td>
+                                            <td>{{ __('11th Level') }}</td>
+                                            <td>
+                                                <div class="btn btn-pill btn-success ">
+                                                    {{ levelMembersCount($data['memberid'], '11') }}</div>
+                                            </td>
+                                            <td><a class="btn btn-primary"
+                                                    href="{{ url('member/levels/level-members-details') }}/{{ '11' }}">View</a>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td>12</td>
+                                            <td>{{ __('12th Level') }}</td>
+                                            <td>
+                                                <div class="btn btn-pill btn-success ">
+                                                    {{ levelMembersCount($data['memberid'], '12') }}</div>
+                                            </td>
+                                            <td><a class="btn btn-primary"
+                                                    href="{{ url('member/levels/level-members-details') }}/{{ '12' }}">View</a>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td>13</td>
+                                            <td>{{ __('13th Level') }}</td>
+                                            <td>
+                                                <div class="btn btn-pill btn-success ">
+                                                    {{ levelMembersCount($data['memberid'], '13') }}</div>
+                                            </td>
+                                            <td><a class="btn btn-primary"
+                                                    href="{{ url('member/levels/level-members-details') }}/{{ '13' }}">View</a>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td>14</td>
+                                            <td>{{ __('14th Level') }}</td>
+                                            <td>
+                                                <div class="btn btn-pill btn-success ">
+                                                    {{ levelMembersCount($data['memberid'], '14') }}</div>
+                                            </td>
+                                            <td><a class="btn btn-primary"
+                                                    href="{{ url('member/levels/level-members-details') }}/{{ '14' }}">View</a>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td>15</td>
+                                            <td>{{ __('15th Level') }}</td>
+                                            <td>
+                                                <div class="btn btn-pill btn-success ">
+                                                    {{ levelMembersCount($data['memberid'], '15') }}</div>
+                                            </td>
+                                            <td><a class="btn btn-primary"
+                                                    href="{{ url('member/levels/level-members-details') }}/{{ '15' }}">View</a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
