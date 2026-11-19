@@ -822,39 +822,43 @@
                                         Income</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/income/trading-bonus-incomes') }}"
-                                        class="side-menu__item">Trading Bonus Income</a>
+                                    <a href="{{ url('/member/income/direct-incomes') }}"
+                                        class="side-menu__item">Direct Income</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/income/trading-profit-incomes') }}"
-                                        class="side-menu__item">Trading Profit Inocme</a>
+                                    <a href="{{ url('/member/income/global-autopool-incomes') }}"
+                                        class="side-menu__item">Global Autopool Income</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{{ url('/member/income/withdrawal-incomes') }}"
+                                        class="side-menu__item">Withdrawal Income</a>
                                 </li>
 
                             </ul>
                         </li>
                         <!-- End::slide -->
-                        <!--<li class="slide has-sub">-->
-                        <!--    <a href="javascript:void(0);" class="side-menu__item">-->
-                        <!--        <i class="bx bx-gift side-menu__icon"></i>-->
-                        <!--        <span class="side-menu__label">Reward Section</span>-->
-                        <!--        <i class="fe fe-chevron-right side-menu__angle"></i>-->
-                        <!--    </a>-->
-                        <!--    <ul class="slide-menu child1">-->
-                        <!--        <li class="slide side-menu__label1">-->
-                        <!--            <a href="javascript:void(0);">Income Section</a>-->
-                        <!--        </li>-->
-                        <!--        <li class="slide">-->
-                        <!--            <a href="{{ url('/member/income/reward-incomes') }}"-->
-                        <!--                class="side-menu__item">Reward Income</a>-->
-                        <!--        </li>-->
-                        <!--        <li class="slide">-->
-                        <!--            <a href="{{ url('/member/income/reward-details') }}"-->
-                        <!--                class="side-menu__item">Reward Details</a>-->
-                        <!--        </li>-->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-gift side-menu__icon"></i>
+                                <span class="side-menu__label">Reward Section</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Income Section</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{{ url('/member/income/reward-incomes') }}"
+                                        class="side-menu__item">Reward Income</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{{ url('/member/income/reward-details') }}"
+                                        class="side-menu__item">Reward Details</a>
+                                </li>
 
 
-                        <!--    </ul>-->
-                        <!--</li>-->
+                            </ul>
+                        </li>
                         <!-- End::slide -->
 
                         {{-- <!-- Start::slide__category -->

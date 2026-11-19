@@ -97,13 +97,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     Route::get('/staking-details', [AdminController::class, 'stakingDetails']);
     Route::get('/income/cashback-income', [AdminController::class, 'roiincomes']);
 
-    // level route
-    // Route::get('/level/level-details', [AdminController::class, 'levelDetails']);
+    // income routes
     Route::get('/income/level-income', [AdminController::class, 'levelIncomes']);
-
-
-    //income route
-    //Route::get('/income/self-mining', [AdminController::class, 'selfMining']);
+    Route::get('/income/level-incomes', [AdminController::class, 'levelIncomes']);
+    Route::get('/income/direct-income', [AdminController::class, 'directIncomes']);
+    Route::get('/income/direct-incomes', [AdminController::class, 'directIncomes']);
+    Route::get('/income/global-autopool-income', [AdminController::class, 'globalAutoPoolIncomes']);
+    Route::get('/income/global-autopool-incomes', [AdminController::class, 'globalAutoPoolIncomes']);
+    Route::get('/income/withdrawal-income', [AdminController::class, 'withdrawalIncomes']);
+    Route::get('/income/withdrawal-incomes', [AdminController::class, 'withdrawalIncomes']);
     Route::get('/income/trade-bonus-income', [AdminController::class, 'tradeBonusIncomes']);
     Route::get('/income/trade-profit-income', [AdminController::class, 'tradeProfitIncomes']);
     Route::get('/income/profit-income', [AdminController::class, 'profitIncomes']);
@@ -221,9 +223,15 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
 
 
    //income
-    Route::get('/income/trading-profit-incomes', [IncomeController::class, 'proIncome']);
-    Route::get('/income/trading-bonus-incomes', [IncomeController::class, 'tradingBonus']);
+    Route::get('/income/global-autopool-incomes', [IncomeController::class, 'globalAutoPoolIncome']);
+    Route::get('/income/global-autopool-income', [IncomeController::class, 'globalAutoPoolIncome']);
+    Route::get('/income/direct-incomes', [IncomeController::class, 'directIncome']);
+    Route::get('/income/direct-income', [IncomeController::class, 'directIncome']);
     Route::get('/income/level-incomes', [IncomeController::class, 'LevelIncomes']);
+    Route::get('/income/level-income', [IncomeController::class, 'LevelIncomes']);
+    Route::get('/income/withdrawal-incomes', [IncomeController::class, 'withdrawalIncomes']);
+    Route::get('/income/withdrawal-income', [IncomeController::class, 'withdrawalIncomes']);
+    Route::get('/income/income/withdrawal-incomes', [IncomeController::class, 'withdrawalIncomes']);
  
     // salary routes
     // Route::get('/income/salary-details', [IncomeController::class, 'salaryDetails']);

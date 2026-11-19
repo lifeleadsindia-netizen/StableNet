@@ -14,6 +14,7 @@ use App\Models\TotalLevelIncome;
 use App\Models\DailyDirectIncome;
 use App\Models\GlobalPoolIncome;
 use App\Models\RewardIncome;
+use App\Models\WithdrawalIncome;
 use Illuminate\Http\Request;
 
 class IncomeController extends Controller
@@ -45,14 +46,14 @@ class IncomeController extends Controller
     }
 
 
-    public function tradingBonus()
+    public function directIncome()
     {
         $result['data'] = MemberDetail::where('memberid', session('MEMBER_ID'))->first();
-        $result['directData'] = MonthlyIncome::where('memberid', $result['data']['memberid'])->orderby('created_at', 'desc')->get();
+        $result['directData'] = DirectIncome::where('memberid', $result['data']['memberid'])->orderby('created_at', 'desc')->get();
         return view('member.income.direct-income')->with($result);
     }
 
-    public function proIncome()
+    public function globalAutoPoolIncome()
     {
         $result['data'] = MemberDetail::where('memberid', session('MEMBER_ID'))->first();
         $result['profitData'] = GlobalPoolIncome::where('memberid', $result['data']['memberid'])->orderby('created_at', 'desc')->get();
@@ -78,6 +79,18 @@ class IncomeController extends Controller
         $result['data'] = MemberDetail::where('memberid', session('MEMBER_ID'))->first();
         $result['levelData'] = LevelIncome::where('memberid', $result['data']['memberid'])->orderby('created_at', 'desc')->get();
         return view('member.income.level-income')->with($result);
+    }
+
+    public function withdrawalIncomes()
+    {
+        $result['data'] = MemberDetail::where('memberid', session('MEMBER_ID'))->first();
+        try {
+            $result['directData'] = WithdrawalIncome::where('memberid', $result['data']['memberid'])->orderby('created_at', 'desc')->get();
+        } catch (\Exception $e) {
+            $result['directData'] = [];
+        }
+        $result['levelData'] = $result['directData'];
+        return view('member.income.withdrawal-income')->with($result);
     }
 
     public function rankIncome()
