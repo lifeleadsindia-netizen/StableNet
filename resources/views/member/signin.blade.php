@@ -1,23 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light"
-    data-menu-styles="light" data-toggled="close">
-
-
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="dark" data-header-styles="dark"
+    data-menu-styles="dark" data-toggled="close">
 
 <head>
-
-    <!-- META DATA eta Data -->
+    <!-- META DATA -->
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="Description" content="">
-    <meta name="Author" content="">
-    <meta name="keywords" content="">
+    <meta name="Description" content="{{ config('detailsApp.name') }} Member Portal Login">
+    <meta name="Author" content="{{ config('detailsApp.name') }}">
 
     <!-- TITLE -->
-    <title> LogIn || {{ config('detailsApp.name') }} </title>
+    <title>Member Sign In || {{ config('detailsApp.name') }}</title>
 
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="{{ asset('logo/favicon/favicon-96x96.png') }}" sizes="96x96" />
@@ -32,134 +26,153 @@
     <!-- ICONS CSS -->
     <link href="{{ asset('user_assets/icon-fonts/icons.css') }}" rel="stylesheet">
 
-    <!-- APP SCSS -->
-    <link rel="preload" as="style" href="{{ asset('user_assets/app-fce3f544.css') }}" />
+    <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('user_assets/app-fce3f544.css') }}" />
 
-    <!-- MAIN JS -->
-    <script src="{{ asset('user_assets/authentication-main.js') }}"></script>
-    <style>
-        #myVideo {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-        }
-    </style>
+    <!-- 3D GLASS AUTH CSS -->
+    <link rel="stylesheet" href="{{ asset('user_assets/css/glass-auth.css') }}" />
 </head>
 
 <body>
-    <video autoplay="" muted="" loop="" id="myVideo">
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="auth-video-bg">
         <source src="{{ asset('logo/bg.mp4') }}" type="video/mp4">
     </video>
-    <div class="container">
-        <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
-            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
 
-                <form action="{{ route('userLogin') }}" method="post" class=" dz-form pb-3">
-                    @csrf
-                    <div class="card custom-card" style="background-color: rgba(0, 0, 0, 0.7)">
-                        <div class="card-body p-5">
-                            <div class=" d-flex justify-content-center">
-                                <a href="{{ url('member') }}">
-                                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="desktop-logo"
-                                        style="height: 70px">
-                                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="desktop-dark"
-                                        style="height: 70px">
-                                </a>
-                            </div>
-                            <p class="h5 fw-semibold mb-2 text-center text-white">{{ config('detailsApp.name') }} Sign In</p>
-                            <p class="mb-4 text-white op-7 fw-normal text-center">Welcome back </p>
-                            @if (session()->has('failedmsg'))
-                                <div class="alert alert-danger alert-dismissible fade show col-12 d-block"
-                                    role="alert">{{ session('failedmsg') }}
-                                </div>
-                            @endif
-                            {{-- <p class="text-center">Enter your MemberId and your
-                                password. </p> --}}
-                            <div class="row gy-3">
-                                <div class="col-xl-12">
-                                    <label for="signin-username" class="form-label text-default text-white">Memberid</label>
-                                    <input type="text" class="form-control form-control-lg" id="signin-username"
-                                        placeholder="Enter Your Memberid" name="memberid">
+    <!-- 3D Glowing Ambient Orbs Layer -->
+    <div class="auth-ambient-wrapper">
+        <div class="ambient-orb ambient-orb-1"></div>
+        <div class="ambient-orb ambient-orb-2"></div>
+        <div class="ambient-orb ambient-orb-3"></div>
+    </div>
 
-                                    @error('memberid')
-                                        <span class="small text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-xl-12 mb-2">
-                                    <label for="signin-password" class="form-label text-default d-block text-white">Password<a
-                                            href="{{ url('/mem-forget-password') }}"
-                                            class="float-end text-danger">Forget
-                                            password
-                                            ?</a></label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control form-control-lg" id="signin-password"
-                                            placeholder="Enter your Password" name="password">
+    <!-- Auth Container -->
+    <div class="auth-page-container">
+        <div class="auth-3d-card-wrapper">
+            <div class="auth-3d-card">
+                <!-- Header / Logo -->
+                <div class="auth-header">
+                    <a href="{{ url('member') }}" class="auth-logo-badge">
+                        <img src="{{ asset('logo/logo.png') }}" alt="{{ config('detailsApp.name') }} Logo">
+                    </a>
+                    <h1 class="auth-title">{{ config('detailsApp.name') }}</h1>
+                    <p class="auth-subtitle">
+                        <span class="pulse-dot"></span>
+                        Secure Member Access Portal
+                    </p>
+                </div>
 
-                                        <button class="btn btn-light" type="button"
-                                            onclick="createpassword('signin-password',this)" id="button-addon2"><i
-                                                class="ri-eye-off-line align-middle"></i></button>
-                                    </div>
-                                    @error('password')
-                                        <span class="small text-danger">{{ $message }}</span>
-                                    @enderror
-                                    <div class="mt-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="defaultCheck1" required>
-                                            <label class="form-check-label text-muted fw-normal" for="defaultCheck1">
-                                                Remember password ?
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 d-grid mt-2">
-                                    <button type="submit" class="btn btn-lg btn-primary">Sign Me
-                                        In</button>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <p class="fs-12 text-muted mt-3">Dont have an account? <a
-                                        href="{{ url('/member/register/1') }}" class="text-primary">Sign Up</a></p>
-                            </div>
-                            <div class="text-center my-3 authentication-barrier">
-                                <span>OR</span>
-                            </div>
-                            <div class="btn-list text-center">
-                                <button class="btn btn-icon btn-light">
-                                    <i class="ri-facebook-line fw-bold text-dark op-7"></i>
-                                </button>
-                                <button class="btn btn-icon btn-light">
-                                    <i class="ri-google-line fw-bold text-dark op-7"></i>
-                                </button>
-                                <button class="btn btn-icon btn-light">
-                                    <i class="ri-twitter-line fw-bold text-dark op-7"></i>
-                                </button>
-                            </div>
-                        </div>
+                <!-- Flash Alert Messages -->
+                @if (session()->has('failedmsg'))
+                    <div class="glass-alert glass-alert-danger" role="alert">
+                        <i class="ri-error-warning-fill glass-alert-icon"></i>
+                        <div>{{ session('failedmsg') }}</div>
                     </div>
+                @endif
+
+                @if (session()->has('succMsg'))
+                    <div class="glass-alert glass-alert-success" role="alert">
+                        <i class="ri-checkbox-circle-fill glass-alert-icon"></i>
+                        <div>{{ session('succMsg') }}</div>
+                    </div>
+                @endif
+
+                <!-- Form -->
+                <form action="{{ route('userLogin') }}" method="post" class="auth-form" autocomplete="off">
+                    @csrf
+
+                    <!-- Member ID Field -->
+                    <div class="glass-form-group">
+                        <label for="signin-username" class="glass-label">
+                            <span>Member ID</span>
+                        </label>
+                        <div class="glass-input-wrapper">
+                            <i class="ri-user-3-line glass-input-icon"></i>
+                            <input type="text" 
+                                   class="glass-input @error('memberid') is-invalid @enderror" 
+                                   id="signin-username"
+                                   placeholder="Enter your Member ID" 
+                                   name="memberid"
+                                   value="{{ old('memberid') }}"
+                                   required>
+                        </div>
+                        @error('memberid')
+                            <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="glass-form-group">
+                        <label for="signin-password" class="glass-label">
+                            <span>Password</span>
+                            <a href="{{ url('/mem-forget-password') }}" class="glass-label-link">Forgot password?</a>
+                        </label>
+                        <div class="glass-input-wrapper">
+                            <i class="ri-lock-password-line glass-input-icon"></i>
+                            <input type="password" 
+                                   class="glass-input @error('password') is-invalid @enderror" 
+                                   id="signin-password"
+                                   placeholder="Enter your Password" 
+                                   name="password"
+                                   required>
+                            <button class="glass-pw-toggle" 
+                                    type="button"
+                                    aria-label="Toggle password visibility"
+                                    onclick="togglePasswordVisibility('signin-password', this)">
+                                <i class="ri-eye-off-line align-middle"></i>
+                            </button>
+                        </div>
+                        @error('password')
+                            <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Remember Password Checkbox -->
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <label class="glass-checkbox-wrapper">
+                            <input type="checkbox" class="glass-checkbox" id="rememberMe">
+                            <span class="glass-checkbox-label">Remember password</span>
+                        </label>
+                    </div>
+
+                    <!-- 3D Submit Button -->
+                    <button type="submit" class="btn-3d-glass">
+                        <i class="ri-login-box-line"></i>
+                        <span>Sign In to Account</span>
+                    </button>
                 </form>
+
+                <!-- Footer Navigation -->
+                <div class="auth-footer">
+                    <p>Don't have an account? 
+                        <a href="{{ url('/member/register/1') }}" class="auth-footer-link">Sign Up</a>
+                    </p>
+                </div>
+
+                <!-- Divider -->
+                <div class="auth-divider">
+                    <span>or connect with</span>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="auth-social-list">
+                    <button type="button" class="auth-social-btn facebook" title="Facebook">
+                        <i class="ri-facebook-fill"></i>
+                    </button>
+                    <button type="button" class="auth-social-btn google" title="Google">
+                        <i class="ri-google-fill"></i>
+                    </button>
+                    <button type="button" class="auth-social-btn twitter" title="Twitter / X">
+                        <i class="ri-twitter-x-fill"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-
-
     <!-- SCRIPTS -->
-
-    <!-- BOOTSTRAP JS -->
     <script src="{{ asset('user_assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-
-    <!-- SHOW PASSWORD JS -->
-    <script src="{{ asset('user_assets/show-password.js') }}"></script>
-
-
-    <!-- END SCRIPTS -->
-
+    <script src="{{ asset('user_assets/glass-auth-3d.js') }}"></script>
 </body>
-
 
 </html>

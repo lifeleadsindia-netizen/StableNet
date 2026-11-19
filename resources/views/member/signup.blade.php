@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light"
-    data-menu-styles="light" data-toggled="close">
-
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="dark" data-header-styles="dark"
+    data-menu-styles="dark" data-toggled="close">
 
 <head>
-
-    <!-- META DATA eta Data -->
+    <!-- META DATA -->
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="Description" content="">
-    <meta name="Author" content="">
-    <meta name="keywords" content="">
+    <meta name="Description" content="{{ config('detailsApp.name') }} Member Registration">
+    <meta name="Author" content="{{ config('detailsApp.name') }}">
 
     <!-- TITLE -->
-    <title> SignUp || {{ config('detailsApp.name') }} </title>
+    <title>Member Sign Up || {{ config('detailsApp.name') }}</title>
 
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="{{ asset('logo/favicon/favicon-96x96.png') }}" sizes="96x96" />
@@ -30,185 +26,215 @@
     <!-- ICONS CSS -->
     <link href="{{ asset('user_assets/icon-fonts/icons.css') }}" rel="stylesheet">
 
-    <!-- APP SCSS -->
-    <link rel="preload" as="style" href="{{ asset('user_assets/app-fce3f544.css') }}" />
+    <!-- APP CSS -->
     <link rel="stylesheet" href="{{ asset('user_assets/app-fce3f544.css') }}" />
 
-    <!-- MAIN JS -->
-    <script src="{{ asset('user_assets/authentication-main.js') }}"></script>
-    <style>
-        #myVideo {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-        }
-    </style>
+    <!-- 3D GLASS AUTH CSS -->
+    <link rel="stylesheet" href="{{ asset('user_assets/css/glass-auth.css') }}" />
 </head>
 
 <body>
-    <video autoplay="" muted="" loop="" id="myVideo">
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="auth-video-bg">
         <source src="{{ asset('logo/bg.mp4') }}" type="video/mp4">
     </video>
-    <div class="container">
-        <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
-            <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-6 col-sm-10 col-12 pt-4">
-                <form action="{{ route('userRegister') }}" method="post" class=" dz-form pb-3">
+
+    <!-- 3D Glowing Ambient Orbs Layer -->
+    <div class="auth-ambient-wrapper">
+        <div class="ambient-orb ambient-orb-1"></div>
+        <div class="ambient-orb ambient-orb-2"></div>
+        <div class="ambient-orb ambient-orb-3"></div>
+    </div>
+
+    <!-- Auth Container -->
+    <div class="auth-page-container">
+        <div class="auth-3d-card-wrapper wide-card">
+            <div class="auth-3d-card">
+                <!-- Header / Logo -->
+                <div class="auth-header">
+                    <a href="{{ url('member') }}" class="auth-logo-badge">
+                        <img src="{{ asset('logo/logo.png') }}" alt="{{ config('detailsApp.name') }} Logo">
+                    </a>
+                    <h1 class="auth-title">Create Account</h1>
+                    <p class="auth-subtitle">
+                        <span class="pulse-dot"></span>
+                        Join {{ config('detailsApp.name') }} Global Network
+                    </p>
+                </div>
+
+                <!-- Flash Alert Messages -->
+                @if (session()->has('failedMsg'))
+                    <div class="glass-alert glass-alert-danger" role="alert">
+                        <i class="ri-error-warning-fill glass-alert-icon"></i>
+                        <div>{{ session('failedMsg') }}</div>
+                    </div>
+                @endif
+
+                <!-- Form -->
+                <form action="{{ route('userRegister') }}" method="post" class="auth-form" autocomplete="off">
                     @csrf
-                    <div class="card custom-card" style="background-color: rgba(0, 0, 0, 0.7)">
-                        <div class="card-body p-5">
-                            <div class=" d-flex justify-content-center">
-                                <a href="index.html">
-                                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="desktop-logo"
-                                        style="height: 70px">
-                                    <img src="{{ asset('logo/logo.png') }}" alt="logo" class="desktop-dark"
-                                        style="height: 70px">
-                                </a>
-                            </div>
-                            <p class="h5 fw-semibold mb-2 text-center text-white">Sign up your account</p>
-                            @if (session()->has('failedMsg'))
-                                <div class="alert alert-danger alert-dismissible fade show col-12 d-block"
-                                    role="alert">{{ session('failedMsg') }}
+
+                    <div class="row g-3">
+                        <!-- Sponsor ID Field -->
+                        <div class="col-12">
+                            <div class="glass-form-group mb-0">
+                                <label for="sponsor" class="glass-label">
+                                    <span>Sponsor ID</span>
+                                    <span id="sponhtml" class="text-info fw-bold" style="font-size: 0.8rem;"></span>
+                                </label>
+                                <div class="glass-input-wrapper">
+                                    <i class="ri-user-shared-line glass-input-icon"></i>
+                                    <input type="text" 
+                                           class="glass-input @error('sponsor') is-invalid @enderror" 
+                                           id="sponsor"
+                                           placeholder="Enter Sponsor ID" 
+                                           name="sponsor"
+                                           value="{{ old('sponsor', $sdata != '1' ? $sdata : '') }}"
+                                           required>
                                 </div>
-                            @endif
-                            {{-- <p class="text-center">Enter your MemberId and your
-                                password. </p> --}}
-                            <div class="row gy-3">
-                                <div class="col-xl-12">
-                                    <label for="signin-username" class="form-label text-default mt-3 text-white">Sponsor Id</label>
-                                    <input type="text" class="form-control form-control-lg" id="sponsor"
-                                        placeholder="Enter Sponsor Id" name="sponsor"
-                                        value="{{ $sdata != '1' ? $sdata : '' }}">
-                                    <span id="sponhtml"></span>
-                                    @error('sponsor')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-xl-12">
-                                    <label for="signin-username" class="form-label text-default text-white">Name</label>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Enter Name"
-                                        name="name">
-                                    @error('name')
-                                        <span class=" text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-xl-12">
-                                    <label for="signin-username" class="form-label text-default text-white">Email</label>
-                                    <input type="email" class="form-control form-control-lg" placeholder="Enter Email"
-                                        name="email">
-                                    @error('email')
-                                        <span class=" text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-xl-12">
-                                    <label for="signin-username" class="form-label text-default text-white">Mobile</label>
-                                    <input type="text" minlength="10" maxlength="10"
-                                        class="form-control form-control-lg" placeholder="Enter Mobile Number"
-                                        name="mobile">
-                                    @error('mobile')
-                                        <span class=" text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-xl-12 mb-2">
-                                    <label for="signin-password"
-                                        class="form-label text-default d-block text-white">Password</label>
-                                    <div class="col-xl-12 mb-2">
-                                        <div class="input-group">
-                                            <input type="password" name="password"
-                                                class="form-control form-control-lg" id="signin-password"
-                                                placeholder="Enter Password" />
-                                            <button class="btn btn-light" type="button"
-                                                onclick="createpassword('signin-password',this)" id="button-addon2"><i
-                                                    class="ri-eye-off-line align-middle"></i></button>
-                                        </div>
-                                        @error('password')
-                                            <span class="small text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <!--<div class="col-xl-12">-->
-                                    <!--    <label for="signin-password"-->
-                                    <!--        class="form-label text-default d-block text-white">Transaction-->
-                                    <!--        Password</label>-->
-                                    <!--    <div class="col-xl-12 mb-2">-->
-                                    <!--        <div class="input-group">-->
-                                    <!--            <input type="password" id="txn-password"-->
-                                    <!--                class="form-control form-control-lg"-->
-                                    <!--                placeholder="Enter Transaction Password" name="txn_password">-->
-                                    <!--            <button class="btn btn-light" type="button"-->
-                                    <!--                onclick="createpassword('txn-password',this)"-->
-                                    <!--                id="button-addon2"><i-->
-                                    <!--                    class="ri-eye-off-line align-middle"></i></button>-->
-                                    <!--        </div>-->
-                                    <!--        @error('txn_password')-->
-                                    <!--            <span class=" text-danger">{{ $message }}</span>-->
-                                    <!--        @enderror-->
-                                    <!--    </div>-->
-                                    <!--</div>-->
-                                    <div class="col-xl-12">
-                                        <label for="password" class="form-label text-default text-white">Country</label>
-                                        <select name="country" class="form-select">
-                                            <option value="">Select Country
-                                            </option>
-                                            @foreach ($cdata as $country)
-                                                <option value="{{ $country['nicename'] }}">
-                                                    {{ $country['nicename'] }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('country')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-xl-12 d-grid mt-2">
-                                        <button type="submit" class="btn btn-lg btn-primary mt-3">Create New
-                                            Account</button>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <p class="fs-12 text-muted mt-3">Dont have an account? <a
-                                            href="{{ url('/member') }}" class="text-primary">Sign in</a></p>
-                                </div>
-                                {{-- <div class="text-center my-3 authentication-barrier">
-                                <span>OR</span>
-                            </div> --}}
-                                {{-- <div class="btn-list text-center">
-                                <button class="btn btn-icon btn-light">
-                                    <i class="ri-facebook-line fw-bold text-dark op-7"></i>
-                                </button>
-                                <button class="btn btn-icon btn-light">
-                                    <i class="ri-google-line fw-bold text-dark op-7"></i>
-                                </button>
-                                <button class="btn btn-icon btn-light">
-                                    <i class="ri-twitter-line fw-bold text-dark op-7"></i>
-                                </button>
-                            </div> --}}
+                                @error('sponsor')
+                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
+
+                        <!-- Full Name Field -->
+                        <div class="col-md-6 col-12">
+                            <div class="glass-form-group mb-0">
+                                <label for="name" class="glass-label">Full Name</label>
+                                <div class="glass-input-wrapper">
+                                    <i class="ri-user-line glass-input-icon"></i>
+                                    <input type="text" 
+                                           class="glass-input @error('name') is-invalid @enderror" 
+                                           id="name"
+                                           placeholder="Enter Full Name" 
+                                           name="name"
+                                           value="{{ old('name') }}"
+                                           required>
+                                </div>
+                                @error('name')
+                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Email Address Field -->
+                        <div class="col-md-6 col-12">
+                            <div class="glass-form-group mb-0">
+                                <label for="email" class="glass-label">Email Address</label>
+                                <div class="glass-input-wrapper">
+                                    <i class="ri-mail-line glass-input-icon"></i>
+                                    <input type="email" 
+                                           class="glass-input @error('email') is-invalid @enderror" 
+                                           id="email"
+                                           placeholder="name@domain.com" 
+                                           name="email"
+                                           value="{{ old('email') }}"
+                                           required>
+                                </div>
+                                @error('email')
+                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Mobile Number Field -->
+                        <div class="col-md-6 col-12">
+                            <div class="glass-form-group mb-0">
+                                <label for="mobile" class="glass-label">Mobile Number</label>
+                                <div class="glass-input-wrapper">
+                                    <i class="ri-phone-line glass-input-icon"></i>
+                                    <input type="tel" 
+                                           minlength="10" 
+                                           maxlength="10"
+                                           class="glass-input @error('mobile') is-invalid @enderror" 
+                                           id="mobile"
+                                           placeholder="10 digit number" 
+                                           name="mobile"
+                                           value="{{ old('mobile') }}"
+                                           required>
+                                </div>
+                                @error('mobile')
+                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Country Selection Field -->
+                        <div class="col-md-6 col-12">
+                            <div class="glass-form-group mb-0">
+                                <label for="country" class="glass-label">Country</label>
+                                <div class="glass-input-wrapper">
+                                    <i class="ri-global-line glass-input-icon"></i>
+                                    <select name="country" id="country" class="glass-select @error('country') is-invalid @enderror" required>
+                                        <option value="">Select Country</option>
+                                        @foreach ($cdata as $country)
+                                            <option value="{{ $country['nicename'] }}" {{ old('country') == $country['nicename'] ? 'selected' : '' }}>
+                                                {{ $country['nicename'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('country')
+                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="col-12">
+                            <div class="glass-form-group mb-0">
+                                <label for="signup-password" class="glass-label">Security Password</label>
+                                <div class="glass-input-wrapper">
+                                    <i class="ri-lock-password-line glass-input-icon"></i>
+                                    <input type="password" 
+                                           class="glass-input @error('password') is-invalid @enderror" 
+                                           id="signup-password"
+                                           placeholder="Choose a strong password" 
+                                           name="password"
+                                           required>
+                                    <button class="glass-pw-toggle" 
+                                            type="button"
+                                            aria-label="Toggle password visibility"
+                                            onclick="togglePasswordVisibility('signup-password', this)">
+                                        <i class="ri-eye-off-line align-middle"></i>
+                                    </button>
+                                </div>
+                                @error('password')
+                                    <div class="text-danger small mt-1 ps-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3D Submit Button -->
+                    <button type="submit" class="btn-3d-glass mt-4">
+                        <i class="ri-user-add-line"></i>
+                        <span>Register Account</span>
+                    </button>
                 </form>
+
+                <!-- Footer Navigation -->
+                <div class="auth-footer">
+                    <p>Already have an account? 
+                        <a href="{{ url('/member') }}" class="auth-footer-link">Sign In</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
-
-
     <!-- SCRIPTS -->
-
-    <!-- BOOTSTRAP JS -->
     <script src="{{ asset('user_assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-
-    <!-- SHOW PASSWORD JS -->
-    <script src="{{ asset('user_assets/show-password.js') }}"></script>
-
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="{{ asset('user_assets/glass-auth-3d.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#sponsor').on('input', function() {
-                var sponsor = $(this).val();
-                var token = $('#csrfToken').val();
-
-                if (sponsor.length == 0) {
+            function checkSponsor() {
+                var sponsor = $('#sponsor').val();
+                if (!sponsor || sponsor.length === 0) {
                     $('#sponhtml').html('');
+                    return;
                 }
                 $.ajax({
                     url: '/getSponname',
@@ -218,18 +244,24 @@
                         _token: '{{ csrf_token() }}',
                     },
                     success: function(response) {
-
-                        $('#sponhtml').html(response['data'])
-
+                        if (response && response['data']) {
+                            $('#sponhtml').html('<i class="ri-check-line"></i> ' + response['data']);
+                        } else {
+                            $('#sponhtml').html('');
+                        }
+                    },
+                    error: function() {
+                        $('#sponhtml').html('');
                     }
-                })
-            });
-        })
+                });
+            }
+
+            $('#sponsor').on('input blur', checkSponsor);
+            if ($('#sponsor').val()) {
+                checkSponsor();
+            }
+        });
     </script>
-
-
-    <!-- END SCRIPTS -->
-
 </body>
 
 </html>
