@@ -75,6 +75,16 @@
         .app-header .main-header-container {
             padding-left: 1.25rem !important;
             padding-right: 1.25rem !important;
+            height: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+        }
+
+        /* Left Hamburger Menu Button */
+        .main-header-container .header-content-left {
+            display: flex !important;
+            align-items: center !important;
         }
 
         .app-header .sidemenu-toggle.header-link {
@@ -84,48 +94,155 @@
             width: 38px !important;
             height: 38px !important;
             border-radius: 8px !important;
-            transition: background-color 0.2s ease !important;
+            border: 1px solid #e2e8f0 !important;
+            background: #f8fafc !important;
+            transition: all 0.2s ease !important;
         }
 
         .app-header .sidemenu-toggle.header-link:hover {
             background-color: #f1f5f9 !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        /* Right Content Area */
+        .main-header-container .header-content-right {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+        }
+
+        /* Online Network Status Pill */
+        .sn-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-radius: 20px;
+            padding: 5px 12px;
+            cursor: default;
+            transition: all 0.2s ease;
+        }
+
+        .sn-status-pill:hover {
+            background: #d1fae5;
+            border-color: #6ee7b7;
+        }
+
+        .sn-pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+            animation: snPulse 2s infinite;
+        }
+
+        @keyframes snPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        .sn-status-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: #065f46;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
         }
 
         /* User Profile Pill in Navbar */
-        .sn-profile-pill {
+        .main-header-container .header-element.sn-profile-element {
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .main-header-container .header-element .sn-profile-card,
+        .sn-profile-card {
             background: #f8fafc !important;
             border: 1px solid #e2e8f0 !important;
             border-radius: 30px !important;
-            padding: 4px 14px 4px 4px !important;
-            transition: all 0.2s ease !important;
+            padding: 4px 14px 4px 5px !important;
+            height: auto !important;
             display: inline-flex !important;
             align-items: center !important;
+            gap: 10px !important;
             text-decoration: none !important;
+            transition: all 0.2s ease !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
         }
 
-        .sn-profile-pill:hover,
-        .sn-profile-pill[aria-expanded="true"] {
-            background: #f1f5f9 !important;
+        .main-header-container .header-element .sn-profile-card:hover,
+        .main-header-container .header-element .sn-profile-card[aria-expanded="true"],
+        .sn-profile-card:hover,
+        .sn-profile-card[aria-expanded="true"] {
+            background: #ffffff !important;
             border-color: #cbd5e1 !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
+            transform: translateY(-1px);
+        }
+
+        .sn-avatar-wrap {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
         }
 
         .sn-profile-img {
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 50% !important;
             border: 2px solid #ffffff !important;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12) !important;
             object-fit: cover !important;
         }
 
+        .sn-avatar-badge {
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 10px;
+            height: 10px;
+            background-color: #10b981;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+        }
+
+        .sn-chevron {
+            color: #94a3b8 !important;
+            font-size: 14px !important;
+            transition: transform 0.2s ease, color 0.2s ease !important;
+        }
+
+        .sn-profile-card:hover .sn-chevron,
+        .sn-profile-card[aria-expanded="true"] .sn-chevron {
+            color: #334155 !important;
+        }
+
+        .sn-profile-card[aria-expanded="true"] .sn-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Profile Dropdown */
         .header-profile-dropdown {
-            border-radius: 12px !important;
+            border-radius: 14px !important;
             border: 1px solid #e2e8f0 !important;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
-            min-width: 220px !important;
+            box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.1) !important;
+            min-width: 230px !important;
             padding: 6px !important;
+            margin-top: 8px !important;
         }
 
         .header-profile-dropdown .dropdown-item {
-            border-radius: 7px;
+            border-radius: 8px;
             font-size: 13px;
             padding: 8px 12px;
             color: #334155;
@@ -133,9 +250,9 @@
         }
 
         .header-profile-dropdown .dropdown-item:hover {
-            background-color: #f8fafc;
+            background-color: #f1f5f9;
             color: #0f172a;
-            padding-left: 14px;
+            padding-left: 15px;
         }
 
         /* --- Sidebar Container & Styling --- */
@@ -826,51 +943,45 @@
                 <div class="header-content-right d-flex align-items-center gap-2">
 
                     <!-- Live Online Status Pill -->
-                    <div class="header-element d-none d-md-flex align-items-center me-2">
-                        <span class="badge rounded-pill px-2.5 py-1 fs-11 d-inline-flex align-items-center gap-1.5"
-                            style="background: rgba(16, 185, 129, 0.1); color: #059669; border: 1px solid rgba(16, 185, 129, 0.25);">
-                            <span class="d-inline-block rounded-circle bg-success" style="width: 6px; height: 6px; box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);"></span>
-                            <span class="fw-medium">Online</span>
-                        </span>
+                    <div class="header-element d-none d-md-flex align-items-center">
+                        <div class="sn-status-pill">
+                            <span class="sn-pulse-dot"></span>
+                            <span class="sn-status-text">Network Online</span>
+                        </div>
                     </div>
 
-                    <!-- Start::header-element -->
-                    <div class="header-element">
-                        <!-- Start::header-link|dropdown-toggle -->
-                        <a href="javascript:void(0);" class="header-link dropdown-toggle sn-profile-pill" id="mainHeaderProfile"
+                    <!-- User Profile Card Pill -->
+                    <div class="header-element sn-profile-element">
+                        <a href="javascript:void(0);" class="header-link dropdown-toggle sn-profile-card" id="mainHeaderProfile"
                             data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="position-relative">
-                                    @if ($data['profile_image'] == '')
-                                        <img src="{{ asset('user_assets/images/faces/9.jpg') }}" alt="img"
-                                            width="34" height="34" class="rounded-circle sn-profile-img">
-                                    @else
-                                        <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}"
-                                            alt="img" width="34" height="34" class="rounded-circle sn-profile-img">
-                                    @endif
-                                    <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle"
-                                        style="width: 8px; height: 8px;"></span>
-                                </div>
-                                <div class="d-sm-block d-none text-start pe-1">
-                                    <p class="fw-bold mb-0 lh-1 text-dark fs-12">{{ $data['memberid'] }}</p>
-                                    <span class="text-muted fw-normal d-block fs-11 mt-0.5">{{ $data['name'] }}</span>
-                                </div>
-                                <i class="ri-arrow-down-s-line fs-14 text-muted d-sm-block d-none"></i>
+                            <div class="sn-avatar-wrap">
+                                @if ($data['profile_image'] == '')
+                                    <img src="{{ asset('user_assets/images/faces/9.jpg') }}" alt="img" class="sn-profile-img">
+                                @else
+                                    <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" alt="img" class="sn-profile-img">
+                                @endif
+                                <span class="sn-avatar-badge"></span>
                             </div>
+                            <div class="d-sm-flex d-none flex-column text-start">
+                                <span class="fw-bold text-dark fs-12 font-monospace lh-1">{{ $data['memberid'] }}</span>
+                                <span class="text-muted fs-11 mt-1 lh-1">{{ $data['name'] }}</span>
+                            </div>
+                            <i class="ri-arrow-down-s-line sn-chevron ms-1 d-sm-block d-none"></i>
                         </a>
-                        <!-- End::header-link|dropdown-toggle -->
                         <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end shadow-sm"
                             aria-labelledby="mainHeaderProfile">
-                            <li class="px-3 py-2.5 bg-light border-bottom">
-                                <div class="d-flex align-items-center justify-content-between mb-0.5">
+                            <li class="p-3 bg-light border-bottom mb-1" style="border-radius: 10px 10px 0 0;">
+                                <div class="d-flex align-items-center justify-content-between mb-1">
                                     <span class="fw-bold text-dark fs-13 text-truncate">{{ $data['name'] }}</span>
-                                    <span class="badge bg-success-transparent text-success rounded-pill px-2 py-0.5 fs-10">Active</span>
+                                    <span class="badge bg-success-transparent text-success rounded-pill px-2 py-0.5 fs-10 fw-semibold">Active Member</span>
                                 </div>
-                                <span class="fs-11 text-muted font-monospace">{{ $data['memberid'] }}</span>
+                                <span class="badge bg-white text-dark font-monospace border px-2 py-0.5 fs-11">
+                                    ID: {{ $data['memberid'] }}
+                                </span>
                             </li>
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ url('member/profile/user-summary') }}">
-                                    <i class="ri-user-3-line fs-16 me-2 text-primary"></i>Profile
+                                    <i class="ri-user-3-line fs-16 me-2 text-primary"></i>My Profile
                                 </a>
                             </li>
                             <li>
