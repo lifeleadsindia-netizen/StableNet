@@ -191,14 +191,8 @@
                                                             class="fw-semibold text-warning">{{ config('detailsApp.name') }}</span>
                                                         <span class="op-7">Investment</span>.</span>
                                                     <span class="d-block fw-semibold mt-1"><a class="text-fixed-white"
-                                                            href="{{ url('/member/buy-coin') }}"><u>Click
+                                                            href="{{ url('/member/invest-slot') }}"><u>Click
                                                                 here</u></a></span>
-                                                </div>
-                                                <div>
-                                                    <div>
-                                                        <h4 class="btn btn-danger float-end px-2" id="countdown"
-                                                            data-target-date="<?php echo $rest; ?>">00:00:00</h4>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

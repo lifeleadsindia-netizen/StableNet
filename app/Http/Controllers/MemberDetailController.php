@@ -144,12 +144,6 @@ class MemberDetailController extends Controller
             ->take(10)
             ->get();
         $result['dashMsg'] = DashMessage::orderby('rank', 'asc')->get();
-        $date = $result['data']['package_activated_at'];
-        if ($date != NULL) {
-            $result['rest'] = date('Y-m-d H:i:s', strtotime($date . '+24 Hours'));
-        } else {
-            $result['rest'] = 0;
-        }
         return view('member.dashboard')->with($result);
     }
 
