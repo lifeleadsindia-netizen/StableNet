@@ -59,10 +59,23 @@
                             </div>
 
                             <!-- Wallet Address -->
-                            @if (session()->has('walletaddress_otp'))
+                            @if (!empty($data['wallet_address']))
                                 <div class="mb-3">
                                     <label class="form-label">Wallet Address</label>
-                                    <input type="text" placeholder="Enter Wallet Address" class="form-control" name="wallet_address" value="{{ $data['wallet_address'] }}" required>
+                                    <div class="input-group">
+                                        <input type="text" id="walletAddressInput" value="{{ $data['wallet_address'] }}" class="form-control" name="wallet_address" readonly placeholder="Enter Wallet Address">
+                                        <button class="btn btn-primary d-flex align-items-center" type="button" id="copyWalletBtn">
+                                            <i class="fe fe-copy me-1" id="copyIcon"></i> <span id="copyBtnText">Copy</span>
+                                        </button>
+                                    </div>
+                                    @error('wallet_address')
+                                        <span class="text-danger fs-12 d-block mt-1">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            @elseif (session()->has('walletaddress_otp'))
+                                <div class="mb-3">
+                                    <label class="form-label">Wallet Address</label>
+                                    <input type="text" id="walletAddressInput" placeholder="Enter Wallet Address" class="form-control" name="wallet_address" value="{{ $data['wallet_address'] }}" required>
                                     @error('wallet_address')
                                         <span class="text-danger fs-12 d-block mt-1">{{ $message }}</span>
                                     @enderror
@@ -73,7 +86,7 @@
                             @else
                                 <div class="mb-3">
                                     <label class="form-label">Wallet Address</label>
-                                    <input type="text" value="{{ $data['wallet_address'] }}" class="form-control" name="wallet_address" readonly placeholder="Enter Wallet Address">
+                                    <input type="text" id="walletAddressInput" value="{{ $data['wallet_address'] }}" class="form-control" name="wallet_address" readonly placeholder="Enter Wallet Address">
                                 </div>
                             @endif
                         </form>
@@ -83,5 +96,53 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const copyBtn = document.getElementById('copyWalletBtn');
+        const input = document.getElementById('walletAddressInput');
+        const copyIcon = document.getElementById('copyIcon');
+        const copyBtnText = document.getElementById('copyBtnText');
+
+        if (copyBtn && input) {
+            copyBtn.addEventListener('click', function () {
+                input.select();
+                input.setSelectionRange(0, 99999);
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(input.value).then(function () {
+                        copyBtnText.innerText = 'Copied!';
+                        copyIcon.className = 'fe fe-check me-1';
+                        copyBtn.classList.remove('btn-primary');
+                        copyBtn.classList.add('btn-success');
+                        setTimeout(function () {
+                            copyBtnText.innerText = 'Copy';
+                            copyIcon.className = 'fe fe-copy me-1';
+                            copyBtn.classList.remove('btn-success');
+                            copyBtn.classList.add('btn-primary');
+                        }, 2000);
+                    }).catch(function () {
+                        fallbackCopy();
+                    });
+                } else {
+                    fallbackCopy();
+                }
+
+                function fallbackCopy() {
+                    document.execCommand('copy');
+                    copyBtnText.innerText = 'Copied!';
+                    copyIcon.className = 'fe fe-check me-1';
+                    copyBtn.classList.remove('btn-primary');
+                    copyBtn.classList.add('btn-success');
+                    setTimeout(function () {
+                        copyBtnText.innerText = 'Copy';
+                        copyIcon.className = 'fe fe-copy me-1';
+                        copyBtn.classList.remove('btn-success');
+                        copyBtn.classList.add('btn-primary');
+                    }, 2000);
+                }
+            });
+        }
+    });
+</script>
 
 @endsection
