@@ -25,9 +25,9 @@ function SlotOneAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -71,9 +71,9 @@ function SlotTwoAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -117,9 +117,9 @@ function SlotThreeAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -163,9 +163,9 @@ function SlotFourAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -209,9 +209,9 @@ function SlotFiveAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -255,9 +255,9 @@ function SlotSixAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -301,9 +301,9 @@ function SlotSevenAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -347,9 +347,9 @@ function SlotEightAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -393,9 +393,9 @@ function SlotNineAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();
@@ -439,9 +439,9 @@ function SlotTenAutopool($memberid)
         $var->upline_5 = $pool->upline_4;
         $var->upline_6 = $pool->upline_5;
         $var->upline_7 = $pool->upline_6;
-        $var->upline_8 = $pool->upline_7;
-        $var->upline_9 = $pool->upline_8;
-        $var->upline_10 = $pool->upline_9;
+        // $var->upline_8 = $pool->upline_7;
+        // $var->upline_9 = $pool->upline_8;
+        // $var->upline_10 = $pool->upline_9;
         $var->save();
 
         $cmt = new GlobalPoolMatrix();

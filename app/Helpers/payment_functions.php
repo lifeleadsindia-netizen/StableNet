@@ -63,6 +63,9 @@ function levelIncome($sponsorid, $memberid, $name, $package)
             if ($sponsorid != 'Root') {
                 $inc = MemberDetail::where('memberid', $sponsorid)->first();
 
+                $downline = $inc['downline'];
+
+
                 $insert = new LevelIncome();
                 $insert->memberid = $sponsorid;
                 $insert->level = $level;
@@ -70,15 +73,26 @@ function levelIncome($sponsorid, $memberid, $name, $package)
                 $insert->amount = $amount;
                 $insert->level_id = $memberid;
                 $insert->name = $name;
-                $insert->status = 'Paid';
-                $insert->save();
 
-                $var = MemberDetail::where('memberid', $sponsorid)->first();
-                $level_wallet = $var->level_wallet;
-                $var->level_wallet += $amount;
-                $var->save();
+                if (
+                    ($level >= 1 && $level <= 5 && $downline >= 1) ||
+                    ($level >= 6 && $level <= 10 && $downline >= 2) ||
+                    ($level >= 11 && $level <= 15 && $downline >= 3)
+                ) {
+                    $insert->status = 'Paid';
+                    $insert->save();
 
-                walletTransfer($sponsorid, $amount, 'debit', $level_wallet, 'Level Income', '' . $i . ' Level Income Amount Added into Level wallet. Payment Id-' . $insert->id);
+                    $var = MemberDetail::where('memberid', $sponsorid)->first();
+                    $level_wallet = $var->level_wallet;
+                    $var->level_wallet += $amount;
+                    $var->save();
+
+                    walletTransfer($sponsorid, $amount, 'debit', $level_wallet, 'Level Income', '' . $i . ' Level Income Amount Added into Level wallet. Payment Id-' . $insert->id);
+
+                } else {
+                    $insert->status = 'Flushed';
+                    $insert->save();
+                }
 
                 $sponsorid = $inc['sponsorid'];
             } else {
@@ -214,7 +228,7 @@ function directDisWithdrawal($memberid, $name, $gross_amount)
     $members = count($directs);
 
     if ($members > 0) {
-        
+
         $total_share = ($gross_amount / 100) * 5;
         $withdrawal_charge = ($gross_amount / 100) * 15;
         $amount = $total_share / $members;
@@ -232,7 +246,7 @@ function directDisWithdrawal($memberid, $name, $gross_amount)
             $insert->type = 'Direct Income';
             $insert->status = 'Paid';
             $insert->save();
-            
+
             $wallet = $direct->wallet;
             $direct->wallet += $amount;
             $direct->save();
