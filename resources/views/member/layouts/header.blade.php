@@ -805,7 +805,7 @@
                                     <a href="{{ url('/member/globalpool/globalpool-matrix/1') }}" class="side-menu__item">Global Pool Matrix</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/globalpool/globalpool-members/1/10') }}" class="side-menu__item">Global Pool Members</a>
+                                    <a href="{{ url('/member/globalpool/globalpool-members/1/5') }}" class="side-menu__item">Global Pool Members</a>
                                 </li>
 
                             </ul>

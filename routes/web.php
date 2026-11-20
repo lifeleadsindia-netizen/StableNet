@@ -271,8 +271,8 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
 
     //globalpool routes
     Route::get('/globalpool/globelpool-incomes', [AutopoolController::class, 'globelpoolIncome']);
-    Route::get('/globalpool/globalpool-matrix/{id}', [AutopoolController::class, 'globalpoolMatrix']);
-    Route::get('/globalpool/globalpool-members/{pool}/{value}', [AutopoolController::class, 'globelpoolMember']);
+    Route::get('/globalpool/globalpool-matrix/{id?}', [AutopoolController::class, 'globalpoolMatrix']);
+    Route::get('/globalpool/globalpool-members/{pool?}/{value?}', [AutopoolController::class, 'globelpoolMember']);
 
     //Direct and geneology
     Route::get('/team/geneology', [LevelsController::class, 'geneology']);
