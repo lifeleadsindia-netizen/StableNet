@@ -730,7 +730,7 @@
                                 </li>
                                 <li class="slide">
                                     <a href="{{ url('/member/profile/wallet-address') }}"
-                                        class="side-menu__item">Wallet Adress</a>
+                                        class="side-menu__item">Wallet Address</a>
                                 </li>
 
 
