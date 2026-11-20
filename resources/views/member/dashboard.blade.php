@@ -158,6 +158,70 @@
             z-index: 1;
         }
 
+        /* Premium Referral Card */
+        .premium-referral-card {
+            background: linear-gradient(135deg, rgba(17, 28, 67, 0.90) 0%, rgba(24, 40, 96, 0.85) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(17, 28, 67, 0.35);
+            position: relative;
+            overflow: hidden;
+            padding: 24px;
+            color: #ffffff;
+            transition: all 0.25s ease;
+        }
+
+        .premium-referral-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 36px rgba(17, 28, 67, 0.5);
+        }
+
+        .premium-referral-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+            background-size: 14px 14px;
+            pointer-events: none;
+        }
+
+        .premium-referral-card::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(132, 90, 223, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .referral-box {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            padding: 10px 14px;
+            transition: all 0.2s ease;
+        }
+
+        .referral-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .referral-watermark {
+            position: absolute;
+            right: -10px;
+            bottom: -20px;
+            font-size: 6.5rem;
+            color: #ffffff;
+            opacity: 0.05;
+            pointer-events: none;
+            line-height: 1;
+            z-index: 0;
+        }
+
         .sbt-card {
             background: #0f5c65;
             color: #fff;
@@ -417,39 +481,43 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-xl-12">
-                            <div class="card custom-card">
-                                <div class="card-header  justify-content-between">
-                                    <div class="card-title">
-                                        Refer & Earn
-                                        <div class="mt-2">
-                                            <small>Earn referral point by sharing referral link to your
-                                                friends.
-                                                You can only earn, when your friends join the provided link.</small>
+                            <div class="premium-referral-card">
+                                <div style="position: relative; z-index: 1;">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-sm avatar-rounded" style="background: rgba(132, 90, 223, 0.28); color: #c4b5fd; border: 1px solid rgba(132, 90, 223, 0.4);">
+                                                <i class="ti ti-share fs-16"></i>
+                                            </span>
+                                            <h5 class="fw-bold mb-0 text-white">Refer & Earn</h5>
                                         </div>
+                                        <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px;">
+                                            <i class="ti ti-gift me-1"></i> Unlimited Referral Bonus
+                                        </span>
+                                    </div>
+                                    <p class="fs-13 mb-3" style="color: rgba(255, 255, 255, 0.75);">
+                                        Earn referral points by sharing your referral link with friends. You can only earn when your friends join and invest through the provided link.
+                                    </p>
+
+                                    <div class="alert alert-success text-center py-2 mb-2" role="alert" style="display: none; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #86efac; border-radius: 10px;" id="rcode">
+                                        <i class="bi bi-check-circle-fill me-1"></i> <b>Copied !</b> Referral link is copied successfully.
+                                    </div>
+
+                                    <div class="referral-box d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                        <div class="d-flex align-items-center flex-grow-1 overflow-hidden me-2" style="min-width: 200px;">
+                                            <span class="badge px-3 py-2 me-2 d-none d-sm-inline-block" style="background: rgba(132, 90, 223, 0.25); color: #c4b5fd; font-weight: 600; font-size: 12px; border: 1px solid rgba(132, 90, 223, 0.35); border-radius: 8px;">
+                                                <i class="ti ti-link me-1"></i> Referral Code
+                                            </span>
+                                            <span class="text-white fw-semibold fs-13 text-truncate" id="codeLeft" style="letter-spacing: 0.3px;">{{ config('detailsApp.url') }}member/register/{{ $data['memberid'] }}</span>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-primary px-3 py-2 d-flex align-items-center shadow-sm" id="copyButtonIdLeft" style="border-radius: 8px; font-weight: 600; cursor: pointer;">
+                                            <i class="fe fe-copy me-1"></i> <span id="msgTextLeft">CopyText</span>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="alert alert-success text-center" role="alert"
-                                                style="display: none" id="rcode">
-                                                <span class="text-center"> <span><b>Copied ! </b></span> Referral link is
-                                                    copied
-                                                    successfully</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="alert alert-primary" role="alert" style="overflow: auto">
-                                                <b>Referral Code : </b><a
-                                                    id="codeLeft">{{ config('detailsApp.url') }}member/register/{{ $data['memberid'] }}</a>
-                                                <span class="float-end" id="copyButtonIdLeft"><i class="fe fe-copy"></i>
-                                                    <span style="cursor: pointer" id="msgTextLeft">
-                                                        CopyText</span></span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="referral-watermark">
+                                    <i class="ti ti-gift"></i>
                                 </div>
                             </div>
                         </div>
