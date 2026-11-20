@@ -174,72 +174,79 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <div class="card custom-card crm-highlight-card">
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="mb-4">
-                                                    <div class="fw-semibold fs-18 text-fixed-white mb-2">Congratulations
-                                                        <strong>{{ $data['memberid'] }} !!</strong><img
-                                                            src="images/crm/party-popper.png" alt="">
-                                                    </div>
-                                                    <span class="d-block fs-12 text-fixed-white"><span class="op-7">You
-                                                            are ready for</span> <span
-                                                            class="fw-semibold text-warning">{{ config('detailsApp.name') }}</span>
-                                                        <span class="op-7">Investment</span>.</span>
-                                                    <span class="d-block fw-semibold mt-1"><a class="text-fixed-white"
-                                                            href="{{ url('/member/invest-slot') }}"><u>Click
-                                                                here</u></a></span>
+                    <div class="row g-3 mb-3">
+                        <div class="col-xxl-5 col-xl-5 col-lg-12 col-md-12 col-12">
+                            <div class="card custom-card h-100">
+                                <div class="card-header justify-content-between align-items-center">
+                                    <div class="card-title">Investment Account</div>
+                                    <span class="badge bg-success-transparent fs-11">
+                                        <i class="ti ti-check me-1"></i> Ready
+                                    </span>
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="mb-3">
+                                        <h5 class="fw-bold mb-2">
+                                            Congratulations, <span class="text-primary">{{ $data['memberid'] }}</span> !!
+                                        </h5>
+                                        <p class="text-muted fs-13 mb-0">
+                                            You are ready for <strong>{{ config('detailsApp.name') }}</strong> Investment.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <a href="{{ url('/member/invest-slot') }}" class="btn btn-sm btn-primary">
+                                            Invest Now <i class="ti ti-arrow-narrow-right ms-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-7 col-xl-7 col-lg-12 col-md-12 col-12">
+                            <div class="card custom-card h-100">
+                                <div class="card-header justify-content-between align-items-center">
+                                    <div class="card-title">My Profile</div>
+                                    <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-xl-4 col-md-4 col-sm-6 col-12">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-3 flex-shrink-0">
+                                                    <span class="avatar avatar-md avatar-rounded bg-light text-primary">
+                                                        <i class="ti ti-user fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="overflow-hidden" style="min-width: 0;">
+                                                    <span class="d-block text-muted fs-11">Name</span>
+                                                    <h6 class="fw-semibold mb-0 text-truncate" title="{{ $data['name'] }}">{{ $data['name'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-7">
-                                    <div class="card custom-card">
-                                        <div class="card-header justify-content-between">
-                                            <div class="card-title">My Profile</div><a
-                                                href="{{ url('member/profile/user-summary') }}"
-                                                class="btn btn-sm btn-primary">View Profile</a>
+                                        <div class="col-xl-4 col-md-4 col-sm-6 col-12">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-3 flex-shrink-0">
+                                                    <span class="avatar avatar-md avatar-rounded bg-light text-secondary">
+                                                        <i class="ti ti-mail fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="overflow-hidden" style="min-width: 0;">
+                                                    <span class="d-block text-muted fs-11">Email</span>
+                                                    <h6 class="fw-semibold mb-0 text-truncate" title="{{ $data['email'] }}">{{ $data['email'] }}</h6>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="row gy-md-0 gy-3">
-                                                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12">
-                                                    <div class="d-flex align-items-top">
-                                                        <div class="me-3"> <span
-                                                                class="avatar avatar-rounded bg-light text-primary"> <i
-                                                                    class="ti ti-files fs-18"></i> </span> </div>
-                                                        <div>
-                                                            <h6 class="fw-semibold mb-0">{{ $data['name'] }}</h6>
-                                                            <span class="d-block mb-1 text-muted">Name</span>
-                                                        </div>
-                                                    </div>
+                                        <div class="col-xl-4 col-md-4 col-sm-6 col-12">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-3 flex-shrink-0">
+                                                    <span class="avatar avatar-md avatar-rounded bg-light text-warning">
+                                                        <i class="ti ti-phone fs-18"></i>
+                                                    </span>
                                                 </div>
-                                                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12">
-                                                    <div class="d-flex align-items-top">
-                                                        <div class="me-3"> <span
-                                                                class="avatar avatar-rounded bg-light text-secondary"> <i
-                                                                    class="ti ti-file-check fs-18"></i> </span> </div>
-                                                        <div>
-                                                            <h6 class="fw-semibold mb-0">{{ $data['email'] }}</h6>
-                                                            <span class="d-block mb-1 text-muted">Enail</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                                                    <div class="d-flex align-items-top">
-                                                        <div class="me-3"> <span
-                                                                class="avatar avatar-rounded bg-light text-warning"> <i
-                                                                    class="ti ti-file-dislike fs-18"></i> </span> </div>
-                                                        <div>
-                                                            <h6 class="fw-semibold mb-0">{{ $data['mobile'] }}</h6>
-                                                            <span class="d-block mb-1 text-muted">Mobile</span>
-                                                        </div>
-                                                    </div>
+                                                <div class="overflow-hidden" style="min-width: 0;">
+                                                    <span class="d-block text-muted fs-11">Mobile</span>
+                                                    <h6 class="fw-semibold mb-0 text-truncate" title="{{ $data['mobile'] }}">{{ $data['mobile'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
