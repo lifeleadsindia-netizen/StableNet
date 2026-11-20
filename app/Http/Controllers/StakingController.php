@@ -170,7 +170,47 @@ class StakingController extends Controller
 
         walletTransfer($memberid, $amount, 'credit', $p2p_wallet, $expectedSlot['name'] . ' Investment', $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') activated from Fund Wallet');
 
-        GlobalPoolMatrice($memberid);
+        if ($amount == 5) {
+            SlotOneAutopool($memberid);
+            AutopoolLevelIncome($memberid, 1, $amount);
+            
+        } elseif ($amount == 15) {
+            SlotTwoAutopool($memberid);
+            AutopoolLevelIncome($memberid, 2, $amount);
+            
+        } elseif ($amount == 50) {
+            SlotThreeAutopool($memberid);
+            AutopoolLevelIncome($memberid, 3, $amount);
+            
+        } elseif ($amount == 100) {
+            SlotFourAutopool($memberid);
+            AutopoolLevelIncome($memberid, 4, $amount);
+            
+        } elseif ($amount == 300) {
+            SlotFiveAutopool($memberid);
+            AutopoolLevelIncome($memberid, 5, $amount);
+            
+        } elseif ($amount == 500) {
+            SlotSixAutopool($memberid);
+            AutopoolLevelIncome($memberid, 6, $amount);
+            
+        } elseif ($amount == 1000) {
+            SlotSevenAutopool($memberid);
+            AutopoolLevelIncome($memberid, 7, $amount);
+            
+        } elseif ($amount == 3000) {
+            SlotEightAutopool($memberid);
+            AutopoolLevelIncome($memberid, 8, $amount);
+            
+        } elseif ($amount == 5000) {
+            SlotNineAutopool($memberid);
+            AutopoolLevelIncome($memberid, 9, $amount);
+            
+        } elseif ($amount == 10000) {
+            SlotTenAutopool($memberid);
+            AutopoolLevelIncome($memberid, 10, $amount);
+            
+        }
         directIncome($sponsorid, $memberid, $name, $amount, "Slot Investment");
         levelIncome($sponsorid, $memberid, $name, $amount);
         team_biz_update($sponsorid, $amount);

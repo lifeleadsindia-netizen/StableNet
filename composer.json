@@ -25,6 +25,7 @@
             "app/Helpers/user_functions.php",
             "app/Helpers/admin_functions.php",
             "app/Helpers/payment_functions.php",
+            "app/Helpers/autopool_functions.php",
             "app/Helpers/common_function.php"
         ],
         "psr-4": {
