@@ -288,7 +288,9 @@
         });
 
         $('#stakingForm').on('submit', function() {
-            $('#subsBtn').html('Processing....');
+            if (!$('#subsBtn').find('.spinner-border').length) {
+                $('#subsBtn').html('<span class="spinner-border spinner-border-sm me-2" role="status"></span> Processing...');
+            }
             $('#subsBtn').prop('disabled', true);
         });
 
