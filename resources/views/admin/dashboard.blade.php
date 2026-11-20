@@ -282,6 +282,14 @@
                                 </div>
                             </div>
 
+                            @php
+                                $incomeColorList = ['bg-primary', 'bg-success', 'bg-info', 'bg-warning', 'bg-danger', 'bg-purple', 'bg-teal', 'bg-orange'];
+                                $todayColors = $incomeColorList;
+                                shuffle($todayColors);
+                                $totalColors = $incomeColorList;
+                                shuffle($totalColors);
+                            @endphp
+
                             <div class="col-xl-12">
                                 <div class="card custom-card overflow-hidden">
                                     <div class="row">
@@ -294,12 +302,13 @@
                                 </div>
                             </div>
 
+                            <!-- Today's Top 3 Cards (col-4 each) -->
                             <div class="col-xxl-4 col-lg-4 col-md-4">
                                 <div class="card custom-card overflow-hidden">
                                     <div class="card-body">
                                         <div class="d-flex align-items-top justify-content-between">
-                                            <div> <span class="avatar avatar-md avatar-rounded bg-warning"> <i
-                                                        class="ti ti-briefcase fs-16"></i> </span> </div>
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $todayColors[0] }}"> <i
+                                                        class="ti ti-layers-intersect fs-16"></i> </span> </div>
                                             <div class="flex-fill ms-3">
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
@@ -335,21 +344,20 @@
                                 <div class="card custom-card overflow-hidden">
                                     <div class="card-body">
                                         <div class="d-flex align-items-top justify-content-between">
-                                            <div> <span class="avatar avatar-md avatar-rounded bg-warning"> <i
-                                                        class="ti ti-briefcase fs-16"></i> </span> </div>
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $todayColors[1] }}"> <i
+                                                        class="ti ti-user-plus fs-16"></i> </span> </div>
                                             <div class="flex-fill ms-3">
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
-
                                                         <h4 class="mb-2 text-green">
-                                                            {{-- $ {{ number_format(todaytradebonusInc(), 2) }} --}}
+                                                            $ {{ number_format(todayDirectInc(), 2) }}
                                                         </h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
                                                 <div class="row align-items-center mb-15">
                                                     <div class="col-auto">
-                                                        <p class="mb-2">Today's Trading Bonus Income</p>
+                                                        <p class="mb-2">Today's Direct Income</p>
                                                     </div>
                                                 </div>
                                                 <div class="progress-stacked progress-animate progress-xs mb-4">
@@ -374,35 +382,113 @@
                                 <div class="card custom-card overflow-hidden">
                                     <div class="card-body">
                                         <div class="d-flex align-items-top justify-content-between">
-                                            <div> <span class="avatar avatar-md avatar-rounded bg-warning"> <i
-                                                        class="ti ti-briefcase fs-16"></i> </span> </div>
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $todayColors[2] }}"> <i
+                                                        class="ti ti-world fs-16"></i> </span> </div>
                                             <div class="flex-fill ms-3">
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <h4 class="mb-2 text-green">
-                                                            {{-- $ {{ number_format(todaytradeprofitInc(), 2) }} --}}
+                                                            $ {{ number_format(todayGlobalPoolInc(), 2) }}
                                                         </h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
                                                 <div class="row align-items-center mb-15">
                                                     <div class="col-auto">
-                                                        <p class="mb-2">Today's Trading Profit Income</p>
+                                                        <p class="mb-2">Today's Global Autopool Income</p>
                                                     </div>
-                                                    <div class="progress-stacked progress-animate progress-xs mb-4">
-                                                        <div class="progress-bar" role="progressbar" style="width: 21%"
-                                                            aria-valuenow="21" aria-valuemin="0" aria-valuemax="100">
-                                                        </div>
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 26%" aria-valuenow="26" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                        <div class="progress-bar bg-warning" role="progressbar"
-                                                            style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                        <div class="progress-bar bg-success" role="progressbar"
-                                                            style="width: 18%" aria-valuenow="18" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                </div>
+                                                <div class="progress-stacked progress-animate progress-xs mb-4">
+                                                    <div class="progress-bar" role="progressbar" style="width: 21%"
+                                                        aria-valuenow="21" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style="width: 26%" aria-valuenow="26" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar"
+                                                        style="width: 35%" aria-valuenow="35" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: 18%" aria-valuenow="18" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Today's Bottom 2 Cards (col-6 each) -->
+                            <div class="col-xxl-6 col-lg-6 col-md-6">
+                                <div class="card custom-card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-top justify-content-between">
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $todayColors[3] }}"> <i
+                                                        class="ti ti-wallet fs-16"></i> </span> </div>
+                                            <div class="flex-fill ms-3">
+                                                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                    <div class="col-9">
+                                                        <h4 class="mb-2 text-green">
+                                                            $ {{ number_format(todayWithdrawalInc(), 2) }}
+                                                        </h4>
                                                     </div>
+                                                    <div id="crm-total-deals"></div>
+                                                </div>
+                                                <div class="row align-items-center mb-15">
+                                                    <div class="col-auto">
+                                                        <p class="mb-2">Today's Withdrawal Income</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress-stacked progress-animate progress-xs mb-4">
+                                                    <div class="progress-bar" role="progressbar" style="width: 21%"
+                                                        aria-valuenow="21" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style="width: 26%" aria-valuenow="26" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar"
+                                                        style="width: 35%" aria-valuenow="35" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: 18%" aria-valuenow="18" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-6 col-lg-6 col-md-6">
+                                <div class="card custom-card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-top justify-content-between">
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $todayColors[4] }}"> <i
+                                                        class="ti ti-trophy fs-16"></i> </span> </div>
+                                            <div class="flex-fill ms-3">
+                                                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                    <div class="col-9">
+                                                        <h4 class="mb-2 text-green">
+                                                            $ {{ number_format(todayRewardInc(), 2) }}
+                                                        </h4>
+                                                    </div>
+                                                    <div id="crm-total-deals"></div>
+                                                </div>
+                                                <div class="row align-items-center mb-15">
+                                                    <div class="col-auto">
+                                                        <p class="mb-2">Today's Reward Income</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress-stacked progress-animate progress-xs mb-4">
+                                                    <div class="progress-bar" role="progressbar" style="width: 21%"
+                                                        aria-valuenow="21" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style="width: 26%" aria-valuenow="26" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar"
+                                                        style="width: 35%" aria-valuenow="35" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: 18%" aria-valuenow="18" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -422,12 +508,13 @@
                                 </div>
                             </div>
 
+                            <!-- Total's Top 3 Cards (col-4 each) -->
                             <div class="col-xxl-4 col-lg-4 col-md-4">
                                 <div class="card custom-card overflow-hidden">
                                     <div class="card-body">
                                         <div class="d-flex align-items-top justify-content-between">
-                                            <div> <span class="avatar avatar-md avatar-rounded bg-warning"> <i
-                                                        class="ti ti-briefcase fs-16"></i> </span> </div>
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $totalColors[0] }}"> <i
+                                                        class="ti ti-layers-intersect fs-16"></i> </span> </div>
                                             <div class="flex-fill ms-3">
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
@@ -463,21 +550,20 @@
                                 <div class="card custom-card overflow-hidden">
                                     <div class="card-body">
                                         <div class="d-flex align-items-top justify-content-between">
-                                            <div> <span class="avatar avatar-md avatar-rounded bg-warning"> <i
-                                                        class="ti ti-briefcase fs-16"></i> </span> </div>
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $totalColors[1] }}"> <i
+                                                        class="ti ti-user-plus fs-16"></i> </span> </div>
                                             <div class="flex-fill ms-3">
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
-
                                                         <h4 class="mb-2 text-green">
-                                                            {{-- $ {{ number_format(totaltradeBonusInc(), 2) }} --}}
+                                                            $ {{ number_format(totalDirectInc(), 2) }}
                                                         </h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
                                                 <div class="row align-items-center mb-15">
                                                     <div class="col-auto">
-                                                        <p class="mb-2">Total Trading Bonus Income</p>
+                                                        <p class="mb-2">Total Direct Income</p>
                                                     </div>
                                                 </div>
                                                 <div class="progress-stacked progress-animate progress-xs mb-4">
@@ -502,35 +588,114 @@
                                 <div class="card custom-card overflow-hidden">
                                     <div class="card-body">
                                         <div class="d-flex align-items-top justify-content-between">
-                                            <div> <span class="avatar avatar-md avatar-rounded bg-warning"> <i
-                                                        class="ti ti-briefcase fs-16"></i> </span> </div>
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $totalColors[2] }}"> <i
+                                                        class="ti ti-world fs-16"></i> </span> </div>
                                             <div class="flex-fill ms-3">
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <div class="col-9">
                                                         <h4 class="mb-2 text-green">
-                                                            {{-- $ {{ number_format(totaltradeprofitInc(), 2) }} --}}
+                                                            $ {{ number_format(totalGlobalPoolInc(), 2) }}
                                                         </h4>
                                                     </div>
                                                     <div id="crm-total-deals"></div>
                                                 </div>
                                                 <div class="row align-items-center mb-15">
                                                     <div class="col-auto">
-                                                        <p class="mb-2">Total Trading Profit Income</p>
+                                                        <p class="mb-2">Total Global Autopool Income</p>
                                                     </div>
-                                                    <div class="progress-stacked progress-animate progress-xs mb-4">
-                                                        <div class="progress-bar" role="progressbar" style="width: 21%"
-                                                            aria-valuenow="21" aria-valuemin="0" aria-valuemax="100">
-                                                        </div>
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 26%" aria-valuenow="26" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                        <div class="progress-bar bg-warning" role="progressbar"
-                                                            style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                        <div class="progress-bar bg-success" role="progressbar"
-                                                            style="width: 18%" aria-valuenow="18" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                </div>
+                                                <div class="progress-stacked progress-animate progress-xs mb-4">
+                                                    <div class="progress-bar" role="progressbar" style="width: 21%"
+                                                        aria-valuenow="21" aria-valuemin="0" aria-valuemax="100">
                                                     </div>
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style="width: 26%" aria-valuenow="26" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar"
+                                                        style="width: 35%" aria-valuenow="35" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: 18%" aria-valuenow="18" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Total's Bottom 2 Cards (col-6 each) -->
+                            <div class="col-xxl-6 col-lg-6 col-md-6">
+                                <div class="card custom-card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-top justify-content-between">
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $totalColors[3] }}"> <i
+                                                        class="ti ti-wallet fs-16"></i> </span> </div>
+                                            <div class="flex-fill ms-3">
+                                                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                    <div class="col-9">
+                                                        <h4 class="mb-2 text-green">
+                                                            $ {{ number_format(totalWithdrawalInc(), 2) }}
+                                                        </h4>
+                                                    </div>
+                                                    <div id="crm-total-deals"></div>
+                                                </div>
+                                                <div class="row align-items-center mb-15">
+                                                    <div class="col-auto">
+                                                        <p class="mb-2">Total Withdrawal Income</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress-stacked progress-animate progress-xs mb-4">
+                                                    <div class="progress-bar" role="progressbar" style="width: 21%"
+                                                        aria-valuenow="21" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style="width: 26%" aria-valuenow="26" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar"
+                                                        style="width: 35%" aria-valuenow="35" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: 18%" aria-valuenow="18" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-6 col-lg-6 col-md-6">
+                                <div class="card custom-card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-top justify-content-between">
+                                            <div> <span class="avatar avatar-md avatar-rounded {{ $totalColors[4] }}"> <i
+                                                        class="ti ti-trophy fs-16"></i> </span> </div>
+                                            <div class="flex-fill ms-3">
+                                                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                    <div class="col-9">
+                                                        <h4 class="mb-2 text-green">
+                                                            $ {{ number_format(totalRewardInc(), 2) }}
+                                                        </h4>
+                                                    </div>
+                                                    <div id="crm-total-deals"></div>
+                                                </div>
+                                                <div class="row align-items-center mb-15">
+                                                    <div class="col-auto">
+                                                        <p class="mb-2">Total Reward Income</p>
+                                                    </div>
+                                                </div>
+                                                <div class="progress-stacked progress-animate progress-xs mb-4">
+                                                    <div class="progress-bar" role="progressbar" style="width: 21%"
+                                                        aria-valuenow="21" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style="width: 26%" aria-valuenow="26" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar"
+                                                        style="width: 35%" aria-valuenow="35" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: 18%" aria-valuenow="18" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>

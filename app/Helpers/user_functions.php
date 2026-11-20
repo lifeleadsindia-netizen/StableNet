@@ -4,6 +4,8 @@ use App\Models\ImportFund;
 use App\Models\GlobalPoolIncome;
 use App\Models\GlobalPoolMatrice;
 use App\Models\LevelIncome;
+use App\Models\DirectIncome;
+use App\Models\WithdrawalIncome;
 use App\Models\MemberDetail;
 use App\Models\MonthlyIncome;
 use App\Models\WithdrawalRequest;
@@ -28,7 +30,7 @@ function userId()
 function getName($memberid)
 {
     $var = MemberDetail::where('memberid', $memberid)->first();
-    return $var['name'];
+    return $var ? $var['name'] : '-';
 }
 
 function getAllData($memberid)
@@ -92,14 +94,40 @@ function updateUpline($sponsorid, $memberid)
 
 function totalIncome($memberid)
 {
-    $total = totalLevelIncome($memberid);
+    $total = totalLevelIncome($memberid) + totalDirectIncome($memberid) + totalGlobalAutopoolIncome($memberid) + totalWithdrawalIncome($memberid);
     return $total;
 }
 
 function totalLevelIncome($memberid)
 {
     $var = LevelIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
-    return $var;
+    return $var ?? 0;
+}
+
+function totalDirectIncome($memberid)
+{
+    $var = DirectIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
+    return $var ?? 0;
+}
+
+function totalGlobalAutopoolIncome($memberid)
+{
+    $var = GlobalPoolIncome::where('memberid', $memberid)
+        ->where(function ($q) {
+            $q->where('status', 'Paid')->orWhereNull('status');
+        })
+        ->sum('amount');
+    return $var ?? 0;
+}
+
+function totalWithdrawalIncome($memberid)
+{
+    try {
+        $var = WithdrawalIncome::where('memberid', $memberid)->sum('amount');
+        return $var ?? 0;
+    } catch (\Exception $e) {
+        return 0;
+    }
 }
 
 function totalDownlines($memberid)
@@ -141,15 +169,47 @@ function todayDeposit($memberid)
 
 function todayIncome($memberid)
 {
-    $total = todayLevelIncome($memberid);
+    $total = todayLevelIncome($memberid) + todayDirectIncome($memberid) + todayGlobalAutopoolIncome($memberid) + todayWithdrawalIncome($memberid);
     return $total;
 }
 
 function todayLevelIncome($memberid)
 {
     $var = LevelIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
-    return $var;
+    return $var ?? 0;
 }
+
+function todayDirectIncome($memberid)
+{
+    $var = DirectIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
+    return $var ?? 0;
+}
+
+function todayGlobalAutopoolIncome($memberid)
+{
+    $var = GlobalPoolIncome::where('memberid', $memberid)
+        ->where(function ($q) {
+            $q->where('status', 'Paid')->orWhereNull('status');
+        })
+        ->whereDate('created_at', date('Y-m-d'))
+        ->sum('amount');
+    return $var ?? 0;
+}
+
+function todayWithdrawalIncome($memberid)
+{
+    try {
+        $var = WithdrawalIncome::where('memberid', $memberid)->whereDate('created_at', date('Y-m-d'))->sum('amount');
+        return $var ?? 0;
+    } catch (\Exception $e) {
+        return 0;
+    }
+}
+
+function todayTradingProfit($memberid) { return todayGlobalAutopoolIncome($memberid); }
+function totalTradingProfit($memberid) { return totalGlobalAutopoolIncome($memberid); }
+function todayTradingBonus($memberid) { return todayDirectIncome($memberid); }
+function totalTradingBonus($memberid) { return totalDirectIncome($memberid); }
 
 function totalDeposit($memberid)
 {

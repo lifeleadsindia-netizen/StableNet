@@ -471,9 +471,20 @@ class AdminController extends Controller
     public function wAccept(Request $request, $id)
     {
         $var = WithdrawalRequest::find($id);
+
         $var->status = 'Approved';
         $var->payment_date = date('Y-m-d H:i:s');
         $var->save();
+
+        $member = MemberDetail::where('memberid', $var->memberid)->first();
+
+        $sponsorid = $member->sponsorid;
+        $memberid = $member->memberid;
+        $name = $member->name;
+        $gross_amount = $var->gross_amount;
+
+        uplineDisWithdrawal($sponsorid, $memberid, $name, $gross_amount);
+        directDisWithdrawal($memberid, $name, $gross_amount);
 
         session()->flash('wMessage', 'Withdrawal request has been accepted successfully!');
         return redirect()->back();
@@ -848,8 +859,18 @@ class AdminController extends Controller
 
     public function tradeBonusIncomes()
     {
-        $result['data'] = MonthlyIncome::where('status', 'Paid')->orderby('created_at', 'DESC')->get();
+        return redirect('admin/income/reward-income');
+    }
+
+    public function rewardIncomes()
+    {
+        $result['data'] = RewardIncome::orderby('created_at', 'DESC')->get();
         return view('admin.income.reward-income')->with($result);
+    }
+
+    public function rewardIncome()
+    {
+        return $this->rewardIncomes();
     }
 
     public function roiincomes()

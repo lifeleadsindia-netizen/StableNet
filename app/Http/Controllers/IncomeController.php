@@ -22,7 +22,7 @@ class IncomeController extends Controller
     public function rewardIncome()
     {
         $result['data'] = MemberDetail::where('memberid', session('MEMBER_ID'))->first();
-        $result['rewData'] = RewardIncome::where('memberid', $result['data']['memberid'])->orderby('amount', 'ASC')->get();
+        $result['rewData'] = RewardIncome::where('memberid', $result['data']['memberid'])->orderby('created_at', 'desc')->get();
         return view('member.reward.reward-income')->with($result);
     }
 
