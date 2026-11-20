@@ -55,11 +55,13 @@
             padding: 12px 14px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
             transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .premium-profile-tile:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-color: #a5b4fc;
+            background: #faf5ff;
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
             transform: translateY(-2px);
         }
 
@@ -507,45 +509,142 @@
                                     </div>
                                     <div class="row g-3">
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="premium-profile-tile d-flex align-items-center">
+                                            <div class="premium-profile-tile d-flex align-items-center" role="button" data-bs-toggle="modal" data-bs-target="#profileDetailModal" title="Click to view full profile details">
                                                 <div class="me-3 flex-shrink-0">
                                                     <span class="avatar avatar-md avatar-rounded" style="background: #ede9fe; color: #6366f1;">
                                                         <i class="ti ti-user fs-18"></i>
                                                     </span>
                                                 </div>
-                                                <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block text-muted fs-11">Name</span>
+                                                <div class="overflow-hidden flex-grow-1" style="min-width: 0;">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span class="d-block text-muted fs-11">Name</span>
+                                                        <i class="ti ti-arrows-maximize text-muted fs-11 ms-1 opacity-75"></i>
+                                                    </div>
                                                     <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['name'] }}">{{ $data['name'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="premium-profile-tile d-flex align-items-center">
+                                            <div class="premium-profile-tile d-flex align-items-center" role="button" data-bs-toggle="modal" data-bs-target="#profileDetailModal" title="Click to view full profile details">
                                                 <div class="me-3 flex-shrink-0">
                                                     <span class="avatar avatar-md avatar-rounded" style="background: #e0f2fe; color: #0284c7;">
                                                         <i class="ti ti-mail fs-18"></i>
                                                     </span>
                                                 </div>
-                                                <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block text-muted fs-11">Email</span>
+                                                <div class="overflow-hidden flex-grow-1" style="min-width: 0;">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span class="d-block text-muted fs-11">Email</span>
+                                                        <i class="ti ti-arrows-maximize text-muted fs-11 ms-1 opacity-75"></i>
+                                                    </div>
                                                     <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['email'] }}">{{ $data['email'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="premium-profile-tile d-flex align-items-center">
+                                            <div class="premium-profile-tile d-flex align-items-center" role="button" data-bs-toggle="modal" data-bs-target="#profileDetailModal" title="Click to view full profile details">
                                                 <div class="me-3 flex-shrink-0">
                                                     <span class="avatar avatar-md avatar-rounded" style="background: #fef3c7; color: #d97706;">
                                                         <i class="ti ti-phone fs-18"></i>
                                                     </span>
                                                 </div>
-                                                <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block text-muted fs-11">Mobile</span>
+                                                <div class="overflow-hidden flex-grow-1" style="min-width: 0;">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span class="d-block text-muted fs-11">Mobile</span>
+                                                        <i class="ti ti-arrows-maximize text-muted fs-11 ms-1 opacity-75"></i>
+                                                    </div>
                                                     <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['mobile'] }}">{{ $data['mobile'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Detail Modal -->
+                    <div class="modal fade" id="profileDetailModal" tabindex="-1" aria-labelledby="profileDetailModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="border-radius: 16px; border: 1px solid rgba(17, 28, 67, 0.1); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+                                <div class="modal-header py-3 px-4" style="background: linear-gradient(135deg, #111c43 0%, #1e3a8a 100%); color: #ffffff;">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="avatar avatar-sm avatar-rounded" style="background: rgba(255, 255, 255, 0.2); color: #ffffff;">
+                                            <i class="ti ti-id fs-16"></i>
+                                        </span>
+                                        <h5 class="modal-title fw-bold fs-16 mb-0 text-white" id="profileDetailModalLabel">Member Profile Details</h5>
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body p-4" style="background: #f8fafc;">
+                                    <div class="d-flex align-items-center p-3 mb-3 bg-white rounded-3 shadow-sm border">
+                                        <div class="me-3">
+                                            @if(!empty($data['profile_image']))
+                                                <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" class="rounded-circle" width="55" height="55" alt="profile" style="object-fit: cover;">
+                                            @else
+                                                <span class="avatar avatar-lg avatar-rounded" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: #ffffff; font-size: 22px; font-weight: 700;">
+                                                    {{ strtoupper(substr($data['name'] ?? 'U', 0, 1)) }}
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-1">
+                                                <h5 class="fw-bold text-dark mb-1 text-truncate">{{ $data['name'] }}</h5>
+                                                <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px;">
+                                                    <i class="bi bi-patch-check-fill me-1"></i> {{ $data['status'] }}
+                                                </span>
+                                            </div>
+                                            <p class="text-muted fs-12 mb-0">Member ID: <strong class="text-primary">{{ $data['memberid'] }}</strong></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white rounded-3 p-3 shadow-sm border">
+                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                                            <div class="d-flex align-items-center text-muted fs-13">
+                                                <i class="ti ti-user fs-16 text-primary me-2"></i> Full Name
+                                            </div>
+                                            <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['name'] }}</span>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                                            <div class="d-flex align-items-center text-muted fs-13">
+                                                <i class="ti ti-mail fs-16 text-info me-2"></i> Email Address
+                                            </div>
+                                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['email'] }}</span>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                                            <div class="d-flex align-items-center text-muted fs-13">
+                                                <i class="ti ti-phone fs-16 text-warning me-2"></i> Mobile Number
+                                            </div>
+                                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['mobile'] }}</span>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                                            <div class="d-flex align-items-center text-muted fs-13">
+                                                <i class="ti ti-id fs-16 text-secondary me-2"></i> Member ID
+                                            </div>
+                                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['memberid'] }}</span>
+                                        </div>
+                                        @if(!empty($data['sponsor']))
+                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                                            <div class="d-flex align-items-center text-muted fs-13">
+                                                <i class="ti ti-users fs-16 text-purple me-2"></i> Sponsor ID
+                                            </div>
+                                            <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['sponsor'] }}</span>
+                                        </div>
+                                        @endif
+                                        @if(!empty($data['created_at']))
+                                        <div class="d-flex align-items-center justify-content-between py-2">
+                                            <div class="d-flex align-items-center text-muted fs-13">
+                                                <i class="ti ti-calendar fs-16 text-success me-2"></i> Joined On
+                                            </div>
+                                            <span class="fw-bold text-dark fs-13 text-break text-end">{{ date('d M Y, h:i A', strtotime($data['created_at'])) }}</span>
+                                        </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="modal-footer py-2 px-3 bg-white d-flex justify-content-between">
+                                    <button type="button" class="btn btn-sm btn-light border px-3" data-bs-dismiss="modal">Close</button>
+                                    <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-primary px-3">
+                                        <i class="ti ti-edit me-1"></i> Full Profile & Settings
+                                    </a>
                                 </div>
                             </div>
                         </div>
