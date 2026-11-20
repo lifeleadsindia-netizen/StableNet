@@ -160,30 +160,30 @@
 
         /* Premium Referral Card */
         .premium-referral-card {
-            background: linear-gradient(135deg, rgba(17, 28, 67, 0.90) 0%, rgba(24, 40, 96, 0.85) 100%);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-top: 1px solid rgba(255, 255, 255, 0.22);
+            background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.96) 30%, rgba(224, 242, 254, 0.75) 70%, rgba(186, 230, 253, 0.6) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(191, 219, 254, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
             border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(17, 28, 67, 0.35);
+            box-shadow: 0 10px 30px -5px rgba(17, 28, 67, 0.08), 0 4px 12px rgba(35, 183, 229, 0.1);
             position: relative;
             overflow: hidden;
             padding: 24px;
-            color: #ffffff;
+            color: #111c43;
             transition: all 0.25s ease;
         }
 
         .premium-referral-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 12px 36px rgba(17, 28, 67, 0.5);
+            border-color: rgba(147, 197, 253, 0.95);
+            box-shadow: 0 14px 36px -4px rgba(17, 28, 67, 0.12), 0 6px 16px rgba(35, 183, 229, 0.15);
         }
 
         .premium-referral-card::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+            background-image: radial-gradient(rgba(17, 28, 67, 0.05) 1.2px, transparent 1.2px);
             background-size: 14px 14px;
             pointer-events: none;
         }
@@ -191,23 +191,27 @@
         .premium-referral-card::after {
             content: "";
             position: absolute;
-            top: 0; right: 0;
-            width: 180px; height: 180px;
-            background: radial-gradient(circle, rgba(132, 90, 223, 0.22) 0%, transparent 70%);
+            top: -40px; right: -40px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(35, 183, 229, 0.22) 0%, rgba(17, 28, 67, 0.05) 50%, transparent 70%);
             pointer-events: none;
         }
 
         .referral-box {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: 12px;
-            padding: 10px 14px;
+            background: linear-gradient(135deg, rgba(17, 28, 67, 0.94) 0%, rgba(23, 49, 114, 0.88) 55%, rgba(14, 116, 144, 0.82) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 14px;
+            padding: 12px 16px;
+            box-shadow: 0 8px 24px -4px rgba(17, 28, 67, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.25);
             transition: all 0.2s ease;
         }
 
         .referral-box:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 28px -4px rgba(17, 28, 67, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.35);
         }
 
         .referral-watermark {
@@ -215,11 +219,31 @@
             right: -10px;
             bottom: -20px;
             font-size: 6.5rem;
-            color: #ffffff;
-            opacity: 0.05;
+            color: #23b7e5;
+            opacity: 0.08;
             pointer-events: none;
             line-height: 1;
             z-index: 0;
+        }
+
+        .referral-copy-btn {
+            background: #ffffff;
+            color: #111c43;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 18px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .referral-copy-btn:hover {
+            background: #f0f7ff;
+            color: #0284c7;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
         }
 
         .sbt-card {
@@ -487,31 +511,31 @@
                                 <div style="position: relative; z-index: 1;">
                                     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
                                         <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-sm avatar-rounded" style="background: rgba(132, 90, 223, 0.28); color: #c4b5fd; border: 1px solid rgba(132, 90, 223, 0.4);">
+                                            <span class="avatar avatar-sm avatar-rounded" style="background: linear-gradient(135deg, #111c43 0%, #23b7e5 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(17, 28, 67, 0.2);">
                                                 <i class="ti ti-share fs-16"></i>
                                             </span>
-                                            <h5 class="fw-bold mb-0 text-white">Refer & Earn</h5>
+                                            <h5 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.2px;">Refer & Earn</h5>
                                         </div>
-                                        <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px;">
+                                        <span class="badge" style="background: linear-gradient(135deg, rgba(35, 183, 229, 0.15) 0%, rgba(17, 28, 67, 0.08) 100%); color: #0284c7; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 600;">
                                             <i class="ti ti-gift me-1"></i> Unlimited Referral Bonus
                                         </span>
                                     </div>
-                                    <p class="fs-13 mb-3" style="color: rgba(255, 255, 255, 0.75);">
+                                    <p class="fs-13 mb-3" style="color: #475569; max-width: 850px; line-height: 1.5;">
                                         Earn referral points by sharing your referral link with friends. You can only earn when your friends join and invest through the provided link.
                                     </p>
 
-                                    <div class="alert alert-success text-center py-2 mb-2" role="alert" style="display: none; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #86efac; border-radius: 10px;" id="rcode">
+                                    <div class="alert alert-success text-center py-2 mb-2" role="alert" style="display: none; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #065f46; border-radius: 10px;" id="rcode">
                                         <i class="bi bi-check-circle-fill me-1"></i> <b>Copied !</b> Referral link is copied successfully.
                                     </div>
 
                                     <div class="referral-box d-flex align-items-center justify-content-between flex-wrap gap-2">
-                                        <div class="d-flex align-items-center flex-grow-1 overflow-hidden me-2" style="min-width: 200px;">
-                                            <span class="badge px-3 py-2 me-2 d-none d-sm-inline-block" style="background: rgba(132, 90, 223, 0.25); color: #c4b5fd; font-weight: 600; font-size: 12px; border: 1px solid rgba(132, 90, 223, 0.35); border-radius: 8px;">
+                                        <div class="d-flex align-items-center flex-grow-1 overflow-hidden me-2" style="min-width: 220px;">
+                                            <span class="badge px-3 py-2 me-2 d-none d-sm-inline-block" style="background: rgba(255, 255, 255, 0.18); color: #ffffff; font-weight: 600; font-size: 12px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px;">
                                                 <i class="ti ti-link me-1"></i> Referral Code
                                             </span>
                                             <span class="text-white fw-semibold fs-13 text-truncate" id="codeLeft" style="letter-spacing: 0.3px;">{{ config('detailsApp.url') }}member/register/{{ $data['memberid'] }}</span>
                                         </div>
-                                        <button type="button" class="btn btn-sm btn-primary px-3 py-2 d-flex align-items-center shadow-sm" id="copyButtonIdLeft" style="border-radius: 8px; font-weight: 600; cursor: pointer;">
+                                        <button type="button" class="btn referral-copy-btn d-flex align-items-center" id="copyButtonIdLeft">
                                             <i class="fe fe-copy me-1"></i> <span id="msgTextLeft">CopyText</span>
                                         </button>
                                     </div>
