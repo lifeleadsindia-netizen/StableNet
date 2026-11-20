@@ -12,6 +12,7 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\TempController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\AiTradingController; // Added AiTradingController
+use App\Http\Controllers\AutopoolController;
 use Illuminate\Support\Facades\Route;
 use App\Models\RewardIncome;
 use App\Models\MemberDetail;
@@ -47,7 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     Route::get('/profile', [AdminController::class, 'profile']);
     Route::get('/member-details', [AdminController::class, 'details']);
     Route::get('/logout', [AdminController::class, 'logout']);
-    
+
     //member account control update
     Route::get('/account-control', [AdminController::class, 'accountControl']);
     Route::get('/account-control/{id}', [AdminController::class, 'statusChange']);
@@ -134,7 +135,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     Route::get('/deposit-details', [AdminController::class, 'depDetails']);
     Route::get('/deposit-status/{id}', [AdminController::class, 'depositStatus']);
     Route::post('/depositDataUSDT', [AdminController::class, 'depositDataUSDT'])->name('depositDataUSDT');
-    Route::get('/data-table',[AdminController::class,'dataTable']);
+    Route::get('/data-table', [AdminController::class, 'dataTable']);
 
     Route::get('/daily-profits', [AdminController::class, 'dailyProfits']);
     Route::post('/dailyMemberProfits', [AdminController::class, 'dailyMemberProfits'])->name('dailyMemberProfits');
@@ -183,9 +184,9 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
 
     Route::get('/dashboard', [MemberDetailController::class, 'dashboard']);
     Route::get('/logout', [MemberDetailController::class, 'logout']);
-      Route::get('/ai-trading', [AiTradingController::class, 'index']);
-      
-      Route::get('/profit-withdrawal/{id}', [WithdrawalController::class, 'profitWithdrawal']);
+    Route::get('/ai-trading', [AiTradingController::class, 'index']);
+
+    Route::get('/profit-withdrawal/{id}', [WithdrawalController::class, 'profitWithdrawal']);
 
     Route::get('/claim-cashback-income/{memberid}', [StakingController::class, 'claimCashbackIncome']);
 
@@ -222,7 +223,7 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
     Route::get('/fund/deposit-fund-history', [FundController::class, 'depositFundHis']);
 
 
-   //income
+    //income
     Route::get('/income/global-autopool-incomes', [IncomeController::class, 'globalAutoPoolIncome']);
     Route::get('/income/global-autopool-income', [IncomeController::class, 'globalAutoPoolIncome']);
     Route::get('/income/direct-incomes', [IncomeController::class, 'directIncome']);
@@ -232,7 +233,7 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
     Route::get('/income/withdrawal-incomes', [IncomeController::class, 'withdrawalIncomes']);
     Route::get('/income/withdrawal-income', [IncomeController::class, 'withdrawalIncomes']);
     Route::get('/income/income/withdrawal-incomes', [IncomeController::class, 'withdrawalIncomes']);
- 
+
     // salary routes
     // Route::get('/income/salary-details', [IncomeController::class, 'salaryDetails']);
     // Route::get('/income/salary-incomes', [IncomeController::class, 'salaryIncomes']);
@@ -265,6 +266,11 @@ Route::group(['prefix' => 'member', 'middleware' => 'MemberAuth'], function () {
     Route::get('/buy-coin/buy-coin-details', [StakingController::class, 'investmentDetails']);
     Route::get('/trade/trade-details', [StakingController::class, 'tradeDetails']);
     Route::get('/trade/detailed-income/{tid}', [StakingController::class, 'detailedIncome']);
+
+    //globalpool routes
+    Route::get('/globalpool/globelpool-incomes', [AutopoolController::class, 'globelpoolIncome']);
+    Route::get('/globalpool/globalpool-matrix/{id}', [AutopoolController::class, 'globalpoolMatrix']);
+    Route::get('/globalpool/globalpool-members/{pool}/{value}', [AutopoolController::class, 'globelpoolMember']);
 
     //Direct and geneology
     Route::get('/team/geneology', [LevelsController::class, 'geneology']);

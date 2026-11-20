@@ -336,9 +336,9 @@
                                     <div class="card-body d-flex justify-content-between align-items-center">
                                         <div>
                                             <p class="mb-2">Buy Trade / Left Trade</p>
-                                            <h4 class="mb-0 fw-semibold mb-2">{{ PackageCount($data['memberid']) }} /
+                                            {{-- <h4 class="mb-0 fw-semibold mb-2">{{ PackageCount($data['memberid']) }} /
                                                 {{ 10 - PackageCount($data['memberid']) }}
-                                            </h4>
+                                            </h4> --}}
                                             <span class="badge bg-success-transparent"><i
                                                     class="ti ti-trending-up"></i></span><span
                                                 class="text-muted fs-11 ms-1">in this

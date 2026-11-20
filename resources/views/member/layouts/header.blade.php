@@ -786,25 +786,31 @@
                             </ul>
                         </li>
                         <!-- End::slide -->
-                        <!-- Start::slide -->
 
-                        <!-- <li class="slide has-sub">
+                        <!-- Start::slide -->
+                        <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <i class="bx bx-grid side-menu__icon"></i>
-                                <span class="side-menu__label">Trade Details</span>
+                                <span class="side-menu__label">Global Pool Section</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
                                 <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Trade Details</a>
+                                    <a href="javascript:void(0);">Pool Section</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/trade/trade-details') }}" class="side-menu__item">Trade
-                                        Details</a>
+                                    <a href="{{ url('/member/globalpool/globelpool-incomes') }}" class="side-menu__item">Global Pool Income</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{{ url('/member/globalpool/globalpool-matrix/1') }}" class="side-menu__item">Global Pool Matrix</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{{ url('/member/globalpool/globalpool-members/1/10') }}" class="side-menu__item">Global Pool Members</a>
                                 </li>
 
                             </ul>
-                        </li> -->
+                        </li>
+                        <!-- End::slide -->
                         
                         <!-- End::slide -->
 
