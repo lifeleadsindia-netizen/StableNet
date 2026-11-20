@@ -440,7 +440,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xxl-4 col-lg-4 col-md-4">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
                             <div class="card custom-card overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
@@ -461,21 +461,15 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-1">
                                                 <div>
-                                                    {{-- <a class="text-primary" href="javascript:void(0);">View All<i
-                                                            class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a> --}}
                                                     <small>Member Today's Level Income</small>
                                                 </div>
-                                                {{-- <div class="text-end">
-                                                    <p class="mb-0 text-success fw-semibold">+40%</p>
-                                                    <span class="text-muted op-7 fs-11">this month</span>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-lg-4 col-md-4">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
                             <div class="card custom-card overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
@@ -487,31 +481,24 @@
                                         <div class="flex-fill ms-3">
                                             <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                 <div>
-                                                    <p class="text-muted mb-0">Today's Trading Profit</p>
+                                                    <p class="text-muted mb-0">Today's Direct Income</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{-- $ {{ number_format(todayTradingProfit($data['memberid']), 2) }} --}}
+                                                        $ {{ number_format(todayDirectIncome($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div id="crm-total-revenue"></div>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-1">
                                                 <div>
-                                                    {{-- <a class="text-secondary" href="javascript:void(0);">View
-                                                        All<i
-                                                            class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a> --}}
-                                                    <small>Member Today's Trading Profit</small>
+                                                    <small>Member Today's Direct Income</small>
                                                 </div>
-                                                {{-- <div class="text-end">
-                                                    <p class="mb-0 text-success fw-semibold">+25%</p>
-                                                    <span class="text-muted op-7 fs-11">this month</span>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-lg-4 col-md-4">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
                             <div class="card custom-card overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
@@ -523,23 +510,46 @@
                                         <div class="flex-fill ms-3">
                                             <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                 <div>
-                                                    <p class="text-muted mb-0">Today's Trading Bonus</p>
+                                                    <p class="text-muted mb-0">Today's Global Autopool</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{-- $ {{ number_format(todayTradingBonus($data['memberid']), 2) }} --}}
+                                                        $ {{ number_format(todayGlobalAutopoolIncome($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div id="crm-conversion-ratio"></div>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-1">
                                                 <div>
-                                                    {{-- <a class="text-success" href="javascript:void(0);">View All<i
-                                                            class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a> --}}
-                                                    <small>Member Today's Trading Bonus</small>
+                                                    <small>Member Today's Global Autopool</small>
                                                 </div>
-                                                {{-- <div class="text-end">
-                                                    <p class="mb-0 text-danger fw-semibold">-12%</p>
-                                                    <span class="text-muted op-7 fs-11">this month</span>
-                                                </div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="card custom-card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-top justify-content-between">
+                                        <div>
+                                            <span class="avatar avatar-md avatar-rounded bg-warning">
+                                                <i class="ti ti-wallet fs-16"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-fill ms-3">
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                <div>
+                                                    <p class="text-muted mb-0">Today's Withdrawal Income</p>
+                                                    <h4 class="fw-semibold mt-1">
+                                                        $ {{ number_format(todayWithdrawalIncome($data['memberid']), 2) }}
+                                                    </h4>
+                                                </div>
+                                                <div id="crm-total-deals"></div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                                <div>
+                                                    <small>Member Today's Withdrawal Income</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -560,7 +570,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xxl-4 col-lg-4 col-md-4">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
                             <div class="card custom-card overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
@@ -584,21 +594,15 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-1">
                                                 <div>
-                                                    {{-- <a class="text-primary" href="javascript:void(0);">View All<i
-                                                            class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a> --}}
                                                     <small>Member Total Level Income</small>
                                                 </div>
-                                                {{-- <div class="text-end">
-                                                    <p class="mb-0 text-success fw-semibold">+40%</p>
-                                                    <span class="text-muted op-7 fs-11">this month</span>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-lg-4 col-md-4">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
                             <div class="card custom-card overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
@@ -610,9 +614,9 @@
                                         <div class="flex-fill ms-3">
                                             <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                 <div>
-                                                    <p class="text-muted mb-0">Total Trading Profit</p>
+                                                    <p class="text-muted mb-0">Total Direct Income</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{-- $ {{ number_format(totalTradingProfit($data['memberid']), 2) }} --}}
+                                                        $ {{ number_format(totalDirectIncome($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div>
@@ -622,22 +626,15 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-1">
                                                 <div>
-                                                    {{-- <a class="text-secondary" href="javascript:void(0);">View
-                                                        All<i
-                                                            class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a> --}}
-                                                    <small>Member Total Trading Profit</small>
+                                                    <small>Member Total Direct Income</small>
                                                 </div>
-                                                {{-- <div class="text-end">
-                                                    <p class="mb-0 text-success fw-semibold">+25%</p>
-                                                    <span class="text-muted op-7 fs-11">this month</span>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-lg-4 col-md-4">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
                             <div class="card custom-card overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
@@ -649,9 +646,9 @@
                                         <div class="flex-fill ms-3">
                                             <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                 <div>
-                                                    <p class="text-muted mb-0">Total Trading Bonus</p>
+                                                    <p class="text-muted mb-0">Total Global Autopool</p>
                                                     <h4 class="fw-semibold mt-1">
-                                                        {{-- $ {{ number_format(totalTradingBonus($data['memberid']), 2) }} --}}
+                                                        $ {{ number_format(totalGlobalAutopoolIncome($data['memberid']), 2) }}
                                                     </h4>
                                                 </div>
                                                 <div>
@@ -661,14 +658,39 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-1">
                                                 <div>
-                                                    {{-- <a class="text-success" href="javascript:void(0);">View All<i
-                                                            class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a> --}}
-                                                    <small>Member Total Trading Bonus</small>
+                                                    <small>Member Total Global Autopool</small>
                                                 </div>
-                                                {{-- <div class="text-end">
-                                                    <p class="mb-0 text-danger fw-semibold">-12%</p>
-                                                    <span class="text-muted op-7 fs-11">this month</span>
-                                                </div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="card custom-card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-top justify-content-between">
+                                        <div>
+                                            <span class="avatar avatar-md avatar-rounded bg-warning">
+                                                <i class="ti ti-wallet fs-16"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-fill ms-3">
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                <div>
+                                                    <p class="text-muted mb-0">Total Withdrawal Income</p>
+                                                    <h4 class="fw-semibold mt-1">
+                                                        $ {{ number_format(totalWithdrawalIncome($data['memberid']), 2) }}
+                                                    </h4>
+                                                </div>
+                                                <div>
+                                                    <div id="total-investments"></div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                                <div>
+                                                    <small>Member Total Withdrawal Income</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
