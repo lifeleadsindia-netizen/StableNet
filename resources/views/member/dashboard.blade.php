@@ -3,6 +3,73 @@
 @section('container')
 
     <style>
+        .selfprint-card-primary {
+            background-color: #4f46e5;
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 0% 100%, rgba(0, 0, 0, 0.25) 0%, transparent 45%),
+                url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08' fill-rule='evenodd'%3E%3Cpath d='M0 32L32 0H16L0 16M32 32V16L16 32'/%3E%3C/g%3E%3C/svg%3E"),
+                linear-gradient(135deg, #3730a3 0%, #4f46e5 50%, #7c3aed 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.22);
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .selfprint-card-navy {
+            background-color: #111c43;
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(132, 90, 223, 0.28) 0%, transparent 45%),
+                radial-gradient(circle at 0% 100%, rgba(35, 183, 229, 0.2) 0%, transparent 45%),
+                url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06' fill-rule='evenodd'%3E%3Cpath d='M0 32L32 0H16L0 16M32 32V16L16 32'/%3E%3C/g%3E%3C/svg%3E"),
+                linear-gradient(135deg, #0b1330 0%, #111c43 50%, #192b66 100%);
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(17, 28, 67, 0.22);
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .selfprint-card-header {
+            background: transparent !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+            padding: 14px 20px !important;
+        }
+
+        .selfprint-pill {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 12px;
+            padding: 12px 14px;
+            transition: all 0.25s ease;
+        }
+
+        .selfprint-pill:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .selfprint-watermark {
+            position: absolute;
+            right: -10px;
+            bottom: -15px;
+            font-size: 5.5rem;
+            color: #ffffff;
+            opacity: 0.08;
+            pointer-events: none;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .selfprint-content {
+            position: relative;
+            z-index: 1;
+        }
+
         .sbt-card {
             background: #0f5c65;
             color: #fff;
@@ -176,81 +243,91 @@
 
                     <div class="row g-3 mb-3">
                         <div class="col-xxl-5 col-xl-5 col-lg-12 col-md-12 col-12">
-                            <div class="card custom-card h-100">
-                                <div class="card-header justify-content-between align-items-center">
-                                    <div class="card-title">Investment Account</div>
-                                    <span class="badge bg-success-transparent fs-11">
+                            <div class="card selfprint-card-primary h-100">
+                                <div class="card-header selfprint-card-header justify-content-between align-items-center">
+                                    <div class="card-title text-white fw-bold">
+                                        <i class="ti ti-chart-bar me-1"></i> Investment Account
+                                    </div>
+                                    <span class="badge" style="background: rgba(34, 197, 94, 0.25); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.45);">
                                         <i class="ti ti-check me-1"></i> Ready
                                     </span>
                                 </div>
-                                <div class="card-body d-flex flex-column justify-content-between">
+                                <div class="card-body d-flex flex-column justify-content-between selfprint-content">
                                     <div class="mb-3">
-                                        <h5 class="fw-bold mb-2">
-                                            Congratulations, <span class="text-primary">{{ $data['memberid'] }}</span> !!
+                                        <h5 class="fw-bold mb-2 text-white">
+                                            Congratulations, <span style="color: #fde047;">{{ $data['memberid'] }}</span> !!
                                         </h5>
-                                        <p class="text-muted fs-13 mb-0">
-                                            You are ready for <strong>{{ config('detailsApp.name') }}</strong> Investment.
+                                        <p class="fs-13 mb-0" style="color: rgba(255, 255, 255, 0.85);">
+                                            You are ready for <strong class="text-white">{{ config('detailsApp.name') }}</strong> Investment.
                                         </p>
                                     </div>
                                     <div>
-                                        <a href="{{ url('/member/invest-slot') }}" class="btn btn-sm btn-primary">
-                                            Invest Now <i class="ti ti-arrow-narrow-right ms-1"></i>
+                                        <a href="{{ url('/member/invest-slot') }}" class="btn btn-sm btn-warning fw-bold text-dark shadow-sm">
+                                            <i class="ti ti-wallet me-1"></i> Invest Now <i class="ti ti-arrow-narrow-right ms-1"></i>
                                         </a>
                                     </div>
+                                </div>
+                                <div class="selfprint-watermark">
+                                    <i class="ti ti-coins"></i>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-xxl-7 col-xl-7 col-lg-12 col-md-12 col-12">
-                            <div class="card custom-card h-100">
-                                <div class="card-header justify-content-between align-items-center">
-                                    <div class="card-title">My Profile</div>
-                                    <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-primary">
-                                        View Profile
+                            <div class="card selfprint-card-navy h-100">
+                                <div class="card-header selfprint-card-header justify-content-between align-items-center">
+                                    <div class="card-title text-white fw-bold">
+                                        <i class="ti ti-user-circle me-1"></i> My Profile
+                                    </div>
+                                    <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-outline-light">
+                                        <i class="ti ti-user me-1"></i> View Profile
                                     </a>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body selfprint-content">
                                     <div class="row g-3">
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="d-flex align-items-center">
+                                            <div class="selfprint-pill d-flex align-items-center">
                                                 <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded bg-light text-primary">
+                                                    <span class="avatar avatar-md avatar-rounded" style="background: rgba(132, 90, 223, 0.25); color: #c4b5fd;">
                                                         <i class="ti ti-user fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block text-muted fs-11">Name</span>
-                                                    <h6 class="fw-semibold mb-0 text-truncate" title="{{ $data['name'] }}">{{ $data['name'] }}</h6>
+                                                    <span class="d-block fs-11" style="color: rgba(255, 255, 255, 0.65);">Name</span>
+                                                    <h6 class="fw-bold mb-0 text-white text-truncate" title="{{ $data['name'] }}">{{ $data['name'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="d-flex align-items-center">
+                                            <div class="selfprint-pill d-flex align-items-center">
                                                 <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded bg-light text-secondary">
+                                                    <span class="avatar avatar-md avatar-rounded" style="background: rgba(35, 183, 229, 0.25); color: #7dd3fc;">
                                                         <i class="ti ti-mail fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block text-muted fs-11">Email</span>
-                                                    <h6 class="fw-semibold mb-0 text-truncate" title="{{ $data['email'] }}">{{ $data['email'] }}</h6>
+                                                    <span class="d-block fs-11" style="color: rgba(255, 255, 255, 0.65);">Email</span>
+                                                    <h6 class="fw-bold mb-0 text-white text-truncate" title="{{ $data['email'] }}">{{ $data['email'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="d-flex align-items-center">
+                                            <div class="selfprint-pill d-flex align-items-center">
                                                 <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded bg-light text-warning">
+                                                    <span class="avatar avatar-md avatar-rounded" style="background: rgba(245, 184, 73, 0.25); color: #fde047;">
                                                         <i class="ti ti-phone fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block text-muted fs-11">Mobile</span>
-                                                    <h6 class="fw-semibold mb-0 text-truncate" title="{{ $data['mobile'] }}">{{ $data['mobile'] }}</h6>
+                                                    <span class="d-block fs-11" style="color: rgba(255, 255, 255, 0.65);">Mobile</span>
+                                                    <h6 class="fw-bold mb-0 text-white text-truncate" title="{{ $data['mobile'] }}">{{ $data['mobile'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="selfprint-watermark">
+                                    <i class="ti ti-id-badge-2"></i>
                                 </div>
                             </div>
                         </div>
