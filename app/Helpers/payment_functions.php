@@ -65,7 +65,6 @@ function levelIncome($sponsorid, $memberid, $name, $package)
 
                 $downline = $inc['downline'];
 
-
                 $insert = new LevelIncome();
                 $insert->memberid = $sponsorid;
                 $insert->level = $level;
