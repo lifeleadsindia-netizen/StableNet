@@ -289,7 +289,7 @@
 
                     <div class="col-xl-12">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <div class="card custom-card">
                                     <div class="card-body d-flex justify-content-between align-items-center">
                                         <div>
@@ -307,7 +307,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                 <div class="card custom-card">
                                     <div class="card-body d-flex justify-content-between align-items-center">
                                         <div>
@@ -325,32 +325,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="card custom-card">
-                                    <div class="card-body d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <p class="mb-2">Buy Trade / Left Trade</p>
-                                            <h4 class="mb-0 fw-semibold mb-2">{{ PackageCount($data['memberid']) }} /
-                                                {{ 10 - PackageCount($data['memberid']) }}
-                                            </h4>
-                                            <span class="badge bg-success-transparent"><i
-                                                    class="ti ti-trending-up"></i></span><span
-                                                class="text-muted fs-11 ms-1">in this
-                                                month</span>
-                                        </div>
-                                        <div>
-                                            <span class="avatar avatar-md bg-warning p-2">
-                                                <i class="ti ti-chart-pie-2 fs-20 op-7"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-xl-4 col-sm-4">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="card custom-card">
                                 <div class="card-body">
                                     <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
@@ -366,9 +345,6 @@
                                                 </h4>
                                             </div>
                                         </div>
-                                        {{-- <div>
-                                            <div id="total-invested"></div>
-                                        </div> --}}
                                     </div>
                                     <div class="ms-5 mt-2">
                                         <span class="d-block text-muted">Total Balance in Fund wallet</span>
@@ -376,7 +352,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-sm-4">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="card custom-card">
                                 <div class="card-body">
                                     <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
@@ -391,38 +367,9 @@
                                                 <h4 class="fw-semibold">$ {{ number_format($data['wallet'], 2) }}</h4>
                                             </div>
                                         </div>
-                                        {{-- <div>
-                                            <div id="portfolio-value"></div>
-                                        </div> --}}
                                     </div>
                                     <div class="ms-5 mt-2">
                                         <span class="d-block text-muted">Total Balance in Income wallet</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-sm-4">
-                            <div class="card custom-card">
-                                <div class="card-body">
-                                    <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
-                                        <div class="flex-fill d-flex align-items-top mb-4 mb-sm-0">
-                                            <div class="me-3">
-                                                <span class="avatar avatar-rounded bg-success">
-                                                    <i class="ti ti-wallet fs-16"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class="d-block">Level Wallet</span>
-                                                <h4 class="fw-semibold">$ {{ number_format($data['level_wallet'], 2) }}
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        {{-- <div>
-                                            <div id="returns-rate"></div>
-                                        </div> --}}
-                                    </div>
-                                    <div class="ms-5 mt-2">
-                                        <span class="d-block text-muted">Total Balance in Level wallet</span>
                                     </div>
                                 </div>
                             </div>
