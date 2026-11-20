@@ -86,33 +86,61 @@ function levelIncome($sponsorid, $memberid, $name, $package)
     }
 }
 
+
 function directIncome($sponsorid, $memberid, $name, $package, $type)
 {
-    if ($sponsorid != 'Root') {
-        $var = MemberDetail::where('memberid', $sponsorid)->first();
+    while ($sponsorid != 'Root' && !empty($sponsorid)) {
 
-        $rate = 50;
-        $amount = $package * $rate / 100;
+        $var = MemberDetail::where('memberid', $sponsorid)
+            ->where('status', 'Active')
+            ->first();
 
-        if ($amount > 0 && $var->status == 'Active') {
-
-            $insert = new DirectIncome();
-            $insert->memberid = $sponsorid;
-            $insert->amount = $amount;
-            $insert->activatingId = $memberid;
-            $insert->package = $package;
-            $insert->type = $type;
-            $insert->name = $name;
-            $insert->status = 'Paid';
-            $insert->save();
-
-            $wallet = $var->wallet;
-            $var->wallet += $amount;
-            $var->save();
-            walletTransfer($sponsorid, $amount, 'debit', $wallet, 'Direct Referral Income', 'Direct Referral Income Amount Added into wallet.');
+        if (!$var) {
+            break;
         }
+
+        $sponPackage = $var->package;
+
+        if ($sponPackage >= $package) {
+
+            $rate = 50;
+            $amount = ($package * $rate) / 100;
+
+            if ($amount > 0) {
+
+                $insert = new DirectIncome();
+                $insert->memberid = $sponsorid;
+                $insert->amount = $amount;
+                $insert->activatingId = $memberid;
+                $insert->package = $package;
+                $insert->type = $type;
+                $insert->name = $name;
+                $insert->status = 'Paid';
+                $insert->save();
+
+                // Wallet update
+                $wallet = $var->wallet;
+                $var->wallet += $amount;
+                $var->save();
+
+                walletTransfer(
+                    $sponsorid,
+                    $amount,
+                    'debit',
+                    $wallet,
+                    'Direct Referral Income',
+                    'Direct Referral Income Amount Added into wallet.'
+                );
+            }
+
+            return true;
+        }
+        $sponsorid = $var->sponsorid;
     }
+
+    return false;
 }
+
 
 // function levelamount($level, $package)
 // {
