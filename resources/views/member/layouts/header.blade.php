@@ -140,8 +140,8 @@
 
         /* --- Sidebar Container & Styling --- */
         .app-sidebar {
-            background: linear-gradient(180deg, #111c43 0%, #0a112c 100%) !important;
-            border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+            background: linear-gradient(180deg, #111c43 0%, #0a102a 100%) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
             box-shadow: 2px 0 16px rgba(0, 0, 0, 0.08) !important;
         }
 
@@ -153,99 +153,130 @@
 
         /* Menu Items */
         .app-sidebar .main-menu {
-            padding: 10px 6px 30px 6px !important;
+            padding: 8px 4px 28px 4px !important;
         }
 
+        /* Top-level menu item */
         .app-sidebar .side-menu__item {
             margin: 2px 8px !important;
-            padding: 9px 13px !important;
-            border-radius: 9px !important;
-            color: #94a3b8 !important;
+            padding: 9px 12px !important;
+            border-radius: 8px !important;
+            color: #cbd5e1 !important;
             font-size: 13.5px !important;
             font-weight: 500 !important;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            display: flex !important;
-            align-items: center !important;
+            transition: background-color 0.15s ease, color 0.15s ease !important;
         }
 
         .app-sidebar .side-menu__icon {
-            color: #64748b !important;
+            color: #818cf8 !important;
             font-size: 18px !important;
-            margin-right: 11px !important;
-            transition: color 0.2s ease, transform 0.2s ease !important;
+            margin-right: 10px !important;
+            opacity: 0.85;
+            transition: opacity 0.15s ease !important;
         }
 
         .app-sidebar .side-menu__angle {
-            color: #64748b !important;
+            color: #94a3b8 !important;
             font-size: 11px !important;
             transition: transform 0.2s ease !important;
         }
 
-        /* Hover */
+        /* Top-level Hover */
         .app-sidebar .side-menu__item:hover {
-            background: rgba(255, 255, 255, 0.06) !important;
+            background-color: rgba(255, 255, 255, 0.06) !important;
             color: #ffffff !important;
         }
 
         .app-sidebar .side-menu__item:hover .side-menu__icon {
-            color: #818cf8 !important;
-            transform: scale(1.06);
+            opacity: 1;
         }
 
         .app-sidebar .side-menu__item:hover .side-menu__angle {
             color: #ffffff !important;
         }
 
-        /* Active Main Slide */
-        .app-sidebar .side-menu__item.active,
+        /* Top-level Active / Open state */
         .app-sidebar .slide.active > .side-menu__item,
         .app-sidebar .slide.has-sub.open > .side-menu__item {
-            background: linear-gradient(90deg, rgba(99, 102, 241, 0.18) 0%, rgba(99, 102, 241, 0.04) 100%) !important;
+            background-color: rgba(99, 102, 241, 0.16) !important;
             color: #ffffff !important;
             font-weight: 600 !important;
-            border-left: 3px solid #6366f1 !important;
         }
 
-        .app-sidebar .side-menu__item.active .side-menu__icon,
         .app-sidebar .slide.active > .side-menu__item .side-menu__icon,
         .app-sidebar .slide.has-sub.open > .side-menu__item .side-menu__icon {
-            color: #818cf8 !important;
+            color: #a5b4fc !important;
+            opacity: 1;
         }
 
-        /* Submenu (Child 1) */
+        .app-sidebar .slide.has-sub.open > .side-menu__item .side-menu__angle {
+            color: #a5b4fc !important;
+        }
+
+        /* Submenu (Child 1 Dropdown) Container */
         .app-sidebar .slide-menu.child1 {
-            background: rgba(0, 0, 0, 0.16) !important;
+            background-color: rgba(7, 12, 33, 0.5) !important;
             border-radius: 8px !important;
-            margin: 4px 8px 6px 12px !important;
-            padding: 6px 4px !important;
-            border-left: 2px solid rgba(99, 102, 241, 0.25) !important;
+            margin: 2px 8px 4px 8px !important;
+            padding: 4px 0 !important;
+            border-left: 2px solid rgba(99, 102, 241, 0.3) !important;
         }
 
+        /* Submenu Child Item */
         .app-sidebar .slide-menu.child1 .side-menu__item {
+            position: relative !important;
+            padding: 7px 12px 7px 32px !important;
             margin: 1px 4px !important;
-            padding: 6px 12px !important;
-            font-size: 12.5px !important;
-            color: #94a3b8 !important;
+            font-size: 13px !important;
+            font-weight: 400 !important;
+            color: #cbd5e1 !important;
             border-radius: 6px !important;
-            border-left: none !important;
+            white-space: nowrap !important;
+            transition: background-color 0.15s ease, color 0.15s ease !important;
         }
 
+        /* Submenu Bullet Dot */
+        .app-sidebar .slide-menu.child1 .side-menu__item:before {
+            content: "" !important;
+            position: absolute !important;
+            left: 14px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            width: 5px !important;
+            height: 5px !important;
+            border-radius: 50% !important;
+            background-color: #64748b !important;
+            border: none !important;
+            opacity: 0.9 !important;
+            transition: background-color 0.15s ease, transform 0.15s ease !important;
+        }
+
+        /* Submenu Hover */
         .app-sidebar .slide-menu.child1 .side-menu__item:hover {
-            background: rgba(255, 255, 255, 0.05) !important;
+            background-color: rgba(255, 255, 255, 0.05) !important;
             color: #ffffff !important;
-            padding-left: 14px !important;
         }
 
+        .app-sidebar .slide-menu.child1 .side-menu__item:hover:before {
+            background-color: #38bdf8 !important;
+            transform: translateY(-50%) scale(1.3) !important;
+        }
+
+        /* Submenu Active Item */
         .app-sidebar .slide-menu.child1 .side-menu__item.active {
-            background: rgba(56, 189, 248, 0.1) !important;
+            background-color: rgba(56, 189, 248, 0.1) !important;
             color: #38bdf8 !important;
             font-weight: 600 !important;
-            border-left: none !important;
+        }
+
+        .app-sidebar .slide-menu.child1 .side-menu__item.active:before {
+            background-color: #38bdf8 !important;
+            box-shadow: 0 0 6px rgba(56, 189, 248, 0.8) !important;
         }
 
         /* Logout Item */
         .app-sidebar a[href*="logout"]:hover {
-            background: rgba(239, 68, 68, 0.12) !important;
+            background-color: rgba(239, 68, 68, 0.12) !important;
             color: #f87171 !important;
         }
 
