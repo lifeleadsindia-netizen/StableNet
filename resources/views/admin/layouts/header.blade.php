@@ -642,6 +642,9 @@
                             <li class="slide"> <a href="{{ url('admin/income/withdrawal-income') }}"
                                     class="side-menu__item">Withdrawal Income</a>
                             </li>
+                            <li class="slide"> <a href="{{ url('admin/income/reward-income') }}"
+                                    class="side-menu__item">Reward Income</a>
+                            </li>
                         </ul>
                     </li> <!-- End::slide --> <!-- Start::slide -->
                     <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
