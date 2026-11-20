@@ -61,6 +61,199 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
 
+    <!-- NORMAL PREMIUM STYLING FOR NAVBAR & SIDEBAR -->
+    <style>
+        /* --- Top Navbar / Header --- */
+        .app-header {
+            background: #ffffff !important;
+            border-bottom: 1px solid #edf2f7 !important;
+            box-shadow: 0 1px 4px rgba(17, 28, 67, 0.04) !important;
+            min-height: 64px !important;
+            transition: all 0.25s ease;
+        }
+
+        .app-header .main-header-container {
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+        }
+
+        .app-header .sidemenu-toggle.header-link {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 38px !important;
+            height: 38px !important;
+            border-radius: 8px !important;
+            transition: background-color 0.2s ease !important;
+        }
+
+        .app-header .sidemenu-toggle.header-link:hover {
+            background-color: #f1f5f9 !important;
+        }
+
+        /* User Profile Pill in Navbar */
+        .sn-profile-pill {
+            background: #f8fafc !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 30px !important;
+            padding: 4px 14px 4px 4px !important;
+            transition: all 0.2s ease !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            text-decoration: none !important;
+        }
+
+        .sn-profile-pill:hover,
+        .sn-profile-pill[aria-expanded="true"] {
+            background: #f1f5f9 !important;
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        .sn-profile-img {
+            border: 2px solid #ffffff !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+            object-fit: cover !important;
+        }
+
+        .header-profile-dropdown {
+            border-radius: 12px !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
+            min-width: 220px !important;
+            padding: 6px !important;
+        }
+
+        .header-profile-dropdown .dropdown-item {
+            border-radius: 7px;
+            font-size: 13px;
+            padding: 8px 12px;
+            color: #334155;
+            transition: all 0.15s ease;
+        }
+
+        .header-profile-dropdown .dropdown-item:hover {
+            background-color: #f8fafc;
+            color: #0f172a;
+            padding-left: 14px;
+        }
+
+        /* --- Sidebar Container & Styling --- */
+        .app-sidebar {
+            background: linear-gradient(180deg, #111c43 0%, #0a112c 100%) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 2px 0 16px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .app-sidebar .main-sidebar-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+            padding: 14px 20px !important;
+            background: transparent !important;
+        }
+
+        /* Menu Items */
+        .app-sidebar .main-menu {
+            padding: 10px 6px 30px 6px !important;
+        }
+
+        .app-sidebar .side-menu__item {
+            margin: 2px 8px !important;
+            padding: 9px 13px !important;
+            border-radius: 9px !important;
+            color: #94a3b8 !important;
+            font-size: 13.5px !important;
+            font-weight: 500 !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .app-sidebar .side-menu__icon {
+            color: #64748b !important;
+            font-size: 18px !important;
+            margin-right: 11px !important;
+            transition: color 0.2s ease, transform 0.2s ease !important;
+        }
+
+        .app-sidebar .side-menu__angle {
+            color: #64748b !important;
+            font-size: 11px !important;
+            transition: transform 0.2s ease !important;
+        }
+
+        /* Hover */
+        .app-sidebar .side-menu__item:hover {
+            background: rgba(255, 255, 255, 0.06) !important;
+            color: #ffffff !important;
+        }
+
+        .app-sidebar .side-menu__item:hover .side-menu__icon {
+            color: #818cf8 !important;
+            transform: scale(1.06);
+        }
+
+        .app-sidebar .side-menu__item:hover .side-menu__angle {
+            color: #ffffff !important;
+        }
+
+        /* Active Main Slide */
+        .app-sidebar .side-menu__item.active,
+        .app-sidebar .slide.active > .side-menu__item,
+        .app-sidebar .slide.has-sub.open > .side-menu__item {
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.18) 0%, rgba(99, 102, 241, 0.04) 100%) !important;
+            color: #ffffff !important;
+            font-weight: 600 !important;
+            border-left: 3px solid #6366f1 !important;
+        }
+
+        .app-sidebar .side-menu__item.active .side-menu__icon,
+        .app-sidebar .slide.active > .side-menu__item .side-menu__icon,
+        .app-sidebar .slide.has-sub.open > .side-menu__item .side-menu__icon {
+            color: #818cf8 !important;
+        }
+
+        /* Submenu (Child 1) */
+        .app-sidebar .slide-menu.child1 {
+            background: rgba(0, 0, 0, 0.16) !important;
+            border-radius: 8px !important;
+            margin: 4px 8px 6px 12px !important;
+            padding: 6px 4px !important;
+            border-left: 2px solid rgba(99, 102, 241, 0.25) !important;
+        }
+
+        .app-sidebar .slide-menu.child1 .side-menu__item {
+            margin: 1px 4px !important;
+            padding: 6px 12px !important;
+            font-size: 12.5px !important;
+            color: #94a3b8 !important;
+            border-radius: 6px !important;
+            border-left: none !important;
+        }
+
+        .app-sidebar .slide-menu.child1 .side-menu__item:hover {
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: #ffffff !important;
+            padding-left: 14px !important;
+        }
+
+        .app-sidebar .slide-menu.child1 .side-menu__item.active {
+            background: rgba(56, 189, 248, 0.1) !important;
+            color: #38bdf8 !important;
+            font-weight: 600 !important;
+            border-left: none !important;
+        }
+
+        /* Logout Item */
+        .app-sidebar a[href*="logout"]:hover {
+            background: rgba(239, 68, 68, 0.12) !important;
+            color: #f87171 !important;
+        }
+
+        .app-sidebar a[href*="logout"]:hover .side-menu__icon {
+            color: #f87171 !important;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -599,50 +792,74 @@
                 <!-- End::header-content-left -->
 
                 <!-- Start::header-content-right -->
-                <div class="header-content-right">
+                <div class="header-content-right d-flex align-items-center gap-2">
 
+                    <!-- Live Online Status Pill -->
+                    <div class="header-element d-none d-md-flex align-items-center me-2">
+                        <span class="badge rounded-pill px-2.5 py-1 fs-11 d-inline-flex align-items-center gap-1.5"
+                            style="background: rgba(16, 185, 129, 0.1); color: #059669; border: 1px solid rgba(16, 185, 129, 0.25);">
+                            <span class="d-inline-block rounded-circle bg-success" style="width: 6px; height: 6px; box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);"></span>
+                            <span class="fw-medium">Online</span>
+                        </span>
+                    </div>
 
                     <!-- Start::header-element -->
                     <div class="header-element">
                         <!-- Start::header-link|dropdown-toggle -->
-                        <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile"
+                        <a href="javascript:void(0);" class="header-link dropdown-toggle sn-profile-pill" id="mainHeaderProfile"
                             data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                            <div class="d-flex align-items-center">
-                                <div class="me-sm-2 me-0">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="position-relative">
                                     @if ($data['profile_image'] == '')
                                         <img src="{{ asset('user_assets/images/faces/9.jpg') }}" alt="img"
-                                            width="32" height="32" class="rounded-circle">
+                                            width="34" height="34" class="rounded-circle sn-profile-img">
                                     @else
                                         <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}"
-                                            alt="img" width="32" height="32" class="rounded-circle">
+                                            alt="img" width="34" height="34" class="rounded-circle sn-profile-img">
                                     @endif
+                                    <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle"
+                                        style="width: 8px; height: 8px;"></span>
                                 </div>
-                                <div class="d-sm-block d-none">
-                                    <p class="fw-semibold mb-0 lh-1">{{ $data['memberid'] }}</p>
-                                    <span class="op-7 fw-normal d-block fs-11">{{ $data['name'] }}</span>
+                                <div class="d-sm-block d-none text-start pe-1">
+                                    <p class="fw-bold mb-0 lh-1 text-dark fs-12">{{ $data['memberid'] }}</p>
+                                    <span class="text-muted fw-normal d-block fs-11 mt-0.5">{{ $data['name'] }}</span>
                                 </div>
+                                <i class="ri-arrow-down-s-line fs-14 text-muted d-sm-block d-none"></i>
                             </div>
                         </a>
                         <!-- End::header-link|dropdown-toggle -->
-                        <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
+                        <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end shadow-sm"
                             aria-labelledby="mainHeaderProfile">
-                            <li><a class="dropdown-item d-flex" href="{{ url('member/profile/user-summary') }}"><i
-                                        class="ti ti-user-circle fs-18 me-2 op-7"></i>Profile</a></li>
-                            <li><a class="dropdown-item d-flex" href="{{ url('/member/logout') }}"><i
-                                        class="ti ti-logout fs-18 me-2 op-7"></i>Log Out</a></li>
+                            <li class="px-3 py-2.5 bg-light border-bottom">
+                                <div class="d-flex align-items-center justify-content-between mb-0.5">
+                                    <span class="fw-bold text-dark fs-13 text-truncate">{{ $data['name'] }}</span>
+                                    <span class="badge bg-success-transparent text-success rounded-pill px-2 py-0.5 fs-10">Active</span>
+                                </div>
+                                <span class="fs-11 text-muted font-monospace">{{ $data['memberid'] }}</span>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ url('member/profile/user-summary') }}">
+                                    <i class="ri-user-3-line fs-16 me-2 text-primary"></i>Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ url('member/profile/wallet-address') }}">
+                                    <i class="ri-wallet-3-line fs-16 me-2 text-info"></i>Wallet Address
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ url('member/support/support-tickets') }}">
+                                    <i class="ri-customer-service-2-line fs-16 me-2 text-warning"></i>Support Desk
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider my-1"></li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center text-danger" href="{{ url('/member/logout') }}">
+                                    <i class="ri-logout-box-r-line fs-16 me-2"></i>Log Out
+                                </a>
+                            </li>
                         </ul>
                     </div>
-                    <!-- End::header-element -->
-
-                    <!-- Start::header-element -->
-                    {{-- <div class="header-element">
-                        <!-- Start::header-link|switcher-icon -->
-                        <a href="javascript:void(0);" class="header-link switcher-icon" data-bs-toggle="offcanvas"
-                            data-bs-target="#switcher-canvas">
-                            <i class="bx bx-cog header-link-icon"></i>
-                        </a>
-                        <!-- End::header-link|switcher-icon -->
-                    </div> --}}
                     <!-- End::header-element -->
 
                 </div>
@@ -691,22 +908,13 @@
                     <ul class="main-menu">
 
                         <!-- Start::slide -->
-                        <li class="slide has-sub">
+                        <li class="slide">
                             <a href="{{ url('member/dashboard') }}" class="side-menu__item">
                                 <i class="bx bx-home side-menu__icon"></i>
-                                <span class="side-menu__label">Dashboard<span
-                                        class="badge bg-warning-transparent ms-2"></span></span>
-                                {{-- <i class="fe fe-chevron-right side-menu__angle"></i> --}}
+                                <span class="side-menu__label">Dashboard</span>
                             </a>
-                            <ul class="slide-menu child1">
-                                {{-- <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Dashboards</a>
-                                </li> --}}
-                            </ul>
                         </li>
                         <!-- End::slide -->
-
-                        </br>
 
                         <!-- Start::slide -->
                         <li class="slide has-sub">
@@ -978,20 +1186,16 @@
 
                                 <!-- End::slide -->
                             </ul>
-                        <li class="slide has-sub">
+                        </li>
+
+                        <!-- Start::slide -->
+                        <li class="slide">
                             <a href="{{ url('/member/logout') }}" class="side-menu__item">
                                 <i class="bx bx-log-out side-menu__icon"></i>
-                                <span class="side-menu__label">Logout<span
-                                        class="badge bg-warning-transparent ms-2"></span></span>
-                                {{-- <i class="fe fe-chevron-right side-menu__angle"></i> --}}
+                                <span class="side-menu__label">Logout</span>
                             </a>
-                            <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="{{ url('/member/logout') }}">Logout</a>
-                                </li>
-
-                            </ul>
                         </li>
+                        <!-- End::slide -->
 
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg"
                                 fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
