@@ -44,8 +44,21 @@ class AutopoolController extends Controller
         $currentSlot = $slots[$pool] ?? $slots[1];
         $value = $currentSlot['value'];
 
+        $pool_data = PoolUplineMember::where([['upline_1', $memberid], ['pool_no', $pool]])->get();
+        $pos1 = $pool_data->get(0);
+        $pos2 = $pool_data->get(1);
+
+        $pos1_children = $pos1 ? PoolUplineMember::where([['upline_1', $pos1->memberid], ['pool_no', $pool]])->get() : collect();
+        $pos2_children = $pos2 ? PoolUplineMember::where([['upline_1', $pos2->memberid], ['pool_no', $pool]])->get() : collect();
+
         $result['data'] = MemberDetail::where('memberid', $memberid)->first();
-        $result['pool_data'] = PoolUplineMember::where([['upline_1', $memberid], ['pool_no', $pool]])->get();
+        $result['pool_data'] = $pool_data;
+        $result['pos1'] = $pos1;
+        $result['pos2'] = $pos2;
+        $result['pos1_1'] = $pos1_children->get(0);
+        $result['pos1_2'] = $pos1_children->get(1);
+        $result['pos2_1'] = $pos2_children->get(0);
+        $result['pos2_2'] = $pos2_children->get(1);
         $result['pool'] = $pool;
         $result['value'] = $value;
         $result['slots'] = $slots;
