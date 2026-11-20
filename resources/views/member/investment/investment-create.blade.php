@@ -247,6 +247,66 @@
         </div>
     </div>
 
+    <!-- Processing Investment Alert Modal -->
+    <div class="modal fade" id="slotProcessingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="slotProcessingModalLabel" aria-hidden="true" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(15, 23, 42, 0.7);">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 480px;">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden text-center p-4" style="background: #ffffff;">
+                <div class="modal-body p-0">
+                    <!-- Animated Processing Spinner & Pulse Icon -->
+                    <div class="d-flex justify-content-center my-3">
+                        <div class="position-relative d-inline-flex align-items-center justify-content-center" style="width: 82px; height: 82px;">
+                            <div class="spinner-border text-primary" style="width: 5rem; height: 5rem; border-width: 4px;" role="status">
+                                <span class="visually-hidden">Processing...</span>
+                            </div>
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <i class="ri-flashlight-fill text-warning fs-28"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Title & Subtitle -->
+                    <h5 class="fw-bold text-dark mb-1 fs-18" id="slotProcessingModalLabel">Processing Slot Investment...</h5>
+                    <p class="text-muted fs-12 mb-3">Aapka slot activate aur matrix allocation process ho raha hai, kripya intezar karein.</p>
+
+                    <!-- Important Instructions Warning Alert Box -->
+                    <div class="alert alert-warning border border-warning-subtle text-start p-3 mb-3 rounded-3" style="background-color: #fff9e6;">
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="badge bg-warning text-dark px-2 py-1 fs-11 me-2 fw-semibold">
+                                <i class="ri-alert-fill me-1"></i> Important Instructions
+                            </span>
+                            <span class="text-warning-emphasis fw-semibold fs-12">कृपया ध्यान दें</span>
+                        </div>
+                        <div class="d-flex flex-column gap-2 text-secondary fs-12">
+                            <div class="d-flex align-items-start">
+                                <i class="ri-close-circle-fill text-danger me-2 fs-14 mt-1 flex-shrink-0"></i>
+                                <div><strong class="text-dark">Page Refresh Na Karein:</strong> Page ko refresh ya reload (F5) bilkul na karein.</div>
+                            </div>
+                            <div class="d-flex align-items-start">
+                                <i class="ri-close-circle-fill text-danger me-2 fs-14 mt-1 flex-shrink-0"></i>
+                                <div><strong class="text-dark">Back Na Jaayein:</strong> Browser ka Back button na dabayein.</div>
+                            </div>
+                            <div class="d-flex align-items-start">
+                                <i class="ri-close-circle-fill text-danger me-2 fs-14 mt-1 flex-shrink-0"></i>
+                                <div><strong class="text-dark">Button Ko Baar-Baar Click Na Karein:</strong> Request process ho rahi hai, button par dobara click na karein.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Animated Striped Progress Bar -->
+                    <div class="progress progress-xs mb-2" style="height: 6px; border-radius: 10px; background: #e2e8f0; overflow: hidden;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-100" role="progressbar"></div>
+                    </div>
+
+                    <!-- Security & Status Footer -->
+                    <div class="d-flex justify-content-between align-items-center text-muted fs-11 px-1">
+                        <span><i class="ri-shield-check-fill text-success me-1"></i> 256-Bit Secure Processing</span>
+                        <span class="text-primary fw-medium"><i class="ri-loader-4-line ri-spin me-1"></i> Please wait...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         function toggleTxnPass(btn) {
             const input = document.getElementById('txn_password');
@@ -259,6 +319,64 @@
                 icon.className = 'ri-eye-off-line';
             }
         }
+
+        // Slot Investment Submit & Processing Alert Handler
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('stakingForm');
+            const modalEl = document.getElementById('slotProcessingModal');
+            let isSubmitting = false;
+
+            if (form && modalEl) {
+                form.addEventListener('submit', function (e) {
+                    if (isSubmitting) {
+                        e.preventDefault();
+                        return false;
+                    }
+
+                    // Check standard HTML5 validation
+                    if (!form.checkValidity()) {
+                        return;
+                    }
+
+                    isSubmitting = true;
+
+                    // Show Processing Modal
+                    if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                        try {
+                            const modalObj = bootstrap.Modal.getOrCreateInstance(modalEl, {
+                                backdrop: 'static',
+                                keyboard: false
+                            });
+                            modalObj.show();
+                        } catch (err) {
+                            $(modalEl).modal({ backdrop: 'static', keyboard: false });
+                            $(modalEl).modal('show');
+                        }
+                    } else if (typeof $ !== 'undefined' && typeof $.fn.modal !== 'undefined') {
+                        $(modalEl).modal({ backdrop: 'static', keyboard: false });
+                        $(modalEl).modal('show');
+                    } else {
+                        modalEl.classList.add('show');
+                        modalEl.style.display = 'block';
+                        document.body.classList.add('modal-open');
+                    }
+
+                    // Update and disable submit button
+                    const subsBtn = document.getElementById('subsBtn');
+                    if (subsBtn) {
+                        subsBtn.disabled = true;
+                        subsBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Processing Slot Investment...';
+                    }
+
+                    // Prevent accidental page unload / refresh
+                    window.addEventListener('beforeunload', function (event) {
+                        event.preventDefault();
+                        event.returnValue = 'Investment in progress! Please do not refresh or leave the page.';
+                        return event.returnValue;
+                    });
+                });
+            }
+        });
     </script>
 
 @endsection
