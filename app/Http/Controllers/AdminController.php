@@ -32,6 +32,7 @@ use App\Models\RankIncome;
 use App\Models\StakingDetail;
 use App\Models\TotalLevelIncome;
 use App\Models\TotalMonthlyIncome;
+use App\Models\WithdrawalIncome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -821,6 +822,28 @@ class AdminController extends Controller
 
         session()->flash('successMsg', 'Daily Profits created successfully.');
         return redirect()->back();
+    }
+
+    public function directIncomes()
+    {
+        $result['data'] = DirectIncome::orderby('created_at', 'DESC')->get();
+        return view('admin.income.direct-income')->with($result);
+    }
+
+    public function globalAutoPoolIncomes()
+    {
+        $result['data'] = GlobalPoolIncome::orderby('created_at', 'DESC')->get();
+        return view('admin.income.global-autopool-income')->with($result);
+    }
+
+    public function withdrawalIncomes()
+    {
+        try {
+            $result['data'] = WithdrawalIncome::orderby('created_at', 'DESC')->get();
+        } catch (\Exception $e) {
+            $result['data'] = [];
+        }
+        return view('admin.income.withdrawal-income')->with($result);
     }
 
     public function tradeBonusIncomes()
