@@ -694,272 +694,285 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-xxl-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body" style="background: #111c43">
-                                    <h4 class="text-white my-0 py-0"><strong>Today's Income</strong> <span
-                                            class="float-end me-2">$ {{ number_format(todayIncome($data['memberid']), 2) }}</span></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <div>
-                                            <span class="avatar avatar-md avatar-rounded bg-primary">
-                                                <i class="ti ti-wallet fs-16"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill ms-3">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <div>
-                                                    <p class="text-muted mb-0">Today's Level Income</p>
-                                                    <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(todayLevelIncome($data['memberid']), 2) }}
-                                                    </h4>
-                                                </div>
-                                                <div id="crm-total-customers"></div>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                                <div>
-                                                    <small>Member Today's Level Income</small>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="card custom-card overflow-hidden" style="border-radius: 14px; border: 1px solid rgba(17, 28, 67, 0.1); box-shadow: 0 4px 16px rgba(17, 28, 67, 0.08);">
+                                <div class="card-body py-3 px-4 d-flex align-items-center justify-content-between flex-wrap gap-2" style="background: linear-gradient(135deg, #111c43 0%, #1e3a8a 100%);">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="avatar avatar-sm avatar-rounded" style="background: rgba(35, 183, 229, 0.2); color: #7dd3fc; border: 1px solid rgba(35, 183, 229, 0.35);">
+                                            <i class="ti ti-calendar-stats fs-16"></i>
+                                        </span>
+                                        <h5 class="text-white my-0 fw-bold">Today's Income</h5>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <div>
-                                            <span class="avatar avatar-md avatar-rounded bg-secondary">
-                                                <i class="ti ti-wallet fs-16"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill ms-3">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <div>
-                                                    <p class="text-muted mb-0">Today's Direct Income</p>
-                                                    <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(todayDirectIncome($data['memberid']), 2) }}
-                                                    </h4>
-                                                </div>
-                                                <div id="crm-total-revenue"></div>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                                <div>
-                                                    <small>Member Today's Direct Income</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <div>
-                                            <span class="avatar avatar-md avatar-rounded bg-success">
-                                                <i class="ti ti-wallet fs-16"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill ms-3">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <div>
-                                                    <p class="text-muted mb-0">Today's Global Autopool</p>
-                                                    <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(todayGlobalAutopoolIncome($data['memberid']), 2) }}
-                                                    </h4>
-                                                </div>
-                                                <div id="crm-conversion-ratio"></div>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                                <div>
-                                                    <small>Member Today's Global Autopool</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <div>
-                                            <span class="avatar avatar-md avatar-rounded bg-warning">
-                                                <i class="ti ti-wallet fs-16"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill ms-3">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <div>
-                                                    <p class="text-muted mb-0">Today's Withdrawal Income</p>
-                                                    <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(todayWithdrawalIncome($data['memberid']), 2) }}
-                                                    </h4>
-                                                </div>
-                                                <div id="crm-total-deals"></div>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                                <div>
-                                                    <small>Member Today's Withdrawal Income</small>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge" style="background: rgba(35, 183, 229, 0.2); color: #7dd3fc; border: 1px solid rgba(35, 183, 229, 0.4); font-size: 14px; padding: 6px 16px; border-radius: 20px; font-weight: 700;">
+                                            $ {{ number_format(todayIncome($data['memberid']), 2) }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row g-3 mb-4">
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="premium-stat-card stat-indigo h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Today's Level Income</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #845adf 0%, #6366f1 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(132, 90, 223, 0.3);">
+                                            <i class="ti ti-layers-linked fs-20"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between my-2">
+                                        <div>
+                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
+                                                $ {{ number_format(todayLevelIncome($data['memberid']), 2) }}
+                                            </h3>
+                                        </div>
+                                        <div id="crm-total-customers"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="badge" style="background: rgba(132, 90, 223, 0.15); color: #6b21a8; border: 1px solid rgba(132, 90, 223, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
+                                            <i class="ti ti-trending-up me-1"></i> Level Income
+                                        </span>
+                                        <small style="color: #64748b; font-size: 11px;">Member Today</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-layers-linked"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="premium-stat-card stat-sky h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Today's Direct Income</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #23b7e5 0%, #0284c7 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(35, 183, 229, 0.3);">
+                                            <i class="ti ti-user-plus fs-20"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between my-2">
+                                        <div>
+                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
+                                                $ {{ number_format(todayDirectIncome($data['memberid']), 2) }}
+                                            </h3>
+                                        </div>
+                                        <div id="crm-total-revenue"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="badge" style="background: rgba(35, 183, 229, 0.15); color: #0369a1; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
+                                            <i class="ti ti-bolt me-1"></i> Direct Income
+                                        </span>
+                                        <small style="color: #64748b; font-size: 11px;">Member Today</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-user-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="premium-stat-card stat-emerald h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Today's Global Autopool</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);">
+                                            <i class="ti ti-world fs-20"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between my-2">
+                                        <div>
+                                            <h3 class="fw-bold mb-0" style="color: #065f46; letter-spacing: -0.3px;">
+                                                $ {{ number_format(todayGlobalAutopoolIncome($data['memberid']), 2) }}
+                                            </h3>
+                                        </div>
+                                        <div id="crm-conversion-ratio"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #047857; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
+                                            <i class="ti ti-refresh me-1"></i> Autopool
+                                        </span>
+                                        <small style="color: #64748b; font-size: 11px;">Member Today</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-world"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="premium-stat-card stat-amber h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Today's Withdrawal Income</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #f5b849 0%, #d97706 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(245, 184, 73, 0.3);">
+                                            <i class="ti ti-cash fs-20"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between my-2">
+                                        <div>
+                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
+                                                $ {{ number_format(todayWithdrawalIncome($data['memberid']), 2) }}
+                                            </h3>
+                                        </div>
+                                        <div id="crm-total-deals"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="badge" style="background: rgba(245, 184, 73, 0.18); color: #b45309; border: 1px solid rgba(245, 184, 73, 0.4); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
+                                            <i class="ti ti-arrow-down-right me-1"></i> Withdrawal
+                                        </span>
+                                        <small style="color: #64748b; font-size: 11px;">Member Today</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-cash"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
                         <div class="col-xxl-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body" style="background: #111c43">
-                                    <h4 class="text-white my-0 py-0"><strong>Total Income</strong><span
-                                            class="float-end me-2">$ {{ number_format(totalIncome($data['memberid']), 2) }}</span></h4>
+                            <div class="card custom-card overflow-hidden" style="border-radius: 14px; border: 1px solid rgba(17, 28, 67, 0.1); box-shadow: 0 4px 16px rgba(17, 28, 67, 0.08);">
+                                <div class="card-body py-3 px-4 d-flex align-items-center justify-content-between flex-wrap gap-2" style="background: linear-gradient(135deg, #111c43 0%, #1e3a8a 100%);">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="avatar avatar-sm avatar-rounded" style="background: rgba(132, 90, 223, 0.2); color: #d8b4fe; border: 1px solid rgba(132, 90, 223, 0.35);">
+                                            <i class="ti ti-chart-pie fs-16"></i>
+                                        </span>
+                                        <h5 class="text-white my-0 fw-bold">Total Income</h5>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge" style="background: rgba(132, 90, 223, 0.2); color: #d8b4fe; border: 1px solid rgba(132, 90, 223, 0.4); font-size: 14px; padding: 6px 16px; border-radius: 20px; font-weight: 700;">
+                                            $ {{ number_format(totalIncome($data['memberid']), 2) }}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row g-3 mb-4">
                         <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <div>
-                                            <span class="avatar avatar-md avatar-rounded bg-primary">
-                                                <i class="ti ti-wallet fs-16"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill ms-3">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <div>
-                                                    <p class="text-muted mb-0">Total Level Income</p>
-                                                    <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(totalLevelIncome($data['memberid']), 2) }}
-                                                    </h4>
-                                                </div>
-                                                <div>
-                                                    <div id="returns-rate"></div>
-                                                </div>
-                                                <!--<div id="crm-total-customers"></div>-->
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                                <div>
-                                                    <small>Member Total Level Income</small>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="premium-stat-card stat-indigo h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Total Level Income</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #845adf 0%, #6366f1 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(132, 90, 223, 0.3);">
+                                            <i class="ti ti-layers-linked fs-20"></i>
+                                        </span>
                                     </div>
+                                    <div class="d-flex align-items-center justify-content-between my-2">
+                                        <div>
+                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
+                                                $ {{ number_format(totalLevelIncome($data['memberid']), 2) }}
+                                            </h3>
+                                        </div>
+                                        <div id="returns-rate"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="badge" style="background: rgba(132, 90, 223, 0.15); color: #6b21a8; border: 1px solid rgba(132, 90, 223, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
+                                            <i class="ti ti-trending-up me-1"></i> Level Income
+                                        </span>
+                                        <small style="color: #64748b; font-size: 11px;">Member Total</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-layers-linked"></i>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <div>
-                                            <span class="avatar avatar-md avatar-rounded bg-secondary">
-                                                <i class="ti ti-wallet fs-16"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill ms-3">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <div>
-                                                    <p class="text-muted mb-0">Total Direct Income</p>
-                                                    <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(totalDirectIncome($data['memberid']), 2) }}
-                                                    </h4>
-                                                </div>
-                                                <div>
-                                                    <div id="portfolio-value"></div>
-                                                </div>
-                                                <!--<div id="crm-total-revenue"></div>-->
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                                <div>
-                                                    <small>Member Total Direct Income</small>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="premium-stat-card stat-sky h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Total Direct Income</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #23b7e5 0%, #0284c7 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(35, 183, 229, 0.3);">
+                                            <i class="ti ti-user-plus fs-20"></i>
+                                        </span>
                                     </div>
+                                    <div class="d-flex align-items-center justify-content-between my-2">
+                                        <div>
+                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
+                                                $ {{ number_format(totalDirectIncome($data['memberid']), 2) }}
+                                            </h3>
+                                        </div>
+                                        <div id="portfolio-value"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="badge" style="background: rgba(35, 183, 229, 0.15); color: #0369a1; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
+                                            <i class="ti ti-bolt me-1"></i> Direct Income
+                                        </span>
+                                        <small style="color: #64748b; font-size: 11px;">Member Total</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-user-plus"></i>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <div>
-                                            <span class="avatar avatar-md avatar-rounded bg-success">
-                                                <i class="ti ti-wallet fs-16"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill ms-3">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <div>
-                                                    <p class="text-muted mb-0">Total Global Autopool</p>
-                                                    <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(totalGlobalAutopoolIncome($data['memberid']), 2) }}
-                                                    </h4>
-                                                </div>
-                                                <div>
-                                                    <div id="total-invested"></div>
-                                                </div>
-                                                <!--<div id="crm-conversion-ratio"></div>-->
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                                <div>
-                                                    <small>Member Total Global Autopool</small>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="premium-stat-card stat-emerald h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Total Global Autopool</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);">
+                                            <i class="ti ti-world fs-20"></i>
+                                        </span>
                                     </div>
+                                    <div class="d-flex align-items-center justify-content-between my-2">
+                                        <div>
+                                            <h3 class="fw-bold mb-0" style="color: #065f46; letter-spacing: -0.3px;">
+                                                $ {{ number_format(totalGlobalAutopoolIncome($data['memberid']), 2) }}
+                                            </h3>
+                                        </div>
+                                        <div id="total-invested"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #047857; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
+                                            <i class="ti ti-refresh me-1"></i> Autopool
+                                        </span>
+                                        <small style="color: #64748b; font-size: 11px;">Member Total</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-world"></i>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card overflow-hidden">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <div>
-                                            <span class="avatar avatar-md avatar-rounded bg-warning">
-                                                <i class="ti ti-wallet fs-16"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill ms-3">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <div>
-                                                    <p class="text-muted mb-0">Total Withdrawal Income</p>
-                                                    <h4 class="fw-semibold mt-1">
-                                                        $ {{ number_format(totalWithdrawalIncome($data['memberid']), 2) }}
-                                                    </h4>
-                                                </div>
-                                                <div>
-                                                    <div id="total-investments"></div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                                <div>
-                                                    <small>Member Total Withdrawal Income</small>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="premium-stat-card stat-amber h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Total Withdrawal Income</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #f5b849 0%, #d97706 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(245, 184, 73, 0.3);">
+                                            <i class="ti ti-cash fs-20"></i>
+                                        </span>
                                     </div>
+                                    <div class="d-flex align-items-center justify-content-between my-2">
+                                        <div>
+                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
+                                                $ {{ number_format(totalWithdrawalIncome($data['memberid']), 2) }}
+                                            </h3>
+                                        </div>
+                                        <div id="total-investments"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <span class="badge" style="background: rgba(245, 184, 73, 0.18); color: #b45309; border: 1px solid rgba(245, 184, 73, 0.4); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
+                                            <i class="ti ti-arrow-down-right me-1"></i> Withdrawal
+                                        </span>
+                                        <small style="color: #64748b; font-size: 11px;">Member Total</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-cash"></i>
                                 </div>
                             </div>
                         </div>
