@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+if (file_exists(app_path('Helpers/autopool_functions.php'))) {
+    require_once app_path('Helpers/autopool_functions.php');
+}
+
 use App\Models\GlobalPoolMatrice;
 use App\Models\MemberDetail;
 use App\Models\PackageDetail;
@@ -94,10 +98,17 @@ class StakingController extends Controller
         $amount = (int) $request->post('amount');
         $txn_password = $request->post('txn_password');
 
+        $fail = function ($msg) use ($request) {
+            if ($request->ajax()) {
+                return response()->json(['status' => false, 'message' => $msg]);
+            }
+            session()->flash('failedMsg', $msg);
+            return redirect()->back();
+        };
+
         $memUpdate = MemberDetail::where('memberid', $memberid)->first();
         if (!$memUpdate) {
-            session()->flash('failedMsg', 'Member not found.');
-            return redirect()->back();
+            return $fail('Member not found.');
         }
 
         $sponsorid = $memUpdate->sponsorid;
@@ -125,24 +136,20 @@ class StakingController extends Controller
         }
 
         if ($nextSlotNumber === null) {
-            session()->flash('failedMsg', 'All 10 investment slots have already been activated.');
-            return redirect()->back();
+            return $fail('All 10 investment slots have already been activated.');
         }
 
         $expectedSlot = $slotDefinitions[$nextSlotNumber];
         if ($amount !== $expectedSlot['amount']) {
-            session()->flash('failedMsg', 'Slots must be activated one by one in sequence. Next slot to activate is ' . $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ').');
-            return redirect()->back();
+            return $fail('Slots must be activated one by one in sequence. Next slot to activate is ' . $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ').');
         }
 
         if ($p2p_wallet < $amount) {
-            session()->flash('failedMsg', 'Insufficient balance in Fund Wallet. Required: ' . $expectedSlot['price'] . ', Available: $' . number_format($p2p_wallet, 2));
-            return redirect()->back();
+            return $fail('Insufficient balance in Fund Wallet. Required: ' . $expectedSlot['price'] . ', Available: $' . number_format($p2p_wallet, 2));
         }
 
         if (!Hash::check($txn_password, $memUpdate->txn_password)) {
-            session()->flash('failedMsg', 'Entered transaction password does not match.');
-            return redirect()->back();
+            return $fail('Entered transaction password does not match.');
         }
 
         $var = new PackageDetail();
@@ -215,7 +222,11 @@ class StakingController extends Controller
         levelIncome($sponsorid, $memberid, $name, $amount);
         team_biz_update($sponsorid, $amount);
 
-        session()->flash('successMsg', $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') has been activated successfully!');
+        $successMsg = $expectedSlot['name'] . ' (' . $expectedSlot['price'] . ') has been activated successfully!';
+        session()->flash('successMsg', $successMsg);
+        if ($request->ajax()) {
+            return response()->json(['status' => true, 'message' => $successMsg]);
+        }
         return redirect()->back();
     }
 
