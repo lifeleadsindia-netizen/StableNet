@@ -55,6 +55,7 @@
                             @endif
                         </div>
                         <div class="card-body p-4">
+                            <div id="ajaxAlertContainer"></div>
                             <form action="{{ route('createStaking') }}" method="post" id="stakingForm">
                                 @csrf
                                 <div class="row gy-3">
@@ -264,30 +265,30 @@
                         </div>
                     </div>
 
-                    <!-- Modal Title & Subtitle -->
+                    <!-- Modal Title & Subtitle in English -->
                     <h5 class="fw-bold text-dark mb-1 fs-18" id="slotProcessingModalLabel">Processing Slot Investment...</h5>
-                    <p class="text-muted fs-12 mb-3">Aapka slot activate aur matrix allocation process ho raha hai, kripya intezar karein.</p>
+                    <p class="text-muted fs-12 mb-3">Please wait while your slot is activated and network matrix is allocated.</p>
 
-                    <!-- Important Instructions Warning Alert Box -->
+                    <!-- Important Instructions Warning Alert Box in English -->
                     <div class="alert alert-warning border border-warning-subtle text-start p-3 mb-3 rounded-3" style="background-color: #fff9e6;">
                         <div class="d-flex align-items-center mb-2">
                             <span class="badge bg-warning text-dark px-2 py-1 fs-11 me-2 fw-semibold">
                                 <i class="ri-alert-fill me-1"></i> Important Instructions
                             </span>
-                            <span class="text-warning-emphasis fw-semibold fs-12">कृपया ध्यान दें</span>
+                            <span class="text-warning-emphasis fw-semibold fs-12">Please Read Carefully</span>
                         </div>
                         <div class="d-flex flex-column gap-2 text-secondary fs-12">
                             <div class="d-flex align-items-start">
                                 <i class="ri-close-circle-fill text-danger me-2 fs-14 mt-1 flex-shrink-0"></i>
-                                <div><strong class="text-dark">Page Refresh Na Karein:</strong> Page ko refresh ya reload (F5) bilkul na karein.</div>
+                                <div><strong class="text-dark">Do Not Refresh:</strong> Please do not refresh or reload (F5) the page.</div>
                             </div>
                             <div class="d-flex align-items-start">
                                 <i class="ri-close-circle-fill text-danger me-2 fs-14 mt-1 flex-shrink-0"></i>
-                                <div><strong class="text-dark">Back Na Jaayein:</strong> Browser ka Back button na dabayein.</div>
+                                <div><strong class="text-dark">Do Not Go Back:</strong> Please do not press the browser back button.</div>
                             </div>
                             <div class="d-flex align-items-start">
                                 <i class="ri-close-circle-fill text-danger me-2 fs-14 mt-1 flex-shrink-0"></i>
-                                <div><strong class="text-dark">Button Ko Baar-Baar Click Na Karein:</strong> Request process ho rahi hai, button par dobara click na karein.</div>
+                                <div><strong class="text-dark">Do Not Click Repeatedly:</strong> Transaction is currently in progress. Avoid duplicate clicks.</div>
                             </div>
                         </div>
                     </div>
@@ -297,10 +298,10 @@
                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-100" role="progressbar"></div>
                     </div>
 
-                    <!-- Security & Status Footer -->
+                    <!-- Security & Status Footer in English -->
                     <div class="d-flex justify-content-between align-items-center text-muted fs-11 px-1">
                         <span><i class="ri-shield-check-fill text-success me-1"></i> 256-Bit Secure Processing</span>
-                        <span class="text-primary fw-medium"><i class="ri-loader-4-line ri-spin me-1"></i> Please wait...</span>
+                        <span class="text-primary fw-medium"><i class="ri-loader-4-line ri-spin me-1"></i> Processing, please wait...</span>
                     </div>
                 </div>
             </div>
@@ -324,30 +325,89 @@
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('stakingForm');
             const modalEl = document.getElementById('slotProcessingModal');
+            const subsBtn = document.getElementById('subsBtn');
+            const alertBox = document.getElementById('ajaxAlertContainer');
             let isSubmitting = false;
+            let bsModal = null;
+
+            function hideProcessingModal() {
+                try {
+                    if (bsModal) {
+                        bsModal.hide();
+                    } else if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                        const instance = bootstrap.Modal.getInstance(modalEl);
+                        if (instance) instance.hide();
+                    }
+                } catch (e) {}
+
+                if (typeof $ !== 'undefined') {
+                    $(modalEl).modal('hide');
+                }
+                modalEl.classList.remove('show');
+                modalEl.style.display = 'none';
+                document.body.classList.remove('modal-open');
+                document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+                document.body.style.removeProperty('overflow');
+                document.body.style.removeProperty('padding-right');
+            }
+
+            function resetSubmitButton(originalHtml) {
+                isSubmitting = false;
+                if (subsBtn) {
+                    subsBtn.disabled = false;
+                    subsBtn.innerHTML = originalHtml;
+                }
+                if (typeof $ !== 'undefined') {
+                    $('#subsBtn').prop('disabled', false);
+                }
+            }
+
+            function showErrorMessage(msg) {
+                if (alertBox) {
+                    alertBox.innerHTML = `
+                        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center mb-3" role="alert">
+                            <i class="ri-error-warning-fill fs-5 me-2"></i>
+                            <div><strong>Failed:</strong> ${msg}</div>
+                            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `;
+                    alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else if (typeof swal !== 'undefined') {
+                    swal("Failed", msg, "error");
+                } else {
+                    alert(msg);
+                }
+            }
 
             if (form && modalEl) {
+                const originalBtnHtml = subsBtn ? subsBtn.innerHTML : 'Activate Slot Now';
+
                 form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
                     if (isSubmitting) {
-                        e.preventDefault();
                         return false;
                     }
 
                     // Check standard HTML5 validation
                     if (!form.checkValidity()) {
-                        return;
+                        form.reportValidity();
+                        return false;
                     }
 
                     isSubmitting = true;
 
-                    // Show Processing Modal
+                    // Clear any previous error alerts
+                    if (alertBox) alertBox.innerHTML = '';
+
+                    // 1. Show Processing Modal
                     if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
                         try {
-                            const modalObj = bootstrap.Modal.getOrCreateInstance(modalEl, {
+                            bsModal = bootstrap.Modal.getOrCreateInstance(modalEl, {
                                 backdrop: 'static',
                                 keyboard: false
                             });
-                            modalObj.show();
+                            bsModal.show();
                         } catch (err) {
                             $(modalEl).modal({ backdrop: 'static', keyboard: false });
                             $(modalEl).modal('show');
@@ -361,18 +421,50 @@
                         document.body.classList.add('modal-open');
                     }
 
-                    // Update and disable submit button
-                    const subsBtn = document.getElementById('subsBtn');
+                    // 2. Update and disable submit button
                     if (subsBtn) {
                         subsBtn.disabled = true;
                         subsBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Processing Slot Investment...';
                     }
 
-                    // Prevent accidental page unload / refresh
-                    window.addEventListener('beforeunload', function (event) {
-                        event.preventDefault();
-                        event.returnValue = 'Investment in progress! Please do not refresh or leave the page.';
-                        return event.returnValue;
+                    // 3. Send AJAX Request to Controller
+                    const formData = new FormData(form);
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(async response => {
+                        const isJson = response.headers.get('content-type')?.includes('application/json');
+                        const data = isJson ? await response.json() : null;
+
+                        if (!response.ok) {
+                            const err = (data && data.message) || 'Request failed with status ' + response.status;
+                            throw new Error(err);
+                        }
+                        return data;
+                    })
+                    .then(data => {
+                        // Immediately hide the alert window as soon as processing completes!
+                        hideProcessingModal();
+
+                        if (data && data.status) {
+                            // Reload page to reflect newly active slot, updated wallet & flash success message
+                            window.location.reload();
+                        } else {
+                            resetSubmitButton(originalBtnHtml);
+                            showErrorMessage((data && data.message) || 'Activation failed. Please try again.');
+                        }
+                    })
+                    .catch(error => {
+                        // Immediately hide the alert window on error too!
+                        hideProcessingModal();
+                        resetSubmitButton(originalBtnHtml);
+                        showErrorMessage(error.message || 'Something went wrong while processing. Please try again.');
                     });
                 });
             }
