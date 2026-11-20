@@ -28,7 +28,7 @@ function userId()
 function getName($memberid)
 {
     $var = MemberDetail::where('memberid', $memberid)->first();
-    return $var['name'];
+    return $var ? $var['name'] : '-';
 }
 
 function getAllData($memberid)

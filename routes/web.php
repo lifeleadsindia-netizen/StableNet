@@ -106,6 +106,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminAuth'], function () {
     Route::get('/income/global-autopool-incomes', [AdminController::class, 'globalAutoPoolIncomes']);
     Route::get('/income/withdrawal-income', [AdminController::class, 'withdrawalIncomes']);
     Route::get('/income/withdrawal-incomes', [AdminController::class, 'withdrawalIncomes']);
+    Route::get('/income/reward-income', [AdminController::class, 'rewardIncomes']);
+    Route::get('/income/reward-incomes', [AdminController::class, 'rewardIncomes']);
     Route::get('/income/trade-bonus-income', [AdminController::class, 'tradeBonusIncomes']);
     Route::get('/income/trade-profit-income', [AdminController::class, 'tradeProfitIncomes']);
     Route::get('/income/profit-income', [AdminController::class, 'profitIncomes']);

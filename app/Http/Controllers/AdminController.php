@@ -848,8 +848,18 @@ class AdminController extends Controller
 
     public function tradeBonusIncomes()
     {
-        $result['data'] = MonthlyIncome::where('status', 'Paid')->orderby('created_at', 'DESC')->get();
+        return redirect('admin/income/reward-income');
+    }
+
+    public function rewardIncomes()
+    {
+        $result['data'] = RewardIncome::orderby('created_at', 'DESC')->get();
         return view('admin.income.reward-income')->with($result);
+    }
+
+    public function rewardIncome()
+    {
+        return $this->rewardIncomes();
     }
 
     public function roiincomes()

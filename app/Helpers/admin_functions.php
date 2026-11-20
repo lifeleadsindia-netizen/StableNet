@@ -4,6 +4,9 @@ use App\Models\GlobalPoolIncome;
 use App\Models\GlobalPoolMatrice;
 use App\Models\ImportFund;
 use App\Models\LevelIncome;
+use App\Models\DirectIncome;
+use App\Models\WithdrawalIncome;
+use App\Models\RewardIncome;
 use App\Models\MemberDetail;
 use App\Models\MonthlyIncome;
 use App\Models\PackageDetail;
@@ -72,13 +75,37 @@ function totalinlevelWallet()
 
 function totalInc()
 {
-    $total = totalLevelInc();
+    $total = totalLevelInc() + totalDirectInc() + totalGlobalPoolInc() + totalWithdrawalInc() + totalRewardInc();
     return $total;
 }
 
 function totalLevelInc()
 {
     $var = LevelIncome::where('status', 'Paid')->sum('amount');
+    return $var;
+}
+
+function totalDirectInc()
+{
+    $var = DirectIncome::where('status', 'Paid')->sum('amount');
+    return $var;
+}
+
+function totalGlobalPoolInc()
+{
+    $var = GlobalPoolIncome::where('status', 'Paid')->sum('amount');
+    return $var;
+}
+
+function totalWithdrawalInc()
+{
+    $var = WithdrawalIncome::where('status', 'Paid')->sum('amount');
+    return $var;
+}
+
+function totalRewardInc()
+{
+    $var = RewardIncome::where('status', 'Paid')->sum('reward');
     return $var;
 }
 
@@ -108,13 +135,37 @@ function totalFundImported()
 
 function todayInc()
 {
-    $total = todayLevelInc();
+    $total = todayLevelInc() + todayDirectInc() + todayGlobalPoolInc() + todayWithdrawalInc() + todayRewardInc();
     return $total;
 }
 
 function todayLevelInc()
 {
     $var = LevelIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('amount');
+    return $var;
+}
+
+function todayDirectInc()
+{
+    $var = DirectIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('amount');
+    return $var;
+}
+
+function todayGlobalPoolInc()
+{
+    $var = GlobalPoolIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('amount');
+    return $var;
+}
+
+function todayWithdrawalInc()
+{
+    $var = WithdrawalIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('amount');
+    return $var;
+}
+
+function todayRewardInc()
+{
+    $var = RewardIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('reward');
     return $var;
 }
 
