@@ -40,11 +40,12 @@
                                         <th>S.No</th>
                                         <th>Date</th>
                                         <th>Member Id</th>
-                                        <th>Investment</th>
-                                        <th>Profit</th>
+                                        <th>From Member</th>
+                                        <th>Withdrawn By</th>
+                                        <th>Withdrawal Amount</th>
+                                        <th>Income Type</th>
+                                        <th>Level</th>
                                         <th>Amount</th>
-                                        <th>Pool Id</th>
-                                        <th>Buy No</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -53,13 +54,14 @@
                                     @foreach ($data as $list)
                                         <tr>
                                             <td>{{ $i }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
+                                            <td>{{ date('d-m-Y H:i', strtotime($list['created_at'])) }}</td>
                                             <td>{{ $list['memberid'] }}</td>
-                                            <td>$ {{ number_format((float) ($list['investment'] ?? 0), 2) }}</td>
-                                            <td>$ {{ number_format((float) ($list['profit'] ?? 0), 2) }}</td>
-                                            <td>$ {{ number_format((float) ($list['amount'] ?? 0), 2) }}</td>
-                                            <td>{{ $list['pool_id'] ?? '-' }}</td>
-                                            <td>{{ $list['buy_no'] ?? '-' }}</td>
+                                            <td>{{ $list['level_id'] ?? '-' }}</td>
+                                            <td>{{ $list['name'] ?? '-' }}</td>
+                                            <td>$ {{ number_format((float) ($list['withdrawal_amount'] ?? 0), 2) }}</td>
+                                            <td><span class="badge bg-info-transparent">{{ $list['type'] ?? 'Withdrawal Income' }}</span></td>
+                                            <td>{{ $list['level'] ?? '-' }}</td>
+                                            <td><strong class="text-success">$ {{ number_format((float) ($list['amount'] ?? 0), 2) }}</strong></td>
 
                                             <td>
                                                 @if (($list['status'] ?? '') == 'Paid')

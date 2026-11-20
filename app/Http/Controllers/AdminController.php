@@ -458,10 +458,24 @@ class AdminController extends Controller
         $wallet = $request->post('wallet');
 
         $var = WithdrawalRequest::find($id);
-        $var->txnid = $txnid;
-        $var->wallet_address = $wallet;
-        $var->status = 'Approved';
-        $var->save();
+        if ($var) {
+            $var->txnid = $txnid;
+            $var->wallet_address = $wallet;
+            $var->status = 'Approved';
+            $var->payment_date = date('Y-m-d H:i:s');
+            $var->save();
+
+            $member = MemberDetail::where('memberid', $var->memberid)->first();
+            if ($member) {
+                $sponsorid = $member->sponsorid;
+                $memberid = $member->memberid;
+                $name = $member->name;
+                $gross_amount = $var->gross_amount;
+
+                uplineDisWithdrawal($sponsorid, $memberid, $name, $gross_amount);
+                directDisWithdrawal($memberid, $name, $gross_amount);
+            }
+        }
 
         return response()->json([
             'code' => 1
