@@ -76,69 +76,116 @@
         }
 
         .premium-stat-card {
-            background: linear-gradient(135deg, rgba(17, 28, 67, 0.90) 0%, rgba(24, 40, 96, 0.85) 100%);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-top: 1px solid rgba(255, 255, 255, 0.22);
             border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(17, 28, 67, 0.35);
             position: relative;
             overflow: hidden;
             padding: 22px 24px;
-            color: #ffffff;
             transition: all 0.25s ease;
+            box-shadow: 0 8px 24px -4px rgba(17, 28, 67, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .premium-stat-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 12px 36px rgba(17, 28, 67, 0.5);
             transform: translateY(-3px);
+            box-shadow: 0 14px 32px -4px rgba(17, 28, 67, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
         }
 
         .premium-stat-card::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+            background-image: radial-gradient(rgba(17, 28, 67, 0.05) 1.2px, transparent 1.2px);
             background-size: 14px 14px;
             pointer-events: none;
         }
 
+        /* 1. Emerald (Current Status) */
+        .premium-stat-card.stat-emerald {
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 35%, rgba(220, 252, 231, 0.75) 75%, rgba(187, 247, 208, 0.6) 100%);
+            border: 1px solid rgba(187, 247, 208, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
+        }
+        .premium-stat-card.stat-emerald:hover {
+            border-color: rgba(134, 239, 172, 0.95);
+        }
         .premium-stat-card.stat-emerald::after {
             content: "";
             position: absolute;
-            top: 0; right: 0;
+            top: -30px; right: -30px;
             width: 140px; height: 140px;
             background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
             pointer-events: none;
         }
+        .premium-stat-card.stat-emerald .stat-watermark {
+            color: #10b981;
+            opacity: 0.10;
+        }
 
+        /* 2. Indigo / Purple (My Referrals) */
+        .premium-stat-card.stat-indigo {
+            background: linear-gradient(135deg, #ffffff 0%, #faf5ff 35%, rgba(243, 232, 255, 0.75) 75%, rgba(233, 213, 255, 0.6) 100%);
+            border: 1px solid rgba(233, 213, 255, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
+        }
+        .premium-stat-card.stat-indigo:hover {
+            border-color: rgba(216, 180, 254, 0.95);
+        }
         .premium-stat-card.stat-indigo::after {
             content: "";
             position: absolute;
-            top: 0; right: 0;
+            top: -30px; right: -30px;
             width: 140px; height: 140px;
-            background: radial-gradient(circle, rgba(132, 90, 223, 0.25) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(132, 90, 223, 0.2) 0%, transparent 70%);
             pointer-events: none;
         }
+        .premium-stat-card.stat-indigo .stat-watermark {
+            color: #845adf;
+            opacity: 0.10;
+        }
 
+        /* 3. Sky / Cyan (Fund Wallet) */
+        .premium-stat-card.stat-sky {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 35%, rgba(224, 242, 254, 0.75) 75%, rgba(186, 230, 253, 0.6) 100%);
+            border: 1px solid rgba(186, 230, 253, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
+        }
+        .premium-stat-card.stat-sky:hover {
+            border-color: rgba(147, 197, 253, 0.95);
+        }
         .premium-stat-card.stat-sky::after {
             content: "";
             position: absolute;
-            top: 0; right: 0;
+            top: -30px; right: -30px;
             width: 140px; height: 140px;
-            background: radial-gradient(circle, rgba(35, 183, 229, 0.25) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(35, 183, 229, 0.22) 0%, transparent 70%);
             pointer-events: none;
         }
+        .premium-stat-card.stat-sky .stat-watermark {
+            color: #23b7e5;
+            opacity: 0.10;
+        }
 
+        /* 4. Amber / Gold (Income Wallet) */
+        .premium-stat-card.stat-amber {
+            background: linear-gradient(135deg, #ffffff 0%, #fffbeb 35%, rgba(254, 243, 199, 0.75) 75%, rgba(253, 230, 138, 0.6) 100%);
+            border: 1px solid rgba(253, 230, 138, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.95);
+        }
+        .premium-stat-card.stat-amber:hover {
+            border-color: rgba(252, 211, 77, 0.95);
+        }
         .premium-stat-card.stat-amber::after {
             content: "";
             position: absolute;
-            top: 0; right: 0;
+            top: -30px; right: -30px;
             width: 140px; height: 140px;
             background: radial-gradient(circle, rgba(245, 184, 73, 0.22) 0%, transparent 70%);
             pointer-events: none;
+        }
+        .premium-stat-card.stat-amber .stat-watermark {
+            color: #f5b849;
+            opacity: 0.12;
         }
 
         .stat-watermark {
@@ -146,11 +193,10 @@
             right: -10px;
             bottom: -15px;
             font-size: 5rem;
-            color: #ffffff;
-            opacity: 0.06;
             pointer-events: none;
             line-height: 1;
             z-index: 0;
+            transition: all 0.25s ease;
         }
 
         .stat-content {
@@ -552,19 +598,19 @@
                             <div class="premium-stat-card stat-emerald h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: rgba(255, 255, 255, 0.7);">Current Status</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: rgba(16, 185, 129, 0.22); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35);">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Current Status</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);">
                                             <i class="ti ti-shield-check fs-20"></i>
                                         </span>
                                     </div>
                                     <div class="mb-3">
-                                        <h3 class="fw-bold mb-0 text-white">{{ $data['status'] }}</h3>
+                                        <h3 class="fw-bold mb-0" style="color: #065f46; letter-spacing: -0.3px;">{{ $data['status'] }}</h3>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px;">
+                                        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #047857; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
                                             <i class="bi bi-patch-check-fill me-1"></i> Verified & Active
                                         </span>
-                                        <small style="color: rgba(255, 255, 255, 0.6); font-size: 11px;">Member Account</small>
+                                        <small style="color: #64748b; font-size: 11px;">Member Account</small>
                                     </div>
                                 </div>
                                 <div class="stat-watermark">
@@ -577,19 +623,19 @@
                             <div class="premium-stat-card stat-indigo h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: rgba(255, 255, 255, 0.7);">My Referrals</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: rgba(132, 90, 223, 0.28); color: #c4b5fd; border: 1px solid rgba(132, 90, 223, 0.4);">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">My Referrals</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #845adf 0%, #6366f1 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(132, 90, 223, 0.3);">
                                             <i class="ti ti-users fs-20"></i>
                                         </span>
                                     </div>
                                     <div class="mb-3">
-                                        <h3 class="fw-bold mb-0 text-white">{{ $data['downline'] }}</h3>
+                                        <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">{{ $data['downline'] }}</h3>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge" style="background: rgba(132, 90, 223, 0.22); color: #d8b4fe; border: 1px solid rgba(132, 90, 223, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px;">
+                                        <span class="badge" style="background: rgba(132, 90, 223, 0.15); color: #6b21a8; border: 1px solid rgba(132, 90, 223, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
                                             <i class="ti ti-trending-up me-1"></i> Total Referrals
                                         </span>
-                                        <small style="color: rgba(255, 255, 255, 0.6); font-size: 11px;">Direct Team</small>
+                                        <small style="color: #64748b; font-size: 11px;">Direct Team</small>
                                     </div>
                                 </div>
                                 <div class="stat-watermark">
@@ -602,19 +648,19 @@
                             <div class="premium-stat-card stat-sky h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: rgba(255, 255, 255, 0.7);">Fund Wallet</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: rgba(35, 183, 229, 0.28); color: #7dd3fc; border: 1px solid rgba(35, 183, 229, 0.4);">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Fund Wallet</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #23b7e5 0%, #0284c7 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(35, 183, 229, 0.3);">
                                             <i class="ti ti-wallet fs-20"></i>
                                         </span>
                                     </div>
                                     <div class="mb-3">
-                                        <h3 class="fw-bold mb-0 text-white">$ {{ number_format($data['p2p_wallet'], 2) }}</h3>
+                                        <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">$ {{ number_format($data['p2p_wallet'], 2) }}</h3>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge" style="background: rgba(35, 183, 229, 0.22); color: #7dd3fc; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px;">
+                                        <span class="badge" style="background: rgba(35, 183, 229, 0.15); color: #0369a1; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
                                             <i class="ti ti-coins me-1"></i> Fund Balance
                                         </span>
-                                        <small style="color: rgba(255, 255, 255, 0.6); font-size: 11px;">Available for Investment</small>
+                                        <small style="color: #64748b; font-size: 11px;">Available for Investment</small>
                                     </div>
                                 </div>
                                 <div class="stat-watermark">
@@ -627,19 +673,19 @@
                             <div class="premium-stat-card stat-amber h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: rgba(255, 255, 255, 0.7);">Income Wallet</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: rgba(245, 184, 73, 0.28); color: #fde047; border: 1px solid rgba(245, 184, 73, 0.4);">
+                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Income Wallet</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #f5b849 0%, #d97706 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(245, 184, 73, 0.3);">
                                             <i class="ti ti-cash fs-20"></i>
                                         </span>
                                     </div>
                                     <div class="mb-3">
-                                        <h3 class="fw-bold mb-0 text-white">$ {{ number_format($data['wallet'], 2) }}</h3>
+                                        <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">$ {{ number_format($data['wallet'], 2) }}</h3>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge" style="background: rgba(245, 184, 73, 0.22); color: #fde047; border: 1px solid rgba(245, 184, 73, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px;">
+                                        <span class="badge" style="background: rgba(245, 184, 73, 0.18); color: #b45309; border: 1px solid rgba(245, 184, 73, 0.4); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
                                             <i class="ti ti-arrow-up-right me-1"></i> Income Balance
                                         </span>
-                                        <small style="color: rgba(255, 255, 255, 0.6); font-size: 11px;">Total Earned Income</small>
+                                        <small style="color: #64748b; font-size: 11px;">Total Earned Income</small>
                                     </div>
                                 </div>
                                 <div class="stat-watermark">
