@@ -715,7 +715,7 @@
                     </div>
 
                     <div class="row g-3 mb-4">
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="premium-stat-card stat-indigo h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -745,7 +745,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="premium-stat-card stat-sky h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -775,7 +775,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="premium-stat-card stat-emerald h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -805,7 +805,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="premium-stat-card stat-amber h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -857,7 +857,7 @@
                     </div>
 
                     <div class="row g-3 mb-4">
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="premium-stat-card stat-indigo h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -887,7 +887,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="premium-stat-card stat-sky h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -917,7 +917,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="premium-stat-card stat-emerald h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -947,7 +947,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="premium-stat-card stat-amber h-100">
                                 <div class="stat-content d-flex flex-column justify-content-between h-100">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
