@@ -283,11 +283,13 @@ function uplineDisWithdrawal($sponsorid, $memberid, $name, $gross_amount)
                 $insert->save();
 
                 $var = MemberDetail::where('memberid', $sponsorid)->first();
-                $wallet = $var->wallet;
-                $var->$wallet += $amount;
-                $var->save();
+                if ($var) {
+                    $wallet = $var->wallet;
+                    $var->wallet += $amount;
+                    $var->save();
 
-                walletTransfer($sponsorid, $amount, 'debit', $wallet, 'Withdrawal Income', '' . $i . ' Withdrawal Income Amount Added into wallet. Payment Id-' . $insert->id);
+                    walletTransfer($sponsorid, $amount, 'debit', $wallet, 'Withdrawal Income', '' . $i . ' Withdrawal Income Amount Added into wallet. Payment Id-' . $insert->id);
+                }
 
                 $sponsorid = $inc['sponsorid'];
             } else {
@@ -297,3 +299,44 @@ function uplineDisWithdrawal($sponsorid, $memberid, $name, $gross_amount)
     }
 }
 
+function directDisWithdrawal($memberid, $name, $gross_amount)
+{
+    $directs = MemberDetail::where('sponsorid', $memberid)->get();
+
+    $members = count($directs);
+
+    if ($members > 0) {
+        
+        $total_share = ($gross_amount / 100) * 5;
+        $withdrawal_charge = ($gross_amount / 100) * 15;
+        $amount = $total_share / $members;
+
+        foreach ($directs as $direct) {
+            $insert = new WithdrawalIncome();
+            $insert->memberid = $direct->memberid;
+            $insert->level = 1;
+            $insert->level_id = $memberid;
+            $insert->name = $name;
+            $insert->share = $total_share;
+            $insert->amount = $amount;
+            $insert->withdrawal_charge = $withdrawal_charge;
+            $insert->withdrawal_amount = $gross_amount;
+            $insert->type = 'Direct Income';
+            $insert->status = 'Paid';
+            $insert->save();
+            
+            $wallet = $direct->wallet;
+            $direct->wallet += $amount;
+            $direct->save();
+
+            walletTransfer(
+                $direct->memberid,
+                $amount,
+                'debit',
+                $wallet,
+                'Direct Withdrawal Income',
+                'Direct Withdrawal Income Added. Payment Id-' . $insert->id
+            );
+        }
+    }
+}
