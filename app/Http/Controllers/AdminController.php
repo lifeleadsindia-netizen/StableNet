@@ -474,6 +474,7 @@ class AdminController extends Controller
         $var->status = 'Approved';
         $var->payment_date = date('Y-m-d H:i:s');
         $var->save();
+        
 
         session()->flash('wMessage', 'Withdrawal request has been accepted successfully!');
         return redirect()->back();

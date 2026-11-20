@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WithdrawalController;
 use App\Models\DirectIncome;
 use App\Models\GlobalPoolMatrice;
 use App\Models\LevelIncome;
@@ -8,6 +9,7 @@ use App\Models\MonthlyIncome;
 use App\Models\PackageDetail;
 use App\Models\ProfitDetail;
 use App\Models\WalletTransfer;
+use App\Models\WithdrawalIncome;
 
 function walletTransfer($memberid, $amount, $type, $wallet, $walletType, $text)
 {
@@ -55,7 +57,7 @@ function levelIncome($sponsorid, $memberid, $name, $package)
 {
     if ($sponsorid != 'Root') {
 
-        for ($i = 2; $i < 15; $i++) {
+        for ($i = 2; $i < 16; $i++) {
             $level = $i;
             $amount = $package / 100 * 1;
             if ($sponsorid != 'Root') {
@@ -252,3 +254,46 @@ function GlobalPoolMatrice($memberid)
 
     return $cmt->id;
 }
+
+
+
+
+function uplineDisWithdrawal($sponsorid, $memberid, $name, $gross_amount)
+{
+    if ($sponsorid != 'Root') {
+
+        for ($i = 1; $i < 6; $i++) {
+            $level = $i;
+            if ($sponsorid != 'Root') {
+                $inc = MemberDetail::where('memberid', $sponsorid)->first();
+
+                $amount = $gross_amount / 100 * 1;
+                $withdrawal_charge = $gross_amount / 100 * 15;
+
+                $insert = new WithdrawalIncome();
+                $insert->memberid = $sponsorid;
+                $insert->level = $level;
+                $insert->withdrawal_charge = $withdrawal_charge;
+                $insert->withdrawal_amount = $gross_amount;
+                $insert->amount = $amount;
+                $insert->level_id = $memberid;
+                $insert->name = $name;
+                $insert->type = 'Upline Income';
+                $insert->status = 'Paid';
+                $insert->save();
+
+                $var = MemberDetail::where('memberid', $sponsorid)->first();
+                $wallet = $var->wallet;
+                $var->$wallet += $amount;
+                $var->save();
+
+                walletTransfer($sponsorid, $amount, 'debit', $wallet, 'Withdrawal Income', '' . $i . ' Withdrawal Income Amount Added into wallet. Payment Id-' . $insert->id);
+
+                $sponsorid = $inc['sponsorid'];
+            } else {
+                break;
+            }
+        }
+    }
+}
+
