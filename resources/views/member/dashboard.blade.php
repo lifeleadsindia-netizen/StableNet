@@ -3,71 +3,76 @@
 @section('container')
 
     <style>
-        .selfprint-card-primary {
-            background-color: #4f46e5;
-            background-image: 
-                radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 45%),
-                radial-gradient(circle at 0% 100%, rgba(0, 0, 0, 0.25) 0%, transparent 45%),
-                url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08' fill-rule='evenodd'%3E%3Cpath d='M0 32L32 0H16L0 16M32 32V16L16 32'/%3E%3C/g%3E%3C/svg%3E"),
-                linear-gradient(135deg, #3730a3 0%, #4f46e5 50%, #7c3aed 100%);
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            border-radius: 14px;
-            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.22);
+        /* Premium Dashboard Banner Cards */
+        .premium-invest-card {
+            background: linear-gradient(135deg, #3730a3 0%, #4f46e5 45%, #7c3aed 100%);
+            border-radius: 16px !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.35);
             position: relative;
             overflow: hidden;
             color: #ffffff;
+            padding: 24px;
         }
 
-        .selfprint-card-navy {
-            background-color: #111c43;
+        .premium-invest-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: 
-                radial-gradient(circle at 100% 0%, rgba(132, 90, 223, 0.28) 0%, transparent 45%),
-                radial-gradient(circle at 0% 100%, rgba(35, 183, 229, 0.2) 0%, transparent 45%),
-                url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06' fill-rule='evenodd'%3E%3Cpath d='M0 32L32 0H16L0 16M32 32V16L16 32'/%3E%3C/g%3E%3C/svg%3E"),
-                linear-gradient(135deg, #0b1330 0%, #111c43 50%, #192b66 100%);
-            border: 1px solid rgba(255, 255, 255, 0.14) !important;
-            border-radius: 14px;
-            box-shadow: 0 8px 24px rgba(17, 28, 67, 0.22);
+                radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 10% 85%, rgba(0, 0, 0, 0.2) 0%, transparent 45%),
+                radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px);
+            background-size: 100% 100%, 100% 100%, 14px 14px;
+            pointer-events: none;
+        }
+
+        .premium-profile-card {
+            background: #ffffff;
+            border-radius: 16px !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             position: relative;
             overflow: hidden;
-            color: #ffffff;
+            padding: 24px;
         }
 
-        .selfprint-card-header {
-            background: transparent !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-            padding: 14px 20px !important;
+        .premium-profile-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(circle at 95% 10%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(rgba(99, 102, 241, 0.06) 1.2px, transparent 1.2px);
+            background-size: 100% 100%, 16px 16px;
+            pointer-events: none;
         }
 
-        .selfprint-pill {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.13);
+        .premium-profile-tile {
+            background: #ffffff;
+            border: 1px solid #eef2f7;
             border-radius: 12px;
             padding: 12px 14px;
-            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
         }
 
-        .selfprint-pill:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
+        .premium-profile-tile:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transform: translateY(-2px);
         }
 
-        .selfprint-watermark {
+        .premium-watermark {
             position: absolute;
-            right: -10px;
-            bottom: -15px;
-            font-size: 5.5rem;
+            right: -15px;
+            bottom: -20px;
+            font-size: 6rem;
             color: #ffffff;
-            opacity: 0.08;
+            opacity: 0.10;
             pointer-events: none;
             line-height: 1;
             z-index: 0;
-        }
-
-        .selfprint-content {
-            position: relative;
-            z-index: 1;
         }
 
         .sbt-card {
@@ -243,91 +248,87 @@
 
                     <div class="row g-3 mb-3">
                         <div class="col-xxl-5 col-xl-5 col-lg-12 col-md-12 col-12">
-                            <div class="card selfprint-card-primary h-100">
-                                <div class="card-header selfprint-card-header justify-content-between align-items-center">
-                                    <div class="card-title text-white fw-bold">
-                                        <i class="ti ti-chart-bar me-1"></i> Investment Account
+                            <div class="premium-invest-card h-100 d-flex flex-column justify-content-between">
+                                <div style="position: relative; z-index: 1;">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <span class="badge" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px); color: #ffffff; font-size: 11px; padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3);">
+                                            <i class="ti ti-sparkles me-1 text-warning"></i> Investment Account
+                                        </span>
+                                        <span class="badge" style="background: rgba(34, 197, 94, 0.25); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.45); border-radius: 20px; font-size: 11px; padding: 6px 12px;">
+                                            <i class="ti ti-check me-1"></i> Ready
+                                        </span>
                                     </div>
-                                    <span class="badge" style="background: rgba(34, 197, 94, 0.25); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.45);">
-                                        <i class="ti ti-check me-1"></i> Ready
-                                    </span>
+                                    <h4 class="fw-bold text-white mb-2" style="letter-spacing: -0.3px;">
+                                        Congratulations, <span style="color: #fde047;">{{ $data['memberid'] }}</span> !!
+                                    </h4>
+                                    <p class="fs-13 mb-4" style="color: rgba(255, 255, 255, 0.88);">
+                                        You are ready for <strong class="text-white">{{ config('detailsApp.name') }}</strong> Investment.
+                                    </p>
                                 </div>
-                                <div class="card-body d-flex flex-column justify-content-between selfprint-content">
-                                    <div class="mb-3">
-                                        <h5 class="fw-bold mb-2 text-white">
-                                            Congratulations, <span style="color: #fde047;">{{ $data['memberid'] }}</span> !!
-                                        </h5>
-                                        <p class="fs-13 mb-0" style="color: rgba(255, 255, 255, 0.85);">
-                                            You are ready for <strong class="text-white">{{ config('detailsApp.name') }}</strong> Investment.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <a href="{{ url('/member/invest-slot') }}" class="btn btn-sm btn-warning fw-bold text-dark shadow-sm">
-                                            <i class="ti ti-wallet me-1"></i> Invest Now <i class="ti ti-arrow-narrow-right ms-1"></i>
-                                        </a>
-                                    </div>
+                                <div style="position: relative; z-index: 1;">
+                                    <a href="{{ url('/member/invest-slot') }}" class="btn btn-sm px-3 fw-bold shadow-sm" style="background: #ffffff; color: #4338ca; border-radius: 8px;">
+                                        <i class="ti ti-wallet me-1"></i> Invest Now <i class="ti ti-arrow-narrow-right ms-1"></i>
+                                    </a>
                                 </div>
-                                <div class="selfprint-watermark">
+                                <div class="premium-watermark">
                                     <i class="ti ti-coins"></i>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-xxl-7 col-xl-7 col-lg-12 col-md-12 col-12">
-                            <div class="card selfprint-card-navy h-100">
-                                <div class="card-header selfprint-card-header justify-content-between align-items-center">
-                                    <div class="card-title text-white fw-bold">
-                                        <i class="ti ti-user-circle me-1"></i> My Profile
+                            <div class="premium-profile-card h-100 d-flex flex-column justify-content-between">
+                                <div style="position: relative; z-index: 1;">
+                                    <div class="d-flex align-items-center justify-content-between mb-3 pb-2" style="border-bottom: 1px solid #f1f5f9;">
+                                        <div class="d-flex align-items-center">
+                                            <span style="width: 3px; height: 16px; background: #6366f1; border-radius: 3px; margin-right: 8px; display: inline-block;"></span>
+                                            <span class="fw-bold fs-15 text-dark">My Profile</span>
+                                        </div>
+                                        <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-primary px-3" style="border-radius: 8px;">
+                                            View Profile <i class="ti ti-arrow-narrow-right ms-1"></i>
+                                        </a>
                                     </div>
-                                    <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-outline-light">
-                                        <i class="ti ti-user me-1"></i> View Profile
-                                    </a>
-                                </div>
-                                <div class="card-body selfprint-content">
                                     <div class="row g-3">
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="selfprint-pill d-flex align-items-center">
+                                            <div class="premium-profile-tile d-flex align-items-center">
                                                 <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded" style="background: rgba(132, 90, 223, 0.25); color: #c4b5fd;">
+                                                    <span class="avatar avatar-md avatar-rounded" style="background: #ede9fe; color: #6366f1;">
                                                         <i class="ti ti-user fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block fs-11" style="color: rgba(255, 255, 255, 0.65);">Name</span>
-                                                    <h6 class="fw-bold mb-0 text-white text-truncate" title="{{ $data['name'] }}">{{ $data['name'] }}</h6>
+                                                    <span class="d-block text-muted fs-11">Name</span>
+                                                    <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['name'] }}">{{ $data['name'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="selfprint-pill d-flex align-items-center">
+                                            <div class="premium-profile-tile d-flex align-items-center">
                                                 <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded" style="background: rgba(35, 183, 229, 0.25); color: #7dd3fc;">
+                                                    <span class="avatar avatar-md avatar-rounded" style="background: #e0f2fe; color: #0284c7;">
                                                         <i class="ti ti-mail fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block fs-11" style="color: rgba(255, 255, 255, 0.65);">Email</span>
-                                                    <h6 class="fw-bold mb-0 text-white text-truncate" title="{{ $data['email'] }}">{{ $data['email'] }}</h6>
+                                                    <span class="d-block text-muted fs-11">Email</span>
+                                                    <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['email'] }}">{{ $data['email'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="selfprint-pill d-flex align-items-center">
+                                            <div class="premium-profile-tile d-flex align-items-center">
                                                 <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded" style="background: rgba(245, 184, 73, 0.25); color: #fde047;">
+                                                    <span class="avatar avatar-md avatar-rounded" style="background: #fef3c7; color: #d97706;">
                                                         <i class="ti ti-phone fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="overflow-hidden" style="min-width: 0;">
-                                                    <span class="d-block fs-11" style="color: rgba(255, 255, 255, 0.65);">Mobile</span>
-                                                    <h6 class="fw-bold mb-0 text-white text-truncate" title="{{ $data['mobile'] }}">{{ $data['mobile'] }}</h6>
+                                                    <span class="d-block text-muted fs-11">Mobile</span>
+                                                    <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['mobile'] }}">{{ $data['mobile'] }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="selfprint-watermark">
-                                    <i class="ti ti-id-badge-2"></i>
                                 </div>
                             </div>
                         </div>
