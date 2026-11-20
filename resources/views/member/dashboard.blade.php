@@ -75,6 +75,85 @@
             z-index: 0;
         }
 
+        .premium-stat-card {
+            background: #ffffff;
+            border: 1px solid #eef2f7;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            padding: 20px 22px;
+            transition: all 0.25s ease;
+        }
+
+        .premium-stat-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .premium-stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1.2px, transparent 1.2px);
+            background-size: 14px 14px;
+            pointer-events: none;
+        }
+
+        .premium-stat-card.stat-emerald::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .premium-stat-card.stat-indigo::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .premium-stat-card.stat-sky::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .premium-stat-card.stat-amber::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .stat-watermark {
+            position: absolute;
+            right: -10px;
+            bottom: -15px;
+            font-size: 4.5rem;
+            color: #000000;
+            opacity: 0.04;
+            pointer-events: none;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .stat-content {
+            position: relative;
+            z-index: 1;
+        }
+
         .sbt-card {
             background: #0f5c65;
             color: #fff;
@@ -372,90 +451,103 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                                <div class="card custom-card">
-                                    <div class="card-body d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <p class="mb-2">Current Status</p>
-                                            <h4 class="mb-0 fw-semibold mb-2">{{ $data['status'] }}</h4>
-                                            <span class="badge bg-success-transparent"><i
-                                                    class="bi bi-patch-check-fill fs-14"></i></span><span
-                                                class="text-muted fs-11 ms-1"></span>
-                                        </div>
-                                        <div>
-                                            <span class="avatar avatar-md bg-primary p-2">
-                                                <i class="ti ti-file-check fs-20 op-7"></i>
-                                            </span>
-                                        </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                            <div class="premium-stat-card stat-emerald h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="text-muted fs-12 fw-semibold text-uppercase tracking-wider">Current Status</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: #ecfdf5; color: #10b981;">
+                                            <i class="ti ti-shield-check fs-20"></i>
+                                        </span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h3 class="fw-bold mb-0 text-dark">{{ $data['status'] }}</h3>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="badge bg-success-transparent fs-11 fw-semibold">
+                                            <i class="bi bi-patch-check-fill me-1"></i> Verified & Active
+                                        </span>
+                                        <small class="text-muted fs-11">Member Account</small>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                                <div class="card custom-card">
-                                    <div class="card-body d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <p class="mb-2">My Referrals</p>
-                                            <h4 class="mb-0 fw-semibold mb-2">{{ $data['downline'] }}</h4>
-                                            <span class="badge bg-success-transparent"><i
-                                                    class="ti ti-trending-up"></i></span><span
-                                                class="text-muted fs-11 ms-1">total referrals</span>
-                                        </div>
-                                        <div>
-                                            <span class="avatar avatar-md bg-success p-2">
-                                                <i class="ti ti-album fs-20 op-7"></i>
-                                            </span>
-                                        </div>
-                                    </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-shield-check"></i>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card">
-                                <div class="card-body">
-                                    <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
-                                        <div class="flex-fill d-flex align-items-top mb-4 mb-sm-0">
-                                            <div class="me-3">
-                                                <span class="avatar avatar-rounded bg-primary">
-                                                    <i class="ti ti-wallet fs-16"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class="d-block">Fund Wallet</span>
-                                                <h4 class="fw-semibold">$ {{ number_format($data['p2p_wallet'], 2) }}
-                                                </h4>
-                                            </div>
-                                        </div>
+                            <div class="premium-stat-card stat-indigo h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="text-muted fs-12 fw-semibold text-uppercase tracking-wider">My Referrals</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: #eef2ff; color: #6366f1;">
+                                            <i class="ti ti-users fs-20"></i>
+                                        </span>
                                     </div>
-                                    <div class="ms-5 mt-2">
-                                        <span class="d-block text-muted">Total Balance in Fund wallet</span>
+                                    <div class="mb-3">
+                                        <h3 class="fw-bold mb-0 text-dark">{{ $data['downline'] }}</h3>
                                     </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="badge bg-primary-transparent fs-11 fw-semibold">
+                                            <i class="ti ti-trending-up me-1"></i> Total Referrals
+                                        </span>
+                                        <small class="text-muted fs-11">Direct Team</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-users"></i>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="card custom-card">
-                                <div class="card-body">
-                                    <div class="d-flex gap-3 flex-wrap align-items-top justify-content-between">
-                                        <div class="flex-fill d-flex align-items-top mb-4 mb-sm-0">
-                                            <div class="me-3">
-                                                <span class="avatar avatar-rounded bg-warning">
-                                                    <i class="ti ti-wallet fs-16"></i>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class="d-block">Income Wallet</span>
-                                                <h4 class="fw-semibold">$ {{ number_format($data['wallet'], 2) }}</h4>
-                                            </div>
-                                        </div>
+                            <div class="premium-stat-card stat-sky h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="text-muted fs-12 fw-semibold text-uppercase tracking-wider">Fund Wallet</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: #e0f2fe; color: #0284c7;">
+                                            <i class="ti ti-wallet fs-20"></i>
+                                        </span>
                                     </div>
-                                    <div class="ms-5 mt-2">
-                                        <span class="d-block text-muted">Total Balance in Income wallet</span>
+                                    <div class="mb-3">
+                                        <h3 class="fw-bold mb-0 text-dark">$ {{ number_format($data['p2p_wallet'], 2) }}</h3>
                                     </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="badge bg-info-transparent fs-11 fw-semibold">
+                                            <i class="ti ti-coins me-1"></i> Fund Balance
+                                        </span>
+                                        <small class="text-muted fs-11">Available for Investment</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-wallet"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                            <div class="premium-stat-card stat-amber h-100">
+                                <div class="stat-content d-flex flex-column justify-content-between h-100">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <span class="text-muted fs-12 fw-semibold text-uppercase tracking-wider">Income Wallet</span>
+                                        <span class="avatar avatar-md avatar-rounded" style="background: #fef3c7; color: #d97706;">
+                                            <i class="ti ti-cash fs-20"></i>
+                                        </span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h3 class="fw-bold mb-0 text-dark">$ {{ number_format($data['wallet'], 2) }}</h3>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="badge bg-warning-transparent fs-11 fw-semibold">
+                                            <i class="ti ti-arrow-up-right me-1"></i> Income Balance
+                                        </span>
+                                        <small class="text-muted fs-11">Total Earned Income</small>
+                                    </div>
+                                </div>
+                                <div class="stat-watermark">
+                                    <i class="ti ti-cash"></i>
                                 </div>
                             </div>
                         </div>
