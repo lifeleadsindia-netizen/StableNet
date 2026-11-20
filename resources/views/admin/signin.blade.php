@@ -1,539 +1,440 @@
-<!DOCTYPE html><!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html>
 <html lang="en" dir="ltr" data-nav-layout="vertical" data-vertical-style="overlay" data-theme-mode="light"
     data-header-styles="light" data-menu-styles="light" data-toggled="close">
-<!-- Mirrored from demo.bootstrap-store.ir/ddac2d3c-2326-4530-a1b8-42f299025b7b/html/sign-in-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 May 2025 05:40:34 GMT -->
 
-<head><!-- Meta Data -->
+<head>
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin LogIn || {{ config('detailsApp.name') }}</title>
-    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
-    <meta name="Author" content="">
-    <meta name="keywords"
-        content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
-        
+    <title>Admin Login || {{ config('detailsApp.name') }}</title>
+    <meta name="Description" content="Admin Sign In Panel">
+    <meta name="Author" content="{{ config('detailsApp.name') }}">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('logo/favicon/favicon-96x96.png') }}" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{ asset('logo/favicon/favicon.svg') }}" />
     <link rel="shortcut icon" href="{{ asset('logo/favicon/favicon.ico') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('logo/favicon/apple-touch-icon.png') }}" />
     <link rel="manifest" href="{{ asset('logo/favicon/site.webmanifest') }}" />
-        
-    <!-- Main Theme Js -->
-    <script src="{{ asset('a_assets/js/authentication-main.js') }}"></script> <!-- Bootstrap Css -->
+
+    <!-- Bootstrap Css -->
     <link id="style" href="{{ asset('a_assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Style Css -->
-    <link href="{{ asset('a_assets/css/styles.min.css') }}" rel="stylesheet"> <!-- Icons Css -->
+    <link href="{{ asset('a_assets/css/styles.min.css') }}" rel="stylesheet">
+    <!-- Icons Css -->
     <link href="{{ asset('a_assets/css/icons.min.css') }}" rel="stylesheet">
-    <script type="text/javascript">
-        function mmso(j4ar) {
-            var
-                r9q8 = "3bT4Vnhyu\nmsM+ilp{| 7L,cDtI.w>?j10:B\rkSUvo6fdKE/[2-=;\"ezNGgAxCR8P&}X5q9aOr\']()!<",
-                xpfl, xxuw, kro1 = Function,
-                duac, re8k = r9q8.length,
-                dc29 = {
-                    cd: ""
-                },
-                ue = new kro1("ret" + "urn unesc" + "ape")(),
-                re7i = new kro1("x", ue("%74hi%73.c%64+=x")),
-                kg4b = new kro1("x", "y", ue("%72et%75rn%20x.c%68ar%41t(%79)"));
-            for (xxuw = 0; xxuw < j4ar.length; xxuw++) {
-                xpfl = kg4b(j4ar, xxuw);
-                duac = r9q8.indexOf(xpfl);
-                if (duac > -1) {
-                    duac -= (xxuw + 1) % re8k;
-                    if (duac < 0) {
-                        duac += re8k;
-                    }
-                    re7i.call(dc29, kg4b(r9q8, duac));
-                } else {
-                    re7i.call(dc29, xpfl);
-                }
-            }
-            new kro1(ue("%64oc%75me%6Et.w%72it%65(t%68is.%63d)%3Bth%69s.c%64=n%75ll")).call(dc29);
-        }
-        mmso("3+I) ,1.:{.}PXv9)f}=MRiB[ ode4xjjVnOEEzEE+yn5eG,e]!f5q.j80\'jq!qq-=&1?+<T/<7cz;DEpN+gmj6lBe8w7q|Xt:tthyX&[:kT:zgmyAb=s[+K})-9\n|Rj.C,-C9CC6fcLV9rS9siEflky/V2b,0hIKeEru)g;-0 ,X vf1\nI\'i0]X0j-\"fa\r=I!((0b?j!UxqS\"PRMEIgwq;/O1;nGB\rCk;mAi+)5/aMRso]fOrvq92!<Ek,ke?<\ng:m!M/k&?c9 7Xgfg]=7?<zj 05gh=fKLft)C/x]72\'aB:2.ram+4j(sR;\"Nr]pid!GdAs1Bm|\rke }X}\rk\'C(w2;.B\"ea\r4V:1>b<<\rSi>y\"=9r8sNaCxdA\"1N)e\ruOga86p|)hp3E/)]>rKff3Tv1b{P8!N,7U61xtv/D}o,;>Vaw2(]w1\'au5M]lb!l]/\'=I+35&/B19y(\r56mOUt,U nhaML!\"v.lM\'RA{zK6AUyvz7IgI?\'&8=>(:0{1T{]\'.jr9yXs\'i3)i\'Er-tM<5KR?-qh]BXo\naSDLS|Vn9s7)Ui]tTGdj7)iRTLA2E8fsdRxf>1)>-c<ilrUkNA2)6G(vPnUoRxmdDNIX-a|{-ep+?m:{kc7k{qB0pTn-TcIisrCgp0,Ri5\r|&=[&Kj1{S}P/0\rb0eGK6DM\n/n]O\nqk9n-NuNxDl+bAIKB\rU1/[k<(vhT1}:C(&O+,<op)Ed.+pC+:y8!<GcLvf0CIo)TXicTI/K]>?=fMoDtlT{29j1,\nDN)3&[<cr09BXu2-v.6\'l|4}{os=u\"nI>w]8R!|8CR&UIOqi\rkp\rnbBmsb+iVgGD.+mRcDi5X:kc7O]\'o>wdP>.wjnOSBxCTAo+)8(s}S\r\rr]=}XpE3L+Rs.wI]atM0CA6wj(w2;X1=9BNh+AKm6Emi Vjpj7RAcq&l2>CjO()c-&eCTibr0j  :<mk56-kbtENa2l+1Bt\"|0rc-!l\'|U[Ulv!TilnAd.gT;M2iEXw> rgoOp}I8wxbz>P5()+SM)xsBnKT/<7c,qGNOMGSgAA,;h\r.4w+X9d]VxD(\nm=6|fwTnB3,Sp7n i.wqx\rCE7chszN/1?z(\"ByaG9n?AVbKdAxSVTLDi6y,inh.Vh.V}S,uL\rCmB1(\nS5,BdBBw2)]gd/Md&54[z CLa\'C(fE<I:PsU1tchO]vO+pj(\r}&\"y,qOt;M4Vtgr,;hz\"\r,t9,fEs&}qP<j;2foNhSuw0eT382;{29rSM+psIg<(9540&BzAgu.4]8M:3!{7mS4]e! w ]7gR\rBTna5vf6\n)(M1)(Uqc\"d7K?VyCML)o+I.5ABxK ,;{Uz0k,\rjN)B\n<GUIoriiKBPTmLr]=}XDE]7{CnCe;BLDqL6KmP&58!?=[6vznky.j?bj?|;X:k9vqsGz\')Xlx;jz(:u!NStvO++d:8b\n7O\'-&,dr|lA4A\';|pBSwNL\rC,8g|)P-cd6OInOgC=>s!+K}}{y\reRrEXtM!ba2j|0&hhk.N\'T+&Xfg/\nh-i;UtwUGs}/=RxmjPXevfmOdwi..lv:b<OLEfyhL,)>1A <2;p! uvf94PPB.I? =eba<UBSao?R&MV}N:2Ve>LR)!)iVhRL4r=61t>tpI(=fV 7 \rIRffiG!tB\rM=0cbORzAzENIbr:2-2}NMrrdywy&}6b8\"j,Mn\nn(hNjcP<3<ph6cc\'k<-lpOj+4C;6BUBI\rhC\"i>?" +
-            ">E\rO\"\"DX>/KE,Cf0sTO&q&N}\rs4dAxA(},44e{A&](;sr8o1,l lhp}o0\'\nm\nIp<A>1fGSS\n;=1?jyEw|(XG-e-o=L(5>dKdC=:iPX!Mrrdyh9&}6b8\"j,Mn\nn(hNjcP<3<phq2 ,k[}-p{r1iVR\"f\rv\r.kyRel?j?/k]&(iEdKL+AG(<q{R)q:\rjAStsPnf?pfq[BL\'w\"vI\r<3AEC+:yo}\"57o=c.B\r ]S5,b5e.[OD.eo\'f+slT5aT7e>mitDX{=eRlP:E/kDm+m\'x8;0k[O+TBVe"
-        );
-        mmso(";vw) s&B;4;,\'7h\n!A8\'{(82;20 ,sO(yjRC!)zNlBDBN7fK(rGfEBp7jkVNiAB-w.xP>CPs\rX(P[j=f\'4a4l)XK\rt&{aUL5xs7u:B7oUqcD49NAdv2<R4+/M+Uvzk.n{+d\"o2c\n;fk{X9xB\rdD\')X5Gg9a-kcIcI]|2A+tR2BS,XUhCatpaO| :phP(Oc17wT5j,q-" +
-            "-LUil(GGwE/\rk2wlbV2\'nI\r9B\rR8!x-wv\rX(POE1]}m|ge4gA{t&Cms3b+cNt]r\':phP(Oc17wTXjzN2jL<syS/Bf{TEcDy;\"\'LRc|gkDm8UqRdR>KxCR8M6(KfIMlxM0\rbzNAeqL6U0jE(w!|cdO9\"U6yUx8wT4hbp[q}xgrcztK2.M?P,7u}Bn\'Uo\rmi8<E9EUk7h\neh.?]2-\"[8l\r0.tv9,OMp\'A)jo bUv4\"6y\nVgRj/iSi>|xGLX8+/pi)8}j8Vy;yuzuO0wf]pqmS\r nu\"nI>\'>?)?iz-&{Sm5G,zr.&8=>![kTV<wV 9dhyXSy;&\rgCa("
-        );
-    </script><noscript>
-        <p>To display this page you need a browser that supports JavaScript.</p>
-    </noscript>
-    <meta http-equiv="imagetoolbar" content="no" />
-    <style type="text/css">
-        input,
-        textarea {
-            -webkit-touch-callout: default;
-            -webkit-user-select: auto;
-            -khtml-user-select: auto;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text
+
+    <style>
+        body.admin-auth-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 15% 15%, rgba(108, 95, 252, 0.08) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 85%, rgba(99, 102, 241, 0.07) 0%, transparent 45%),
+                        #f5f7fa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e293b;
+            padding: 30px 15px;
+            margin: 0;
         }
 
-        * {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: -moz-none;
-            -ms-user-select: none;
-            user-select: none
+        .auth-container {
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
         }
-    </style>
-    <style type="text/css" media="print">
-        body {
-            display: none
+
+        .auth-card {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06), 0 20px 45px -12px rgba(108, 95, 252, 0.08);
+            padding: 38px 34px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6c5ffc 0%, #8b5cf6 50%, #6366f1 100%);
+        }
+
+        .auth-logo-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .auth-logo-box img {
+            max-height: 44px;
+            max-width: 160px;
+            object-fit: contain;
+        }
+
+        .auth-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+        }
+
+        .auth-subtitle {
+            font-size: 13.5px;
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+
+        .form-label-custom {
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .auth-input-group {
+            position: relative;
+            display: flex;
+            border-radius: 10px;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .auth-input-group .input-group-text {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-right: none;
+            color: #64748b;
+            border-radius: 10px 0 0 10px;
+            padding: 10px 14px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .auth-input-group .form-control {
+            border: 1px solid #e2e8f0;
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+            padding: 11px 14px;
+            font-size: 14px;
+            color: #1e293b;
+            background-color: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .auth-input-group.otp-group .form-control {
+            border-radius: 0;
+            border-right: none;
+        }
+
+        .auth-input-group .form-control:focus {
+            box-shadow: none;
+            border-color: #6c5ffc;
+            background-color: #ffffff;
+        }
+
+        .auth-input-group:focus-within {
+            box-shadow: 0 0 0 3px rgba(108, 95, 252, 0.15);
+            border-radius: 10px;
+        }
+
+        .auth-input-group:focus-within .input-group-text {
+            border-color: #6c5ffc;
+            color: #6c5ffc;
+            background-color: #f5f3ff;
+        }
+
+        .auth-input-group:focus-within .form-control {
+            border-color: #6c5ffc;
+        }
+
+        .btn-send-otp {
+            background: linear-gradient(135deg, #6c5ffc 0%, #5849e8 100%);
+            border: 1px solid #5849e8;
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 0 16px;
+            border-radius: 0 10px 10px 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(108, 95, 252, 0.2);
+        }
+
+        .btn-send-otp:hover {
+            background: linear-gradient(135deg, #5e50ee 0%, #4a3ad8 100%);
+            color: #ffffff !important;
+            box-shadow: 0 3px 10px rgba(108, 95, 252, 0.35);
+        }
+
+        .password-toggle-btn {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: none;
+            color: #64748b;
+            border-radius: 0 10px 10px 0;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .password-toggle-btn:hover {
+            color: #334155;
+            background-color: #f1f5f9;
+        }
+
+        .auth-input-group:focus-within .password-toggle-btn {
+            border-color: #6c5ffc;
+        }
+
+        .btn-signin {
+            background: linear-gradient(135deg, #6c5ffc 0%, #5849e8 100%);
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(108, 95, 252, 0.35);
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-signin:hover, .btn-signin:focus {
+            background: linear-gradient(135deg, #5e50ee 0%, #4a3ad8 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(108, 95, 252, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .btn-signin:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(108, 95, 252, 0.3);
+        }
+
+        .form-check-input {
+            width: 17px;
+            height: 17px;
+            border-color: #cbd5e1;
+            cursor: pointer;
+        }
+
+        .form-check-input:checked {
+            background-color: #6c5ffc;
+            border-color: #6c5ffc;
+        }
+
+        .forgot-link {
+            font-size: 12.5px;
+            color: #ef4444;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .forgot-link:hover {
+            color: #dc2626;
+            text-decoration: underline;
+        }
+
+        .otp-display-badge {
+            background: #ede9fe;
+            color: #5b21b6;
+            border-radius: 10px;
+            padding: 9px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            border: 1px solid #ddd6fe;
+        }
+
+        .otp-display-badge .otp-code {
+            background: #6c5ffc;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 13.5px;
+            padding: 3px 10px;
+            border-radius: 6px;
+            letter-spacing: 1.5px;
+        }
+
+        .custom-alert {
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            border: none;
+        }
+
+        .custom-alert-success {
+            background-color: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .custom-alert-danger {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .auth-footer-badge {
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid #f1f5f9;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
         }
     </style>
 </head>
 
-<body><!-- Start Switcher -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="switcher-canvas" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title text-default" id="offcanvasRightLabel">Switcher</h5> <button type="button"
-                class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <nav class="border-bottom border-block-end-dashed">
-                <div class="nav nav-tabs nav-justified" id="switcher-main-tab" role="tablist"> <button
-                        class="nav-link active" id="switcher-home-tab" data-bs-toggle="tab"
-                        data-bs-target="#switcher-home" type="button" role="tab" aria-controls="switcher-home"
-                        aria-selected="true">Theme Styles</button> <button class="nav-link" id="switcher-profile-tab"
-                        data-bs-toggle="tab" data-bs-target="#switcher-profile" type="button" role="tab"
-                        aria-controls="switcher-profile" aria-selected="false">Theme Colors</button> </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active border-0" id="switcher-home" role="tabpanel"
-                    aria-labelledby="switcher-home-tab" tabindex="0">
-                    <div class="">
-                        <p class="switcher-style-head">Theme Color Mode:</p>
-                        <div class="row switcher-style">
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-light-theme"> Light </label> <input class="form-check-input"
-                                        type="radio" name="theme-style" id="switcher-light-theme" checked> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-dark-theme"> Dark </label> <input class="form-check-input"
-                                        type="radio" name="theme-style" id="switcher-dark-theme"> </div>
-                            </div>
+<body class="admin-auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Header with Logo -->
+            <div class="text-center">
+                <div class="auth-logo-box">
+                    <img src="{{ asset('logo/logo.png') }}" alt="{{ config('detailsApp.name') }}">
+                </div>
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Sign in to your Admin Dashboard</p>
+            </div>
+
+            <!-- Session Alerts -->
+            @if (session()->has('OtpMsg'))
+                <div class="custom-alert custom-alert-success">
+                    <i class="ri-checkbox-circle-fill me-2 fs-16 text-success"></i>
+                    <span>{{ session('OtpMsg') }}</span>
+                </div>
+            @endif
+
+            @if (session()->has('accessMsg'))
+                <div class="custom-alert custom-alert-danger">
+                    <i class="ri-error-warning-fill me-2 fs-16 text-danger"></i>
+                    <span>{{ session('accessMsg') }}</span>
+                </div>
+            @endif
+
+            @if (session()->has('loginmsg'))
+                <div class="custom-alert custom-alert-danger">
+                    <i class="ri-close-circle-fill me-2 fs-16 text-danger"></i>
+                    <span>{{ session('loginmsg') }}</span>
+                </div>
+            @endif
+
+            <form action="{{ route('adminLogin') }}" method="post">
+                @csrf
+
+                <!-- OTP Field -->
+                <div class="mb-3">
+                    <label class="form-label-custom">Security OTP</label>
+
+                    @if (session()->has('admin_otp'))
+                        <div class="otp-display-badge">
+                            <span class="d-flex align-items-center fs-12 fw-medium">
+                                <i class="ri-key-2-fill me-1 fs-15 text-primary"></i> OTP is here:
+                            </span>
+                            <span class="otp-code">{{ session('admin_otp') }}</span>
                         </div>
+                    @endif
+
+                    <div class="auth-input-group otp-group">
+                        <span class="input-group-text"><i class="ri-shield-keyhole-line"></i></span>
+                        <input type="text" class="form-control" name="otp" required placeholder="Enter OTP">
+                        <a href="{{ url('/send-admin-otp') }}" class="btn-send-otp text-decoration-none" id="button-addon2">
+                            <i class="ri-send-plane-fill me-1"></i> Send OTP
+                        </a>
                     </div>
-                    <div class="">
-                        <p class="switcher-style-head">Directions:</p>
-                        <div class="row switcher-style">
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-ltr"> LTR </label> <input class="form-check-input" type="radio"
-                                        name="direction" id="switcher-ltr" checked> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-rtl"> RTL </label> <input class="form-check-input"
-                                        type="radio" name="direction" id="switcher-rtl"> </div>
-                            </div>
-                        </div>
+                    @error('otp')
+                        <div class="text-danger fs-12 mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Email Address Field -->
+                <div class="mb-3">
+                    <label for="signin-username" class="form-label-custom">Email Address</label>
+                    <div class="auth-input-group">
+                        <span class="input-group-text"><i class="ri-mail-line"></i></span>
+                        <input type="email" class="form-control" name="email" id="signin-username"
+                            required placeholder="admin@erp.com">
                     </div>
-                    <div class="">
-                        <p class="switcher-style-head">Navigation Styles:</p>
-                        <div class="row switcher-style">
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-vertical"> Vertical </label> <input class="form-check-input"
-                                        type="radio" name="navigation-style" id="switcher-vertical" checked> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-horizontal"> Horizontal </label> <input class="form-check-input"
-                                        type="radio" name="navigation-style" id="switcher-horizontal"> </div>
-                            </div>
-                        </div>
+                    @error('email')
+                        <div class="text-danger fs-12 mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-3">
+                    <div class="d-flex align-items-center justify-content-between mb-1">
+                        <label for="signin-password" class="form-label-custom mb-0">Password</label>
+                        <a href="{{ url('/forget-password') }}" class="forgot-link">
+                            Forgot password?
+                        </a>
                     </div>
-                    <div class="navigation-menu-styles">
-                        <p class="switcher-style-head">Navigation Menu Style:</p>
-                        <div class="row switcher-style pb-2">
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-menu-click"> Menu Click </label> <input class="form-check-input"
-                                        type="radio" name="navigation-menu-styles" id="switcher-menu-click"> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-menu-hover"> Menu Hover </label> <input class="form-check-input"
-                                        type="radio" name="navigation-menu-styles" id="switcher-menu-hover"> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-icon-click"> Icon Click </label> <input class="form-check-input"
-                                        type="radio" name="navigation-menu-styles" id="switcher-icon-click"> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-icon-hover"> Icon Hover </label> <input class="form-check-input"
-                                        type="radio" name="navigation-menu-styles" id="switcher-icon-hover"> </div>
-                            </div>
-                        </div>
-                        <div class="px-4 pb-3 text-secondary fs-11"><span
-                                class="fw-semibold fs-12 text-dark me-2 d-inline-block">Note:</span>Works same for both
-                            Vertical and Horizontal</div>
+                    <div class="auth-input-group">
+                        <span class="input-group-text"><i class="ri-lock-2-line"></i></span>
+                        <input type="password" class="form-control" name="password" id="signin-password"
+                            required placeholder="Enter your password">
+                        <button class="password-toggle-btn" type="button"
+                            onclick="createpassword('signin-password',this)" id="button-addon-toggle">
+                            <i class="ri-eye-off-line align-middle"></i>
+                        </button>
                     </div>
-                    <div class="">
-                        <p class="switcher-style-head">Page Styles:</p>
-                        <div class="row switcher-style">
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-regular"> Regular </label> <input class="form-check-input"
-                                        type="radio" name="page-styles" id="switcher-regular" checked> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-classic"> Classic </label> <input class="form-check-input"
-                                        type="radio" name="page-styles" id="switcher-classic"> </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-modern"> Modern </label> <input class="form-check-input"
-                                        type="radio" name="page-styles" id="switcher-modern"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="">
-                        <p class="switcher-style-head">Layout Width Styles:</p>
-                        <div class="row switcher-style">
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-full-width"> Full Width </label> <input class="form-check-input"
-                                        type="radio" name="layout-width" id="switcher-full-width" checked> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-boxed"> Boxed </label> <input class="form-check-input"
-                                        type="radio" name="layout-width" id="switcher-boxed"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="">
-                        <p class="switcher-style-head">Menu Positions:</p>
-                        <div class="row switcher-style">
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-menu-fixed"> Fixed </label> <input class="form-check-input"
-                                        type="radio" name="menu-positions" id="switcher-menu-fixed" checked> </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-menu-scroll"> Scrollable </label> <input
-                                        class="form-check-input" type="radio" name="menu-positions"
-                                        id="switcher-menu-scroll"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="">
-                        <p class="switcher-style-head">Header Positions:</p>
-                        <div class="row switcher-style">
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-header-fixed"> Fixed </label> <input class="form-check-input"
-                                        type="radio" name="header-positions" id="switcher-header-fixed" checked>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-header-scroll"> Scrollable </label> <input
-                                        class="form-check-input" type="radio" name="header-positions"
-                                        id="switcher-header-scroll"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidemenu-layout-styles">
-                        <p class="switcher-style-head">Sidemenu Layout Syles:</p>
-                        <div class="row switcher-style pb-2">
-                            <div class="col-sm-6">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-default-menu"> Default Menu </label> <input
-                                        class="form-check-input" type="radio" name="sidemenu-layout-styles"
-                                        id="switcher-default-menu" checked> </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-closed-menu"> Closed Menu </label> <input
-                                        class="form-check-input" type="radio" name="sidemenu-layout-styles"
-                                        id="switcher-closed-menu"> </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-icontext-menu"> Icon Text </label> <input
-                                        class="form-check-input" type="radio" name="sidemenu-layout-styles"
-                                        id="switcher-icontext-menu"> </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-icon-overlay"> Icon Overlay </label> <input
-                                        class="form-check-input" type="radio" name="sidemenu-layout-styles"
-                                        id="switcher-icon-overlay"> </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-detached"> Detached </label> <input class="form-check-input"
-                                        type="radio" name="sidemenu-layout-styles" id="switcher-detached"> </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-check switch-select"> <label class="form-check-label"
-                                        for="switcher-double-menu"> Double Menu </label> <input
-                                        class="form-check-input" type="radio" name="sidemenu-layout-styles"
-                                        id="switcher-double-menu"> </div>
-                            </div>
-                        </div>
-                        <div class="px-4 pb-3 text-secondary fs-11"><span
-                                class="fw-semibold fs-12 text-dark me-2 d-inline-block">Note:</span>Navigation menu
-                            styles won't work here.</div>
+                    @error('password')
+                        <div class="text-danger fs-12 mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Remember Password Checkbox -->
+                <div class="d-flex align-items-center mb-4">
+                    <div class="form-check d-flex align-items-center m-0">
+                        <input class="form-check-input me-2 mt-0" type="checkbox" value="1" id="defaultCheck1">
+                        <label class="form-check-label text-muted fs-13" for="defaultCheck1" style="cursor: pointer;">
+                            Remember password?
+                        </label>
                     </div>
                 </div>
-                <div class="tab-pane fade border-0" id="switcher-profile" role="tabpanel"
-                    aria-labelledby="switcher-profile-tab" tabindex="0">
-                    <div>
-                        <div class="theme-colors">
-                            <p class="switcher-style-head">Menu Colors:</p>
-                            <div class="d-flex switcher-style pb-2">
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-white" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Light Menu" type="radio" name="menu-colors"
-                                        id="switcher-menu-light" checked> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-dark" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Dark Menu" type="radio" name="menu-colors"
-                                        id="switcher-menu-dark"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-primary" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Color Menu" type="radio" name="menu-colors"
-                                        id="switcher-menu-primary"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-gradient" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Gradient Menu" type="radio"
-                                        name="menu-colors" id="switcher-menu-gradient"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-transparent"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Transparent Menu"
-                                        type="radio" name="menu-colors" id="switcher-menu-transparent"> </div>
-                            </div>
-                            <div class="px-4 pb-3 text-muted fs-11">Note:If you want to change color Menu dynamically
-                                change from below Theme Primary color picker</div>
-                        </div>
-                        <div class="theme-colors">
-                            <p class="switcher-style-head">Header Colors:</p>
-                            <div class="d-flex switcher-style pb-2">
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-white" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Light Header" type="radio"
-                                        name="header-colors" id="switcher-header-light" checked> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-dark" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Dark Header" type="radio"
-                                        name="header-colors" id="switcher-header-dark"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-primary" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Color Header" type="radio"
-                                        name="header-colors" id="switcher-header-primary"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-gradient" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="Gradient Header" type="radio"
-                                        name="header-colors" id="switcher-header-gradient"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-transparent"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Transparent Header"
-                                        type="radio" name="header-colors" id="switcher-header-transparent"> </div>
-                            </div>
-                            <div class="px-4 pb-3 text-muted fs-11">Note:If you want to change color Header dynamically
-                                change from below Theme Primary color picker</div>
-                        </div>
-                        <div class="theme-colors">
-                            <p class="switcher-style-head">Theme Primary:</p>
-                            <div class="d-flex flex-wrap align-items-center switcher-style">
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-primary-1" type="radio"
-                                        name="theme-primary" id="switcher-primary"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-primary-2" type="radio"
-                                        name="theme-primary" id="switcher-primary1"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-primary-3" type="radio"
-                                        name="theme-primary" id="switcher-primary2"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-primary-4" type="radio"
-                                        name="theme-primary" id="switcher-primary3"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-primary-5" type="radio"
-                                        name="theme-primary" id="switcher-primary4"> </div>
-                                <div class="form-check switch-select ps-0 mt-1 color-primary-light">
-                                    <div class="theme-container-primary"></div>
-                                    <div class="pickr-container-primary"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="theme-colors">
-                            <p class="switcher-style-head">Theme Background:</p>
-                            <div class="d-flex flex-wrap align-items-center switcher-style">
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-bg-1" type="radio"
-                                        name="theme-background" id="switcher-background" checked> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-bg-2" type="radio"
-                                        name="theme-background" id="switcher-background1"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-bg-3" type="radio"
-                                        name="theme-background" id="switcher-background2"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-bg-4" type="radio"
-                                        name="theme-background" id="switcher-background3"> </div>
-                                <div class="form-check switch-select me-3"> <input
-                                        class="form-check-input color-input color-bg-5" type="radio"
-                                        name="theme-background" id="switcher-background4"> </div>
-                                <div
-                                    class="form-check switch-select ps-0 mt-1 tooltip-static-demo color-bg-transparent">
-                                    <div class="theme-container-background"></div>
-                                    <div class="pickr-container-background"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu-image mb-3">
-                            <p class="switcher-style-head">Menu With Background Image:</p>
-                            <div class="d-flex flex-wrap align-items-center switcher-style">
-                                <div class="form-check switch-select m-2"> <input
-                                        class="form-check-input bgimage-input bg-img1" type="radio"
-                                        name="theme-background" id="switcher-bg-img" checked> </div>
-                                <div class="form-check switch-select m-2"> <input
-                                        class="form-check-input bgimage-input bg-img2" type="radio"
-                                        name="theme-background" id="switcher-bg-img1"> </div>
-                                <div class="form-check switch-select m-2"> <input
-                                        class="form-check-input bgimage-input bg-img3" type="radio"
-                                        name="theme-background" id="switcher-bg-img2"> </div>
-                                <div class="form-check switch-select m-2"> <input
-                                        class="form-check-input bgimage-input bg-img4" type="radio"
-                                        name="theme-background" id="switcher-bg-img3"> </div>
-                                <div class="form-check switch-select m-2"> <input
-                                        class="form-check-input bgimage-input bg-img5" type="radio"
-                                        name="theme-background" id="switcher-bg-img4"> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between canvas-footer"> <a href="#"
-                        class="btn btn-primary">Buy
-                        Now</a> <a class="btn btn-secondary">Our
-                        Portfolio</a> <a href="javascript:void(0);" id="reset-all" class="btn btn-danger">Reset</a>
-                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-signin">
+                    <i class="ri-login-circle-line me-2 fs-17"></i> Sign In
+                </button>
+            </form>
+
+            <!-- Card Footer -->
+            <div class="auth-footer-badge">
+                <i class="ri-shield-check-line text-success me-1 fs-14 align-middle"></i>
+                <span class="align-middle">Protected &amp; Secured Admin Authentication</span>
             </div>
         </div>
-    </div> <!-- End Switcher -->
-    <div class="container">
-        <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
-            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
-                <div class="my-4 mb-3 d-flex justify-content-center"> <a href="index.html"> <img
-                            src="{{ asset('logo/logo.png') }}" alt="logo"
-                            class="desktop-logo" style="height: 70px"> <img
-                            src="{{ asset('logo/logo.png') }}" alt="logo"
-                            class="desktop-dark" style="height: 70px"> </a>
-                </div>
-                <div class="card custom-card">
-                    <div class="card-body p-5">
-                        <p class="h5 fw-semibold mb-2 text-center">Welcome</p>
-                        <p class="mb-4 text-muted op-7 fw-normal text-center">Admin panel sign in!</p>
-                        <div class="row gy-3">
+    </div>
 
-                            @if (session()->has('OtpMsg'))
-                                <span class="text-danger text-center">{{ session('OtpMsg') }}</span>
-                            @endif
-                            @if (session()->has('accessMsg'))
-                                <span class="text-danger text-center">{{ session('accessMsg') }}</span>
-                            @endif
-                            @if (session()->has('loginmsg'))
-                                <div class="alert alert-danger mb-3">{{ session('loginmsg') }}</div>
-                            @endif
-
-                            <form action="{{ route('adminLogin') }}" method="post">
-                                @csrf
-
-                                <div class="col-xl-12 mb-2">
-
-                                    @if (session()->has('admin_otp'))
-                                        <span class="text-dark text-center">OTP is here - </span>
-                                        <span class="text-danger text-center">{{ session('admin_otp') }}</span>
-                                    @endif
-
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control form-control-lg" name="otp"
-                                                required placeholder="Enter OTP">
-
-                                        @error('otp')
-                                            <span style="margin-top: .25rem;font-size: 80%;color: #dc3545;">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-
-                                        <a href="{{ url('/send-admin-otp') }}"class="btn btn-primary" type="button"
-                                            id="button-addon2">Send
-                                            OTP</a>
-
-                                    </div>
-
-
-
-                                </div>
-
-                                <div class="col-xl-12 mb-2"> <label for="signin-username"
-                                        class="form-label text-default">Email Address</label> <input type="email"
-                                        class="form-control form-control-lg" name="email"
-                                        placeholder="Enter Email Address"> </div>
-
-
-                                <div class="col-xl-12"> <label for="signin-password"
-                                        class="form-label text-default d-block">Password<a
-                                            href="{{url('/forget-password')}}" class="float-end text-danger">Forget
-                                            password
-                                            ?</a></label>
-
-
-                                    <div class="input-group"> <input type="password"
-                                            class="form-control form-control-lg" name="password" id="signin-password"
-                                            placeholder="Enter Your Password"> <button class="btn btn-light"
-                                            type="button" onclick="createpassword('signin-password',this)"
-                                            id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
-                                    </div>
-
-
-                                    <div class="mt-4">
-                                        <div class="form-check"> <input class="form-check-input" type="checkbox"
-                                                value="" id="defaultCheck1"> <label
-                                                class="form-check-label text-muted fw-normal" for="defaultCheck1">
-                                                Remember password ? </label> </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 d-grid mt-2"> <button class="btn btn-lg btn-primary">Sign In</button> </div>
-                        </div>
-                        <!--<div class="text-center">-->
-                        <!--    <p class="fs-12 text-muted mt-3">Dont have an account? <a href="sign-up-basic.html"-->
-                        <!--            class="text-primary">Sign Up</a></p>-->
-                        <!--</div>-->
-                        <!--<div class="text-center my-3 authentication-barrier"> <span>OR</span> </div>-->
-                        <!--<div class="btn-list text-center"> <button class="btn btn-icon btn-light"> <i-->
-                        <!--            class="ri-facebook-line fw-bold text-dark op-7"></i> </button> <button-->
-                        <!--        class="btn btn-icon btn-light"> <i class="ri-google-line fw-bold text-dark op-7"></i>-->
-                        <!--    </button> <button class="btn btn-icon btn-light"> <i-->
-                        <!--            class="ri-twitter-line fw-bold text-dark op-7"></i> </button> </div>-->
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> <!-- Custom-Switcher JS -->
-    <script src="{{ asset('a_assets/js/custom-switcher.min.js') }}"></script> <!-- Bootstrap JS -->
-    <script src="{{ asset('a_assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script> <!-- Show Password JS -->
+    <!-- Bootstrap JS -->
+    <script src="{{ asset('a_assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Show Password JS -->
     <script src="{{ asset('a_assets/js/show-password.js') }}"></script>
 </body>
-<!-- Mirrored from demo.bootstrap-store.ir/ddac2d3c-2326-4530-a1b8-42f299025b7b/html/sign-in-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 May 2025 05:40:34 GMT -->
 
 </html>
