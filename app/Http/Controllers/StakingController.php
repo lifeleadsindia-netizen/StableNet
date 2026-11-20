@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+if (file_exists(app_path('Helpers/autopool_functions.php'))) {
+    require_once app_path('Helpers/autopool_functions.php');
+}
+
 use App\Models\GlobalPoolMatrice;
 use App\Models\MemberDetail;
 use App\Models\PackageDetail;
