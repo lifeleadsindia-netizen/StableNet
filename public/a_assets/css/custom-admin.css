@@ -459,34 +459,59 @@ body.admin-auth-page {
 
 /* Refined Bottom Summary Cards */
 .card-bottom-summary {
-    background-color: #ffffff !important;
     border-radius: var(--admin-card-radius) !important;
-    border: 1px solid var(--admin-card-border) !important;
     position: relative;
     overflow: hidden;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .card-bottom-summary.summary-orange {
-    border-left: 4px solid #f97316 !important;
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%) !important;
+    border: 1px solid #fed7aa !important;
+    border-left: 5px solid #f97316 !important;
 }
+.card-bottom-summary.summary-orange:hover {
+    border-color: #fdba74 !important;
+    border-left-color: #ea580c !important;
+    box-shadow: 0 14px 28px -4px rgba(249, 115, 22, 0.2) !important;
+}
+
 .card-bottom-summary.summary-green {
-    border-left: 4px solid #10b981 !important;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+    border: 1px solid #bbf7d0 !important;
+    border-left: 5px solid #10b981 !important;
 }
+.card-bottom-summary.summary-green:hover {
+    border-color: #86efac !important;
+    border-left-color: #059669 !important;
+    box-shadow: 0 14px 28px -4px rgba(16, 185, 129, 0.2) !important;
+}
+
 .card-bottom-summary.summary-yellow {
-    border-left: 4px solid #f59e0b !important;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+    border: 1px solid #fde68a !important;
+    border-left: 5px solid #f59e0b !important;
+}
+.card-bottom-summary.summary-yellow:hover {
+    border-color: #fde047 !important;
+    border-left-color: #d97706 !important;
+    box-shadow: 0 14px 28px -4px rgba(245, 158, 11, 0.2) !important;
 }
 
 .card-bottom-summary .avatar-summary-orange {
-    background-color: #fff7ed !important;
+    background-color: #ffedd5 !important;
     color: #ea580c !important;
+    box-shadow: 0 4px 10px rgba(234, 88, 12, 0.25) !important;
 }
 .card-bottom-summary .avatar-summary-green {
-    background-color: #f0fdf4 !important;
+    background-color: #dcfce7 !important;
     color: #16a34a !important;
+    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.25) !important;
 }
 .card-bottom-summary .avatar-summary-yellow {
-    background-color: #fefce8 !important;
+    background-color: #fef3c7 !important;
     color: #d97706 !important;
+    box-shadow: 0 4px 10px rgba(217, 119, 6, 0.25) !important;
 }
 
 /* ==========================================================================
@@ -509,95 +534,95 @@ body.admin-auth-page {
     box-shadow: 0 14px 28px -4px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.05) !important;
 }
 
-/* Light Theme Color Mix Variants */
+/* Light Theme Color Mix Variants - Rich Pastel & Vibrant Light Tint */
 .card-light-navy {
-    background: linear-gradient(145deg, #ffffff 20%, #f1f5f9 100%) !important;
-    border-color: #cbd5e1 !important;
+    background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%) !important;
+    border-color: #bae6fd !important;
 }
 .card-light-navy:hover {
-    border-color: #94a3b8 !important;
-    box-shadow: 0 12px 28px -4px rgba(30, 41, 59, 0.12) !important;
+    border-color: #38bdf8 !important;
+    box-shadow: 0 14px 28px -4px rgba(14, 165, 233, 0.22) !important;
 }
 
 .card-light-blue {
-    background: linear-gradient(145deg, #ffffff 20%, #eff6ff 100%) !important;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
     border-color: #bfdbfe !important;
 }
 .card-light-blue:hover {
-    border-color: #93c5fd !important;
-    box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.14) !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 14px 28px -4px rgba(37, 99, 235, 0.22) !important;
 }
 
 .card-light-indigo {
-    background: linear-gradient(145deg, #ffffff 20%, #eef2ff 100%) !important;
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%) !important;
     border-color: #c7d2fe !important;
 }
 .card-light-indigo:hover {
-    border-color: #a5b4fc !important;
-    box-shadow: 0 12px 28px -4px rgba(79, 70, 229, 0.14) !important;
+    border-color: #818cf8 !important;
+    box-shadow: 0 14px 28px -4px rgba(99, 102, 241, 0.22) !important;
 }
 
 .card-light-emerald {
-    background: linear-gradient(145deg, #ffffff 20%, #ecfdf5 100%) !important;
-    border-color: #a7f3d0 !important;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+    border-color: #bbf7d0 !important;
 }
 .card-light-emerald:hover {
-    border-color: #6ee7b7 !important;
-    box-shadow: 0 12px 28px -4px rgba(16, 185, 129, 0.14) !important;
+    border-color: #4ade80 !important;
+    box-shadow: 0 14px 28px -4px rgba(16, 185, 129, 0.22) !important;
 }
 
 .card-light-teal {
-    background: linear-gradient(145deg, #ffffff 20%, #f0fdfa 100%) !important;
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%) !important;
     border-color: #99f6e4 !important;
 }
 .card-light-teal:hover {
-    border-color: #5eead4 !important;
-    box-shadow: 0 12px 28px -4px rgba(13, 148, 136, 0.14) !important;
+    border-color: #2dd4bf !important;
+    box-shadow: 0 14px 28px -4px rgba(13, 148, 136, 0.22) !important;
 }
 
 .card-light-amber {
-    background: linear-gradient(145deg, #ffffff 20%, #fffbeb 100%) !important;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
     border-color: #fde68a !important;
 }
 .card-light-amber:hover {
-    border-color: #fcd34d !important;
-    box-shadow: 0 12px 28px -4px rgba(245, 158, 11, 0.14) !important;
+    border-color: #facc15 !important;
+    box-shadow: 0 14px 28px -4px rgba(245, 158, 11, 0.22) !important;
 }
 
 .card-light-orange {
-    background: linear-gradient(145deg, #ffffff 20%, #fff7ed 100%) !important;
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%) !important;
     border-color: #fed7aa !important;
 }
 .card-light-orange:hover {
-    border-color: #fdba74 !important;
-    box-shadow: 0 12px 28px -4px rgba(249, 115, 22, 0.14) !important;
+    border-color: #fb923c !important;
+    box-shadow: 0 14px 28px -4px rgba(249, 115, 22, 0.22) !important;
 }
 
 .card-light-purple {
-    background: linear-gradient(145deg, #ffffff 20%, #faf5ff 100%) !important;
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important;
     border-color: #e9d5ff !important;
 }
 .card-light-purple:hover {
-    border-color: #d8b4fe !important;
-    box-shadow: 0 12px 28px -4px rgba(168, 85, 247, 0.14) !important;
+    border-color: #c084fc !important;
+    box-shadow: 0 14px 28px -4px rgba(168, 85, 247, 0.22) !important;
 }
 
 .card-light-rose {
-    background: linear-gradient(145deg, #ffffff 20%, #fff1f2 100%) !important;
+    background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important;
     border-color: #fecdd3 !important;
 }
 .card-light-rose:hover {
-    border-color: #fda4af !important;
-    box-shadow: 0 12px 28px -4px rgba(244, 63, 94, 0.14) !important;
+    border-color: #fb7185 !important;
+    box-shadow: 0 14px 28px -4px rgba(244, 63, 94, 0.22) !important;
 }
 
 .card-light-cyan {
-    background: linear-gradient(145deg, #ffffff 20%, #ecfeff 100%) !important;
+    background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%) !important;
     border-color: #a5f3fc !important;
 }
 .card-light-cyan:hover {
-    border-color: #67e8f9 !important;
-    box-shadow: 0 12px 28px -4px rgba(6, 182, 212, 0.14) !important;
+    border-color: #22d3ee !important;
+    box-shadow: 0 14px 28px -4px rgba(6, 182, 212, 0.22) !important;
 }
 
 /* Gradient Avatars with Glow */
