@@ -50,7 +50,7 @@ class FundController extends Controller
         $wallet = $data->p2p_wallet;
         $data->p2p_wallet += $amount;
         $data->save();
-        p2pwalletTransfer($memberid, $amount, 'debit', $wallet, 'Fund Added', '' . $amount . ' USDT added to fund wallet');
+        p2pwalletTransfer($memberid, $amount, 'debit', $wallet, 'Fund Added', '' .  $amount . ' USDT added to fund wallet');
     }
 
     public function FundReq(Request $request)

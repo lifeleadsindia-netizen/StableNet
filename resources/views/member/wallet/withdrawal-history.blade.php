@@ -58,7 +58,15 @@
                                                 <td>$ {{ number_format((float)$list['service_charge'], 2) }}</td>
                                                 <td>$ {{ number_format((float)$list['net_amount'], 2) }}</td>
                                                 <td>
-                                                    <label class="btn btn-success">{{ $list['status'] }}</label>
+                                                    @if ($list['status'] == 'Approved')
+                                                        <label class="btn btn-success">{{ $list['status'] }}</label>
+                                                    @elseif ($list['status'] == 'Cancelled')
+                                                        <label class="btn btn-danger">{{ $list['status'] }}</label>
+                                                    @elseif ($list['status'] == 'Pending')
+                                                        <label class="btn btn-primary">{{ $list['status'] }}</label>
+                                                    @else
+                                                        <label class="btn btn-secondary">{{ $list['status'] }}</label>
+                                                    @endif
                                                 </td>
                                                 <td>{{ $list['payment_date'] }}</td>
                                             </tr>
