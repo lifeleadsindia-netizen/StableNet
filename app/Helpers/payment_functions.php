@@ -209,7 +209,7 @@ function uplineDisWithdrawal($sponsorid, $memberid, $name, $gross_amount)
                     $var->wallet += $amount;
                     $var->save();
 
-                    walletTransfer($sponsorid, $amount, 'debit', $wallet, 'Withdrawal Income', '' . $i . ' Withdrawal Income Amount Added into wallet. Payment Id-' . $insert->id);
+                    walletTransfer($sponsorid, $amount, 'debit', $wallet, 'Upline Withdrawal Income', '' . $i . 'Upline Withdrawal Income Amount Added into wallet. Payment Id-' . $insert->id);
                 }
 
                 $sponsorid = $inc['sponsorid'];
