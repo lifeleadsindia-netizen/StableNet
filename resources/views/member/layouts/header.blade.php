@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light"
-    data-menu-styles="dark" data-toggled="close">
+    data-menu-styles="light" data-toggled="close">
 
 
 
@@ -61,20 +61,25 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
 
-    <!-- NORMAL PREMIUM STYLING FOR NAVBAR & SIDEBAR -->
+    <!-- PREMIUM ENTERPRISE FINTECH NAVBAR & SIDEBAR STYLING -->
     <style>
         /* --- Top Navbar / Header --- */
         .app-header {
-            background: #ffffff !important;
-            border-bottom: 1px solid #edf2f7 !important;
-            box-shadow: 0 1px 4px rgba(17, 28, 67, 0.04) !important;
-            min-height: 64px !important;
+            background: rgba(255, 255, 255, 0.94) !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
+            box-shadow: 0 4px 20px -2px rgba(16, 23, 45, 0.04) !important;
+            min-height: 66px !important;
             transition: all 0.25s ease;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .app-header .main-header-container {
-            padding-left: 1.25rem !important;
-            padding-right: 1.25rem !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
             height: 100% !important;
             display: flex !important;
             align-items: center !important;
@@ -91,17 +96,20 @@
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
-            width: 38px !important;
-            height: 38px !important;
-            border-radius: 8px !important;
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 10px !important;
             border: 1px solid #e2e8f0 !important;
-            background: #f8fafc !important;
-            transition: all 0.2s ease !important;
+            background: #ffffff !important;
+            box-shadow: 0 2px 6px rgba(16, 23, 45, 0.04) !important;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
         .app-header .sidemenu-toggle.header-link:hover {
-            background-color: #f1f5f9 !important;
-            border-color: #cbd5e1 !important;
+            background-color: #f8fafc !important;
+            border-color: #7047EB !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(112, 71, 235, 0.15) !important;
         }
 
         /* Right Content Area */
@@ -116,46 +124,85 @@
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            background: #ecfdf5;
-            border: 1px solid #a7f3d0;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
             border-radius: 20px;
-            padding: 5px 12px;
+            padding: 5px 13px;
             cursor: default;
             transition: all 0.2s ease;
         }
 
         .sn-status-pill:hover {
-            background: #d1fae5;
-            border-color: #6ee7b7;
+            background: rgba(16, 185, 129, 0.14);
+            border-color: rgba(16, 185, 129, 0.5);
+            transform: translateY(-1px);
         }
 
         .sn-pulse-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background-color: #10b981;
+            background-color: #10B981;
             box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
             animation: snPulse 2s infinite;
         }
 
         @keyframes snPulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
-            }
-            70% {
-                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+            70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
         .sn-status-text {
             font-size: 11px;
-            font-weight: 600;
-            color: #065f46;
+            font-weight: 700;
+            color: #065F46;
             letter-spacing: 0.4px;
             text-transform: uppercase;
+        }
+
+        /* Notification Icon Pill with Animated Badge */
+        .sn-notif-btn {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 19px;
+            box-shadow: 0 2px 6px rgba(16, 23, 45, 0.04);
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .sn-notif-btn:hover {
+            background: #f8fafc;
+            border-color: #7047EB;
+            color: #7047EB;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(112, 71, 235, 0.15);
+        }
+
+        .sn-notif-ping {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            width: 8px;
+            height: 8px;
+            background: #F59E0B;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+            animation: notifBlink 2.5s infinite;
+        }
+
+        @keyframes notifBlink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
         }
 
         /* User Profile Pill in Navbar */
@@ -166,7 +213,7 @@
 
         .main-header-container .header-element .sn-profile-card,
         .sn-profile-card {
-            background: #f8fafc !important;
+            background: #ffffff !important;
             border: 1px solid #e2e8f0 !important;
             border-radius: 30px !important;
             padding: 4px 14px 4px 5px !important;
@@ -175,8 +222,8 @@
             align-items: center !important;
             gap: 10px !important;
             text-decoration: none !important;
-            transition: all 0.2s ease !important;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            box-shadow: 0 2px 8px rgba(16, 23, 45, 0.04) !important;
         }
 
         .main-header-container .header-element .sn-profile-card:hover,
@@ -184,8 +231,8 @@
         .sn-profile-card:hover,
         .sn-profile-card[aria-expanded="true"] {
             background: #ffffff !important;
-            border-color: #cbd5e1 !important;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
+            border-color: #7047EB !important;
+            box-shadow: 0 6px 18px rgba(112, 71, 235, 0.15) !important;
             transform: translateY(-1px);
         }
 
@@ -194,15 +241,17 @@
             width: 36px;
             height: 36px;
             flex-shrink: 0;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(135deg, #7047EB 0%, #299CFF 100%);
         }
 
         .sn-profile-img {
-            width: 36px !important;
-            height: 36px !important;
+            width: 100% !important;
+            height: 100% !important;
             border-radius: 50% !important;
-            border: 2px solid #ffffff !important;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12) !important;
             object-fit: cover !important;
+            background: #ffffff;
         }
 
         .sn-avatar-badge {
@@ -211,7 +260,7 @@
             right: -1px;
             width: 10px;
             height: 10px;
-            background-color: #10b981;
+            background-color: #10B981;
             border: 2px solid #ffffff;
             border-radius: 50%;
         }
@@ -224,7 +273,7 @@
 
         .sn-profile-card:hover .sn-chevron,
         .sn-profile-card[aria-expanded="true"] .sn-chevron {
-            color: #334155 !important;
+            color: #7047EB !important;
         }
 
         .sn-profile-card[aria-expanded="true"] .sn-chevron {
@@ -233,172 +282,222 @@
 
         /* Profile Dropdown */
         .header-profile-dropdown {
-            border-radius: 14px !important;
-            border: 1px solid #e2e8f0 !important;
-            box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.1) !important;
-            min-width: 230px !important;
-            padding: 6px !important;
-            margin-top: 8px !important;
+            border-radius: 16px !important;
+            border: 1px solid rgba(226, 232, 240, 0.9) !important;
+            box-shadow: 0 16px 36px -4px rgba(16, 23, 45, 0.12) !important;
+            min-width: 240px !important;
+            padding: 8px !important;
+            margin-top: 10px !important;
+            animation: dropdownFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .header-profile-dropdown .dropdown-item {
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13px;
-            padding: 8px 12px;
+            font-weight: 500;
+            padding: 9px 14px;
             color: #334155;
             transition: all 0.15s ease;
         }
 
         .header-profile-dropdown .dropdown-item:hover {
-            background-color: #f1f5f9;
-            color: #0f172a;
-            padding-left: 15px;
+            background-color: #f8fafc;
+            color: #7047EB;
+            transform: translateX(3px);
         }
 
-        /* --- Sidebar Container & Styling --- */
+        /* --- Sidebar Container & Styling (Light SaaS Theme - Stripe/Linear Style) --- */
         .app-sidebar {
-            background: linear-gradient(180deg, #111c43 0%, #0a102a 100%) !important;
-            border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
-            box-shadow: 2px 0 16px rgba(0, 0, 0, 0.08) !important;
+            background: #FFFFFF !important;
+            border-right: 1px solid #E2E8F0 !important;
+            box-shadow: 2px 0 24px rgba(15, 23, 42, 0.04) !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
         .app-sidebar .main-sidebar-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
-            padding: 14px 20px !important;
-            background: transparent !important;
+            border-bottom: 1px solid #EEF2F6 !important;
+            padding: 16px 20px !important;
+            background: #FFFFFF !important;
         }
 
         /* Menu Items */
         .app-sidebar .main-menu {
-            padding: 8px 4px 28px 4px !important;
+            padding: 12px 6px 36px 6px !important;
         }
 
         /* Top-level menu item */
         .app-sidebar .side-menu__item {
-            margin: 2px 8px !important;
-            padding: 9px 12px !important;
-            border-radius: 8px !important;
-            color: #cbd5e1 !important;
+            margin: 3px 8px !important;
+            padding: 10px 14px !important;
+            border-radius: 10px !important;
+            color: #334155 !important;
             font-size: 13.5px !important;
             font-weight: 500 !important;
-            transition: background-color 0.15s ease, color 0.15s ease !important;
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
         .app-sidebar .side-menu__icon {
-            color: #818cf8 !important;
-            font-size: 18px !important;
-            margin-right: 10px !important;
-            opacity: 0.85;
-            transition: opacity 0.15s ease !important;
+            color: #5267F2 !important;
+            font-size: 19px !important;
+            margin-right: 12px !important;
+            opacity: 0.9;
+            transition: all 0.2s ease !important;
         }
 
         .app-sidebar .side-menu__angle {
-            color: #94a3b8 !important;
+            color: #94A3B8 !important;
             font-size: 11px !important;
-            transition: transform 0.2s ease !important;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
         /* Top-level Hover */
         .app-sidebar .side-menu__item:hover {
-            background-color: rgba(255, 255, 255, 0.06) !important;
-            color: #ffffff !important;
+            background-color: #F1F5F9 !important;
+            color: #0F172A !important;
+            transform: translateX(4px);
         }
 
         .app-sidebar .side-menu__item:hover .side-menu__icon {
+            color: #4338CA !important;
             opacity: 1;
+            transform: scale(1.1);
         }
 
         .app-sidebar .side-menu__item:hover .side-menu__angle {
-            color: #ffffff !important;
+            color: #0F172A !important;
         }
 
-        /* Top-level Active / Open state */
+        /* Top-level Active / Open state with Gradient Highlight */
         .app-sidebar .slide.active > .side-menu__item,
         .app-sidebar .slide.has-sub.open > .side-menu__item {
-            background-color: rgba(99, 102, 241, 0.16) !important;
-            color: #ffffff !important;
+            background: linear-gradient(135deg, rgba(82, 103, 242, 0.09) 0%, rgba(128, 85, 232, 0.12) 100%) !important;
+            color: #5267F2 !important;
             font-weight: 600 !important;
+            border-left: 3.5px solid #5267F2 !important;
+            box-shadow: 0 3px 12px rgba(82, 103, 242, 0.08) !important;
         }
 
         .app-sidebar .slide.active > .side-menu__item .side-menu__icon,
         .app-sidebar .slide.has-sub.open > .side-menu__item .side-menu__icon {
-            color: #a5b4fc !important;
+            color: #5267F2 !important;
+            filter: drop-shadow(0 0 4px rgba(82, 103, 242, 0.3));
             opacity: 1;
         }
 
         .app-sidebar .slide.has-sub.open > .side-menu__item .side-menu__angle {
-            color: #a5b4fc !important;
+            color: #5267F2 !important;
+            transform: rotate(90deg);
         }
 
         /* Submenu (Child 1 Dropdown) Container */
         .app-sidebar .slide-menu.child1 {
-            background-color: rgba(7, 12, 33, 0.5) !important;
-            border-radius: 8px !important;
-            margin: 2px 8px 4px 8px !important;
-            padding: 4px 0 !important;
-            border-left: 2px solid rgba(99, 102, 241, 0.3) !important;
+            background-color: #F8FAFD !important;
+            border-radius: 10px !important;
+            margin: 3px 8px 6px 8px !important;
+            padding: 6px 0 !important;
+            border: 1px solid #EEF2F6 !important;
+            border-left: 3px solid #5267F2 !important;
+            animation: submenuSlide 0.25s ease-out;
+        }
+
+        @keyframes submenuSlide {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Submenu Child Item */
         .app-sidebar .slide-menu.child1 .side-menu__item {
             position: relative !important;
-            padding: 7px 12px 7px 32px !important;
-            margin: 1px 4px !important;
+            padding: 8px 14px 8px 34px !important;
+            margin: 2px 6px !important;
             font-size: 13px !important;
-            font-weight: 400 !important;
-            color: #cbd5e1 !important;
-            border-radius: 6px !important;
+            font-weight: 500 !important;
+            color: #475569 !important;
+            border-radius: 8px !important;
             white-space: nowrap !important;
-            transition: background-color 0.15s ease, color 0.15s ease !important;
+            transition: all 0.15s ease !important;
         }
 
         /* Submenu Bullet Dot */
         .app-sidebar .slide-menu.child1 .side-menu__item:before {
             content: "" !important;
             position: absolute !important;
-            left: 14px !important;
+            left: 16px !important;
             top: 50% !important;
             transform: translateY(-50%) !important;
             width: 5px !important;
             height: 5px !important;
             border-radius: 50% !important;
-            background-color: #64748b !important;
+            background-color: #94A3B8 !important;
             border: none !important;
             opacity: 0.9 !important;
-            transition: background-color 0.15s ease, transform 0.15s ease !important;
+            transition: all 0.2s ease !important;
         }
 
         /* Submenu Hover */
         .app-sidebar .slide-menu.child1 .side-menu__item:hover {
-            background-color: rgba(255, 255, 255, 0.05) !important;
-            color: #ffffff !important;
+            background-color: #EEF2F6 !important;
+            color: #5267F2 !important;
+            transform: translateX(3px);
         }
 
         .app-sidebar .slide-menu.child1 .side-menu__item:hover:before {
-            background-color: #38bdf8 !important;
-            transform: translateY(-50%) scale(1.3) !important;
+            background-color: #5267F2 !important;
+            transform: translateY(-50%) scale(1.4) !important;
+            box-shadow: 0 0 6px rgba(82, 103, 242, 0.5) !important;
         }
 
         /* Submenu Active Item */
         .app-sidebar .slide-menu.child1 .side-menu__item.active {
-            background-color: rgba(56, 189, 248, 0.1) !important;
-            color: #38bdf8 !important;
+            background: rgba(82, 103, 242, 0.1) !important;
+            color: #5267F2 !important;
             font-weight: 600 !important;
         }
 
         .app-sidebar .slide-menu.child1 .side-menu__item.active:before {
-            background-color: #38bdf8 !important;
-            box-shadow: 0 0 6px rgba(56, 189, 248, 0.8) !important;
+            background-color: #5267F2 !important;
+            box-shadow: 0 0 8px rgba(82, 103, 242, 0.5) !important;
+            transform: translateY(-50%) scale(1.4) !important;
         }
 
         /* Logout Item */
         .app-sidebar a[href*="logout"]:hover {
-            background-color: rgba(239, 68, 68, 0.12) !important;
-            color: #f87171 !important;
+            background-color: #FEF2F2 !important;
+            color: #DC2626 !important;
         }
 
         .app-sidebar a[href*="logout"]:hover .side-menu__icon {
-            color: #f87171 !important;
+            color: #DC2626 !important;
+        }
+
+        /* Global Fintech Light Theme Utilities for Member Pages */
+        body {
+            background-color: #F5F7FC !important;
+            color: #182230;
+        }
+
+        .card {
+            border-radius: 16px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+            background-color: #FFFFFF;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #5267F2 0%, #4338CA 100%) !important;
+            border-color: #4338CA !important;
+            box-shadow: 0 4px 12px rgba(82, 103, 242, 0.25) !important;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #4338CA 0%, #3730A3 100%) !important;
+            transform: translateY(-1px);
         }
     </style>
 
@@ -948,6 +1047,14 @@
                             <span class="sn-pulse-dot"></span>
                             <span class="sn-status-text">Network Online</span>
                         </div>
+                    </div>
+
+                    <!-- Notification Button with Ping Badge -->
+                    <div class="header-element d-flex align-items-center">
+                        <a href="{{ url('member/support/support-tickets') }}" class="sn-notif-btn" title="Notifications & Support">
+                            <i class="ri-notification-3-line"></i>
+                            <span class="sn-notif-ping"></span>
+                        </a>
                     </div>
 
                     <!-- User Profile Card Pill -->
