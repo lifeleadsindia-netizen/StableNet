@@ -1,115 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light"
-    data-menu-styles="light" data-toggled="close">
-
-
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<html lang="en" dir="ltr" data-nav-layout="vertical" data-vertical-style="overlay" data-theme-mode="light"
+    data-header-styles="light" data-menu-styles="light" data-toggled="close">
 
 <head>
-
-    <!-- META DATA eta Data -->
     <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="Description" content="Laravel Bootstrap Responsive Admin Web Dashboard Template">
-    <meta name="Author" content="">
-    <meta name="keywords"
-        content="dashboard bootstrap, laravel template, admin panel in laravel, php admin panel, admin panel for laravel, admin template bootstrap 5, laravel admin panel, admin dashboard template, hrm dashboard, vite laravel, admin dashboard, ecommerce admin dashboard, dashboard laravel, analytics dashboard, template dashboard, admin panel template, bootstrap admin panel template">
+    <title>Forgot Password || {{ config('detailsApp.name') }}</title>
+    <meta name="Description" content="Admin Forgot Password Panel">
+    <meta name="Author" content="{{ config('detailsApp.name') }}">
 
-    <!-- TITLE -->
-    <title>Admin Forget Password || {{ config('detailsApp.name') }}</title>
-
-    <!-- FAVICON -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('logo/favicon/favicon-96x96.png') }}" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{ asset('logo/favicon/favicon.svg') }}" />
     <link rel="shortcut icon" href="{{ asset('logo/favicon/favicon.ico') }}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('logo/favicon/apple-touch-icon.png') }}" />
     <link rel="manifest" href="{{ asset('logo/favicon/site.webmanifest') }}" />
 
-    <!-- BOOTSTRAP CSS -->
-    <link id="style" href="{{ asset('user_assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- ICONS CSS -->
-    <link href="{{ asset('user_assets/icon-fonts/icons.css') }}" rel="stylesheet">
-
-    <!-- APP SCSS -->
-    <link rel="preload" as="style" href="{{ asset('user_assets/app-fce3f544.css') }}" />
-    <link rel="stylesheet" href="{{ asset('user_assets/app-fce3f544.css') }}" />
-
-    <!-- MAIN JS -->
-    <script src="{{ asset('user_assets/authentication-main.js') }}"></script>
-
-
-
-
+    <!-- Bootstrap Css -->
+    <link id="style" href="{{ asset('a_assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Style Css -->
+    <link href="{{ asset('a_assets/css/styles.min.css') }}" rel="stylesheet">
+    <!-- Icons Css -->
+    <link href="{{ asset('a_assets/css/icons.min.css') }}" rel="stylesheet">
+    <!-- Custom Admin Theme Css -->
+    <link href="{{ asset('a_assets/css/custom-admin.css') }}?v=1.2" rel="stylesheet">
 </head>
 
-<body>
-
-    <div class="container">
-        <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
-            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
-                <div class="my-4 mb-3 d-flex justify-content-center">
-                    <a href="index.html">
-                        <img src="{{asset('logo/logo.png')}}" alt="logo" class="desktop-logo" style="height: 70px">
-                        <img src="{{asset('logo/logo.png')}}" alt="logo" class="desktop-dark" style="height: 70px">
-                    </a>
+<body class="admin-auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Header with Logo -->
+            <div class="text-center">
+                <div class="auth-logo-box">
+                    <img src="{{ asset('logo/logo.png') }}" alt="{{ config('detailsApp.name') }}">
                 </div>
-                <form action="{{ route('retrivePassword') }}" method="post" class=" dz-form pb-3">
-                    @csrf
-                    @if (session()->has('succMsg'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('succMsg') }}
-                        </div>
-                    @endif
-                    @if (session()->has('forgetPassErr'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('forgetPassErr') }}
-                        </div>
-                    @endif
-                    <div class="card custom-card">
-                        <div class="card-body p-5">
-                            <p class="h5 fw-semibold  text-center mb-4">Forget Password</p>
-                            @if (session()->has('failedMsg'))
-                                <div class="alert alert-danger alert-dismissible fade show col-10 d-block"
-                                    role="alert">{{ session('failedMsg') }}
-                                </div>
-                            @endif
-                            <div class="row gy-3">
-                                <div class="col-xl-12 d-grid mt-4">
-                                    <button type="submit" class="btn btn-lg btn-primary">Retrive Password</button>
-                                </div>
-                                <b class="text-warning">** Password will be sent to your registered email </b>
-                                <div class="row mt-2">
-                                    <div class="col-6 ">
-                                        <a href="{{ url('/admin') }}"
-                                            class="text-bold text-secondary"><small>**login</small></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <h1 class="auth-title">Forgot Password?</h1>
+                <p class="auth-subtitle">Recover your administrator account access</p>
+            </div>
+
+            <!-- Session Alerts -->
+            @if (session()->has('succMsg'))
+                <div class="custom-alert custom-alert-success mb-3">
+                    <i class="ri-checkbox-circle-fill me-2 fs-16 text-success"></i>
+                    <span>{{ session('succMsg') }}</span>
+                </div>
+            @endif
+
+            @if (session()->has('forgetPassErr'))
+                <div class="custom-alert custom-alert-danger mb-3">
+                    <i class="ri-error-warning-fill me-2 fs-16 text-danger"></i>
+                    <span>{{ session('forgetPassErr') }}</span>
+                </div>
+            @endif
+
+            @if (session()->has('failedMsg'))
+                <div class="custom-alert custom-alert-danger mb-3">
+                    <i class="ri-close-circle-fill me-2 fs-16 text-danger"></i>
+                    <span>{{ session('failedMsg') }}</span>
+                </div>
+            @endif
+
+            <!-- Info Message Box -->
+            <div class="alert alert-info bg-info-subtle border-0 text-info-emphasis d-flex align-items-start gap-2 mb-4 p-3 rounded-3 fs-13">
+                <i class="ri-information-line fs-18 text-info flex-shrink-0 mt-1"></i>
+                <div>
+                    <strong>Password Recovery Notice:</strong>
+                    <div class="text-muted mt-1 fs-12">
+                        A new secure password will be generated and sent directly to your registered administrator email address.
                     </div>
-                </form>
+                </div>
+            </div>
+
+            <form action="{{ route('retrivePassword') }}" method="post">
+                @csrf
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-signin w-100 mb-3">
+                    <i class="ri-mail-send-line me-2 fs-17"></i> Retrieve &amp; Send Password
+                </button>
+            </form>
+
+            <!-- Back to Login Link -->
+            <div class="text-center mt-3 pt-2">
+                <a href="{{ url('/admin') }}" class="forgot-link d-inline-flex align-items-center gap-1">
+                    <i class="ri-arrow-left-line fs-15"></i> Back to Admin Sign In
+                </a>
+            </div>
+
+            <!-- Card Footer Badge -->
+            <div class="auth-footer-badge mt-4">
+                <i class="ri-shield-check-line text-success me-1 fs-14 align-middle"></i>
+                <span class="align-middle">Protected &amp; Secured Admin Authentication</span>
             </div>
         </div>
     </div>
 
-
-
-    <!-- SCRIPTS -->
-
-    <!-- BOOTSTRAP JS -->
-    <script src="{{ asset('user_assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-
-    <!-- SHOW PASSWORD JS -->
-    <script src="{{ asset('user_assets/show-password.js') }}"></script>
-
-
-    <!-- END SCRIPTS -->
-
+    <!-- Bootstrap JS -->
+    <script src="{{ asset('a_assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
-
 
 </html>
