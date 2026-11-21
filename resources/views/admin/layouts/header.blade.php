@@ -21,39 +21,33 @@
     <link rel="manifest" href="{{ asset('logo/favicon/site.webmanifest') }}" />
         
 
+    <!-- Bootstrap Css -->
     <link id="style" href="{{ asset('a_assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Style Css -->
-    <link href="{{ asset('a_assets/css/styles.min.css') }}" rel="stylesheet"> <!-- Icons Css -->
-    <link href="{{ asset('a_assets/css/icons.css') }}" rel="stylesheet"> <!-- Node Waves Css -->
-    <link href="{{ asset('a_assets/css/icons.min.css') }}" rel="stylesheet"> <!-- Node Waves Css -->
-    <link href="{{ asset('a_assets/libs/node-waves/waves.min.css') }}" rel="stylesheet"> <!-- Simplebar Css -->
-    <link href="{{ asset('a_assets/libs/simplebar/simplebar.min.css') }}" rel="stylesheet"> <!-- Color Picker Css -->
-    <link rel="stylesheet" href="{{ asset('a_assets/libs/flatpickr/flatpickr.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('a_assets/libs/%40simonwep/pickr/themes/nano.min.css') }}">
-    <!-- Choices Css -->
-    <link rel="stylesheet" href="{{ asset('a_assets/libs/choices.js/public/assets/styles/choices.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('a_assets/libs/jsvectormap/css/jsvectormap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('a_assets/libs/swiper/swiper-bundle.min.css') }}">
+    <link href="{{ asset('a_assets/css/styles.css') }}" rel="stylesheet">
+    <!-- Local Icon Fonts -->
+    <link href="{{ asset('a_assets/icon-fonts/boxicons/css/boxicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('a_assets/css/icons.css') }}" rel="stylesheet">
+    <!-- Boxicons CDN Fallback -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" />
-    <!-- Choices JS -->
-    <script src="{{ asset('a_assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script> <!-- Main Theme Js -->
-    <script src="{{ asset('a_assets/js/main.js') }}"></script> <!-- Bootstrap Css -->
-    <link id="style" href="{{ asset('/a_assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- Style Css -->
-    <link href="{{ asset('a_assets/css/styles.css') }}" rel="stylesheet"> <!-- Icons Css -->
-    <link href="{{ asset('a_assets/css/icons.css') }}" rel="stylesheet"> <!-- Node Waves Css -->
-    <link href="{{ asset('a_assets/libs/node-waves/waves.min.css') }}" rel="stylesheet"> <!-- Simplebar Css -->
-    <link href="{{ asset('a_assets/libs/simplebar/simplebar.min.css') }}" rel="stylesheet"> <!-- Color Picker Css -->
+    <!-- Node Waves Css -->
+    <link href="{{ asset('a_assets/libs/node-waves/waves.min.css') }}" rel="stylesheet">
+    <!-- Simplebar Css -->
+    <link href="{{ asset('a_assets/libs/simplebar/simplebar.min.css') }}" rel="stylesheet">
+    <!-- Color Picker & Flatpickr Css -->
     <link rel="stylesheet" href="{{ asset('a_assets/libs/flatpickr/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('a_assets/libs/@simonwep/pickr/themes/nano.min.css') }}">
-    
-        <!-- Choices JS -->
-    <script src="{{ asset('a_assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script> <!-- Main Theme Js -->
-    <script src="{{ asset('a_assets/js/main.js') }}"></script> <!-- Bootstrap Css -->
-    <!-- Choices Css -->
+    <link rel="stylesheet" href="{{ asset('a_assets/libs/choices.js/public/assets/styles/choices.min.css') }}">
+    <!-- DataTables Css -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
+    <!-- Custom Admin Theme Css -->
+    <link href="{{ asset('a_assets/css/custom-admin.css') }}" rel="stylesheet">
+
+    <!-- Core Pre-load Scripts -->
+    <script src="{{ asset('a_assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+    <script src="{{ asset('a_assets/js/main.js') }}"></script>
     <meta http-equiv="imagetoolbar" content="no" />
     <style type="text/css">
         input,
@@ -450,21 +444,31 @@
                         <a href="javascript:void(0);"
                             class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown"
                             data-bs-auto-close="outside" aria-expanded="false">
-                            <div class="d-flex align-items-center">
-                                <div class="me-sm-2 me-0"> <img src="{{ asset('a_assets/images/faces/9.jpg') }}"
-                                        alt="img" width="32" height="32" class="rounded-circle"> </div>
-                                <div class="d-sm-block d-none">
-                                    <p class="fw-semibold mb-0 lh-1">Admin</p>
-                                    <!--<span class="op-7 fw-normal d-block fs-11">Web Designer</span>-->
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="position-relative">
+                                    <img src="{{ asset('a_assets/images/faces/9.jpg') }}"
+                                        alt="img" width="34" height="34" class="rounded-circle">
+                                    <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-white rounded-circle" style="width: 8px; height: 8px;"></span>
+                                </div>
+                                <div class="d-sm-block d-none text-start">
+                                    <p class="fw-bold mb-0 text-dark fs-12 lh-1">Administrator</p>
+                                    <span class="text-muted fw-medium fs-10">Control Panel</span>
                                 </div>
                             </div>
                         </a> <!-- End::header-link|dropdown-toggle -->
-                        <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
+                        <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end shadow-sm"
                             aria-labelledby="mainHeaderProfile">
-                            <li><a class="dropdown-item d-flex" href="{{ url('admin/profile') }}"><i
-                                        class="ti ti-user-circle fs-18 me-2 op-7"></i>My Profile</a></li>
-                            <li><a class="dropdown-item d-flex" href="{{ url('admin/logout') }}"><i
-                                        class="ti ti-logout fs-18 me-2 op-7"></i>Log Out</a></li>
+                            <li class="px-3 py-2 border-bottom mb-1 bg-light rounded-top">
+                                <p class="mb-0 fw-bold fs-12 text-dark">STABLE NET Admin</p>
+                                <small class="text-muted fs-11">admin@gmail.com</small>
+                            </li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="{{ url('admin/profile') }}"><i
+                                        class="bx bx-user-circle fs-16 me-2 text-primary"></i>My Profile</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="{{ url('admin/member-details') }}"><i
+                                        class="bx bx-group fs-16 me-2 text-info"></i>Members Directory</a></li>
+                            <li><hr class="dropdown-divider my-1"></li>
+                            <li><a class="dropdown-item d-flex align-items-center text-danger" href="{{ url('admin/logout') }}"><i
+                                        class="bx bx-log-out fs-16 me-2 text-danger"></i>Log Out</a></li>
                         </ul>
                     </div> <!-- End::header-element --> 
                     <!-- Start::header-element -->
@@ -689,102 +693,7 @@
                         </ul>
                     </li>
                     <li class="slide"> <a href="{{ url('admin/logout') }}" class="side-menu__item"> <i
-                                class="bx bx-log-out side-menu__icon"></i> <span class="side-menu__label">Logout<span
-                                    class="badge bg-danger-transparent ms-2"></span></span> </a> </li>
-                    <!-- End::slide --> <!-- Start::slide -->
-                    <!-- End::slide --> <!-- Start::slide__category -->
-                    {{-- <li class="slide__category"><span class="category-name">Tables & Charts</span></li> --}}
-                    <!-- End::slide__category --> <!-- Start::slide -->
-                    {{-- <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
-                                class="bx bx-table side-menu__icon"></i> <span class="side-menu__label">Tables<span
-                                    class="badge bg-success-transparent ms-2">3</span></span> <i
-                                class="fe fe-chevron-right side-menu__angle"></i> </a>
-                        <ul class="slide-menu child1">
-                            <li class="slide side-menu__label1"> <a href="javascript:void(0)">Tables</a> </li>
-                            <li class="slide"> <a href="tables.html" class="side-menu__item">Tables</a> </li>
-                            <li class="slide"> <a href="grid-tables.html" class="side-menu__item">Grid JS
-                                    Tables</a>
-                            </li>
-                            <li class="slide"> <a href="data-tables.html" class="side-menu__item">Data
-                                    Tables</a>
-                            </li>
-                        </ul>
-                    </li> <!--  End::slide --> <!-- Start::slide --> --}}
-                    {{-- <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
-                                class="bx bx-bar-chart-square side-menu__icon"></i> <span
-                                class="side-menu__label">Charts</span> <i
-                                class="fe fe-chevron-right side-menu__angle"></i> </a>
-                        <ul class="slide-menu child1">
-                            <li class="slide side-menu__label1"> <a href="javascript:void(0)">Charts</a> </li>
-                            <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item">Apex
-                                    Charts <i class="fe fe-chevron-right side-menu__angle"></i></a>
-                                <ul class="slide-menu child2">
-                                    <li class="slide"> <a href="apex-line-charts.html"
-                                            class="side-menu__item">Line
-                                            Charts</a> </li>
-                                    <li class="slide"> <a href="apex-area-charts.html"
-                                            class="side-menu__item">Area
-                                            Charts</a> </li>
-                                    <li class="slide"> <a href="apex-column-charts.html"
-                                            class="side-menu__item">Column Charts</a> </li>
-                                    <li class="slide"> <a href="apex-bar-charts.html" class="side-menu__item">Bar
-                                            Charts</a> </li>
-                                    <li class="slide"> <a href="apex-mixed-charts.html"
-                                            class="side-menu__item">Mixed Charts</a> </li>
-                                    <li class="slide"> <a href="apex-rangearea-charts.html"
-                                            class="side-menu__item">Range Area Charts</a> </li>
-                                    <li class="slide"> <a href="apex-timeline-charts.html"
-                                            class="side-menu__item">Timeline Charts</a> </li>
-                                    <li class="slide"> <a href="apex-candlestick-charts.html"
-                                            class="side-menu__item">CandleStick Charts</a> </li>
-                                    <li class="slide"> <a href="apex-boxplot-charts.html"
-                                            class="side-menu__item">Boxplot Charts</a> </li>
-                                    <li class="slide"> <a href="apex-bubble-charts.html"
-                                            class="side-menu__item">Bubble Charts</a> </li>
-                                    <li class="slide"> <a href="apex-scatter-charts.html"
-                                            class="side-menu__item">Scatter Charts</a> </li>
-                                    <li class="slide"> <a href="apex-heatmap-charts.html"
-                                            class="side-menu__item">Heatmap Charts</a> </li>
-                                    <li class="slide"> <a href="apex-treemap-charts.html"
-                                            class="side-menu__item">Treemap Charts</a> </li>
-                                    <li class="slide"> <a href="apex-pie-charts.html" class="side-menu__item">Pie
-                                            Charts</a> </li>
-                                    <li class="slide"> <a href="apex-radialbar-charts.html"
-                                            class="side-menu__item">Radialbar Charts</a> </li>
-                                    <li class="slide"> <a href="apex-radar-charts.html"
-                                            class="side-menu__item">Radar Charts</a> </li>
-                                    <li class="slide"> <a href="apex-polararea-charts.html"
-                                            class="side-menu__item">Polararea Charts</a> </li>
-                                </ul>
-                            </li>
-                            <li class="slide"> <a href="chartjs-charts.html" class="side-menu__item">Chartjs
-                                    Charts</a> </li>
-                            <li class="slide"> <a href="echarts.html" class="side-menu__item">Echart
-                                    Charts</a>
-                            </li>
-                        </ul>
-                    </li> <!-- End::slide --> <!-- Start::slide__category --> --}}
-                    {{-- <li class="slide__category"><span class="category-name">Maps & Icons</span></li> --}}
-                    <!-- End::slide__category --> <!-- Start::slide -->
-                    {{-- <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
-                                class="bx bx-map side-menu__icon"></i> <span class="side-menu__label">Maps</span> <i
-                                class="fe fe-chevron-right side-menu__angle"></i> </a>
-                        <ul class="slide-menu child1">
-                            <li class="slide side-menu__label1"> <a href="javascript:void(0)">Maps</a> </li>
-                            <li class="slide"> <a href="google-maps.html" class="side-menu__item">Google
-                                    Maps</a>
-                            </li>
-                            <li class="slide"> <a href="leaflet-maps.html" class="side-menu__item">Leaflet
-                                    Maps</a>
-                            </li>
-                            <li class="slide"> <a href="vector-maps.html" class="side-menu__item">Vector
-                                    Maps</a>
-                            </li>
-                        </ul>
-                    </li> <!-- End::slide --> <!-- Start::slide --> --}}
-                    {{-- <li class="slide"> <a href="icons.html" class="side-menu__item"> <i
-                                class="bx bx-store-alt side-menu__icon"></i> <span
-                                class="side-menu__label">Icons</span> </a> </li> <!-- End::slide --> --}}
+                                class="bx bx-log-out side-menu__icon"></i> <span class="side-menu__label">Logout</span> </a> </li>
                     </ul>
                     <!--<div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"-->
                     <!--        width="24" height="24" viewBox="0 0 24 24">-->

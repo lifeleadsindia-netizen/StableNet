@@ -4,12 +4,12 @@
     font-weight: normal;
     font-style: normal;
 
-    src: url('https://demo.bootstrap-store.ir/ddac2d3c-2326-4530-a1b8-42f299025b7b/assets/icon-fonts/boxicons/fonts/boxicons.eot');
-    src: url('https://demo.bootstrap-store.ir/ddac2d3c-2326-4530-a1b8-42f299025b7b/assets/icon-fonts/boxicons/fonts/boxicons.eot') format('embedded-opentype'),
-    url('https://demo.bootstrap-store.ir/ddac2d3c-2326-4530-a1b8-42f299025b7b/assets/icon-fonts/boxicons/fonts/boxicons.woff2') format('woff2'),
-    url('https://demo.bootstrap-store.ir/ddac2d3c-2326-4530-a1b8-42f299025b7b/assets/icon-fonts/boxicons/fonts/boxicons.woff') format('woff'),
-    url('https://demo.bootstrap-store.ir/ddac2d3c-2326-4530-a1b8-42f299025b7b/assets/icon-fonts/boxicons/fonts/boxicons.ttf') format('truetype'),
-    url('https://demo.bootstrap-store.ir/ddac2d3c-2326-4530-a1b8-42f299025b7b/assets/icon-fonts/boxicons/fonts/boxicons.svg?#boxicons') format('svg');
+    src: url('../fonts/boxicons.eot');
+    src: url('../fonts/boxicons.eot') format('embedded-opentype'),
+    url('../fonts/boxicons.woff2') format('woff2'),
+    url('../fonts/boxicons.woff') format('woff'),
+    url('../fonts/boxicons.ttf') format('truetype'),
+    url('../fonts/boxiconsd41d.svg?#boxicons') format('svg');
 }
 .bx
 {
