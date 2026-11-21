@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
     <!-- Custom Admin Theme Css -->
-    <link href="{{ asset('a_assets/css/custom-admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('a_assets/css/custom-admin.css') }}?v=1.2" rel="stylesheet">
 
     <!-- Core Pre-load Scripts -->
     <script src="{{ asset('a_assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>

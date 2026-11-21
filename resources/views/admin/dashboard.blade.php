@@ -536,11 +536,11 @@
 
                         <!-- Total's Top 3 Cards (col-4 each) -->
                         <div class="col-xxl-4 col-lg-4 col-md-4">
-                            <div class="card custom-card card-heavy card-light-indigo overflow-hidden">
+                            <div class="card custom-card card-heavy card-light-emerald overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
                                         <div>
-                                            <span class="avatar avatar-md avatar-rounded avatar-indigo">
+                                            <span class="avatar avatar-md avatar-rounded avatar-emerald">
                                                 <i class="ti ti-layers-intersect fs-18"></i>
                                             </span>
                                         </div>
@@ -578,11 +578,11 @@
                         </div>
 
                         <div class="col-xxl-4 col-lg-4 col-md-4">
-                            <div class="card custom-card card-heavy card-light-blue overflow-hidden">
+                            <div class="card custom-card card-heavy card-light-cyan overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
                                         <div>
-                                            <span class="avatar avatar-md avatar-rounded avatar-blue">
+                                            <span class="avatar avatar-md avatar-rounded avatar-cyan">
                                                 <i class="ti ti-user-plus fs-18"></i>
                                             </span>
                                         </div>
@@ -620,11 +620,11 @@
                         </div>
 
                         <div class="col-xxl-4 col-lg-4 col-md-4">
-                            <div class="card custom-card card-heavy card-light-teal overflow-hidden">
+                            <div class="card custom-card card-heavy card-light-navy overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
                                         <div>
-                                            <span class="avatar avatar-md avatar-rounded avatar-teal">
+                                            <span class="avatar avatar-md avatar-rounded avatar-navy">
                                                 <i class="ti ti-world fs-18"></i>
                                             </span>
                                         </div>
@@ -663,11 +663,11 @@
 
                         <!-- Total's Bottom 2 Cards (col-6 each) -->
                         <div class="col-xxl-6 col-lg-6 col-md-6">
-                            <div class="card custom-card card-heavy card-light-amber overflow-hidden">
+                            <div class="card custom-card card-heavy card-light-orange overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
                                         <div>
-                                            <span class="avatar avatar-md avatar-rounded avatar-amber">
+                                            <span class="avatar avatar-md avatar-rounded avatar-orange">
                                                 <i class="bx bx-transfer fs-18"></i>
                                             </span>
                                         </div>
@@ -705,11 +705,11 @@
                         </div>
 
                         <div class="col-xxl-6 col-lg-6 col-md-6">
-                            <div class="card custom-card card-heavy card-light-purple overflow-hidden">
+                            <div class="card custom-card card-heavy card-light-rose overflow-hidden">
                                 <div class="card-body">
                                     <div class="d-flex align-items-top justify-content-between">
                                         <div>
-                                            <span class="avatar avatar-md avatar-rounded avatar-purple">
+                                            <span class="avatar avatar-md avatar-rounded avatar-rose">
                                                 <i class="ti ti-trophy fs-18"></i>
                                             </span>
                                         </div>
