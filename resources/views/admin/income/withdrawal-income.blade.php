@@ -172,8 +172,8 @@
                                             <th class="text-center" style="width: 50px;">#</th>
                                             <th style="min-width: 140px;">Date & Time</th>
                                             <th style="width: 130px;">Member ID</th>
-                                            <th>From Member</th>
-                                            <th>Withdrawn By</th>
+                                            <th>Level Id</th>
+                                            <th>Name</th>
                                             <th class="text-end" style="width: 130px;">Withdrawal Amount</th>
                                             <th>Income Type</th>
                                             <th class="text-center" style="width: 90px;">Level</th>
@@ -203,7 +203,7 @@
                                                     <span class="font-monospace text-muted fs-12">{{ $list['level_id'] ?? '-' }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="fw-bold text-dark fs-13">{{ $list['name'] ?? '-' }}</span>
+                                                    <span class="fw-bold text-dark fs-13">{{ !empty($list['level_id']) ? getName($list['level_id']) : ($list['name'] ?? '-') }}</span>
                                                 </td>
                                                 <td class="text-end">
                                                     <span class="text-muted fs-13">

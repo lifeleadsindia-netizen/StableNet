@@ -40,8 +40,9 @@
                                     <tr>
                                         <th>S.No</th>
                                         <th>Date</th>
-                                        <th>From Member</th>
-                                        <th>Withdrawn By</th>
+                                        <th>Member Id</th>
+                                        <th>Level Id</th>
+                                        <th>Name</th>
                                         <th>Withdrawal Amount</th>
                                         <th>Income Type</th>
                                         <th>Level</th>
@@ -55,12 +56,16 @@
                                         <tr>
                                             <td>{{ $i }}</td>
                                             <td>{{ date('d-m-Y H:i', strtotime($list['created_at'])) }}</td>
+                                            <td>{{ $list['memberid'] }}</td>
                                             <td>{{ $list['level_id'] ?? '-' }}</td>
-                                            <td>{{ $list['name'] ?? '-' }}</td>
+                                            <td>{{ !empty($list['level_id']) ? getName($list['level_id']) : ($list['name'] ?? '-') }}</td>
                                             <td>$ {{ number_format((float) ($list['withdrawal_amount'] ?? 0), 2) }}</td>
-                                            <td><span class="badge bg-info-transparent">{{ $list['type'] ?? 'Withdrawal Income' }}</span></td>
+                                            <td><span
+                                                    class="badge bg-info-transparent">{{ $list['type'] ?? 'Withdrawal Income' }}</span>
+                                            </td>
                                             <td>{{ $list['level'] ?? '-' }}</td>
-                                            <td><strong class="text-success">$ {{ number_format((float) ($list['amount'] ?? 0), 2) }}</strong></td>
+                                            <td><strong class="text-success">$
+                                                    {{ number_format((float) ($list['amount'] ?? 0), 2) }}</strong></td>
 
                                             <td>
                                                 @if ($list['status'] == 'Paid')
@@ -139,9 +144,9 @@
     {{-- @push('script') --}}
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             //fund transfer memberid check
-            $('.packView').click(function() {
+            $('.packView').click(function () {
                 var id = $(this).prop('id');
                 $('.mySec' + id).toggle();
             });
