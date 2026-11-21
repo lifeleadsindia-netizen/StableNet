@@ -46,6 +46,14 @@
 
                             <!-- One Time Password -->
                             <div class="mb-3">
+                                @if (session()->has('walletaddress_otp'))
+                                    <div class="mb-2 p-2 px-3 rounded d-flex align-items-center justify-content-between" style="background: rgba(99, 102, 241, 0.1); border: 1px dashed #6366f1;">
+                                        <span class="text-primary fw-semibold fs-13">
+                                            <i class="fe fe-key me-1"></i> Testing OTP: <strong class="fs-16 text-dark ms-1">{{ session('walletaddress_otp') }}</strong>
+                                        </span>
+                                        <span class="badge bg-primary fs-11">Testing Mode</span>
+                                    </div>
+                                @endif
                                 <label class="form-label">One Time Password</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="walletaddress_otp" placeholder="Enter One Time Password" required>

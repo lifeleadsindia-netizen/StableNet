@@ -171,19 +171,15 @@
         var status = $('#status').val();
         if (status == 'Temp') {
             $('#activation').modal('show');
-            $('#profile_button').show();
         } else {
             $('#activation').modal('hide');
-            $('#profile_button').hide();
         }
 
-        var status = $('#ustatus').val();
-        if (status == 'Temp') {
+        var ustatus = $('#ustatus').val();
+        if (ustatus == 'Temp') {
             $('#activation').modal('show');
-            $('#profile_button').show();
         } else {
             $('#activation').modal('hide');
-            $('#profile_button').hide();
         }
 
         $('#profile_button').on('click', function() {

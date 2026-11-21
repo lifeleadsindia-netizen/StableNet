@@ -374,9 +374,8 @@ class MemberDetailController extends Controller
         //print_r($request->post());
         $id = $request->post('id');
         $var = MemberDetail::find($id);
-        $status = $var->status;
-        if ($status == 'Active') {
-            session()->flash('failedMsg', 'You are not allowed to change profile data');
+        if (!$var) {
+            session()->flash('failedMsg', 'Member not found');
             return redirect()->back();
         }
         $var->name = $request->post('name');
@@ -388,9 +387,9 @@ class MemberDetailController extends Controller
         $var->country = $request->post('country');
         if ($request->hasfile('profile_image')) {
             $file = $request->file('profile_image');
-            $extension = $file->getClientOriginalExtension();
-            if ($extension != 'png' && $extension != 'jpg' && $extension != 'jpeg') {
-                session()->flash('failedMsg', 'Allowed image type is jpg, jpeg, png. Please change image type');
+            $extension = strtolower($file->getClientOriginalExtension());
+            if ($extension != 'png' && $extension != 'jpg' && $extension != 'jpeg' && $extension != 'webp') {
+                session()->flash('failedMsg', 'Allowed image type is jpg, jpeg, png, webp. Please change image type');
                 return redirect()->back();
             }
             $filename = time() . '.' . $extension;
@@ -470,18 +469,18 @@ class MemberDetailController extends Controller
         $otp = rand(100000, 999999);
         session()->put('walletaddress_otp', $otp);
 
-        if ($email != '') {
-            $mailData = [
-                'otp' => $otp,
-                'memberid' => $memberid,
-            ];
-            $user['to'] = $email;
-            Mail::send('member.mails.withdrawal-mail', $mailData, function ($message) use ($user) {
+        // if ($email != '') {
+        //     $mailData = [
+        //         'otp' => $otp,
+        //         'memberid' => $memberid,
+        //     ];
+        //     $user['to'] = $email;
+        //     Mail::send('member.mails.withdrawal-mail', $mailData, function ($message) use ($user) {
 
-                $message->to($user['to']);
-                $message->subject('Robo9 Member Withdrawal OTP');
-            });
-        }
+        //         $message->to($user['to']);
+        //         $message->subject('Robo9 Member Withdrawal OTP');
+        //     });
+        // }
 
         session()->flash('successMsg', 'Your OTP has been sent to registered email');
         return redirect()->back();

@@ -198,15 +198,14 @@
 
                         <!-- Profile Header Details -->
                         <div class="p-4 pt-0 text-center">
-                            <div class="profile-avatar-wrapper mb-3">
-                                @if (!empty($data['profile_image']))
-                                    <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}"
-                                        class="profile-avatar-img" alt="{{ $data['name'] }}">
-                                @else
-                                    <div class="profile-avatar-initials">
-                                        {{ strtoupper(substr($data['name'] ?? 'U', 0, 1)) }}
-                                    </div>
-                                @endif
+                            <div class="profile-avatar-wrapper mb-3" id="avatar_container">
+                                <img src="{{ !empty($data['profile_image']) ? asset('uploads/' . $data['profile_image']) : '' }}"
+                                    class="profile-avatar-img {{ empty($data['profile_image']) ? 'd-none' : '' }}"
+                                    id="avatar_img_preview" alt="{{ $data['name'] }}">
+                                <div class="profile-avatar-initials {{ !empty($data['profile_image']) ? 'd-none' : '' }}"
+                                    id="avatar_initials">
+                                    {{ strtoupper(substr($data['name'] ?? 'U', 0, 1)) }}
+                                </div>
                                 <span class="online-indicator" title="Active"></span>
                             </div>
 
@@ -294,18 +293,6 @@
 
                         <!-- Card Body Form -->
                         <div class="p-4">
-                            @if ($data['status'] == 'Active')
-                                <div class="alert alert-info py-2 px-3 fs-13 mb-4 d-flex align-items-center"
-                                    style="border-radius: 10px; background: rgba(35, 183, 229, 0.12); border: 1px solid rgba(35, 183, 229, 0.3); color: #0284c7;">
-                                    <i class="ti ti-info-circle fs-18 me-2"></i>
-                                    <div>
-                                        <strong>Active Account Notice:</strong> Profile information is locked for verified
-                                        active accounts. To modify your details, please submit a ticket in the Support
-                                        section.
-                                    </div>
-                                </div>
-                            @endif
-
                             <form class="profile-form" action="{{ route('insertProfile') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -384,15 +371,20 @@
                                         <label class="custom-field-label">
                                             <i class="ti ti-photo text-purple me-2 fs-15"></i> Profile Picture
                                         </label>
-                                        <div class="upload-dropzone">
+                                        <div class="upload-dropzone" style="cursor: pointer;" onclick="document.getElementById('profile_image_input').click();">
                                             <div class="d-flex align-items-center justify-content-center flex-column">
-                                                <i class="ti ti-cloud-upload fs-32 text-muted mb-2"></i>
-                                                <p class="fs-13 fw-semibold text-dark mb-1">Click or drag & drop to choose
-                                                    a profile image</p>
-                                                <small class="text-muted mb-2">Allowed formats: JPG, JPEG, PNG (Max
-                                                    2MB)</small>
+                                                <div id="dropzone_preview_wrap" class="mb-2 d-none">
+                                                    <img id="dropzone_preview" src="" alt="Selected Preview" style="width: 72px; height: 72px; object-fit: cover; border-radius: 50%; border: 3px solid #6366f1; box-shadow: 0 4px 10px rgba(99, 102, 241, 0.25);">
+                                                </div>
+                                                <i class="ti ti-cloud-upload fs-32 text-muted mb-2" id="dropzone_icon"></i>
+                                                <p class="fs-13 fw-semibold text-dark mb-1" id="dropzone_text">Click or drag & drop to choose a profile image</p>
+                                                <small class="text-muted mb-2">Allowed formats: JPG, JPEG, PNG, WEBP (Max 2MB)</small>
                                                 <input type="file" class="form-control form-control-sm"
-                                                    name="profile_image" style="max-width: 320px;">
+                                                    id="profile_image_input"
+                                                    name="profile_image"
+                                                    accept="image/png,image/jpeg,image/jpg,image/webp"
+                                                    style="max-width: 320px;"
+                                                    onclick="event.stopPropagation();">
                                             </div>
                                         </div>
                                     </div>
@@ -418,5 +410,54 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('profile_image_input');
+            const previewImg = document.getElementById('avatar_img_preview');
+            const initials = document.getElementById('avatar_initials');
+            const dropzonePreview = document.getElementById('dropzone_preview');
+            const dropzonePreviewWrap = document.getElementById('dropzone_preview_wrap');
+            const dropzoneIcon = document.getElementById('dropzone_icon');
+            const dropzoneText = document.getElementById('dropzone_text');
+
+            if (fileInput) {
+                fileInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        // Max 2MB check
+                        if (file.size > 2 * 1024 * 1024) {
+                            alert('Image size exceeds 2MB limit. Please choose a smaller file.');
+                            fileInput.value = '';
+                            return;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = function(evt) {
+                            const imgUrl = evt.target.result;
+
+                            // Update main avatar in left sidebar card
+                            if (previewImg) {
+                                previewImg.src = imgUrl;
+                                previewImg.classList.remove('d-none');
+                            }
+                            if (initials) {
+                                initials.classList.add('d-none');
+                            }
+
+                            // Update dropzone preview
+                            if (dropzonePreview && dropzonePreviewWrap) {
+                                dropzonePreview.src = imgUrl;
+                                dropzonePreviewWrap.classList.remove('d-none');
+                                if (dropzoneIcon) dropzoneIcon.classList.add('d-none');
+                                if (dropzoneText) dropzoneText.textContent = file.name + ' selected';
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+    </script>
 
 @endsection
