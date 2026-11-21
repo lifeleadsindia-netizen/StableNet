@@ -84,27 +84,105 @@ class SupportController extends Controller
         return redirect()->back();
     }
 
-    public function newSupport()
+    public function newSupport(Request $request)
     {
         $memberid = session('MEMBER_ID');
         $result['data'] = MemberDetail::where('memberid', $memberid)->first();
-        $result['support'] = SupportTicket::where('support_status', 'New')->get();
+
+        $query = SupportTicket::where('support_status', 'New');
+
+        if ($request->filled('member_id')) {
+            $query->where('memberid', 'like', '%' . trim($request->member_id) . '%');
+        } elseif ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('ticket_id', 'like', "%{$search}%")
+                  ->orWhere('subject', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('ticket_id')) {
+            $query->where('ticket_id', 'like', '%' . trim($request->ticket_id) . '%');
+        }
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        $result['support'] = $query->orderBy('created_at', 'DESC')->get();
         return view('admin.support.new-support-ticket')->with($result);
     }
 
-    public function openSupport()
+    public function openSupport(Request $request)
     {
         $memberid = session('MEMBER_ID');
         $result['data'] = MemberDetail::where('memberid', $memberid)->first();
-        $result['support'] = SupportTicket::where([['support_status', 'Replied'], ['status', 'Open']])->get();
+
+        $query = SupportTicket::where([['support_status', 'Replied'], ['status', 'Open']]);
+
+        if ($request->filled('member_id')) {
+            $query->where('memberid', 'like', '%' . trim($request->member_id) . '%');
+        } elseif ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('ticket_id', 'like', "%{$search}%")
+                  ->orWhere('subject', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('ticket_id')) {
+            $query->where('ticket_id', 'like', '%' . trim($request->ticket_id) . '%');
+        }
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        $result['support'] = $query->orderBy('created_at', 'DESC')->get();
         return view('admin.support.open-support-ticket')->with($result);
     }
 
-    public function closeSupport()
+    public function closeSupport(Request $request)
     {
         $memberid = session('MEMBER_ID');
         $result['data'] = MemberDetail::where('memberid', $memberid)->first();
-        $result['support'] = SupportTicket::where('status', 'Closed')->get();
+
+        $query = SupportTicket::where('status', 'Closed');
+
+        if ($request->filled('member_id')) {
+            $query->where('memberid', 'like', '%' . trim($request->member_id) . '%');
+        } elseif ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('ticket_id', 'like', "%{$search}%")
+                  ->orWhere('subject', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('ticket_id')) {
+            $query->where('ticket_id', 'like', '%' . trim($request->ticket_id) . '%');
+        }
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        $result['support'] = $query->orderBy('created_at', 'DESC')->get();
         return view('admin.support.close-support-ticket')->with($result);
     }
 

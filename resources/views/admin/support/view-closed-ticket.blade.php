@@ -1,170 +1,204 @@
-@extends('admin.layouts.main') 
-@section('title', 'View Closed Tickets')
+@extends('admin.layouts.main')
+@section('title', 'Closed Ticket #' . $support['ticket_id'] . ' - Resolved')
 @section('container')
+    <div class="main-content app-content">
+        <div class="container-fluid">
 
-   <div class="main-content app-content">
-        <div class="container-fluid"> <!-- Page Header -->
-            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                <h1 class="page-title fw-semibold fs-18 mb-0">View Closed Tickets</h1>
-                <div class="ms-md-1 ms-0">
-                    <nav>
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#">View Closed Tickets</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Closed Tickets</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div> <!-- Page Header Close -->
-
-            <!-- Start::row-1 -->
-            <div class="row">
-                <div class="col-xxl-6 col-xl-8 col-lg-8 col-md-8 col-sm-12">
-                    @if (session()->has('successMsg'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('successMsg') }}
-                        </div>
-                    @endif
-                    <div class="main-chart-wrapper p-2 gap-2 d-lg-flex">
-                        <div class="chat-info border" style="display: none">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active border-0 chat-users-tab" id="users-tab-pane"
-                                    role="tabpanel" aria-labelledby="users-tab" tabindex="0">
-                                    <ul class="list-unstyled mb-0 mt-2 chat-users-tab" id="chat-msg-scroll"
-                                        data-simplebar="init">
-                                        <div class="simplebar-wrapper" style="margin: 0px">
-                                            <div class="simplebar-height-auto-observer-wrapper">
-                                                <div class="simplebar-height-auto-observer"></div>
-                                            </div>
-                                            <div class="simplebar-mask">
-                                                <div class="simplebar-offset" style="right: 0px; bottom: 0px">
-                                                    <div class="simplebar-content-wrapper" tabindex="0" role="region"
-                                                        aria-label="scrollable content"
-                                                        style="height: auto; overflow: hidden scroll">
-                                                        <div class="simplebar-content" style="padding: 0px">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="simplebar-placeholder" style="width: auto; height: 694px"></div>
+            <!-- Page Header Banner with Highlighted Background -->
+            <div class="row mb-4 mt-2">
+                <div class="col-12">
+                    <div class="card custom-card page-highlight-header mb-0">
+                        <div class="card-body p-4">
+                            <div class="d-md-flex d-block align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="header-icon-box me-3">
+                                        <span class="avatar avatar-lg avatar-rounded avatar-success">
+                                            <i class="bx bx-check-shield fs-24"></i>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                                            <h4 class="fw-bold mb-0 text-dark">Closed Ticket #{{ $support['ticket_id'] }}</h4>
+                                            <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2.5 py-0.5 fs-12 fw-semibold">
+                                                <i class="bx bx-lock-alt me-1"></i>Resolved / Closed
+                                            </span>
                                         </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="main-chat-area border show active " style="display:block">
-                            <div class="d-flex align-items-center p-2 border-bottom">
-                                <div class="me-2 lh-1">
-                                    <span class="avatar avatar-lg online me-2 avatar-rounded chatstatusperson">
-                                        <img class="chatimageperson" src="{{ asset('a_assets/images/faces/9.jpg') }}"
-                                            alt="img" />
-                                    </span>
-                                </div>
-                                <div class="flex-fill">
-                                    <p class="mb-0 fw-semibold fs-14">
-                                        <a href="javascript:void(0);"
-                                            class="chatnameperson responsive-userinfo-open">Admin</a>
-                                    </p>
-                                    <p class="text-muted mb-0 chatpersonstatus">status <span class="badge bg-danger text-white">{{$support['status']}}</span></p>
-                                </div>
-                                <div class="d-flex flex-wrap rightIcons m-2">
-                                    <a href="{{ url('/admin/support/close-support-ticket') }}"
-                                        class="btn btn-primary">Back</a>
-                                </div>
-                            </div>
-                            <div class="chat-content" id="main-chat-content" data-simplebar="init">
-                                <div class="simplebar-wrapper" style="margin: -40px">
-                                    <div class="simplebar-height-auto-observer-wrapper">
-                                        <div class="simplebar-height-auto-observer"></div>
+                                        <p class="text-muted fs-13 mb-0">{{ $support['subject'] }}</p>
                                     </div>
-                                    <div class="simplebar-mask">
-                                        <div class="simplebar-offset" style="right: 0px; bottom: 0px">
-                                            <div class="simplebar-content-wrapper" tabindex="0" role="region"
-                                                aria-label="scrollable content" style="height: auto; overflow: hidden">
-                                                <div class="simplebar-content" style="padding: 40px">
-                                                    <ul class="list-unstyled">
-                                                        {{-- <li class="chat-day-label"><span>Today</span></li> --}}
-                                                        @foreach ($tictext as $item)
-                                                            @if ($item['written_by'] == 'Admin')
-                                                                <li class="chat-item-start">
-                                                                    <div class="chat-list-inner">
-                                                                        <div class="chat-user-profile">
-                                                                            <span
-                                                                                class="avatar avatar-md online avatar-rounded chatstatusperson">
-                                                                                <img class="chatimageperson"
-                                                                                    src="{{ asset('a_assets/images/faces/9.jpg') }}"
-                                                                                    alt="img" />
-                                                                            </span>
-                                                                        </div>
-                                                                        <div class="ms-3">
-                                                                            <span class="chatting-user-info">
-                                                                                <span class="chatnameperson">Admin</span>
-                                                                                <span
-                                                                                    class="msg-sent-time">{{ date('H:i a', strtotime($item['created_at'])) }}</span>
-                                                                            </span>
-                                                                            <div class="main-chat-msg"
-                                                                                style="padding: 0px">
-                                                                                <div>
-                                                                                    <p class="mb-0">{{ $item['text'] }}
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            @else
-                                                                <li class="chat-item-end">
-                                                                    <div class="chat-list-inner">
-                                                                        <div class="me-3">
-                                                                            <span class="chatting-user-info">
-                                                                                <span class="msg-sent-time"><span
-                                                                                        class="chat-read-mark align-middle d-inline-flex"><i
-                                                                                            class="ri-check-double-line"></i></span>{{ date('H:i a', strtotime($item['created_at'])) }}</span>
-                                                                                {{ $support['memberid'] }}
-                                                                            </span>
-                                                                            <div class="main-chat-msg">
-                                                                                <div>
-                                                                                    <p class="mb-0">{{ $item['text'] }}
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="chat-user-profile">
-                                                                            <span
-                                                                                class="avatar avatar-md online avatar-rounded">
-                                                                                @if (getProfileImage($item['ticket_id']) == '')
-                                                                                    <img src="{{ asset('a_assets/images/faces/15.jpg') }}"
-                                                                                        alt="img" />
-                                                                                @else
-                                                                                    <img src="{{ asset('uploads') }}/{{ getProfileImage($item['ticket_id']) }}"
-                                                                                        alt="img" />
-                                                                                @endif
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            @endif
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="simplebar-placeholder" style="width: 0px; height: 0px"></div>
                                 </div>
-                                <div class="simplebar-track simplebar-horizontal" style="visibility: hidden">
-                                    <div class="simplebar-scrollbar" style="width: 0px; display: none"></div>
-                                </div>
-                                <div class="simplebar-track simplebar-vertical" style="visibility: hidden">
-                                    <div class="simplebar-scrollbar"
-                                        style="height: 0px; transform: translate3d(0px, 0px, 0px); display: none;">
-                                    </div>
+                                <div class="mt-md-0 mt-3 d-flex align-items-center gap-2 flex-wrap">
+                                    <a href="{{ url('admin/support/close-support-ticket') }}" class="btn btn-light border btn-sm px-3 d-flex align-items-center">
+                                        <i class="bx bx-arrow-back me-1 fs-15"></i> Back to Closed Tickets
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Alerts Section -->
+            @if (session()->has('successMsg'))
+                <div class="alert custom-alert custom-alert-success alert-dismissible fade show d-flex align-items-center justify-content-between mb-4" role="alert">
+                    <div class="d-flex align-items-center">
+                        <i class="bx bx-check-circle fs-20 me-2 text-success"></i>
+                        <span>{{ session('successMsg') }}</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <!-- Main Content Grid -->
+            <div class="row g-4">
+
+                <!-- Left Column: Ticket Info & Member Details -->
+                <div class="col-xl-4 col-lg-5">
+                    <div class="card custom-card card-heavy mb-4">
+                        <div class="card-header border-bottom py-3">
+                            <div class="d-flex align-items-center">
+                                <span class="avatar avatar-xs avatar-rounded bg-success-subtle text-success me-2">
+                                    <i class="bx bx-info-circle fs-15"></i>
+                                </span>
+                                <h6 class="card-title mb-0 fw-bold fs-14">Closed Ticket Archive</h6>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex flex-column gap-3">
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted fs-12 fw-medium">Ticket ID</span>
+                                    <div class="d-flex align-items-center gap-1">
+                                        <span class="font-monospace fw-bold text-dark fs-12">#{{ $support['ticket_id'] }}</span>
+                                        <button type="button" class="btn btn-icon btn-sm btn-light border-0 text-muted p-0"
+                                            style="width: 20px; height: 20px;"
+                                            onclick="navigator.clipboard.writeText('{{ $support['ticket_id'] }}')"
+                                            title="Copy Ticket ID">
+                                            <i class="bx bx-copy fs-12"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted fs-12 fw-medium">Member ID</span>
+                                    <div class="d-flex align-items-center gap-1.5">
+                                        <span class="badge bg-primary-subtle text-primary font-monospace px-2 py-0.5 fs-11 fw-bold">
+                                            {{ $support['memberid'] }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted fs-12 fw-medium">Member Name</span>
+                                    <span class="fw-semibold text-dark fs-12.5">{{ getName($support['memberid']) }}</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted fs-12 fw-medium">Submitted On</span>
+                                    <span class="fw-semibold text-dark fs-12">{{ date('d M Y, h:i A', strtotime($support['created_at'])) }}</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted fs-12 fw-medium">Ticket Status</span>
+                                    <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-semibold">
+                                        <i class="bx bx-lock-alt me-1"></i>Closed
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <span class="text-muted fs-12 fw-medium d-block mb-1">Subject</span>
+                                    <p class="fw-bold text-dark fs-13 mb-0 p-2.5 bg-light rounded border">
+                                        {{ $support['subject'] }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Conversation Thread History -->
+                <div class="col-xl-8 col-lg-7">
+                    <div class="ticket-chat-card mb-4">
+                        <div class="ticket-chat-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                            <div class="d-flex align-items-center">
+                                <span class="avatar avatar-sm avatar-rounded bg-success-subtle text-success me-2">
+                                    <i class="bx bx-history fs-16"></i>
+                                </span>
+                                <div>
+                                    <h6 class="mb-0 fw-bold text-dark fs-14">Ticket Thread Archive</h6>
+                                    <small class="text-muted fs-11">Total {{ count($tictext) }} message(s) in this resolved ticket</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-secondary-subtle text-secondary border px-2.5 py-1 fs-11">
+                                <i class="bx bx-lock-alt me-1"></i>Thread Closed
+                            </span>
+                        </div>
+
+                        <!-- Chat Messages Container -->
+                        <div class="ticket-chat-body" id="closedTicketChatBody">
+                            @forelse ($tictext->reverse() as $item)
+                                @if ($item['written_by'] == 'Admin')
+                                    <!-- Admin Message (Right Side) -->
+                                    <div class="ticket-msg-row msg-admin">
+                                        <div class="ticket-msg-avatar admin-avatar" title="Admin Support">
+                                            <i class="bx bx-shield-quarter"></i>
+                                        </div>
+                                        <div>
+                                            <div class="ticket-bubble">
+                                                {{ $item['text'] }}
+                                            </div>
+                                            <div class="ticket-msg-meta">
+                                                <span class="fw-semibold text-primary">Admin</span>
+                                                <span>•</span>
+                                                <span>{{ date('d M, h:i A', strtotime($item['created_at'])) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <!-- Member Message (Left Side) -->
+                                    <div class="ticket-msg-row msg-member">
+                                        <div class="ticket-msg-avatar member-avatar" title="{{ $support['memberid'] }}">
+                                            <i class="bx bx-user"></i>
+                                        </div>
+                                        <div>
+                                            <div class="ticket-bubble">
+                                                {{ $item['text'] }}
+                                            </div>
+                                            <div class="ticket-msg-meta">
+                                                <span class="fw-semibold text-dark">{{ getName($support['memberid']) }} ({{ $support['memberid'] }})</span>
+                                                <span>•</span>
+                                                <span>{{ date('d M, h:i A', strtotime($item['created_at'])) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @empty
+                                <div class="text-center py-5 text-muted">
+                                    <i class="bx bx-message-rounded-minus fs-40 mb-2 opacity-50"></i>
+                                    <p class="mb-0 fs-13">No messages recorded in this conversation.</p>
+                                </div>
+                            @endforelse
+                        </div>
+
+                        <!-- Closed Ticket Notice Footer -->
+                        <div class="ticket-chat-footer bg-light text-center py-3">
+                            <span class="text-muted fs-12 fw-semibold">
+                                <i class="bx bx-check-circle text-success me-1"></i> This ticket has been resolved and closed. It is kept for historical reference.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
+    <!-- Auto Scroll Chat to Bottom -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatBody = document.getElementById('closedTicketChatBody');
+            if (chatBody) {
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+        });
+    </script>
 @endsection

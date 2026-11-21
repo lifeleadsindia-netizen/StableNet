@@ -2,163 +2,321 @@
 @section('title', 'Payment History')
 @section('container')
     <div class="main-content app-content">
-        <div class="container-fluid"> <!-- Page Header -->
-             <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                <h1 class="page-title fw-semibold fs-18 mb-0">Payment History</h1>
-                <!--<span>{{ __('Payment History Details') }}</span>-->
+        <div class="container-fluid">
 
-                <div class="ms-md-1 ms-0">
-                    <nav>
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Payment History</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div> <!-- Page Header Close -->
-            <!-- Start::row-1 -->
-            <div class="row">
-                <div class="col-md-12">
-                    @if (session()->has('wMessage'))
-                        <div class="alert alert-primary">{{ session('wMessage') }}</div>
-                    @endif
-                    <div class="card custom-card">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title"> Payment History Details</div>
-                        </div>
-                        <div class="card-body">
-                            <table id="file-export" class="table table-bordered text-nowrap w-100 dataTable no-footer"
-                                aria-describedby="file-export_info">
-                                <thead>
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Request Date</th>
-                                        <th>Member Id</th>
-                                        <th>Name</th>
-                                        <!--<th>Type</th>-->
-                                        <th>Wallet Address</th>
-                                        <th>Gross</th>
-                                        <th>Charges</th>
-                                        <th>Net </th>
-                                        <th>Payment Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $i = 1;  @endphp
-                                    @foreach ($data as $list)
-                                        <tr>
-                                            <td>{{ $i }}</td>
-                                            <td>{{ $list['request_date'] }}</td>
-                                            <td>{{ $list['memberid'] }}</td>
-                                            <td>{{ getName($list['memberid']) }}</td>
-                                            <!--<td>-->
-                                            <!--    @if ($list['type'] == 'Coin')-->
-                                            <!--        <span class="badge badge-warning"><b>{{ $list['type'] }}</b></span>-->
-                                            <!--    @else-->
-                                            <!--        <span class="badge badge-primary"><b>{{ $list['type'] }}</b></span>-->
-                                            <!--    @endif-->
-
-                                            <!--</td>-->
-                                            <td>{{ $list['wallet_address'] }}</td>
-                                            <td>
-                                                @if ($list['type'] == 'Coin')
-                                                    {{ number_format($list['gross_amount'], 2) }}
-                                                @else
-                                                    ${{ number_format($list['gross_amount'],2) }}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($list['type'] == 'Coin')
-                                                    {{ number_format($list['service_charge'], 2) }}
-                                                @else
-                                                    ${{ number_format($list['service_charge'],2) }}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($list['type'] == 'Coin')
-                                                    {{ number_format($list['net_amount'], 2) }}
-                                                @else
-                                                    ${{ number_format($list['net_amount'],2) }}
-                                                @endif
-                                            </td>
-                                            <td>{{ $list['payment_date'] }}</td>
-                                        </tr>
-                                        @php $i++;  @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
+            <!-- Page Header Banner with Highlighted Background -->
+            <div class="row mb-4 mt-2">
+                <div class="col-12">
+                    <div class="card custom-card page-highlight-header mb-0">
+                        <div class="card-body p-4">
+                            <div class="d-md-flex d-block align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="header-icon-box me-3">
+                                        <span class="avatar avatar-lg avatar-rounded avatar-teal">
+                                            <i class="bx bx-check-shield fs-24"></i>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                            <h4 class="fw-bold mb-0 text-dark">Payment History</h4>
+                                            <span class="badge bg-teal-subtle text-teal border border-teal-subtle rounded-pill px-2.5 py-0.5 fs-12 fw-semibold">
+                                                Paid Withdrawals
+                                            </span>
+                                        </div>
+                                        <p class="text-muted fs-13 mb-0">Comprehensive record of all successfully processed and disbursed member withdrawals</p>
+                                    </div>
+                                </div>
+                                <div class="mt-md-0 mt-3 d-flex align-items-center gap-3">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb mb-0">
+                                            <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}" class="text-primary"><i class="bx bx-home-alt me-1"></i>Dashboard</a></li>
+                                            <li class="breadcrumb-item text-muted">Payment Management</li>
+                                            <li class="breadcrumb-item active text-muted" aria-current="page">Payment History</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Alerts Section -->
+            @if (session()->has('wMessage'))
+                <div class="alert custom-alert custom-alert-success alert-dismissible fade show d-flex align-items-center justify-content-between mb-4" role="alert">
+                    <div class="d-flex align-items-center">
+                        <i class="bx bx-check-circle fs-20 me-2 text-success"></i>
+                        <span>{{ session('wMessage') }}</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <!-- Page-Specific Filters Card -->
+            <div class="card custom-card card-filter">
+                <div class="filter-header d-flex align-items-center justify-content-between flex-wrap gap-2">
+                    <div class="d-flex align-items-center">
+                        <span class="avatar avatar-xs avatar-rounded bg-primary-subtle text-primary me-2">
+                            <i class="bx bx-filter-alt fs-15"></i>
+                        </span>
+                        <div>
+                            <h6 class="mb-0 fw-bold text-dark fs-14">Payment History Search & Date Filters</h6>
+                            <small class="text-muted fs-11">Search directly by Member ID or filter by payment date range</small>
+                        </div>
+                    </div>
+                    <!-- Quick Date Presets -->
+                    <div class="d-flex align-items-center gap-1 flex-wrap">
+                        <span class="text-muted fs-11 me-1 fw-semibold">Quick Date Presets:</span>
+                        <button type="button" class="quick-preset-btn" onclick="applyPreset('today')">Today</button>
+                        <button type="button" class="quick-preset-btn" onclick="applyPreset('yesterday')">Yesterday</button>
+                        <button type="button" class="quick-preset-btn" onclick="applyPreset('7days')">Last 7 Days</button>
+                        <button type="button" class="quick-preset-btn" onclick="applyPreset('month')">This Month</button>
+                        <button type="button" class="quick-preset-btn" onclick="applyPreset('all')">Show All</button>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+                    <form method="GET" action="{{ url('admin/payment-history') }}" id="paymentFilterForm">
+                        <div class="row g-3 align-items-end">
+
+                            <!-- Member ID Filter -->
+                            <div class="col-lg-4 col-md-6">
+                                <label class="form-label-custom fw-semibold mb-1">
+                                    <i class="bx bx-id-card text-primary me-1"></i> Member ID
+                                </label>
+                                <div class="input-group filter-input-group">
+                                    <span class="input-group-text"><i class="bx bx-user fs-15"></i></span>
+                                    <input type="text" name="member_id" class="form-control"
+                                        placeholder="Enter Member ID (e.g. SC1234567)"
+                                        value="{{ request('member_id') ?? request('search') }}" autofocus>
+                                </div>
+                            </div>
+
+                            <!-- From Date -->
+                            <div class="col-lg-3 col-md-6">
+                                <label class="form-label-custom fw-semibold mb-1">
+                                    <i class="bx bx-calendar text-primary me-1"></i> From Date
+                                </label>
+                                <div class="input-group filter-input-group">
+                                    <span class="input-group-text"><i class="bx bx-calendar fs-15"></i></span>
+                                    <input type="date" name="start_date" id="startDate" class="form-control"
+                                        value="{{ request('start_date') }}">
+                                </div>
+                            </div>
+
+                            <!-- To Date -->
+                            <div class="col-lg-3 col-md-6">
+                                <label class="form-label-custom fw-semibold mb-1">
+                                    <i class="bx bx-calendar-check text-primary me-1"></i> To Date
+                                </label>
+                                <div class="input-group filter-input-group">
+                                    <span class="input-group-text"><i class="bx bx-calendar-check fs-15"></i></span>
+                                    <input type="date" name="end_date" id="endDate" class="form-control"
+                                        value="{{ request('end_date') }}">
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="col-lg-2 col-md-12 d-flex gap-2">
+                                <button type="submit" class="btn btn-signin w-100 py-2 d-inline-flex align-items-center justify-content-center gap-1">
+                                    <i class="bx bx-search fs-15"></i> Search
+                                </button>
+                                <a href="{{ url('admin/payment-history') }}" class="btn btn-light border py-2 px-3 d-inline-flex align-items-center justify-content-center"
+                                   title="Reset Filters">
+                                    <i class="bx bx-reset fs-16"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Payment History Table Card -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card custom-card card-heavy">
+                        <div class="card-header border-bottom py-3 px-4 d-flex align-items-center justify-content-between bg-white flex-wrap gap-2">
+                            <div class="d-flex align-items-center">
+                                <span class="avatar avatar-sm avatar-rounded avatar-teal me-2">
+                                    <i class="bx bx-check-shield fs-16"></i>
+                                </span>
+                                <div>
+                                    <h5 class="card-title mb-0 fw-bold text-dark fs-15">Disbursed Withdrawals Log</h5>
+                                    <small class="text-muted fs-11">Total records matching query: {{ count($data) }}</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge bg-teal-subtle text-teal border border-teal-subtle rounded-pill px-3 py-1 fs-12 fw-semibold">
+                                    <i class="bx bx-receipt me-1"></i> {{ count($data) }} Paid
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card-body p-4">
+                            <div class="table-responsive dash-table-wrapper bg-white">
+                                <table id="file-export" class="table table-hover align-middle w-100 text-nowrap mb-0"
+                                    aria-describedby="file-export_info">
+                                    <thead class="dash-table-head">
+                                        <tr>
+                                            <th class="text-center" style="width: 50px;">#</th>
+                                            <th style="min-width: 140px;">Request Date</th>
+                                            <th style="width: 130px;">Member ID</th>
+                                            <th>Member Name</th>
+                                            <th style="min-width: 220px;">Wallet Address</th>
+                                            <th class="text-end" style="width: 110px;">Gross</th>
+                                            <th class="text-end" style="width: 100px;">Charges</th>
+                                            <th class="text-end" style="width: 120px;">Net Paid</th>
+                                            <th style="min-width: 140px;">Payment Date</th>
+                                            <th class="text-center" style="width: 110px;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $i = 1; @endphp
+                                        @forelse ($data as $list)
+                                            <tr class="dash-table-row">
+                                                <td class="text-center fw-semibold text-muted">{{ $i }}</td>
+                                                <td>
+                                                    <span class="fw-semibold text-dark fs-12 d-block">
+                                                        {{ date('d M, Y', strtotime($list['request_date'])) }}
+                                                    </span>
+                                                    <small class="text-muted fs-11">
+                                                        {{ date('h:i:s A', strtotime($list['request_date'])) }}
+                                                    </small>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-1 fw-bold fs-12 d-inline-flex align-items-center gap-1">
+                                                        <i class="bx bx-id-card"></i> {{ $list['memberid'] }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-bold text-dark fs-13">{{ getName($list['memberid']) }}</span>
+                                                </td>
+                                                <td>
+                                                    @if(!empty($list['wallet_address']))
+                                                        <div class="d-inline-flex align-items-center gap-1 bg-light px-2 py-1 rounded border">
+                                                            <span class="font-monospace fs-11 text-dark">{{ Str::limit($list['wallet_address'], 18) }}</span>
+                                                            <button type="button" class="btn btn-sm btn-link p-0 text-muted"
+                                                                title="Copy Full Address"
+                                                                onclick="copyText('{{ $list['wallet_address'] }}', this)">
+                                                                <i class="bx bx-copy fs-14"></i>
+                                                            </button>
+                                                        </div>
+                                                    @else
+                                                        <span class="text-muted fs-12">-</span>
+                                                    @endif
+                                                </td>
+                                                <td class="text-end">
+                                                    <span class="text-muted fs-13">
+                                                        $ {{ number_format((float)$list['gross_amount'], 2) }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <span class="text-muted fs-12">
+                                                        $ {{ number_format((float)$list['service_charge'], 2) }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <span class="fw-bold text-success fs-14">
+                                                        $ {{ number_format((float)$list['net_amount'], 2) }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold text-dark fs-12 d-block">
+                                                        {{ !empty($list['payment_date']) ? date('d M, Y', strtotime($list['payment_date'])) : '-' }}
+                                                    </span>
+                                                    @if(!empty($list['payment_date']))
+                                                        <small class="text-muted fs-11">{{ date('h:i:s A', strtotime($list['payment_date'])) }}</small>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2.5 py-1 fs-11 fw-bold">
+                                                        <i class="bx bx-check-double me-0.5"></i> Paid
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            @php $i++; @endphp
+                                        @empty
+                                            <tr>
+                                                <td colspan="10" class="text-center py-5">
+                                                    <div class="empty-state py-4">
+                                                        <span class="avatar avatar-xl avatar-rounded bg-light text-muted mb-3">
+                                                            <i class="bx bx-check-shield fs-28"></i>
+                                                        </span>
+                                                        <h6 class="fw-bold text-dark mb-1">No Payment Records Found</h6>
+                                                        <p class="text-muted fs-13 mb-3">No paid withdrawal records match your filter criteria.</p>
+                                                        <a href="{{ url('admin/payment-history') }}" class="btn btn-sm btn-signin rounded-pill px-3.5 py-2">
+                                                            <i class="bx bx-reset me-1"></i> Reset Filters
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="input-group"> <a href="javascript:void(0);" class="input-group-text" id="Search-Grid"><i
-                                class="fe fe-search header-link-icon fs-18"></i></a> <input type="search"
-                            class="form-control border-0 px-2" placeholder="Search" aria-label="Username"> <a
-                            href="javascript:void(0);" class="input-group-text" id="voice-search"><i
-                                class="fe fe-mic header-link-icon"></i></a> <a href="javascript:void(0);"
-                            class="btn btn-light btn-icon" data-bs-toggle="dropdown" aria-expanded="false"> <i
-                                class="fe fe-more-vertical"></i> </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-                    <div class="mt-4">
-                        <p class="font-weight-semibold text-muted mb-2">Are You Looking For...</p><span
-                            class="search-tags"><i class="fe fe-user me-2"></i>People<a href="javascript:void(0)"
-                                class="tag-addon"><i class="fe fe-x"></i></a></span> <span class="search-tags"><i
-                                class="fe fe-file-text me-2"></i>Pages<a href="javascript:void(0)" class="tag-addon"><i
-                                    class="fe fe-x"></i></a></span> <span class="search-tags"><i
-                                class="fe fe-align-left me-2"></i>Articles<a href="javascript:void(0)" class="tag-addon"><i
-                                    class="fe fe-x"></i></a></span> <span class="search-tags"><i
-                                class="fe fe-server me-2"></i>Tags<a href="javascript:void(0)" class="tag-addon"><i
-                                    class="fe fe-x"></i></a></span>
-                    </div>
-                    <div class="my-4">
-                        <p class="font-weight-semibold text-muted mb-2">Recent Search :</p>
-                        <div class="p-2 border br-5 d-flex align-items-center text-muted mb-2 alert"> <a
-                                href="notifications.html"><span>Notifications</span></a> <a class="ms-auto lh-1"
-                                href="javascript:void(0);" data-bs-dismiss="alert" aria-label="Close"><i
-                                    class="fe fe-x text-muted"></i></a> </div>
-                        <div class="p-2 border br-5 d-flex align-items-center text-muted mb-2 alert"> <a
-                                href="alerts.html"><span>Alerts</span></a> <a class="ms-auto lh-1"
-                                href="javascript:void(0);" data-bs-dismiss="alert" aria-label="Close"><i
-                                    class="fe fe-x text-muted"></i></a> </div>
-                        <div class="p-2 border br-5 d-flex align-items-center text-muted mb-0 alert"> <a
-                                href="mail.html"><span>Mail</span></a> <a class="ms-auto lh-1" href="javascript:void(0);"
-                                data-bs-dismiss="alert" aria-label="Close"><i class="fe fe-x text-muted"></i></a> </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="btn-group ms-auto"> <button class="btn btn-sm btn-primary-light">Search</button>
-                        <button class="btn btn-sm btn-primary">Clear Recents</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- Footer Start -->
 
-    {{-- @push('script') --}}
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- Quick Date Presets & Copy Script -->
     <script>
-        $(document).ready(function() {
-            //fund transfer memberid check
-            $('.packView').click(function() {
-                var id = $(this).prop('id');
-                $('.mySec' + id).toggle();
+        function applyPreset(preset) {
+            const startInput = document.getElementById('startDate');
+            const endInput = document.getElementById('endDate');
+            const today = new Date();
+
+            const formatDate = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+
+            if (preset === 'today') {
+                const todayStr = formatDate(today);
+                startInput.value = todayStr;
+                endInput.value = todayStr;
+            } else if (preset === 'yesterday') {
+                const yesterday = new Date();
+                yesterday.setDate(today.getDate() - 1);
+                const yesterdayStr = formatDate(yesterday);
+                startInput.value = yesterdayStr;
+                endInput.value = yesterdayStr;
+            } else if (preset === '7days') {
+                const sevenDaysAgo = new Date();
+                sevenDaysAgo.setDate(today.getDate() - 7);
+                startInput.value = formatDate(sevenDaysAgo);
+                endInput.value = formatDate(today);
+            } else if (preset === 'month') {
+                const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+                startInput.value = formatDate(firstDay);
+                endInput.value = formatDate(today);
+            } else if (preset === 'all') {
+                startInput.value = '';
+                endInput.value = '';
+                const mId = document.querySelector('input[name="member_id"]');
+                if (mId) mId.value = '';
+            }
+
+            document.getElementById('paymentFilterForm').submit();
+        }
+
+        function copyText(text, btn) {
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.className = 'bx bx-check text-success fs-14';
+                    setTimeout(() => {
+                        icon.className = 'bx bx-copy fs-14';
+                    }, 1800);
+                }
             });
-        });
+        }
     </script>
-    {{-- @endpush --}}
 @endsection

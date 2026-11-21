@@ -199,15 +199,91 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function details()
+    public function details(Request $request)
     {
-        $result['data'] = MemberDetail::orderby('created_at', 'desc')->get();
+        $query = MemberDetail::query();
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+        if ($request->filled('status') && $request->status !== 'all') {
+            if ($request->status === 'Inactive') {
+                $query->where(function ($q) {
+                    $q->where('status', 'Inactive')
+                      ->orWhereNull('status')
+                      ->orWhere('status', '');
+                });
+            } else {
+                $query->where('status', $request->status);
+            }
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('mobile', 'like', "%{$search}%")
+                  ->orWhere('sponsorid', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'desc')->get();
+        $result['filters'] = $request->only(['start_date', 'end_date', 'status', 'search']);
+        $result['total_members'] = MemberDetail::count();
+        $result['active_members'] = MemberDetail::where('status', 'Active')->count();
+        $result['inactive_members'] = MemberDetail::where(function ($q) {
+            $q->where('status', 'Inactive')->orWhereNull('status')->orWhere('status', '');
+        })->count();
+        $result['blocked_members'] = MemberDetail::where('status', 'Blocked')->count();
+
         return view('admin.mem_management.member-details')->with($result);
     }
 
-    public function security()
+    public function security(Request $request)
     {
-        $result['data'] = MemberDetail::orderby('created_at', 'desc')->get();
+        $query = MemberDetail::query();
+
+        // 1. Specific Member ID Filter
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+
+        // 2. Date Range Filters
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        // 3. Optional Keyword Search (Member ID, Name, Mobile, Email)
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%")
+                  ->orWhere('mobile', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'desc')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
+        $result['total_members'] = MemberDetail::count();
+        $result['active_members'] = MemberDetail::where('status', 'Active')->count();
+        $result['inactive_members'] = MemberDetail::where(function ($q) {
+            $q->where('status', 'Inactive')->orWhereNull('status')->orWhere('status', '');
+        })->count();
+        $result['blocked_members'] = MemberDetail::where('status', 'Blocked')->count();
 
         return view('admin.mem_management.member-security')->with($result);
     }
@@ -328,9 +404,51 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function accountControl()
+    public function accountControl(Request $request)
     {
-        $result['data'] = MemberDetail::where('status', '!=', 'Temp')->orderby('created_at', 'desc')->get();
+        $query = MemberDetail::where('status', '!=', 'Temp');
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+        if ($request->filled('status') && $request->status !== 'all') {
+            if ($request->status === 'Inactive') {
+                $query->where(function ($q) {
+                    $q->where('status', 'Inactive')
+                      ->orWhereNull('status')
+                      ->orWhere('status', '');
+                });
+            } else {
+                $query->where('status', $request->status);
+            }
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('mobile', 'like', "%{$search}%")
+                  ->orWhere('sponsorid', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'desc')->get();
+        $result['filters'] = $request->only(['start_date', 'end_date', 'status', 'search']);
+        $result['total_accounts'] = MemberDetail::where('status', '!=', 'Temp')->count();
+        $result['active_accounts'] = MemberDetail::where('status', 'Active')->count();
+        $result['blocked_accounts'] = MemberDetail::where('status', 'Blocked')->count();
+        $result['inactive_accounts'] = MemberDetail::where('status', '!=', 'Temp')->where(function ($q) {
+            $q->where('status', 'Inactive')->orWhereNull('status')->orWhere('status', '');
+        })->count();
+
         return view('admin.mem_management.account-control')->with($result);
     }
 
@@ -360,9 +478,43 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function walletAddress()
+    public function walletAddress(Request $request)
     {
-        $result['data'] = MemberDetail::orderby('created_at', 'DESC')->get();
+        $query = MemberDetail::query();
+
+        // 1. Member ID Filter
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+
+        // 2. Date Range Filters
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        // 3. Optional Keyword Search (Member ID, Name, Wallet Address)
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%")
+                  ->orWhere('wallet_address', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
+        $result['total_members'] = MemberDetail::count();
+        $result['wallet_configured'] = MemberDetail::whereNotNull('wallet_address')->where('wallet_address', '!=', '')->count();
+        $result['wallet_missing'] = MemberDetail::where(function ($q) {
+            $q->whereNull('wallet_address')->orWhere('wallet_address', '');
+        })->count();
+        $result['active_members'] = MemberDetail::where('status', 'Active')->count();
+
         return view('admin.mem_management.wallet-address')->with($result);
     }
 
@@ -390,9 +542,33 @@ class AdminController extends Controller
         return view('admin.income.level-details')->with($result);
     }
 
-    public function levelIncomes()
+    public function levelIncomes(Request $request)
     {
-        $result['data'] = LevelIncome::where('status', 'Paid')->orderby('created_at', 'DESC')->get();
+        $query = LevelIncome::query();
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('level') && $request->level !== 'all') {
+            $query->where('level', $request->level);
+        }
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('level_id', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'level', 'start_date', 'end_date', 'search']);
         return view('admin.income.level-income')->with($result);
     }
 
@@ -402,28 +578,144 @@ class AdminController extends Controller
         return view('admin.income.rank-incomes')->with($result);
     }
 
-    public function packageDetails()
+    public function packageDetails(Request $request)
     {
-        $result['packagedata'] = PackageDetail::all();
+        $query = PackageDetail::query();
+
+        // 1. Member ID Filter
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+
+        // 2. Date Range Filter
+        if ($request->filled('start_date')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereDate('txn_date', '>=', $request->start_date)
+                  ->orWhereDate('created_at', '>=', $request->start_date);
+            });
+        }
+        if ($request->filled('end_date')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereDate('txn_date', '<=', $request->end_date)
+                  ->orWhereDate('created_at', '<=', $request->end_date);
+            });
+        }
+
+        // 3. Keyword Search
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('order_id', 'like', "%{$search}%")
+                  ->orWhere('txnid', 'like', "%{$search}%");
+            });
+        }
+
+        $result['packagedata'] = $query->orderBy('id', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.package-details')->with($result);
     }
 
-    public function withdrawals()
+    public function withdrawals(Request $request)
     {
-        $result['withdrawlData'] = WithdrawalRequest::where('status', 'Pending')->orderby('created_at', 'DESC')->get();
+        $query = WithdrawalRequest::where('status', 'Pending');
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereDate('request_date', '>=', $request->start_date)
+                  ->orWhereDate('created_at', '>=', $request->start_date);
+            });
+        }
+        if ($request->filled('end_date')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereDate('request_date', '<=', $request->end_date)
+                  ->orWhereDate('created_at', '<=', $request->end_date);
+            });
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('wallet_address', 'like', "%{$search}%");
+            });
+        }
+
+        $result['withdrawlData'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.new-withdrawal-request')->with($result);
     }
 
-    public function cancelledRequest()
+    public function cancelledRequest(Request $request)
     {
-        $result['data'] = WithdrawalRequest::where('status', 'Cancelled')->get();
+        $query = WithdrawalRequest::where('status', 'Cancelled');
 
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereDate('request_date', '>=', $request->start_date)
+                  ->orWhereDate('created_at', '>=', $request->start_date);
+            });
+        }
+        if ($request->filled('end_date')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereDate('request_date', '<=', $request->end_date)
+                  ->orWhereDate('created_at', '<=', $request->end_date);
+            });
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('wallet_address', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.cancelled-request')->with($result);
     }
 
-    public function paymentHistory()
+    public function paymentHistory(Request $request)
     {
-        $result['data'] = WithdrawalRequest::where('status', 'Approved')->get();
+        $query = WithdrawalRequest::where('status', 'Approved');
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereDate('request_date', '>=', $request->start_date)
+                  ->orWhereDate('payment_date', '>=', $request->start_date)
+                  ->orWhereDate('created_at', '>=', $request->start_date);
+            });
+        }
+        if ($request->filled('end_date')) {
+            $query->where(function ($q) use ($request) {
+                $q->whereDate('request_date', '<=', $request->end_date)
+                  ->orWhereDate('payment_date', '<=', $request->end_date)
+                  ->orWhereDate('created_at', '<=', $request->end_date);
+            });
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('wallet_address', 'like', "%{$search}%")
+                  ->orWhere('txnid', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.payment-history')->with($result);
     }
 
@@ -433,10 +725,9 @@ class AdminController extends Controller
         return view('admin.p2p-fund-transfer')->with($result);
     }
 
-    public function withdrawlHistory()
+    public function withdrawlHistory(Request $request)
     {
-        $result['data'] = WithdrawalRequest::where('status', 'Approved')->get();
-        return view('admin.payment-history')->with($result);
+        return $this->paymentHistory($request);
     }
 
     public function wAcceptOnline($id)
@@ -655,28 +946,109 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function addFundsDetails()
+    public function addFundsDetails(Request $request)
     {
-        $result['data'] = ImportFund::where('added_by', 'Admin')->orderby('created_at', 'DESC')->get();
+        $query = ImportFund::where('added_by', 'Admin');
+
+        // 1. Member ID Filter
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+
+        // 2. Type Filter (Add or Deduct)
+        if ($request->filled('type') && $request->type !== 'all') {
+            $query->where('type', $request->type);
+        }
+
+        // 3. Date Range
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        // 4. Keyword Search (orderid, txnid, memberid)
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('orderid', 'like', "%{$search}%")
+                  ->orWhere('txnid', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'type', 'start_date', 'end_date', 'search']);
         return view('admin.funds.add-funds-details')->with($result);
     }
 
-    public function requestsHistory()
+    public function requestsHistory(Request $request)
     {
-        $result['data'] = ImportFund::where('added_by', 'User')->orderby('created_at', 'DESC')->get();
+        $query = ImportFund::where('added_by', 'User');
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('orderid', 'like', "%{$search}%")
+                  ->orWhere('txnid', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.funds.request-history')->with($result);
     }
 
-    public function fundRequests()
+    public function fundRequests(Request $request)
     {
-        $result['data'] = FundRequest::where('status', 'Requested')->orderBy('created_at', 'asc')->get();
+        $query = FundRequest::where('status', 'Requested');
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        $result['data'] = $query->orderBy('created_at', 'asc')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date']);
         return view('admin/funds/funds-requests', $result);
     }
 
-
-    public function fundsHistory()
+    public function fundsHistory(Request $request)
     {
-        $result['data'] = FundRequest::where('status', '!=', 'Requested')->orderBy('created_at', 'DESC')->get();
+        $query = FundRequest::where('status', '!=', 'Requested');
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        $result['data'] = $query->orderBy('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date']);
         return view('admin/funds/request-history', $result);
     }
 
@@ -849,25 +1221,90 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function directIncomes()
+    public function directIncomes(Request $request)
     {
-        $result['data'] = DirectIncome::orderby('created_at', 'DESC')->get();
+        $query = DirectIncome::query();
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('activatingId', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.income.direct-income')->with($result);
     }
 
-    public function globalAutoPoolIncomes()
+    public function globalAutoPoolIncomes(Request $request)
     {
-        $result['data'] = GlobalPoolIncome::orderby('created_at', 'DESC')->get();
+        $query = GlobalPoolIncome::query();
+
+        if ($request->filled('member_id')) {
+            $memberId = trim($request->member_id);
+            $query->where('memberid', 'like', "%{$memberId}%");
+        }
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('memberid', 'like', "%{$search}%")
+                  ->orWhere('pool_id', 'like', "%{$search}%");
+            });
+        }
+
+        $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.income.global-autopool-income')->with($result);
     }
 
-    public function withdrawalIncomes()
+    public function withdrawalIncomes(Request $request)
     {
         try {
-            $result['data'] = WithdrawalIncome::orderby('created_at', 'DESC')->get();
+            $query = WithdrawalIncome::query();
+
+            if ($request->filled('member_id')) {
+                $memberId = trim($request->member_id);
+                $query->where('memberid', 'like', "%{$memberId}%");
+            }
+            if ($request->filled('start_date')) {
+                $query->whereDate('created_at', '>=', $request->start_date);
+            }
+            if ($request->filled('end_date')) {
+                $query->whereDate('created_at', '<=', $request->end_date);
+            }
+            if ($request->filled('search')) {
+                $search = trim($request->search);
+                $query->where(function ($q) use ($search) {
+                    $q->where('memberid', 'like', "%{$search}%")
+                      ->orWhere('level_id', 'like', "%{$search}%")
+                      ->orWhere('name', 'like', "%{$search}%");
+                });
+            }
+
+            $result['data'] = $query->orderby('created_at', 'DESC')->get();
         } catch (\Exception $e) {
             $result['data'] = [];
         }
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.income.withdrawal-income')->with($result);
     }
 
@@ -876,9 +1313,34 @@ class AdminController extends Controller
         return redirect('admin/income/reward-income');
     }
 
-    public function rewardIncomes()
+    public function rewardIncomes(Request $request)
     {
-        $result['data'] = RewardIncome::orderby('created_at', 'DESC')->get();
+        try {
+            $query = RewardIncome::query();
+
+            if ($request->filled('member_id')) {
+                $memberId = trim($request->member_id);
+                $query->where('memberid', 'like', "%{$memberId}%");
+            }
+            if ($request->filled('start_date')) {
+                $query->whereDate('created_at', '>=', $request->start_date);
+            }
+            if ($request->filled('end_date')) {
+                $query->whereDate('created_at', '<=', $request->end_date);
+            }
+            if ($request->filled('search')) {
+                $search = trim($request->search);
+                $query->where(function ($q) use ($search) {
+                    $q->where('memberid', 'like', "%{$search}%")
+                      ->orWhere('reward', 'like', "%{$search}%");
+                });
+            }
+
+            $result['data'] = $query->orderby('created_at', 'DESC')->get();
+        } catch (\Exception $e) {
+            $result['data'] = [];
+        }
+        $result['filters'] = $request->only(['member_id', 'start_date', 'end_date', 'search']);
         return view('admin.income.reward-income')->with($result);
     }
 
