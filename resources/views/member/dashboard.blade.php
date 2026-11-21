@@ -1,1124 +1,1914 @@
 @extends('member.layouts.main')
-@section('title', 'User Dashboard')
+@section('title', 'Executive Member Dashboard')
 @section('container')
 
+    <!-- ==========================================================================
+         EXACT REFERENCE-BASED FINTECH DASHBOARD DESIGN
+         Matching Image 1 & Image 2 (Today's Earnings Command Center & Lifetime Overview)
+         ========================================================================== -->
     <style>
-        /* Premium Dashboard Banner Cards */
-        .premium-invest-card {
-            background: linear-gradient(135deg, #3730a3 0%, #4f46e5 45%, #7c3aed 100%);
-            border-radius: 16px !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.35);
-            position: relative;
-            overflow: hidden;
-            color: #ffffff;
-            padding: 24px;
+        :root {
+            --ft-canvas-bg: #F4F6FC;
+            --ft-card-bg: #FFFFFF;
+            --ft-border-subtle: #E2E8F0;
+            --ft-border-light: rgba(226, 232, 240, 0.8);
+            --ft-shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+            --ft-shadow-hover: 0 12px 30px -4px rgba(15, 23, 42, 0.12);
+            --ft-radius-lg: 22px;
+            --ft-radius-md: 18px;
+            --ft-radius-sm: 12px;
+            --ft-text-dark: #0F172A;
+            --ft-text-muted: #64748B;
         }
 
-        .premium-invest-card::before {
+        /* --------------------------------------------------------------------------
+           BASE DASHBOARD CANVAS & AMBIENT SILK WAVES
+           -------------------------------------------------------------------------- */
+        .ft-dashboard-canvas {
+            background-color: var(--ft-canvas-bg);
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(224, 231, 255, 0.7) 0%, transparent 40%),
+                radial-gradient(circle at 85% 15%, rgba(237, 233, 254, 0.7) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(224, 242, 254, 0.6) 0%, transparent 50%);
+            background-attachment: fixed;
+            min-height: calc(100vh - 70px);
+            padding: 22px 26px 45px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--ft-text-dark);
+            position: relative;
+        }
+
+        /* Ambient subtle wave mesh banner */
+        .ft-ambient-waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 380px;
+            background: radial-gradient(ellipse 90% 60% at 50% -10%, rgba(199, 210, 254, 0.35), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --------------------------------------------------------------------------
+           GPU-ACCELERATED KEYFRAME ANIMATIONS
+           -------------------------------------------------------------------------- */
+        @keyframes floatSubtle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* --------------------------------------------------------------------------
+           ROW 1: HERO MEMBERSHIP CARD (LEFT) & MEMBER PROFILE CARD (RIGHT)
+           -------------------------------------------------------------------------- */
+        .ft-membership-card {
+            background: linear-gradient(115deg, #0d1252 0%, #151e86 32%, #1e3bb5 68%, #2554db 100%);
+            border-radius: var(--ft-radius-lg);
+            position: relative;
+            overflow: hidden;
+            padding: 26px 30px;
+            color: #FFFFFF;
+            min-height: 205px;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(147, 197, 253, 0.45);
+            box-shadow: 0 12px 34px -4px rgba(19, 23, 101, 0.3);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .ft-membership-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 42px -4px rgba(19, 23, 101, 0.4);
+        }
+
+        .ft-membership-card::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.2) 0%, transparent 45%),
-                radial-gradient(circle at 10% 85%, rgba(0, 0, 0, 0.2) 0%, transparent 45%),
-                radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px);
-            background-size: 100% 100%, 100% 100%, 14px 14px;
+            background: radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.35) 0%, transparent 45%),
+                        radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.35) 0%, transparent 55%);
             pointer-events: none;
         }
 
-        .premium-profile-card {
-            background: #ffffff;
-            border-radius: 16px !important;
-            border: 1px solid #e2e8f0 !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            position: relative;
-            overflow: hidden;
-            padding: 24px;
+        .ft-badge-premium {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #FFD700;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-radius: 20px;
+            padding: 4px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .premium-profile-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                radial-gradient(circle at 95% 10%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
-                radial-gradient(rgba(99, 102, 241, 0.06) 1.2px, transparent 1.2px);
-            background-size: 100% 100%, 16px 16px;
-            pointer-events: none;
+        .ft-member-id-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 4px 0 6px;
         }
 
-        .premium-profile-tile {
-            background: #ffffff;
-            border: 1px solid #eef2f7;
-            border-radius: 12px;
-            padding: 12px 14px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        .ft-member-id-val {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #FFFFFF;
+            line-height: 1.15;
+        }
+
+        .ft-verified-check-pill {
+            background: #10B981;
+            color: #FFFFFF;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+        }
+
+        .ft-btn-invest {
+            background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+            color: #FFFFFF !important;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 8px 22px;
+            border-radius: 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.45);
             transition: all 0.2s ease;
+        }
+
+        .ft-btn-invest:hover {
+            background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+        }
+
+        .ft-hero-art-img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            max-width: 440px;
+            object-fit: contain;
+            object-position: right center;
+            pointer-events: none;
+            z-index: 1;
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
+            animation: floatSubtle 5s ease-in-out infinite;
+        }
+
+        /* Profile Card (Right) */
+        .ft-profile-card {
+            background: var(--ft-card-bg);
+            border-radius: var(--ft-radius-lg);
+            padding: 20px 22px;
+            border: 1px solid var(--ft-border-subtle);
+            box-shadow: var(--ft-shadow-card);
+            min-height: 205px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .ft-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--ft-shadow-hover);
+        }
+
+        .ft-btn-view-profile {
+            color: #7C3AED !important;
+            background: #F5F3FF;
+            border: 1px solid #EDE9FE;
+            border-radius: 12px;
+            padding: 4px 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .ft-btn-view-profile:hover {
+            background: #EDE9FE;
+            color: #6D28D9 !important;
+        }
+
+        .ft-avatar-gradient-ring {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ft-avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #F8FAFC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ft-profile-info-pod {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 10px;
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .ft-profile-info-pod:hover {
+            background: #FFFFFF;
+            border-color: #C7D2FE;
+        }
+
+        .ft-active-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10B981;
+            display: inline-block;
+            animation: pulseDot 2s infinite;
+        }
+
+        /* --------------------------------------------------------------------------
+           ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER (EXACT MATCH REFERENCE 1)
+           -------------------------------------------------------------------------- */
+        .ft-referral-banner {
+            background: linear-gradient(90deg, #FFFFFF 0%, #FAF8FF 30%, #F5F3FF 70%, #FFFFFF 100%);
+            border-radius: var(--ft-radius-md);
+            padding: 16px 24px;
+            border: 1px solid #E0E7FF;
+            box-shadow: var(--ft-shadow-card);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .ft-referral-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--ft-shadow-hover);
+            border-color: #C7D2FE;
+        }
+
+        .ft-ref-left-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1 1 520px;
+            min-width: 0;
+        }
+
+        .ft-ref-gift-art {
+            height: 76px;
+            width: auto;
+            object-fit: contain;
+            flex-shrink: 0;
+            filter: drop-shadow(0 6px 14px rgba(124, 58, 237, 0.2));
+            animation: floatSubtle 4.5s ease-in-out infinite;
+        }
+
+        .ft-ref-input-shell {
+            background: #FFFFFF;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 5px 8px 5px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1 1 260px;
+            max-width: 380px;
+            min-width: 220px;
+            transition: border-color 0.2s ease;
+        }
+
+        .ft-ref-input-shell:focus-within {
+            border-color: #7C3AED;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+        }
+
+        .ft-ref-input-text {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 12.5px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            color: #334155;
+            width: 100%;
+        }
+
+        .ft-ref-copy-icon-btn {
+            background: none;
+            border: none;
+            color: #64748B;
+            padding: 4px;
+            cursor: pointer;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+
+        .ft-ref-copy-icon-btn:hover {
+            color: #7C3AED;
+        }
+
+        .ft-btn-copy-purple {
+            background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 9px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 12px rgba(124, 58, 237, 0.35);
+            white-space: nowrap;
             cursor: pointer;
         }
 
-        .premium-profile-tile:hover {
-            border-color: #a5b4fc;
-            background: #faf5ff;
-            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
-            transform: translateY(-2px);
+        .ft-btn-copy-purple:hover {
+            background: linear-gradient(135deg, #6D28D9 0%, #4F46E5 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 16px rgba(124, 58, 237, 0.5);
         }
 
-        .premium-watermark {
-            position: absolute;
-            right: -15px;
-            bottom: -20px;
-            font-size: 6rem;
-            color: #ffffff;
-            opacity: 0.10;
-            pointer-events: none;
-            line-height: 1;
-            z-index: 0;
+        .ft-btn-whatsapp-green {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #FFFFFF !important;
+            border: none;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 9px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 12px rgba(16, 185, 129, 0.35);
+            white-space: nowrap;
         }
 
-        .premium-stat-card {
-            border-radius: 16px;
+        .ft-btn-whatsapp-green:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 16px rgba(16, 185, 129, 0.5);
+        }
+
+        .ft-earn-up-to-capsule {
+            background: linear-gradient(135deg, #2E1065 0%, #4C1D95 50%, #6D28D9 100%);
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            border-radius: 18px;
+            padding: 10px 18px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 6px 20px rgba(76, 29, 149, 0.3);
+            flex-shrink: 0;
+        }
+
+        .ft-earn-coins-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+        }
+
+        /* --------------------------------------------------------------------------
+           ROW 3: FOUR VIBRANT 3D STATISTIC CARDS (PREMIUM ANIMATED 3D PARALLAX)
+           Cyan, Purple, Emerald, Amber gradients with dot pattern & floating 3D objects
+           -------------------------------------------------------------------------- */
+        .ft-stat-card-vibrant {
+            border-radius: var(--ft-radius-md);
+            padding: 20px 22px;
             position: relative;
+            height: 100% !important;
+            min-height: 195px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #FFFFFF;
+            box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.16);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
             overflow: hidden;
-            padding: 22px 24px;
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 24px -4px rgba(17, 28, 67, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            background-size: 260% 260%;
+            cursor: pointer;
         }
 
-        .premium-stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 32px -4px rgba(17, 28, 67, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+        .ft-stat-card-vibrant:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 42px -6px rgba(0, 0, 0, 0.28);
         }
 
-        .premium-stat-card::before {
-            content: "";
+        /* Continuous animated background mesh gradient shift */
+        @keyframes vibrantMeshShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Continuous floating ambient orbs */
+        @keyframes floatOrb1 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            50% { transform: translate(35px, -20px) scale(1.3); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        @keyframes floatOrb2 {
+            0% { transform: translate(0px, 0px) scale(1.2); }
+            50% { transform: translate(-30px, 25px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1.2); }
+        }
+
+        /* Continuous high-contrast shimmer wave sweep across cards */
+        @keyframes shimmerSweep {
+            0% { transform: translateX(-150%) skewX(-25deg); }
+            25%, 100% { transform: translateX(250%) skewX(-25deg); }
+        }
+
+        /* Continuous subtle 3D hovering animation for illustrations (stationary baseline) */
+        @keyframes idle3DFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.04) rotate(1deg); }
+        }
+
+        /* Card Shimmer Element (High Contrast) */
+        .ft-card-shimmer {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(17, 28, 67, 0.05) 1.2px, transparent 1.2px);
-            background-size: 14px 14px;
+            top: 0; left: 0;
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+            animation: shimmerSweep 4.5s infinite ease-in-out;
             pointer-events: none;
+            z-index: 2;
         }
 
-        /* 1. Emerald (Current Status) */
-        .premium-stat-card.stat-emerald {
-            background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 35%, rgba(220, 252, 231, 0.75) 75%, rgba(187, 247, 208, 0.6) 100%);
-            border: 1px solid rgba(187, 247, 208, 0.85);
-            border-top: 1px solid rgba(255, 255, 255, 0.95);
-        }
-        .premium-stat-card.stat-emerald:hover {
-            border-color: rgba(134, 239, 172, 0.95);
-        }
-        .premium-stat-card.stat-emerald::after {
-            content: "";
+        /* Rotating Cyber Rings */
+        .ft-cyber-ring-wrap {
             position: absolute;
-            top: -30px; right: -30px;
-            width: 140px; height: 140px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 165px;
+            height: 165px;
             pointer-events: none;
-        }
-        .premium-stat-card.stat-emerald .stat-watermark {
-            color: #10b981;
-            opacity: 0.10;
-        }
-
-        /* 2. Indigo / Purple (My Referrals) */
-        .premium-stat-card.stat-indigo {
-            background: linear-gradient(135deg, #ffffff 0%, #faf5ff 35%, rgba(243, 232, 255, 0.75) 75%, rgba(233, 213, 255, 0.6) 100%);
-            border: 1px solid rgba(233, 213, 255, 0.85);
-            border-top: 1px solid rgba(255, 255, 255, 0.95);
-        }
-        .premium-stat-card.stat-indigo:hover {
-            border-color: rgba(216, 180, 254, 0.95);
-        }
-        .premium-stat-card.stat-indigo::after {
-            content: "";
-            position: absolute;
-            top: -30px; right: -30px;
-            width: 140px; height: 140px;
-            background: radial-gradient(circle, rgba(132, 90, 223, 0.2) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .premium-stat-card.stat-indigo .stat-watermark {
-            color: #845adf;
-            opacity: 0.10;
-        }
-
-        /* 3. Sky / Cyan (Fund Wallet) */
-        .premium-stat-card.stat-sky {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 35%, rgba(224, 242, 254, 0.75) 75%, rgba(186, 230, 253, 0.6) 100%);
-            border: 1px solid rgba(186, 230, 253, 0.85);
-            border-top: 1px solid rgba(255, 255, 255, 0.95);
-        }
-        .premium-stat-card.stat-sky:hover {
-            border-color: rgba(147, 197, 253, 0.95);
-        }
-        .premium-stat-card.stat-sky::after {
-            content: "";
-            position: absolute;
-            top: -30px; right: -30px;
-            width: 140px; height: 140px;
-            background: radial-gradient(circle, rgba(35, 183, 229, 0.22) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .premium-stat-card.stat-sky .stat-watermark {
-            color: #23b7e5;
-            opacity: 0.10;
-        }
-
-        /* 4. Amber / Gold (Income Wallet) */
-        .premium-stat-card.stat-amber {
-            background: linear-gradient(135deg, #ffffff 0%, #fffbeb 35%, rgba(254, 243, 199, 0.75) 75%, rgba(253, 230, 138, 0.6) 100%);
-            border: 1px solid rgba(253, 230, 138, 0.85);
-            border-top: 1px solid rgba(255, 255, 255, 0.95);
-        }
-        .premium-stat-card.stat-amber:hover {
-            border-color: rgba(252, 211, 77, 0.95);
-        }
-        .premium-stat-card.stat-amber::after {
-            content: "";
-            position: absolute;
-            top: -30px; right: -30px;
-            width: 140px; height: 140px;
-            background: radial-gradient(circle, rgba(245, 184, 73, 0.22) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .premium-stat-card.stat-amber .stat-watermark {
-            color: #f5b849;
-            opacity: 0.12;
-        }
-
-        .stat-watermark {
-            position: absolute;
-            right: -10px;
-            bottom: -15px;
-            font-size: 5rem;
-            pointer-events: none;
-            line-height: 1;
-            z-index: 0;
-            transition: all 0.25s ease;
-        }
-
-        .stat-content {
-            position: relative;
             z-index: 1;
         }
 
-        /* Premium Referral Card */
-        .premium-referral-card {
-            background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.96) 30%, rgba(224, 242, 254, 0.75) 70%, rgba(186, 230, 253, 0.6) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(191, 219, 254, 0.85);
-            border-top: 1px solid rgba(255, 255, 255, 0.95);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px -5px rgba(17, 28, 67, 0.08), 0 4px 12px rgba(35, 183, 229, 0.1);
-            position: relative;
+        .ft-cyber-ring {
+            position: absolute;
+            border-radius: 50%;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ft-cyber-ring-1 {
+            width: 155px;
+            height: 155px;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            animation: rotateRingClockwise 14s linear infinite;
+        }
+
+        .ft-cyber-ring-2 {
+            width: 118px;
+            height: 118px;
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            border-top-color: #FFFFFF;
+            border-bottom-color: rgba(255, 255, 255, 0.7);
+            animation: rotateRingCounter 9s linear infinite;
+        }
+
+        @keyframes rotateRingClockwise {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes rotateRingCounter {
+            0% { transform: translate(-50%, -50%) rotate(360deg); }
+            100% { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+
+        /* Floating Neon Particle Sparks */
+        .ft-card-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
             overflow: hidden;
-            padding: 24px;
-            color: #111c43;
-            transition: all 0.25s ease;
         }
 
-        .premium-referral-card:hover {
-            border-color: rgba(147, 197, 253, 0.95);
-            box-shadow: 0 14px 36px -4px rgba(17, 28, 67, 0.12), 0 6px 16px rgba(35, 183, 229, 0.15);
+        .ft-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: #FFFFFF;
+            box-shadow: 0 0 10px #FFFFFF, 0 0 16px rgba(255, 255, 255, 0.8);
+            animation: floatSparkle 4s ease-in-out infinite;
         }
 
-        .premium-referral-card::before {
-            content: "";
+        .ft-particle.p1 { left: 15%; bottom: 15%; width: 5px; height: 5px; animation-duration: 3.5s; animation-delay: 0s; }
+        .ft-particle.p2 { left: 45%; bottom: 20%; width: 7px; height: 7px; animation-duration: 4.2s; animation-delay: 1.1s; }
+        .ft-particle.p3 { left: 65%; bottom: 10%; width: 6px; height: 6px; animation-duration: 3.8s; animation-delay: 2.3s; }
+        .ft-particle.p4 { left: 85%; bottom: 25%; width: 4px; height: 4px; animation-duration: 4.8s; animation-delay: 0.6s; }
+
+        @keyframes floatSparkle {
+            0% { transform: translateY(0) scale(0.6); opacity: 0.2; }
+            50% { opacity: 1; transform: translateY(-35px) scale(1.3); }
+            100% { transform: translateY(-75px) scale(0.4); opacity: 0; }
+        }
+
+        /* Card Specular Shine on Mouse Move */
+        .ft-card-shine {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(17, 28, 67, 0.05) 1.2px, transparent 1.2px);
-            background-size: 14px 14px;
             pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .premium-referral-card::after {
-            content: "";
+        /* Ambient Glowing Orbs */
+        .ft-card-orb {
             position: absolute;
-            top: -40px; right: -40px;
-            width: 220px; height: 220px;
-            background: radial-gradient(circle, rgba(35, 183, 229, 0.22) 0%, rgba(17, 28, 67, 0.05) 50%, transparent 70%);
+            border-radius: 50%;
             pointer-events: none;
-        }
-
-        .referral-box {
-            background: linear-gradient(135deg, rgba(17, 28, 67, 0.94) 0%, rgba(23, 49, 114, 0.88) 55%, rgba(14, 116, 144, 0.82) 100%);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            border-top: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 14px;
-            padding: 12px 16px;
-            box-shadow: 0 8px 24px -4px rgba(17, 28, 67, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.25);
-            transition: all 0.2s ease;
-        }
-
-        .referral-box:hover {
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 10px 28px -4px rgba(17, 28, 67, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.35);
-        }
-
-        .referral-watermark {
-            position: absolute;
-            right: -10px;
-            bottom: -20px;
-            font-size: 6.5rem;
-            color: #23b7e5;
-            opacity: 0.08;
-            pointer-events: none;
-            line-height: 1;
             z-index: 0;
         }
 
-        .referral-copy-btn {
-            background: #ffffff;
-            color: #111c43;
-            border: none;
+        .ft-card-orb-top {
+            width: 170px;
+            height: 170px;
+            top: -35px;
+            right: 10px;
+            filter: blur(28px);
+            opacity: 0.85;
+            animation: floatOrb1 5s ease-in-out infinite;
+        }
+
+        .ft-card-orb-bottom {
+            width: 150px;
+            height: 150px;
+            bottom: -25px;
+            left: 15px;
+            filter: blur(25px);
+            opacity: 0.8;
+            animation: floatOrb2 4.5s ease-in-out infinite;
+        }
+
+        /* Subtle dot grid pattern overlay */
+        .ft-stat-card-vibrant::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.25) 1.2px, transparent 1.2px);
+            background-size: 15px 15px;
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .ft-stat-content-col {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .ft-stat-sq-icon {
+            width: 38px;
+            height: 38px;
             border-radius: 10px;
-            font-weight: 700;
-            font-size: 13px;
-            padding: 8px 18px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-            transition: all 0.2s ease;
-            cursor: pointer;
+            background: rgba(255, 255, 255, 0.24);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 3;
         }
 
-        .referral-copy-btn:hover {
-            background: #f0f7ff;
-            color: #0284c7;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-        }
-
-        .sbt-card {
-            background: #0f5c65;
-            color: #fff;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .sbt-title {
-            text-align: center;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .sbt-card p {
-            font-size: 15px;
-            margin: 6px 0;
-        }
-
-        .sbt-card button {
-            background: #29c4e9;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 18px;
+        .ft-stat-title-label {
+            font-size: 12px;
             font-weight: 600;
-            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.92);
+            display: block;
+            position: relative;
+            z-index: 3;
         }
 
-        .sbt-card button:hover {
-            background: #1ca0bd;
+        .ft-stat-bold-val {
+            font-size: 23px;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.15;
+            margin: 5px 0 10px;
+            letter-spacing: -0.4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: baseline;
+            gap: 3px;
+        }
+
+        .ft-stat-currency {
+            font-size: 18px;
+            font-weight: 700;
+            opacity: 0.92;
+        }
+
+        .ft-stat-art-wrapper {
+            position: relative;
+            z-index: 3;
+            flex-shrink: 0;
+            margin-left: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+        }
+
+        .ft-stat-art-graphic {
+            max-height: 120px;
+            max-width: 120px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+            animation: idle3DFloat 4.2s ease-in-out infinite alternate;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center center;
+        }
+
+        /* 1. Account Status (Cyan to Electric Blue) */
+        .ft-stat-cyan-glow {
+            background: linear-gradient(135deg, #0284C7 0%, #00B4D8 35%, #0077B6 70%, #1D4ED8 100%);
+            border: 1px solid rgba(186, 230, 253, 0.55);
+            animation: vibrantMeshShift 8s ease infinite alternate;
+        }
+        .ft-stat-cyan-glow .ft-card-orb-top { background: #38BDF8; }
+        .ft-stat-cyan-glow .ft-card-orb-bottom { background: #60A5FA; }
+
+        /* 2. Total Referrals (Purple to Violet) */
+        .ft-stat-purple-glow {
+            background: linear-gradient(135deg, #9333EA 0%, #C084FC 35%, #7C3AED 70%, #4F46E5 100%);
+            border: 1px solid rgba(221, 214, 254, 0.55);
+            animation: vibrantMeshShift 8s ease infinite alternate;
+        }
+        .ft-stat-purple-glow .ft-card-orb-top { background: #E879F9; }
+        .ft-stat-purple-glow .ft-card-orb-bottom { background: #818CF8; }
+
+        /* 3. Fund Wallet (Emerald to Deep Green) */
+        .ft-stat-green-glow {
+            background: linear-gradient(135deg, #059669 0%, #34D399 35%, #059669 70%, #047857 100%);
+            border: 1px solid rgba(167, 243, 208, 0.55);
+            animation: vibrantMeshShift 8s ease infinite alternate;
+        }
+        .ft-stat-green-glow .ft-card-orb-top { background: #6EE7B7; }
+        .ft-stat-green-glow .ft-card-orb-bottom { background: #2DD4BF; }
+
+        /* 4. Income Wallet (Amber to Orange) */
+        .ft-stat-orange-glow {
+            background: linear-gradient(135deg, #EA580C 0%, #FBBF24 35%, #D97706 70%, #B45309 100%);
+            border: 1px solid rgba(253, 230, 138, 0.55);
+            animation: vibrantMeshShift 8s ease infinite alternate;
+        }
+        .ft-stat-orange-glow .ft-card-orb-top { background: #FDE047; }
+        .ft-stat-orange-glow .ft-card-orb-bottom { background: #FB923C; }
+
+        .ft-stat-action-capsule {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(6px);
+            color: #FFFFFF !important;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.2s ease;
+            position: relative;
+            z-index: 3;
+        }
+
+        .ft-stat-action-capsule:hover {
+            background: rgba(255, 255, 255, 0.38);
+            transform: translateY(-1px);
+        }
+
+        /* --------------------------------------------------------------------------
+           ROW 4: TODAY'S EARNINGS COMMAND CENTER & LIFETIME EARNINGS OVERVIEW
+           -------------------------------------------------------------------------- */
+        .ft-overview-card {
+            background: var(--ft-card-bg);
+            border-radius: var(--ft-radius-lg);
+            padding: 22px 24px;
+            border: 1px solid var(--ft-border-subtle);
+            box-shadow: var(--ft-shadow-card);
+            height: 100%;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .ft-overview-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--ft-shadow-hover);
+        }
+
+        /* Today's 2x2 Pods matching Image 2 */
+        .ft-income-pod-v2 {
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 12px 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            height: 100%;
+        }
+
+        .ft-income-pod-v2:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+        }
+
+        .ft-pod-icon-box {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Pod 1: Level (Blue) */
+        .ft-pod-blue { border: 1.5px solid #BFDBFE; }
+        .ft-pod-blue .ft-pod-icon-box { background: #EFF6FF; color: #2563EB; }
+
+        /* Pod 2: Direct (Purple) */
+        .ft-pod-purple { border: 1.5px solid #DDD6FE; }
+        .ft-pod-purple .ft-pod-icon-box { background: #F5F3FF; color: #7C3AED; }
+
+        /* Pod 3: Global Autopool (Green) */
+        .ft-pod-green { border: 1.5px solid #A7F3D0; }
+        .ft-pod-green .ft-pod-icon-box { background: #ECFDF5; color: #059669; }
+
+        /* Pod 4: Withdrawal (Amber) */
+        .ft-pod-amber { border: 1.5px solid #FDE68A; }
+        .ft-pod-amber .ft-pod-icon-box { background: #FFFBEB; color: #D97706; }
+
+        /* --------------------------------------------------------------------------
+           LIFETIME TOTAL EARNINGS OVERVIEW — LUXURY FINTECH REDESIGN
+           -------------------------------------------------------------------------- */
+        .ft-lifetime-card-shell {
+            background: #FFFFFF;
+            border-radius: var(--ft-radius-lg);
+            padding: 22px 24px;
+            border: 1px solid var(--ft-border-subtle);
+            box-shadow: var(--ft-shadow-card);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .ft-lifetime-card-shell:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--ft-shadow-hover);
+        }
+
+        /* Top Hero Cumulative Spotlight Banner */
+        .ft-lifetime-hero-banner {
+            background: linear-gradient(135deg, #18093d 0%, #2e0854 45%, #4a0e78 80%, #6d28d9 100%);
+            border-radius: 18px;
+            padding: 18px 22px;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(192, 132, 252, 0.35);
+            box-shadow: 0 10px 28px -4px rgba(46, 8, 84, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ft-lifetime-hero-banner::before {
+            content: "";
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.35) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+        }
+
+        .ft-lifetime-trophy-art {
+            height: 90px;
+            width: auto;
+            max-width: 105px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+            animation: idle3DFloat 4s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ft-lifetime-chart-art {
+            height: 80px;
+            width: auto;
+            max-width: 95px;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.3));
+            animation: floatOrb1 6s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Stream Pod Tiles */
+        .ft-stream-tile {
+            background: #FFFFFF;
+            border-radius: 14px;
+            padding: 12px 14px;
+            border: 1px solid var(--ft-border-subtle);
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            transition: all 0.2s ease;
+            height: 100%;
+        }
+
+        .ft-stream-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .ft-stream-tile-blue { border-left: 4px solid #2563EB; }
+        .ft-stream-tile-purple { border-left: 4px solid #7C3AED; }
+        .ft-stream-tile-green { border-left: 4px solid #059669; }
+        .ft-stream-tile-amber { border-left: 4px solid #D97706; }
+
+        .ft-stream-progress-track {
+            height: 4px;
+            background: #F1F5F9;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .ft-stream-progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        /* --------------------------------------------------------------------------
+           ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS
+           -------------------------------------------------------------------------- */
+        .ft-matrix-section {
+            background: #FFFFFF;
+            border-radius: var(--ft-radius-md);
+            border: 1px solid var(--ft-border-subtle);
+            box-shadow: var(--ft-shadow-card);
+            padding: 22px 24px;
+            margin-top: 20px;
+        }
+
+        .ft-btn-new-slot {
+            background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+            color: #FFFFFF !important;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 7px 20px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        .ft-btn-new-slot:hover {
+            background: linear-gradient(135deg, #6D28D9 0%, #4F46E5 100%);
+            transform: translateY(-1px);
+        }
+
+        .ft-matrix-slot-item {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-top: 3px solid #F59E0B;
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            transition: all 0.2s ease;
+        }
+
+        .ft-matrix-slot-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--ft-shadow-hover);
+        }
+
+        .ft-progress-track {
+            height: 6px;
+            background: #F1F5F9;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .ft-progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #F59E0B 0%, #10B981 100%);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        /* Modal Customization */
+        .ft-modal-shell {
+            border-radius: var(--ft-radius-md);
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 20px 45px -8px rgba(15, 23, 42, 0.2);
+        }
+
+        .ft-modal-header {
+            background: #0d1252;
+            color: #FFFFFF;
+            padding: 16px 20px;
+        }
+
+        .ft-modal-row {
+            background: #FFFFFF;
+            border: 1px solid #F1F5F9;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 
-    <!--**********************************Content body start***********************************-->
+    <!-- MAIN DASHBOARD CONTENT AREA -->
+    <div class="main-content app-content ft-dashboard-canvas">
+        <div class="ft-ambient-waves"></div>
 
-    <!-- MAIN-CONTENT -->
+        <div class="container-fluid px-1 px-md-2" style="position: relative; z-index: 1;">
 
-    <div class="main-content app-content">
-
-        <div class="container-fluid">
-
-            <!-- Start::page-header -->
-
-            <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                <div>
-                    <p class="fw-semibold fs-18 mb-0">Welcome back, {{ $data['name'] }} !</p>
-                    {{-- <span class="fs-semibold text-muted">Track your sales activity, leads and deals here.</span> --}}
+            <!-- FLASH ALERTS -->
+            @if (session()->has('successMsg'))
+                <div class="alert alert-dismissible fade show mb-3" style="background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; border-radius: 12px;">
+                    <div class="d-flex align-items-center">
+                        <i class="ti ti-circle-check fs-20 me-2 text-success"></i>
+                        <div><strong>Success!</strong> {{ session('successMsg') }}</div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                {{-- <div class="btn-list mt-md-0 mt-2">
-                    <button type="button" class="btn btn-primary btn-wave">
-                        <i class="ri-filter-3-fill me-2 align-middle d-inline-block"></i>Filters
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary btn-wave">
-                        <i class="ri-upload-cloud-line me-2 align-middle d-inline-block"></i>Export
-                    </button>
-                </div> --}}
+            @endif
+            @if (session()->has('failedMsg'))
+                <div class="alert alert-dismissible fade show mb-3" style="background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; border-radius: 12px;">
+                    <div class="d-flex align-items-center">
+                        <i class="ti ti-alert-triangle fs-20 me-2 text-danger"></i>
+                        <div><strong>Error!</strong> {{ session('failedMsg') }}</div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <!-- --------------------------------------------------------------------------
+                 ROW 1: HERO MEMBERSHIP CARD (LEFT) + MEMBER PROFILE CARD (RIGHT)
+                 -------------------------------------------------------------------------- -->
+            <div class="row g-3 mb-3">
+                <!-- Left: Royal Membership Card with 3D Crown on Pedestal & Growth Bars -->
+                <div class="col-xxl-8 col-xl-7 col-lg-12 col-12">
+                    <div class="ft-membership-card">
+                        <div style="position: relative; z-index: 2; max-width: 52%;">
+                            <div class="ft-badge-premium mb-2">
+                                <i class="ti ti-crown fs-13"></i> PREMIUM MEMBER
+                            </div>
+
+                            <div class="d-flex align-items-center text-white-50 fs-12 mb-1">
+                                <span>Member Account</span>
+                            </div>
+
+                            <div class="ft-member-id-row">
+                                <span class="ft-member-id-val" id="memberIdVal">{{ $data['memberid'] }}</span>
+                                <span class="ft-verified-check-pill" title="Verified Member">
+                                    <i class="ti ti-check"></i>
+                                </span>
+                                <i class="ti ti-copy cursor-pointer text-white-50 fs-16 hover-white" id="inlineCopyId" title="Copy Member ID"></i>
+                            </div>
+
+                            <div class="fs-12 text-white-50 mb-3" style="color: rgba(255, 255, 255, 0.88) !important;">
+                                Ready for Stable Earning & Matrix Rewards.
+                            </div>
+
+                            <a href="{{ url('/member/invest-slot') }}" class="ft-btn-invest">
+                                Invest Now <i class="ti ti-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <!-- 3D Crown & Pedestal Artwork with ascending chart -->
+                        <img src="{{ asset('user_assets/images/dashboard_3d/new_hero_artwork_hd.png') }}" alt="3D Crown & Pedestal" class="ft-hero-art-img">
+                    </div>
+                </div>
+
+                <!-- Right: Member Profile Card (Exact Match Reference 1) -->
+                <div class="col-xxl-4 col-xl-5 col-lg-12 col-12">
+                    <div class="ft-profile-card">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
+                                    <i class="ti ti-user-circle fs-16"></i>
+                                </span>
+                                <h6 class="fw-bold text-dark mb-0 fs-15">Member Profile</h6>
+                            </div>
+                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#profileDetailModal" class="ft-btn-view-profile">
+                                View Profile <i class="ti ti-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="ft-avatar-gradient-ring">
+                                <div class="ft-avatar-inner">
+                                    @if(!empty($data['profile_image']))
+                                        <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" class="w-100 h-100" alt="profile" style="object-fit: cover;">
+                                    @else
+                                        <div style="font-size: 24px; font-weight: 800; color: #7C3AED;">
+                                            {{ strtoupper(substr($data['name'] ?? 'M', 0, 1)) }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="flex-grow-1" style="min-width: 0;">
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <div class="ft-profile-info-pod">
+                                            <i class="ti ti-user fs-14 text-primary"></i>
+                                            <div class="overflow-hidden" style="min-width: 0;">
+                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Full Name</span>
+                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['name'] }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="ft-profile-info-pod">
+                                            <i class="ti ti-phone fs-14 text-success"></i>
+                                            <div class="overflow-hidden" style="min-width: 0;">
+                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Mobile Number</span>
+                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['mobile'] ?? 'N/A' }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="ft-profile-info-pod">
+                                            <i class="ti ti-mail fs-14 text-info"></i>
+                                            <div class="overflow-hidden" style="min-width: 0;">
+                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Email Address</span>
+                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;" title="{{ $data['email'] }}">{{ $data['email'] }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="ft-profile-info-pod">
+                                            <i class="ti ti-users fs-14 text-purple"></i>
+                                            <div class="overflow-hidden" style="min-width: 0;">
+                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Sponsor ID</span>
+                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['sponsor'] ?? 'System Direct' }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- End::page-header -->
+            <!-- --------------------------------------------------------------------------
+                 ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER (EXACT MATCH REFERENCE 1)
+                 -------------------------------------------------------------------------- -->
+            <div class="row g-3 mb-3">
+                <div class="col-12">
+                    <div class="ft-referral-banner">
+                        <div class="ft-ref-left-group">
+                            <img src="{{ asset('user_assets/images/dashboard_3d/new_purple_gift_ring_hd.png') }}" alt="3D Gift Box" class="ft-ref-gift-art">
 
-            <!-- Start::row-1 -->
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="tradingview-widget-container">
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                            {
-                                "symbols": [{
-                                        "proName": "FOREXCOM:SPXUSD",
-                                        "title": "S&P 500"
-                                    },
-                                    {
-                                        "proName": "FOREXCOM:NSXUSD",
-                                        "title": "US 100"
-                                    },
-                                    {
-                                        "proName": "FX_IDC:EURUSD",
-                                        "title": "EUR to USD"
-                                    },
-                                    {
-                                        "proName": "BITSTAMP:BTCUSD",
-                                        "title": "Bitcoin"
-                                    },
-                                    {
-                                        "proName": "BITSTAMP:ETHUSD",
-                                        "title": "Ethereum"
-                                    },
-                                    {
-                                        "description": "USDT",
-                                        "proName": "BITSTAMP:USDTUSD"
-                                    },
-                                    {
-                                        "description": "XRP",
-                                        "proName": "BINANCE:XRPUSDT"
-                                    },
-                                    {
-                                        "description": "BNB",
-                                        "proName": "BINANCE:BNBUSDT"
-                                    },
-                                    {
-                                        "description": "TRX",
-                                        "proName": "BINANCE:TRXUSDT"
-                                    },
-                                    {
-                                        "description": "",
-                                        "proName": "CRYPTOCAP:DOGE"
-                                    },
-                                    {
-                                        "description": "",
-                                        "proName": "BITSTAMP:LTCUSD"
-                                    },
-                                    {
-                                        "description": "",
-                                        "proName": "BITSTAMP:SHIBUSD"
-                                    },
-                                    {
-                                        "description": "",
-                                        "proName": "BINANCE:AVAXUSDT"
-                                    }
-                                ],
-                                "showSymbolLogo": true,
-                                "isTransparent": false,
-                                "displayMode": "adaptive",
-                                "colorTheme": "light",
-                                "locale": "in"
-                            }
-                        </script>
-                    </div>
+                            <div>
+                                <h6 class="fw-bold text-dark mb-1 fs-16">Refer & Earn Rewards</h6>
+                                <span class="text-muted fs-12">Share your exclusive invitation link and earn amazing rewards!</span>
+                            </div>
 
-                    <div class="row mt-0 mb-3 mt-3">
-                        <div class="col-sm-12">
-                            <marquee>
-                                <h5 class=" px-2 my-0">
-                                    @foreach ($dashMsg as $item)
-                                        <span class="me-5"
-                                            style="color:rgb(0, 0, 0);font-weight:600">{{ $item['message'] }}</span>
-                                    @endforeach
-                                </h5>
-                            </marquee>
+                            <!-- Link input box with inline copy icon -->
+                            <div class="ft-ref-input-shell ms-xl-2">
+                                <input type="text" readonly value="{{ config('detailsApp.url') }}?ref={{ $data['memberid'] }}" id="refInputDisplay" class="ft-ref-input-text">
+                                <button type="button" class="ft-ref-copy-icon-btn" id="btnCopyIcon" title="Copy Link">
+                                    <i class="ti ti-copy fs-14"></i>
+                                </button>
+                            </div>
+
+                            <button type="button" class="ft-btn-copy-purple" id="btnCopyRef">
+                                <i class="ti ti-link"></i> <span id="btnCopyLabel">Copy Link</span>
+                            </button>
+
+                            <a href="https://api.whatsapp.com/send?text=Join%20our%20stable%20earning%20platform%20now:%20{{ urlencode(config('detailsApp.url') . '?ref=' . $data['memberid']) }}" target="_blank" class="ft-btn-whatsapp-green" title="Share on WhatsApp">
+                                <i class="ti ti-brand-whatsapp fs-14"></i> Share on WhatsApp
+                            </a>
                         </div>
-                        <div class="col-sm-12">
-                            @if (session()->has('successMsg'))
-                                <div class="alert alert-success alert-dismissible fade show">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
-                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        class="me-2">
-                                        <polyline points="9 11 12 14 22 4"></polyline>
-                                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                                    </svg>
-                                    <strong>Success!</strong> {{ session('successMsg') }}.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                    </button>
-                                </div>
-                            @endif
-                            @if (session()->has('failedMsg'))
-                                <div class="alert alert-danger alert-dismissible fade show">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="currentColor"
-                                        class="icon icon-tabler icons-tabler-filled icon-tabler-alert-triangle">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path
-                                            d="M12 1.67c.955 0 1.845 .467 2.39 1.247l.105 .16l8.114 13.548a2.914 2.914 0 0 1 -2.307 4.363l-.195 .008h-16.225a2.914 2.914 0 0 1 -2.582 -4.2l.099 -.185l8.11 -13.538a2.914 2.914 0 0 1 2.491 -1.403zm.01 13.33l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -7a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z" />
-                                    </svg>
-                                    <strong>Failed!</strong> {{ session('failedMsg') }}.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                    </button>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
 
-                    <div class="row g-3 mb-3">
-                        <div class="col-xxl-5 col-xl-5 col-lg-12 col-md-12 col-12">
-                            <div class="premium-invest-card h-100 d-flex flex-column justify-content-between">
-                                <div style="position: relative; z-index: 1;">
-                                    <div class="d-flex align-items-center justify-content-between mb-3">
-                                        <span class="badge" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px); color: #ffffff; font-size: 11px; padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3);">
-                                            <i class="ti ti-sparkles me-1 text-warning"></i> Investment Account
-                                        </span>
-                                        <span class="badge" style="background: rgba(34, 197, 94, 0.25); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.45); border-radius: 20px; font-size: 11px; padding: 6px 12px;">
-                                            <i class="ti ti-check me-1"></i> Ready
-                                        </span>
-                                    </div>
-                                    <h4 class="fw-bold text-white mb-2" style="letter-spacing: -0.3px;">
-                                        Congratulations, <span style="color: #fde047;">{{ $data['memberid'] }}</span> !!
-                                    </h4>
-                                    <p class="fs-13 mb-4" style="color: rgba(255, 255, 255, 0.88);">
-                                        You are ready for <strong class="text-white">{{ config('detailsApp.name') }}</strong> Investment.
-                                    </p>
-                                </div>
-                                <div style="position: relative; z-index: 1;">
-                                    <a href="{{ url('/member/invest-slot') }}" class="btn btn-sm px-3 fw-bold shadow-sm" style="background: #ffffff; color: #4338ca; border-radius: 8px;">
-                                        <i class="ti ti-wallet me-1"></i> Invest Now <i class="ti ti-arrow-narrow-right ms-1"></i>
-                                    </a>
-                                </div>
-                                <div class="premium-watermark">
-                                    <i class="ti ti-coins"></i>
+                        <!-- Right Highlight Capsule matching Reference 1 -->
+                        <div class="ft-earn-up-to-capsule">
+                            <div>
+                                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; font-weight: 700;">Earn up to</span>
+                                <div style="font-size: 22px; font-weight: 900; color: #FDE047; line-height: 1.1; text-shadow: 0 2px 8px rgba(253, 224, 71, 0.4);">
+                                    ₹1000+
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-xxl-7 col-xl-7 col-lg-12 col-md-12 col-12">
-                            <div class="premium-profile-card h-100 d-flex flex-column justify-content-between">
-                                <div style="position: relative; z-index: 1;">
-                                    <div class="d-flex align-items-center justify-content-between mb-3 pb-2" style="border-bottom: 1px solid #f1f5f9;">
-                                        <div class="d-flex align-items-center">
-                                            <span style="width: 3px; height: 16px; background: #6366f1; border-radius: 3px; margin-right: 8px; display: inline-block;"></span>
-                                            <span class="fw-bold fs-15 text-dark">My Profile</span>
-                                        </div>
-                                        <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-primary px-3" style="border-radius: 8px;">
-                                            View Profile <i class="ti ti-arrow-narrow-right ms-1"></i>
-                                        </a>
-                                    </div>
-                                    <div class="row g-3">
-                                        <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="premium-profile-tile d-flex align-items-center" role="button" data-bs-toggle="modal" data-bs-target="#profileDetailModal" title="Click to view full profile details">
-                                                <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded" style="background: #ede9fe; color: #6366f1;">
-                                                        <i class="ti ti-user fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="overflow-hidden flex-grow-1" style="min-width: 0;">
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span class="d-block text-muted fs-11">Name</span>
-                                                        <i class="ti ti-arrows-maximize text-muted fs-11 ms-1 opacity-75"></i>
-                                                    </div>
-                                                    <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['name'] }}">{{ $data['name'] }}</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="premium-profile-tile d-flex align-items-center" role="button" data-bs-toggle="modal" data-bs-target="#profileDetailModal" title="Click to view full profile details">
-                                                <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded" style="background: #e0f2fe; color: #0284c7;">
-                                                        <i class="ti ti-mail fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="overflow-hidden flex-grow-1" style="min-width: 0;">
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span class="d-block text-muted fs-11">Email</span>
-                                                        <i class="ti ti-arrows-maximize text-muted fs-11 ms-1 opacity-75"></i>
-                                                    </div>
-                                                    <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['email'] }}">{{ $data['email'] }}</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-md-4 col-sm-6 col-12">
-                                            <div class="premium-profile-tile d-flex align-items-center" role="button" data-bs-toggle="modal" data-bs-target="#profileDetailModal" title="Click to view full profile details">
-                                                <div class="me-3 flex-shrink-0">
-                                                    <span class="avatar avatar-md avatar-rounded" style="background: #fef3c7; color: #d97706;">
-                                                        <i class="ti ti-phone fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="overflow-hidden flex-grow-1" style="min-width: 0;">
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span class="d-block text-muted fs-11">Mobile</span>
-                                                        <i class="ti ti-arrows-maximize text-muted fs-11 ms-1 opacity-75"></i>
-                                                    </div>
-                                                    <h6 class="fw-bold mb-0 text-dark text-truncate" title="{{ $data['mobile'] }}">{{ $data['mobile'] }}</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <img src="{{ asset('user_assets/images/dashboard_3d/coins_hd.png') }}" alt="Gold Coins" class="ft-earn-coins-img">
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Profile Detail Modal -->
-                    <div class="modal fade" id="profileDetailModal" tabindex="-1" aria-labelledby="profileDetailModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content" style="border-radius: 16px; border: 1px solid rgba(17, 28, 67, 0.1); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
-                                <div class="modal-header py-3 px-4" style="background: linear-gradient(135deg, #111c43 0%, #1e3a8a 100%); color: #ffffff;">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="avatar avatar-sm avatar-rounded" style="background: rgba(255, 255, 255, 0.2); color: #ffffff;">
-                                            <i class="ti ti-id fs-16"></i>
-                                        </span>
-                                        <h5 class="modal-title fw-bold fs-16 mb-0 text-white" id="profileDetailModalLabel">Member Profile Details</h5>
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body p-4" style="background: #f8fafc;">
-                                    <div class="d-flex align-items-center p-3 mb-3 bg-white rounded-3 shadow-sm border">
-                                        <div class="me-3">
-                                            @if(!empty($data['profile_image']))
-                                                <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" class="rounded-circle" width="55" height="55" alt="profile" style="object-fit: cover;">
-                                            @else
-                                                <span class="avatar avatar-lg avatar-rounded" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: #ffffff; font-size: 22px; font-weight: 700;">
-                                                    {{ strtoupper(substr($data['name'] ?? 'U', 0, 1)) }}
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-1">
-                                                <h5 class="fw-bold text-dark mb-1 text-truncate">{{ $data['name'] }}</h5>
-                                                <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px;">
-                                                    <i class="bi bi-patch-check-fill me-1"></i> {{ $data['status'] }}
-                                                </span>
-                                            </div>
-                                            <p class="text-muted fs-12 mb-0">Member ID: <strong class="text-primary">{{ $data['memberid'] }}</strong></p>
-                                        </div>
-                                    </div>
+            <!-- Hidden Container for Referral URL Copy -->
+            <input type="hidden" id="refLinkText" value="{{ config('detailsApp.url') }}?ref={{ $data['memberid'] }}">
 
-                                    <div class="bg-white rounded-3 p-3 shadow-sm border">
-                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
-                                            <div class="d-flex align-items-center text-muted fs-13">
-                                                <i class="ti ti-user fs-16 text-primary me-2"></i> Full Name
-                                            </div>
-                                            <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['name'] }}</span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
-                                            <div class="d-flex align-items-center text-muted fs-13">
-                                                <i class="ti ti-mail fs-16 text-info me-2"></i> Email Address
-                                            </div>
-                                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['email'] }}</span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
-                                            <div class="d-flex align-items-center text-muted fs-13">
-                                                <i class="ti ti-phone fs-16 text-warning me-2"></i> Mobile Number
-                                            </div>
-                                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['mobile'] }}</span>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
-                                            <div class="d-flex align-items-center text-muted fs-13">
-                                                <i class="ti ti-id fs-16 text-secondary me-2"></i> Member ID
-                                            </div>
-                                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['memberid'] }}</span>
-                                        </div>
-                                        @if(!empty($data['sponsor']))
-                                        <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
-                                            <div class="d-flex align-items-center text-muted fs-13">
-                                                <i class="ti ti-users fs-16 text-purple me-2"></i> Sponsor ID
-                                            </div>
-                                            <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['sponsor'] }}</span>
-                                        </div>
-                                        @endif
-                                        @if(!empty($data['created_at']))
-                                        <div class="d-flex align-items-center justify-content-between py-2">
-                                            <div class="d-flex align-items-center text-muted fs-13">
-                                                <i class="ti ti-calendar fs-16 text-success me-2"></i> Joined On
-                                            </div>
-                                            <span class="fw-bold text-dark fs-13 text-break text-end">{{ date('d M Y, h:i A', strtotime($data['created_at'])) }}</span>
-                                        </div>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="modal-footer py-2 px-3 bg-white d-flex justify-content-between">
-                                    <button type="button" class="btn btn-sm btn-light border px-3" data-bs-dismiss="modal">Close</button>
-                                    <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-primary px-3">
-                                        <i class="ti ti-edit me-1"></i> Full Profile & Settings
-                                    </a>
-                                </div>
-                            </div>
+            <!-- --------------------------------------------------------------------------
+                 ROW 3: FOUR VIBRANT 3D STATISTIC CARDS (PREMIUM ANIMATED 3D PARALLAX)
+                 Cyan, Purple, Emerald, Amber gradients with rotating cyber rings & floating particles
+                 -------------------------------------------------------------------------- -->
+            <div class="row g-3 mb-3 align-items-stretch">
+                <!-- Card 1: Account Status (Cyan to Electric Blue) -->
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                    <div class="ft-stat-card-vibrant ft-stat-cyan-glow ft-stat-interactive w-100">
+                        <div class="ft-card-orb ft-card-orb-top"></div>
+                        <div class="ft-card-orb ft-card-orb-bottom"></div>
+                        <div class="ft-cyber-ring-wrap">
+                            <div class="ft-cyber-ring ft-cyber-ring-1"></div>
+                            <div class="ft-cyber-ring ft-cyber-ring-2"></div>
                         </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-xl-12">
-                            <div class="premium-referral-card">
-                                <div style="position: relative; z-index: 1;">
-                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-sm avatar-rounded" style="background: linear-gradient(135deg, #111c43 0%, #23b7e5 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(17, 28, 67, 0.2);">
-                                                <i class="ti ti-share fs-16"></i>
-                                            </span>
-                                            <h5 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.2px;">Refer & Earn</h5>
-                                        </div>
-                                        <span class="badge" style="background: linear-gradient(135deg, rgba(35, 183, 229, 0.15) 0%, rgba(17, 28, 67, 0.08) 100%); color: #0284c7; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-gift me-1"></i> Unlimited Referral Bonus
-                                        </span>
-                                    </div>
-                                    <p class="fs-13 mb-3" style="color: #475569; max-width: 850px; line-height: 1.5;">
-                                        Earn referral points by sharing your referral link with friends. You can only earn when your friends join and invest through the provided link.
-                                    </p>
-
-                                    <div class="alert alert-success text-center py-2 mb-2" role="alert" style="display: none; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #065f46; border-radius: 10px;" id="rcode">
-                                        <i class="bi bi-check-circle-fill me-1"></i> <b>Copied !</b> Referral link is copied successfully.
-                                    </div>
-
-                                    <div class="referral-box d-flex align-items-center justify-content-between flex-wrap gap-2">
-                                        <div class="d-flex align-items-center flex-grow-1 overflow-hidden me-2" style="min-width: 220px;">
-                                            <span class="badge px-3 py-2 me-2 d-none d-sm-inline-block" style="background: rgba(255, 255, 255, 0.18); color: #ffffff; font-weight: 600; font-size: 12px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px;">
-                                                <i class="ti ti-link me-1"></i> Referral Code
-                                            </span>
-                                            <span class="text-white fw-semibold fs-13 text-truncate" id="codeLeft" style="letter-spacing: 0.3px;">{{ config('detailsApp.url') }}member/register/{{ $data['memberid'] }}</span>
-                                        </div>
-                                        <button type="button" class="btn referral-copy-btn d-flex align-items-center" id="copyButtonIdLeft">
-                                            <i class="fe fe-copy me-1"></i> <span id="msgTextLeft">CopyText</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="referral-watermark">
-                                    <i class="ti ti-gift"></i>
-                                </div>
-                            </div>
+                        <div class="ft-card-particles">
+                            <span class="ft-particle p1"></span>
+                            <span class="ft-particle p2"></span>
+                            <span class="ft-particle p3"></span>
+                            <span class="ft-particle p4"></span>
                         </div>
-                    </div>
+                        <div class="ft-card-shimmer"></div>
+                        <div class="ft-card-shine"></div>
 
-                    <div class="row g-3 mb-3">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-emerald h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Current Status</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);">
-                                            <i class="ti ti-shield-check fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <h3 class="fw-bold mb-0" style="color: #065f46; letter-spacing: -0.3px;">{{ $data['status'] }}</h3>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #047857; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
-                                            <i class="bi bi-patch-check-fill me-1"></i> Verified & Active
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Account</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
+                        <div class="ft-stat-content-col">
+                            <div>
+                                <div class="ft-stat-sq-icon">
                                     <i class="ti ti-shield-check"></i>
                                 </div>
+                                <span class="ft-stat-title-label">Account Status</span>
+                                <div class="ft-stat-bold-val">{{ $data['status'] }}</div>
+                            </div>
+                            <div>
+                                <span class="ft-stat-action-capsule" style="background: #10B981; border: none;">
+                                    <i class="ti ti-circle-check-filled fs-12"></i> Active Member
+                                </span>
                             </div>
                         </div>
+                        <div class="ft-stat-art-wrapper">
+                            <img src="{{ asset('user_assets/images/dashboard_3d/stat_shield_clean.png') }}" alt="3D Cyber Shield" class="ft-stat-art-graphic">
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-indigo h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">My Referrals</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #845adf 0%, #6366f1 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(132, 90, 223, 0.3);">
-                                            <i class="ti ti-users fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">{{ $data['downline'] }}</h3>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge" style="background: rgba(132, 90, 223, 0.15); color: #6b21a8; border: 1px solid rgba(132, 90, 223, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-trending-up me-1"></i> Total Referrals
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Direct Team</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
+                <!-- Card 2: Total Referrals (Purple to Violet) -->
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                    <div class="ft-stat-card-vibrant ft-stat-purple-glow ft-stat-interactive w-100">
+                        <div class="ft-card-orb ft-card-orb-top"></div>
+                        <div class="ft-card-orb ft-card-orb-bottom"></div>
+                        <div class="ft-cyber-ring-wrap">
+                            <div class="ft-cyber-ring ft-cyber-ring-1"></div>
+                            <div class="ft-cyber-ring ft-cyber-ring-2"></div>
+                        </div>
+                        <div class="ft-card-particles">
+                            <span class="ft-particle p1"></span>
+                            <span class="ft-particle p2"></span>
+                            <span class="ft-particle p3"></span>
+                            <span class="ft-particle p4"></span>
+                        </div>
+                        <div class="ft-card-shimmer"></div>
+                        <div class="ft-card-shine"></div>
+
+                        <div class="ft-stat-content-col">
+                            <div>
+                                <div class="ft-stat-sq-icon">
                                     <i class="ti ti-users"></i>
                                 </div>
+                                <span class="ft-stat-title-label">Total Referrals</span>
+                                <div class="ft-stat-bold-val">
+                                    <span class="exact-counter" data-target="{{ (int)$data['downline'] }}">{{ $data['downline'] }}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="{{ url('/member/levels/direct-members') }}" class="ft-stat-action-capsule">
+                                    View Details <i class="ti ti-arrow-right fs-10"></i>
+                                </a>
                             </div>
                         </div>
+                        <div class="ft-stat-art-wrapper">
+                            <img src="{{ asset('user_assets/images/dashboard_3d/stat_team_clean.png') }}" alt="3D Referral Community" class="ft-stat-art-graphic">
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-sky h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Fund Wallet</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #23b7e5 0%, #0284c7 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(35, 183, 229, 0.3);">
-                                            <i class="ti ti-wallet fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">$ {{ number_format($data['p2p_wallet'], 2) }}</h3>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge" style="background: rgba(35, 183, 229, 0.15); color: #0369a1; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-coins me-1"></i> Fund Balance
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Available for Investment</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
+                <!-- Card 3: Fund Wallet (Emerald to Deep Green) -->
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                    <div class="ft-stat-card-vibrant ft-stat-green-glow ft-stat-interactive w-100">
+                        <div class="ft-card-orb ft-card-orb-top"></div>
+                        <div class="ft-card-orb ft-card-orb-bottom"></div>
+                        <div class="ft-cyber-ring-wrap">
+                            <div class="ft-cyber-ring ft-cyber-ring-1"></div>
+                            <div class="ft-cyber-ring ft-cyber-ring-2"></div>
+                        </div>
+                        <div class="ft-card-particles">
+                            <span class="ft-particle p1"></span>
+                            <span class="ft-particle p2"></span>
+                            <span class="ft-particle p3"></span>
+                            <span class="ft-particle p4"></span>
+                        </div>
+                        <div class="ft-card-shimmer"></div>
+                        <div class="ft-card-shine"></div>
+
+                        <div class="ft-stat-content-col">
+                            <div>
+                                <div class="ft-stat-sq-icon">
                                     <i class="ti ti-wallet"></i>
                                 </div>
+                                <span class="ft-stat-title-label">Fund Wallet</span>
+                                <div class="ft-stat-bold-val">
+                                    <span class="ft-stat-currency">$</span><span class="exact-counter" data-target="{{ (float)$data['p2p_wallet'] }}" data-decimal="2">{{ number_format($data['p2p_wallet'], 2) }}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="{{ url('/member/p2pWallet/activation-wallet') }}" class="ft-stat-action-capsule">
+                                    Add Money <i class="ti ti-arrow-right fs-10"></i>
+                                </a>
                             </div>
                         </div>
-
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-amber h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Income Wallet</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #f5b849 0%, #d97706 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(245, 184, 73, 0.3);">
-                                            <i class="ti ti-cash fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">$ {{ number_format($data['wallet'], 2) }}</h3>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge" style="background: rgba(245, 184, 73, 0.18); color: #b45309; border: 1px solid rgba(245, 184, 73, 0.4); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-arrow-up-right me-1"></i> Income Balance
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Total Earned Income</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-cash"></i>
-                                </div>
-                            </div>
+                        <div class="ft-stat-art-wrapper">
+                            <img src="{{ asset('user_assets/images/dashboard_3d/stat_wallet_clean.png') }}" alt="3D Overflowing Wallet" class="ft-stat-art-graphic">
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-xxl-12">
-                            <div class="card custom-card overflow-hidden" style="border-radius: 14px; border: 1px solid rgba(17, 28, 67, 0.1); box-shadow: 0 4px 16px rgba(17, 28, 67, 0.08);">
-                                <div class="card-body py-3 px-4 d-flex align-items-center justify-content-between flex-wrap gap-2" style="background: linear-gradient(135deg, #111c43 0%, #1e3a8a 100%);">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="avatar avatar-sm avatar-rounded" style="background: rgba(35, 183, 229, 0.2); color: #7dd3fc; border: 1px solid rgba(35, 183, 229, 0.35);">
-                                            <i class="ti ti-calendar-stats fs-16"></i>
-                                        </span>
-                                        <h5 class="text-white my-0 fw-bold">Today's Income</h5>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <span class="badge" style="background: rgba(35, 183, 229, 0.2); color: #7dd3fc; border: 1px solid rgba(35, 183, 229, 0.4); font-size: 14px; padding: 6px 16px; border-radius: 20px; font-weight: 700;">
-                                            $ {{ number_format(todayIncome($data['memberid']), 2) }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-3 mb-4">
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-indigo h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Today's Level Income</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #845adf 0%, #6366f1 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(132, 90, 223, 0.3);">
-                                            <i class="ti ti-layers-linked fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between my-2">
-                                        <div>
-                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
-                                                $ {{ number_format(todayLevelIncome($data['memberid']), 2) }}
-                                            </h3>
-                                        </div>
-                                        <div id="crm-total-customers"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <span class="badge" style="background: rgba(132, 90, 223, 0.15); color: #6b21a8; border: 1px solid rgba(132, 90, 223, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-trending-up me-1"></i> Level Income
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Today</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-layers-linked"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-sky h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Today's Direct Income</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #23b7e5 0%, #0284c7 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(35, 183, 229, 0.3);">
-                                            <i class="ti ti-user-plus fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between my-2">
-                                        <div>
-                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
-                                                $ {{ number_format(todayDirectIncome($data['memberid']), 2) }}
-                                            </h3>
-                                        </div>
-                                        <div id="crm-total-revenue"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <span class="badge" style="background: rgba(35, 183, 229, 0.15); color: #0369a1; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-bolt me-1"></i> Direct Income
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Today</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-user-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-emerald h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Today's Global Autopool</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);">
-                                            <i class="ti ti-world fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between my-2">
-                                        <div>
-                                            <h3 class="fw-bold mb-0" style="color: #065f46; letter-spacing: -0.3px;">
-                                                $ {{ number_format(todayGlobalAutopoolIncome($data['memberid']), 2) }}
-                                            </h3>
-                                        </div>
-                                        <div id="crm-conversion-ratio"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #047857; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-refresh me-1"></i> Autopool
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Today</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-world"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-amber h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Today's Withdrawal Income</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #f5b849 0%, #d97706 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(245, 184, 73, 0.3);">
-                                            <i class="ti ti-cash fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between my-2">
-                                        <div>
-                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
-                                                $ {{ number_format(todayWithdrawalIncome($data['memberid']), 2) }}
-                                            </h3>
-                                        </div>
-                                        <div id="crm-total-deals"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <span class="badge" style="background: rgba(245, 184, 73, 0.18); color: #b45309; border: 1px solid rgba(245, 184, 73, 0.4); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-arrow-down-right me-1"></i> Withdrawal
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Today</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-cash"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-xxl-12">
-                            <div class="card custom-card overflow-hidden" style="border-radius: 14px; border: 1px solid rgba(17, 28, 67, 0.1); box-shadow: 0 4px 16px rgba(17, 28, 67, 0.08);">
-                                <div class="card-body py-3 px-4 d-flex align-items-center justify-content-between flex-wrap gap-2" style="background: linear-gradient(135deg, #111c43 0%, #1e3a8a 100%);">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="avatar avatar-sm avatar-rounded" style="background: rgba(132, 90, 223, 0.2); color: #d8b4fe; border: 1px solid rgba(132, 90, 223, 0.35);">
-                                            <i class="ti ti-chart-pie fs-16"></i>
-                                        </span>
-                                        <h5 class="text-white my-0 fw-bold">Total Income</h5>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <span class="badge" style="background: rgba(132, 90, 223, 0.2); color: #d8b4fe; border: 1px solid rgba(132, 90, 223, 0.4); font-size: 14px; padding: 6px 16px; border-radius: 20px; font-weight: 700;">
-                                            $ {{ number_format(totalIncome($data['memberid']), 2) }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-3 mb-4">
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-indigo h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Total Level Income</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #845adf 0%, #6366f1 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(132, 90, 223, 0.3);">
-                                            <i class="ti ti-layers-linked fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between my-2">
-                                        <div>
-                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
-                                                $ {{ number_format(totalLevelIncome($data['memberid']), 2) }}
-                                            </h3>
-                                        </div>
-                                        <div id="returns-rate"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <span class="badge" style="background: rgba(132, 90, 223, 0.15); color: #6b21a8; border: 1px solid rgba(132, 90, 223, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-trending-up me-1"></i> Level Income
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Total</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-layers-linked"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-sky h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Total Direct Income</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #23b7e5 0%, #0284c7 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(35, 183, 229, 0.3);">
-                                            <i class="ti ti-user-plus fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between my-2">
-                                        <div>
-                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
-                                                $ {{ number_format(totalDirectIncome($data['memberid']), 2) }}
-                                            </h3>
-                                        </div>
-                                        <div id="portfolio-value"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <span class="badge" style="background: rgba(35, 183, 229, 0.15); color: #0369a1; border: 1px solid rgba(35, 183, 229, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-bolt me-1"></i> Direct Income
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Total</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-user-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-emerald h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Total Global Autopool</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);">
-                                            <i class="ti ti-world fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between my-2">
-                                        <div>
-                                            <h3 class="fw-bold mb-0" style="color: #065f46; letter-spacing: -0.3px;">
-                                                $ {{ number_format(totalGlobalAutopoolIncome($data['memberid']), 2) }}
-                                            </h3>
-                                        </div>
-                                        <div id="total-invested"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #047857; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-refresh me-1"></i> Autopool
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Total</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-world"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="premium-stat-card stat-amber h-100">
-                                <div class="stat-content d-flex flex-column justify-content-between h-100">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <span class="fs-12 fw-semibold text-uppercase tracking-wider" style="color: #64748b;">Total Withdrawal Income</span>
-                                        <span class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #f5b849 0%, #d97706 100%); color: #ffffff; box-shadow: 0 4px 10px rgba(245, 184, 73, 0.3);">
-                                            <i class="ti ti-cash fs-20"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between my-2">
-                                        <div>
-                                            <h3 class="fw-bold mb-0" style="color: #111c43; letter-spacing: -0.3px;">
-                                                $ {{ number_format(totalWithdrawalIncome($data['memberid']), 2) }}
-                                            </h3>
-                                        </div>
-                                        <div id="total-investments"></div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mt-1">
-                                        <span class="badge" style="background: rgba(245, 184, 73, 0.18); color: #b45309; border: 1px solid rgba(245, 184, 73, 0.4); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;">
-                                            <i class="ti ti-arrow-down-right me-1"></i> Withdrawal
-                                        </span>
-                                        <small style="color: #64748b; font-size: 11px;">Member Total</small>
-                                    </div>
-                                </div>
-                                <div class="stat-watermark">
-                                    <i class="ti ti-cash"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        @foreach ($matrix as $value)
-                            <div class="col-xl-4 col-md-4 mb-4">
-                                <div class="sbt-card">
-                                    <h4 class="sbt-title text-white">Slot</h4>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <p><strong>Amount:</strong><br> $100</p>
-                                            <p><strong>Received:</strong><br> $100</p>
-                                            <p><strong>Status:</strong><br> {{ $value['status'] }}</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p><strong>Date/ Time:</strong><br>
-                                                {{ date('d-m-Y', strtotime($value['created_at'])) }} |
-                                                {{ date('H:i:s', strtotime($value['created_at'])) }}</p>
-
-                                             @if (getPoolCount($value['id']) >= 32 && $value['status'] == 'Open')
-                                                <a href="{{ url('/member/profit-withdrawal') }}/{{ $value['id'] }}"
-                                                    class="btn text-white" style="background: #111c43;">Sell</a>
-                                            @elseif (getPoolCount($value['id']) >= 32 && $value['status'] == 'Closed')
-                                                <button class="btn text-white"
-                                                    style="background: #111c43;">Closed</button>
-                                            @else
-                                                <button class="btn text-white" style="background: #111c43;">Wait</button>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
                 </div>
-               
+
+                <!-- Card 4: Income Wallet (Amber to Orange) -->
+                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                    <div class="ft-stat-card-vibrant ft-stat-orange-glow ft-stat-interactive w-100">
+                        <div class="ft-card-orb ft-card-orb-top"></div>
+                        <div class="ft-card-orb ft-card-orb-bottom"></div>
+                        <div class="ft-cyber-ring-wrap">
+                            <div class="ft-cyber-ring ft-cyber-ring-1"></div>
+                            <div class="ft-cyber-ring ft-cyber-ring-2"></div>
+                        </div>
+                        <div class="ft-card-particles">
+                            <span class="ft-particle p1"></span>
+                            <span class="ft-particle p2"></span>
+                            <span class="ft-particle p3"></span>
+                            <span class="ft-particle p4"></span>
+                        </div>
+                        <div class="ft-card-shimmer"></div>
+                        <div class="ft-card-shine"></div>
+
+                        <div class="ft-stat-content-col">
+                            <div>
+                                <div class="ft-stat-sq-icon">
+                                    <i class="ti ti-cash"></i>
+                                </div>
+                                <span class="ft-stat-title-label">Income Wallet</span>
+                                <div class="ft-stat-bold-val">
+                                    <span class="ft-stat-currency">$</span><span class="exact-counter" data-target="{{ (float)$data['wallet'] }}" data-decimal="2">{{ number_format($data['wallet'], 2) }}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="{{ url('/member/wallet/main-wallet') }}" class="ft-stat-action-capsule">
+                                    Withdraw <i class="ti ti-arrow-right fs-10"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ft-stat-art-wrapper">
+                            <img src="{{ asset('user_assets/images/dashboard_3d/stat_money_bag_clean.png') }}" alt="3D Golden Money Bag" class="ft-stat-art-graphic">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- End::row-1 -->
+
+            <!-- --------------------------------------------------------------------------
+                 ROW 4: TODAY'S EARNINGS COMMAND CENTER (LEFT) & LIFETIME OVERVIEW (RIGHT)
+                 (EXACT CLOSE-UP MATCH FROM IMAGE 2 & IMAGE 1)
+                 -------------------------------------------------------------------------- -->
+            <div class="row g-3 mb-3">
+                <!-- Left: Today's Earnings Command Center -->
+                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12">
+                    <div class="ft-overview-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3 pb-2" style="border-bottom: 1px solid #F1F5F9;">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
+                                    <i class="ti ti-calendar-stats fs-15"></i>
+                                </span>
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0 fs-15">Today's Earnings Command Center</h6>
+                                    <span class="text-muted" style="font-size: 11px;">Track your today's performance</span>
+                                </div>
+                            </div>
+                            <a href="{{ url('/member/income/direct-income') }}" class="text-primary fs-12 fw-semibold text-decoration-none">
+                                View Report <i class="ti ti-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+
+                        <div class="row align-items-center g-3">
+                            <!-- Left: 3D Gold Coins stack on platform with growth chart -->
+                            <div class="col-sm-4 col-12 text-center">
+                                <img src="{{ asset('user_assets/images/dashboard_3d/today_growth_perfect.png') }}" alt="Today Growth" style="max-height: 125px; width: auto; object-fit: contain;">
+                            </div>
+
+                            <!-- Right: 2x2 Grid of Modern Cards matching Image 2 -->
+                            <div class="col-sm-8 col-12">
+                                <div class="row g-2">
+                                    <!-- Pod 1: Today's Level Income -->
+                                    <div class="col-6">
+                                        <div class="ft-income-pod-v2 ft-pod-blue">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Level Income</span>
+                                                <div class="ft-pod-icon-box">
+                                                    <i class="ti ti-chart-bar"></i>
+                                                </div>
+                                            </div>
+                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
+                                                $ <span class="exact-counter" data-target="{{ (float)todayLevelIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayLevelIncome($data['memberid']), 2) }}</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pod 2: Today's Direct Income -->
+                                    <div class="col-6">
+                                        <div class="ft-income-pod-v2 ft-pod-purple">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Direct Income</span>
+                                                <div class="ft-pod-icon-box">
+                                                    <i class="ti ti-users"></i>
+                                                </div>
+                                            </div>
+                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
+                                                $ <span class="exact-counter" data-target="{{ (float)todayDirectIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayDirectIncome($data['memberid']), 2) }}</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pod 3: Today's Global Autopool -->
+                                    <div class="col-6">
+                                        <div class="ft-income-pod-v2 ft-pod-green">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Global Autopool</span>
+                                                <div class="ft-pod-icon-box">
+                                                    <i class="ti ti-world"></i>
+                                                </div>
+                                            </div>
+                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
+                                                $ <span class="exact-counter" data-target="{{ (float)todayGlobalAutopoolIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayGlobalAutopoolIncome($data['memberid']), 2) }}</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pod 4: Today's Withdrawal Income -->
+                                    <div class="col-6">
+                                        <div class="ft-income-pod-v2 ft-pod-amber">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Withdrawal Income</span>
+                                                <div class="ft-pod-icon-box">
+                                                    <i class="ti ti-wallet"></i>
+                                                </div>
+                                            </div>
+                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
+                                                $ <span class="exact-counter" data-target="{{ (float)todayWithdrawalIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayWithdrawalIncome($data['memberid']), 2) }}</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Lifetime Total Earnings Overview (Luxury Modern Fintech Redesign) -->
+                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12">
+                    <div class="ft-lifetime-card-shell">
+                        <div class="d-flex align-items-center justify-content-between pb-2" style="border-bottom: 1px solid #F1F5F9;">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="avatar avatar-xs avatar-rounded" style="background: #EDE9FE; color: #7C3AED;">
+                                    <i class="ti ti-chart-dots-3 fs-15"></i>
+                                </span>
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0 fs-15">Lifetime Total Earnings Overview</h6>
+                                    <span class="text-muted" style="font-size: 11px;">Consolidated multi-stream performance & lifetime yields</span>
+                                </div>
+                            </div>
+                            <a href="{{ url('/member/wallet/main-wallet') }}" class="text-primary fs-12 fw-semibold text-decoration-none">
+                                View All <i class="ti ti-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+
+                        <!-- Top Spotlight Banner -->
+                        <div class="ft-lifetime-hero-banner">
+                            <div style="position: relative; z-index: 2; max-width: 62%;">
+                                <span class="badge" style="background: rgba(251, 191, 36, 0.22); color: #FDE047; font-size: 11px; font-weight: 700; border-radius: 20px; padding: 4px 12px; border: 1px solid rgba(251, 191, 36, 0.45);">
+                                    <i class="ti ti-sparkles me-1"></i> VERIFIED TOTAL EARNINGS
+                                </span>
+                                <div class="fw-900 mt-2 mb-1" style="font-size: 32px; letter-spacing: -0.5px; color: #FFFFFF; line-height: 1.15;">
+                                    $ <span class="exact-counter" data-target="{{ (float)totalIncome($data['memberid']) }}" data-decimal="2">{{ number_format(totalIncome($data['memberid']), 2) }}</span>
+                                </div>
+                                <div class="fs-12 text-white-50 d-flex align-items-center gap-1" style="color: rgba(255, 255, 255, 0.9) !important;">
+                                    <i class="ti ti-circle-check-filled text-success"></i> 100% Verified Community & Matrix Distributions
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2" style="position: relative; z-index: 2;">
+                                <img src="{{ asset('user_assets/images/dashboard_3d/lifetime_chart_clean.png') }}" alt="Revenue Growth Chart" class="ft-lifetime-chart-art d-none d-sm-block">
+                                <img src="{{ asset('user_assets/images/dashboard_3d/lifetime_trophy_clean.png') }}" alt="Golden VIP Trophy" class="ft-lifetime-trophy-art">
+                            </div>
+                        </div>
+
+                        @php
+                            $lvlVal = (float)totalLevelIncome($data['memberid']);
+                            $dirVal = (float)totalDirectIncome($data['memberid']);
+                            $poolVal = (float)totalGlobalAutopoolIncome($data['memberid']);
+                            $withVal = (float)totalWithdrawalIncome($data['memberid']);
+                            $totInc = max(1, (float)totalIncome($data['memberid']));
+                            $lvlPct = min(100, max(6, round(($lvlVal / $totInc) * 100)));
+                            $dirPct = min(100, max(6, round(($dirVal / $totInc) * 100)));
+                            $poolPct = min(100, max(6, round(($poolVal / $totInc) * 100)));
+                            $withPct = min(100, max(6, round(($withVal / $totInc) * 100)));
+                        @endphp
+
+                        <!-- Bottom 4 Modern Stream Pods (2x2 Grid) -->
+                        <div class="row g-2">
+                            <!-- Stream 1: Level Income -->
+                            <div class="col-sm-6 col-12">
+                                <div class="ft-stream-tile ft-stream-tile-blue">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
+                                                <i class="ti ti-chart-bar fs-14"></i>
+                                            </span>
+                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Level Income</span>
+                                        </div>
+                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($lvlVal, 2) }}</strong>
+                                    </div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar" style="width: {{ $lvlPct }}%; background: #2563EB;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stream 2: Direct Income -->
+                            <div class="col-sm-6 col-12">
+                                <div class="ft-stream-tile ft-stream-tile-purple">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
+                                                <i class="ti ti-users fs-14"></i>
+                                            </span>
+                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Direct Income</span>
+                                        </div>
+                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($dirVal, 2) }}</strong>
+                                    </div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar" style="width: {{ $dirPct }}%; background: #7C3AED;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stream 3: Global Autopool -->
+                            <div class="col-sm-6 col-12">
+                                <div class="ft-stream-tile ft-stream-tile-green">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-xs avatar-rounded" style="background: #ECFDF5; color: #059669;">
+                                                <i class="ti ti-world fs-14"></i>
+                                            </span>
+                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Global Autopool</span>
+                                        </div>
+                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($poolVal, 2) }}</strong>
+                                    </div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar" style="width: {{ $poolPct }}%; background: #059669;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stream 4: Withdrawal Income -->
+                            <div class="col-sm-6 col-12">
+                                <div class="ft-stream-tile ft-stream-tile-amber">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-xs avatar-rounded" style="background: #FFFBEB; color: #D97706;">
+                                                <i class="ti ti-wallet fs-14"></i>
+                                            </span>
+                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Total Withdrawn</span>
+                                        </div>
+                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($withVal, 2) }}</strong>
+                                    </div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar" style="width: {{ $withPct }}%; background: #D97706;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- --------------------------------------------------------------------------
+                 ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS (MATCHING REFERENCE 1)
+                 -------------------------------------------------------------------------- -->
+            <div class="ft-matrix-section">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="{{ asset('user_assets/images/dashboard_3d/matrix_cube_icon.png') }}" alt="Matrix Cube" style="width: 28px; height: 28px; object-fit: contain;">
+                        <div>
+                            <h6 class="fw-bold text-dark mb-0 fs-15">Global Autopool Matrix Slots</h6>
+                            <span class="text-muted fs-11">Activate your matrix slots for unlimited earning potential</span>
+                        </div>
+                    </div>
+                    <a href="{{ url('/member/invest-slot') }}" class="ft-btn-new-slot">
+                        <i class="ti ti-plus"></i> New Slot
+                    </a>
+                </div>
+
+                <div class="row g-3">
+                    @forelse ($matrix as $value)
+                        @php
+                            $poolCount = getPoolCount($value['id']);
+                            $progressPct = min(100, round(($poolCount / 32) * 100));
+                        @endphp
+                        <div class="col-xxl-4 col-xl-4 col-md-6 col-12">
+                            <div class="ft-matrix-slot-item">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="badge" style="background: #EFF6FF; color: #2563EB; font-size: 11.5px; font-weight: 700; border-radius: 6px; padding: 3px 9px;">
+                                        Slot #{{ $value['id'] }}
+                                    </span>
+                                    <span class="badge" style="background: {{ $value['status'] == 'Open' ? '#ECFDF5' : '#F1F5F9' }}; color: {{ $value['status'] == 'Open' ? '#047857' : '#64748B' }}; border: 1px solid {{ $value['status'] == 'Open' ? '#A7F3D0' : '#E2E8F0' }}; font-size: 11px; padding: 2px 8px; border-radius: 20px;">
+                                        ● {{ $value['status'] }}
+                                    </span>
+                                </div>
+
+                                <div class="my-2">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <span class="text-muted fs-11">Pool Progress</span>
+                                        <span class="fw-bold fs-11 text-dark">{{ $poolCount }} / 32 Members ({{ $progressPct }}%)</span>
+                                    </div>
+                                    <div class="ft-progress-track">
+                                        <div class="ft-progress-bar-fill" style="width: {{ $progressPct }}%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between text-muted fs-11 mt-1">
+                                    <span><i class="ti ti-calendar me-1"></i> {{ date('d-m-Y', strtotime($value['created_at'])) }}</span>
+                                    <span><i class="ti ti-clock me-1"></i> {{ date('H:i:s', strtotime($value['created_at'])) }}</span>
+                                </div>
+
+                                <div class="mt-3 pt-2" style="border-top: 1px solid #F1F5F9;">
+                                    @if ($poolCount >= 32 && $value['status'] == 'Open')
+                                        <a href="{{ url('/member/profit-withdrawal') }}/{{ $value['id'] }}" class="btn btn-sm btn-success w-100 fw-bold" style="border-radius: 8px;">
+                                            <i class="ti ti-sparkles me-1"></i> Claim & Sell Profit ($100)
+                                        </a>
+                                    @elseif ($poolCount >= 32 && $value['status'] == 'Closed')
+                                        <button class="btn btn-sm btn-light border w-100 text-muted fw-bold" style="border-radius: 8px;" disabled>
+                                            <i class="ti ti-lock me-1"></i> Slot Completed
+                                        </button>
+                                    @else
+                                        <button class="btn btn-sm btn-light border w-100 text-muted fw-semibold" style="border-radius: 8px;" disabled>
+                                            <i class="ti ti-hourglass-low me-1 text-warning"></i> In Progress ({{ $poolCount }}/32 Nodes)
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="col-12">
+                            <div class="text-center py-5 px-3 rounded-4 bg-white border" style="border-style: dashed !important;">
+                                <img src="{{ asset('user_assets/images/dashboard_3d/matrix_cube_icon.png') }}" alt="Matrix Cubes" style="width: 44px; height: 44px; object-fit: contain;" class="mb-3">
+                                <h6 class="fw-bold text-dark mb-1 fs-15">No Active Matrix Slots Yet</h6>
+                                <p class="text-muted fs-12 mb-3" style="max-width: 420px; margin: 0 auto;">
+                                    Activate your first Global Autopool slot to participate in 32-member cycle profit sharing.
+                                </p>
+                                <a href="{{ url('/member/invest-slot') }}" class="ft-btn-new-slot px-4">
+                                    <i class="ti ti-rocket me-1"></i> Activate Matrix Slot Now
+                                </a>
+                            </div>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+
         </div>
     </div>
-    <!-- END MAIN-CONTENT -->
 
-    <!--***************************** Content body end ***********************************-->
+    <!-- MEMBER PROFILE DETAIL MODAL -->
+    <div class="modal fade" id="profileDetailModal" tabindex="-1" aria-labelledby="profileDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content ft-modal-shell">
+                <div class="modal-header ft-modal-header">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="ti ti-user-circle fs-18 text-warning"></i>
+                        <h6 class="modal-title fw-bold fs-15 mb-0 text-white" id="profileDetailModalLabel">Member Account Details</h6>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" style="background: #F8FAFC;">
+                    <div class="d-flex align-items-center p-3 mb-3 bg-white rounded-3 border">
+                        <div class="me-3">
+                            @if(!empty($data['profile_image']))
+                                <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" class="rounded-circle" width="50" height="50" alt="profile" style="object-fit: cover; border: 2px solid #7C3AED;">
+                            @else
+                                <div class="avatar avatar-md avatar-rounded" style="background: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%); color: #FFFFFF; font-size: 18px; font-weight: 700;">
+                                    {{ strtoupper(substr($data['name'] ?? 'M', 0, 1)) }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="flex-grow-1 overflow-hidden">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-1">
+                                <h6 class="fw-bold text-dark mb-1 text-truncate">{{ $data['name'] }}</h6>
+                                <span class="badge" style="background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; font-size: 11px; padding: 3px 8px; border-radius: 20px;">
+                                    {{ $data['status'] }}
+                                </span>
+                            </div>
+                            <p class="text-muted fs-12 mb-0">Member ID: <strong class="text-primary font-monospace">{{ $data['memberid'] }}</strong></p>
+                        </div>
+                    </div>
 
+                    <div class="ft-modal-row">
+                        <div class="d-flex align-items-center text-muted fs-13">
+                            <i class="ti ti-user fs-16 text-primary me-2"></i> Full Name
+                        </div>
+                        <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['name'] }}</span>
+                    </div>
 
+                    <div class="ft-modal-row">
+                        <div class="d-flex align-items-center text-muted fs-13">
+                            <i class="ti ti-mail fs-16 text-info me-2"></i> Email Address
+                        </div>
+                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['email'] }}</span>
+                    </div>
+
+                    <div class="ft-modal-row">
+                        <div class="d-flex align-items-center text-muted fs-13">
+                            <i class="ti ti-phone fs-16 text-warning me-2"></i> Mobile Number
+                        </div>
+                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['mobile'] ?? 'N/A' }}</span>
+                    </div>
+
+                    <div class="ft-modal-row">
+                        <div class="d-flex align-items-center text-muted fs-13">
+                            <i class="ti ti-id fs-16 text-secondary me-2"></i> Member ID
+                        </div>
+                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all font-monospace">{{ $data['memberid'] }}</span>
+                    </div>
+
+                    @if(!empty($data['sponsor']))
+                    <div class="ft-modal-row">
+                        <div class="d-flex align-items-center text-muted fs-13">
+                            <i class="ti ti-users fs-16 text-purple me-2"></i> Sponsor ID
+                        </div>
+                        <span class="fw-bold text-dark fs-13 text-break text-end font-monospace">{{ $data['sponsor'] }}</span>
+                    </div>
+                    @endif
+
+                    @if(!empty($data['created_at']))
+                    <div class="ft-modal-row">
+                        <div class="d-flex align-items-center text-muted fs-13">
+                            <i class="ti ti-calendar fs-16 text-success me-2"></i> Joined On
+                        </div>
+                        <span class="fw-bold text-dark fs-13 text-break text-end">{{ date('d M Y, h:i A', strtotime($data['created_at'])) }}</span>
+                    </div>
+                    @endif
+                </div>
+
+                <div class="modal-footer py-2 px-3 bg-white d-flex justify-content-between border-top">
+                    <button type="button" class="btn btn-sm btn-light border px-3" data-bs-dismiss="modal">Close</button>
+                    <a href="{{ url('member/profile/user-summary') }}" class="btn btn-sm btn-primary px-3">
+                        <i class="ti ti-edit me-1"></i> Edit Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         INTERACTIVE SCRIPTS: CLIPBOARD COPY & NUMBER COUNTERS
+         ========================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. Referral Link Copy Function
+            const btnCopy = document.getElementById('btnCopyRef');
+            const btnCopyIcon = document.getElementById('btnCopyIcon');
+            const refLinkInput = document.getElementById('refLinkText');
+            const btnCopyLabel = document.getElementById('btnCopyLabel');
+
+            function copyText(val, onDone) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(val).then(onDone).catch(fallback);
+                } else {
+                    fallback();
+                }
+
+                function fallback() {
+                    const temp = document.createElement('input');
+                    temp.value = val;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    try {
+                        document.execCommand('copy');
+                        onDone();
+                    } catch (e) {
+                        console.error('Copy failed', e);
+                    }
+                    document.body.removeChild(temp);
+                }
+            }
+
+            function handleCopySuccess() {
+                if (btnCopyLabel) {
+                    btnCopyLabel.innerText = 'Copied! ✓';
+                    setTimeout(() => { btnCopyLabel.innerText = 'Copy Link'; }, 2500);
+                }
+                if (btnCopyIcon) {
+                    btnCopyIcon.innerHTML = '<i class="ti ti-check text-success fs-14"></i>';
+                    setTimeout(() => {
+                        btnCopyIcon.innerHTML = '<i class="ti ti-copy fs-14"></i>';
+                    }, 2500);
+                }
+            }
+
+            if (btnCopy && refLinkInput) {
+                btnCopy.addEventListener('click', function () {
+                    copyText(refLinkInput.value.trim(), handleCopySuccess);
+                });
+            }
+
+            if (btnCopyIcon && refLinkInput) {
+                btnCopyIcon.addEventListener('click', function () {
+                    copyText(refLinkInput.value.trim(), handleCopySuccess);
+                });
+            }
+
+            // 2. Member ID Quick Copy
+            const inlineCopyId = document.getElementById('inlineCopyId');
+            const memberIdVal = document.getElementById('memberIdVal');
+            if (inlineCopyId && memberIdVal) {
+                inlineCopyId.addEventListener('click', function () {
+                    copyText(memberIdVal.innerText.trim(), function () {
+                        inlineCopyId.classList.remove('ti-copy');
+                        inlineCopyId.classList.add('ti-check', 'text-success');
+                        setTimeout(() => {
+                            inlineCopyId.classList.remove('ti-check', 'text-success');
+                            inlineCopyId.classList.add('ti-copy');
+                        }, 2500);
+                    });
+                });
+            }
+
+            // 3. Smooth Number Counter Animation
+            const counters = document.querySelectorAll('.exact-counter');
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target')) || 0;
+                const decimals = parseInt(counter.getAttribute('data-decimal')) || 0;
+                const duration = 1000;
+                const startTime = performance.now();
+
+                function updateCount(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                    const currentVal = (target * easeProgress).toFixed(decimals);
+
+                    const parts = currentVal.toString().split('.');
+                    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    counter.innerText = parts.join('.');
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        const finalParts = target.toFixed(decimals).toString().split('.');
+                        finalParts[0] = finalParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        counter.innerText = finalParts.join('.');
+                    }
+                }
+
+                requestAnimationFrame(updateCount);
+            });
+
+            // 4. Interactive 3D Card Parallax & Smooth Lighting (Zero Vertical Jitter)
+            const interactiveCards = document.querySelectorAll('.ft-stat-interactive');
+            interactiveCards.forEach(card => {
+                const img = card.querySelector('.ft-stat-art-graphic');
+                const shine = card.querySelector('.ft-card-shine');
+
+                card.addEventListener('mousemove', function (e) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    // Smooth subtle horizontal parallax for 3D graphic (-6px to +6px)
+                    const moveX = ((x - centerX) / centerX) * 6;
+                    const moveY = ((y - centerY) / centerY) * 4;
+
+                    if (img) {
+                        img.style.animationPlayState = 'paused';
+                        img.style.transform = `translate(${moveX.toFixed(1)}px, ${moveY.toFixed(1)}px) scale(1.05)`;
+                    }
+                    if (shine) {
+                        shine.style.background = `radial-gradient(circle 220px at ${x}px ${y}px, rgba(255, 255, 255, 0.35) 0%, transparent 70%)`;
+                        shine.style.opacity = '1';
+                    }
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    if (img) {
+                        img.style.animationPlayState = 'running';
+                        img.style.transform = 'translate(0px, 0px) scale(1)';
+                    }
+                    if (shine) {
+                        shine.style.opacity = '0';
+                    }
+                });
+            });
+        });
+    </script>
 
 @endsection
