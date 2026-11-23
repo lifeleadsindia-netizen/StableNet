@@ -1286,7 +1286,9 @@ class AdminController extends Controller
             $search = trim($request->search);
             $query->where(function ($q) use ($search) {
                 $q->where('memberid', 'like', "%{$search}%")
-                  ->orWhere('pool_id', 'like', "%{$search}%");
+                  ->orWhere('pool_no', 'like', "%{$search}%")
+                  ->orWhere('activatingId', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%");
             });
         }
 
@@ -1315,7 +1317,9 @@ class AdminController extends Controller
                 $query->where(function ($q) use ($search) {
                     $q->where('memberid', 'like', "%{$search}%")
                       ->orWhere('level_id', 'like', "%{$search}%")
-                      ->orWhere('name', 'like', "%{$search}%");
+                      ->orWhere('name', 'like', "%{$search}%")
+                      ->orWhere('type', 'like', "%{$search}%")
+                      ->orWhere('status', 'like', "%{$search}%");
                 });
             }
 
