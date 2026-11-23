@@ -171,24 +171,30 @@ class AdminController extends Controller
     public function retrivePassword(Request $request)
     {
         $data = Admin::find(1);
-        $email = $data->email;
+        if (!$data) {
+            session()->flash('failedMsg', 'No Admin account found.');
+            return redirect()->back();
+        }
+
         $password = rand(100000, 999999);
         $data->password = Hash::make($password);
         $data->save();
 
-        if ($email != '') {
-            $mailData = [
-                'email' => $email,
-                'password' => $password
-            ];
-            $user['to'] = $email;
-            Mail::send('admin.mails.forget-password-mail', $mailData, function ($message) use ($user) {
+        // Email sending commented out as requested
+        // $email = $data->email;
+        // if ($email != '') {
+        //     $mailData = [
+        //         'email' => $email,
+        //         'password' => $password
+        //     ];
+        //     $user['to'] = $email;
+        //     Mail::send('admin.mails.forget-password-mail', $mailData, function ($message) use ($user) {
+        //         $message->to($user['to']);
+        //         $message->subject('StableCoin Admin Account Password');
+        //     });
+        // }
 
-                $message->to($user['to']);
-                $message->subject('StableCoin Admin Account Password');
-            });
-        }
-        session()->flash('succMsg', 'Your Account Password has been sent to your registered email.');
+        session()->flash('succMsg', 'Your Account Password has been reset successfully! New Password: ' . $password);
         return redirect()->back();
     }
 
