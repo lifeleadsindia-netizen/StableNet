@@ -293,58 +293,81 @@
         }
 
         /* --------------------------------------------------------------------------
-           ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER (EXACT MATCH REFERENCE 1)
+           ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER — MODERN LUXURY REDESIGN
            -------------------------------------------------------------------------- */
         .ft-referral-banner {
-            background: linear-gradient(90deg, #FFFFFF 0%, #FAF8FF 30%, #F5F3FF 70%, #FFFFFF 100%);
-            border-radius: var(--ft-radius-md);
-            padding: 16px 24px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF8FF 35%, #F5F3FF 70%, #FFFFFF 100%);
+            border-radius: var(--ft-radius-lg);
+            padding: 18px 24px;
             border: 1px solid #E0E7FF;
-            box-shadow: var(--ft-shadow-card);
-            position: relative;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.06);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
             flex-wrap: wrap;
-            gap: 16px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ft-referral-banner::before {
+            content: "";
+            position: absolute;
+            top: -60px; right: 180px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .ft-referral-banner:hover {
             transform: translateY(-2px);
-            box-shadow: var(--ft-shadow-hover);
+            box-shadow: 0 10px 28px rgba(124, 58, 237, 0.12);
             border-color: #C7D2FE;
         }
 
-        .ft-ref-left-group {
+        .ft-ref-brand-col {
             display: flex;
             align-items: center;
             gap: 16px;
-            flex: 1 1 520px;
-            min-width: 0;
+            flex: 1 1 300px;
+            min-width: 240px;
         }
 
         .ft-ref-gift-art {
-            height: 76px;
+            height: 68px;
             width: auto;
+            max-width: 78px;
             object-fit: contain;
             flex-shrink: 0;
-            filter: drop-shadow(0 6px 14px rgba(124, 58, 237, 0.2));
-            animation: floatSubtle 4.5s ease-in-out infinite;
+            filter: drop-shadow(0 8px 18px rgba(124, 58, 237, 0.22));
+            animation: idle3DFloat 4s ease-in-out infinite alternate;
+        }
+
+        .ft-ref-actions-col {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1 1 auto;
+            flex-wrap: wrap;
+            justify-content: flex-start;
         }
 
         .ft-ref-input-shell {
             background: #FFFFFF;
             border: 1.5px solid #E2E8F0;
             border-radius: 12px;
-            padding: 5px 8px 5px 14px;
+            padding: 7px 12px 7px 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            flex: 1 1 260px;
+            gap: 10px;
+            min-width: 270px;
             max-width: 380px;
-            min-width: 220px;
-            transition: border-color 0.2s ease;
+            flex: 1;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+            transition: all 0.2s ease;
+            height: 44px;
         }
 
         .ft-ref-input-shell:focus-within {
@@ -356,26 +379,30 @@
             border: none;
             outline: none;
             background: transparent;
-            font-size: 12.5px;
+            font-size: 13px;
+            font-weight: 600;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            color: #334155;
+            color: #1E293B;
             width: 100%;
         }
 
         .ft-ref-copy-icon-btn {
-            background: none;
+            background: #F1F5F9;
             border: none;
             color: #64748B;
-            padding: 4px;
+            width: 28px;
+            height: 28px;
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: color 0.2s ease;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
         }
 
         .ft-ref-copy-icon-btn:hover {
+            background: #EDE9FE;
             color: #7C3AED;
         }
 
@@ -386,20 +413,21 @@
             border-radius: 12px;
             font-size: 13px;
             font-weight: 700;
-            padding: 9px 20px;
+            padding: 9px 18px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             transition: all 0.2s ease;
-            box-shadow: 0 3px 12px rgba(124, 58, 237, 0.35);
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
             white-space: nowrap;
             cursor: pointer;
+            height: 44px;
         }
 
         .ft-btn-copy-purple:hover {
             background: linear-gradient(135deg, #6D28D9 0%, #4F46E5 100%);
             transform: translateY(-1px);
-            box-shadow: 0 5px 16px rgba(124, 58, 237, 0.5);
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
         }
 
         .ft-btn-whatsapp-green {
@@ -409,40 +437,61 @@
             border-radius: 12px;
             font-size: 13px;
             font-weight: 700;
-            padding: 9px 20px;
+            padding: 9px 18px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             text-decoration: none;
             transition: all 0.2s ease;
-            box-shadow: 0 3px 12px rgba(16, 185, 129, 0.35);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
             white-space: nowrap;
+            height: 44px;
         }
 
         .ft-btn-whatsapp-green:hover {
             background: linear-gradient(135deg, #059669 0%, #047857 100%);
             transform: translateY(-1px);
-            box-shadow: 0 5px 16px rgba(16, 185, 129, 0.5);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
         }
 
         .ft-earn-up-to-capsule {
-            background: linear-gradient(135deg, #2E1065 0%, #4C1D95 50%, #6D28D9 100%);
-            border: 1px solid rgba(192, 132, 252, 0.4);
-            border-radius: 18px;
-            padding: 10px 18px;
+            background: linear-gradient(135deg, #1e0b4b 0%, #3b0764 50%, #581c87 100%);
+            border: 1px solid rgba(216, 180, 254, 0.35);
+            border-radius: 16px;
+            padding: 8px 18px;
             color: #FFFFFF;
             display: flex;
             align-items: center;
-            gap: 14px;
-            box-shadow: 0 6px 20px rgba(76, 29, 149, 0.3);
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(59, 7, 100, 0.3);
             flex-shrink: 0;
+            height: 56px;
+        }
+
+        .ft-earn-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 700;
+            display: block;
+            line-height: 1.1;
+        }
+
+        .ft-earn-amount {
+            font-size: 22px;
+            font-weight: 900;
+            color: #FDE047;
+            line-height: 1.15;
+            text-shadow: 0 2px 10px rgba(253, 224, 71, 0.4);
         }
 
         .ft-earn-coins-img {
-            height: 50px;
+            height: 46px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35));
+            animation: idle3DFloat 3.8s ease-in-out infinite alternate;
         }
 
         /* --------------------------------------------------------------------------
@@ -1270,21 +1319,30 @@
             </div>
 
             <!-- --------------------------------------------------------------------------
-                 ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER (EXACT MATCH REFERENCE 1)
+                 ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER (MODERN LUXURY REDESIGN)
                  -------------------------------------------------------------------------- -->
             <div class="row g-3 mb-3">
                 <div class="col-12">
                     <div class="ft-referral-banner">
-                        <div class="ft-ref-left-group">
-                            <img src="{{ asset('user_assets/images/dashboard_3d/new_purple_gift_ring_hd.png') }}" alt="3D Gift Box" class="ft-ref-gift-art">
-
+                        <!-- Left: 3D Art & Info -->
+                        <div class="ft-ref-brand-col">
+                            <img src="{{ asset('user_assets/images/dashboard_3d/new_purple_gift_ring_clean.png') }}" alt="3D Gift Box" class="ft-ref-gift-art">
                             <div>
-                                <h6 class="fw-bold text-dark mb-1 fs-16">Refer & Earn Rewards</h6>
-                                <span class="text-muted fs-12">Share your exclusive invitation link and earn amazing rewards!</span>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h6 class="fw-bold text-dark mb-0 fs-16">Refer & Earn Rewards</h6>
+                                    <span class="badge rounded-pill fs-10 px-2 py-0.5 fw-semibold" style="background: rgba(124, 58, 237, 0.1); color: #7C3AED; border: 1px solid rgba(124, 58, 237, 0.25);">
+                                        <i class="ti ti-sparkles me-0.5"></i> Bonus Program
+                                    </span>
+                                </div>
+                                <span class="text-muted fs-12">Share your exclusive invite link with friends & earn unlimited rewards!</span>
                             </div>
+                        </div>
 
+                        <!-- Center: Referral Link Input & Action Buttons -->
+                        <div class="ft-ref-actions-col">
                             <!-- Link input box with inline copy icon -->
-                            <div class="ft-ref-input-shell ms-xl-2">
+                            <div class="ft-ref-input-shell">
+                                <i class="ti ti-link text-primary fs-14"></i>
                                 <input type="text" readonly value="{{ config('detailsApp.url') }}?ref={{ $data['memberid'] }}" id="refInputDisplay" class="ft-ref-input-text">
                                 <button type="button" class="ft-ref-copy-icon-btn" id="btnCopyIcon" title="Copy Link">
                                     <i class="ti ti-copy fs-14"></i>
@@ -1292,21 +1350,19 @@
                             </div>
 
                             <button type="button" class="ft-btn-copy-purple" id="btnCopyRef">
-                                <i class="ti ti-link"></i> <span id="btnCopyLabel">Copy Link</span>
+                                <i class="ti ti-copy fs-14"></i> <span id="btnCopyLabel">Copy Link</span>
                             </button>
 
                             <a href="https://api.whatsapp.com/send?text=Join%20our%20stable%20earning%20platform%20now:%20{{ urlencode(config('detailsApp.url') . '?ref=' . $data['memberid']) }}" target="_blank" class="ft-btn-whatsapp-green" title="Share on WhatsApp">
-                                <i class="ti ti-brand-whatsapp fs-14"></i> Share on WhatsApp
+                                <i class="ti ti-brand-whatsapp fs-15"></i> Share on WhatsApp
                             </a>
                         </div>
 
-                        <!-- Right Highlight Capsule matching Reference 1 -->
+                        <!-- Right: Highlight Reward Capsule -->
                         <div class="ft-earn-up-to-capsule">
                             <div>
-                                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; font-weight: 700;">Earn up to</span>
-                                <div style="font-size: 22px; font-weight: 900; color: #FDE047; line-height: 1.1; text-shadow: 0 2px 8px rgba(253, 224, 71, 0.4);">
-                                    ₹1000+
-                                </div>
+                                <span class="ft-earn-label">EARN UP TO</span>
+                                <div class="ft-earn-amount">₹1000+</div>
                             </div>
                             <img src="{{ asset('user_assets/images/dashboard_3d/coins_hd.png') }}" alt="Gold Coins" class="ft-earn-coins-img">
                         </div>
