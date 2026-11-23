@@ -105,7 +105,7 @@ function totalWithdrawalInc()
 
 function totalRewardInc()
 {
-    $var = RewardIncome::where('status', 'Paid')->sum('reward');
+    $var = RewardIncome::where('status', 'Paid')->sum('amount');
     return $var;
 }
 
@@ -165,7 +165,7 @@ function todayWithdrawalInc()
 
 function todayRewardInc()
 {
-    $var = RewardIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('reward');
+    $var = RewardIncome::where('status', 'Paid')->whereDate('created_at', date('Y-m-d'))->sum('amount');
     return $var;
 }
 
