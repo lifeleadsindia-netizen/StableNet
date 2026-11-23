@@ -2,6 +2,7 @@
 
 use App\Models\MemberDetail;
 use App\Models\PoolUplineMember;
+use App\Models\UplineMember;
 
 function getDirectCount($memberid)
 {
@@ -65,4 +66,13 @@ function getPoolLevelData($memberid, $pool)
 {
     $directs = PoolUplineMember::where([['upline_1', $memberid],['pool_no',$pool]])->get();
     return $directs;
+}
+
+function totalMembers($memberid, $package)
+{
+    $upline1 = UplineMember::where('upline_1', $memberid)->pluck('memberid')->toArray();
+    $upline2 = UplineMember::where('upline_2', $memberid)->pluck('memberid')->toArray();
+
+    $count = MemberDetail::whereIn('memberid', array_merge($upline1, $upline2))->where('package', '>=', $package)->count();
+    return $count;
 }
