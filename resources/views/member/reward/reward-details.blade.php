@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="overflow: auto">
-                            <table id="example" class="display table">
+                            <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
                                 <thead>
                                     <tr>
                                         <th>S.No</th>

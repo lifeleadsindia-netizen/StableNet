@@ -29,9 +29,9 @@
                             <div class="card-title"> Level Income </div>
                         </div>
                         <div class="card-body">
-                             <div class="table-responsive">
-                                    <table id="file-export" class="table table-bordered text-nowrap w-100">
-                                        <thead>
+                            <div class="table-responsive">
+                                <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
+                                    <thead>
                                             <tr>
                                                 <th>S.No</th>
                                                 <th>Date</th>
@@ -48,7 +48,7 @@
                                         </thead>
                                         <tbody>
                                             @php $i = 1;  @endphp
-                                            @foreach ($levelData as $list)
+                                            @forelse ($levelData as $list)
                                                 <tr>
                                                     <td>{{ $i }}</td>
                                                     <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
@@ -70,7 +70,11 @@
                                                     </td>
                                                 </tr>
                                                 @php $i++;  @endphp
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="10" class="no-data-found-cell">No Data Found</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -137,7 +141,6 @@
     </div> <!-- Footer Start -->
 
     {{-- @push('script') --}}
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         $(document).ready(function() {
             //fund transfer memberid check

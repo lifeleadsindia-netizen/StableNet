@@ -29,7 +29,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="file-export" class="table table-bordered text-nowrap w-100">
+                            <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
                                 <thead>
                                     <tr>
                                         <th>{{ __('S.No') }}</th>
@@ -49,7 +49,7 @@
                                     @php
                                         $i = 1;
                                     @endphp
-                                    @foreach ($directData as $list)
+                                    @forelse ($directData as $list)
                                         <tr>
                                             <td>{{ $i }}</td>
                                             <td>
@@ -98,7 +98,11 @@
                                         @php
                                             $i++;
                                         @endphp
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="11" class="no-data-found-cell">No Data Found</td>
+                                        </tr>
+                                    @endforelse
 
                                 </tbody>
                             </table>

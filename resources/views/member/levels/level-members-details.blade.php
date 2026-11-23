@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="table-responsive">
-                                        <table id="example" class="table display" style="min-width: 845px">
+                                        <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
                                             <thead>
                                                 <tr>
                                                     <th>{{ __('S.No') }}</th>
@@ -52,7 +52,7 @@
                                                 @php
                                                     $i = 1;
                                                 @endphp
-                                                @foreach ($users as $list)
+                                                @forelse ($users as $list)
                                                     <tr>
                                                         <td>{{ $i }}</td>
                                                         <td>
@@ -105,7 +105,11 @@
                                                     @php
                                                         $i++;
                                                     @endphp
-                                                @endforeach
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="11" class="no-data-found-cell">No Data Found</td>
+                                                    </tr>
+                                                @endforelse
 
                                             </tbody>
                                         </table>

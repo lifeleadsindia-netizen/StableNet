@@ -206,7 +206,7 @@
                         </div>
                         <div class="card-body p-4">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover text-nowrap w-100 align-middle">
+                                <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
                                     <thead class="table-light">
                                         <tr>
                                             <th class="text-center" style="width: 70px;">Level</th>

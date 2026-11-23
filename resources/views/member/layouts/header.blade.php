@@ -808,6 +808,117 @@
             background: linear-gradient(135deg, #4338CA 0%, #3730A3 100%) !important;
             transform: translateY(-1px);
         }
+
+        /* --- Member Panel Table, Pagination & No Data Found Styling --- */
+        .dataTables_wrapper {
+            width: 100% !important;
+            padding: 4px 0 !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            margin-top: 14px !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .pagination {
+            margin-bottom: 0 !important;
+            gap: 4px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .page-item .page-link {
+            border-radius: 8px !important;
+            padding: 6px 14px !important;
+            color: #334155 !important;
+            border: 1px solid #e2e8f0 !important;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            background: #ffffff !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .page-item.active .page-link {
+            background: linear-gradient(135deg, #5267F2 0%, #4338CA 100%) !important;
+            border-color: #4338CA !important;
+            color: #ffffff !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 8px rgba(82, 103, 242, 0.25) !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .page-item:hover:not(.active):not(.disabled) .page-link {
+            background: #f1f5f9 !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .page-item.disabled .page-link {
+            color: #94a3b8 !important;
+            background-color: #f8fafc !important;
+            border-color: #f1f5f9 !important;
+            cursor: not-allowed !important;
+            opacity: 0.7 !important;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            font-size: 13px !important;
+            color: #64748b !important;
+            font-weight: 500 !important;
+            padding-top: 14px !important;
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 12px !important;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 8px !important;
+            padding: 6px 14px !important;
+            font-size: 13px !important;
+            outline: none !important;
+            transition: all 0.2s ease !important;
+            background: #ffffff !important;
+            min-width: 200px !important;
+        }
+
+        .dataTables_wrapper .dataTables_filter input:focus {
+            border-color: #5267F2 !important;
+            box-shadow: 0 0 0 3px rgba(82, 103, 242, 0.12) !important;
+        }
+
+        .dataTables_wrapper .dt-buttons {
+            margin-bottom: 12px !important;
+            gap: 4px !important;
+        }
+
+        .dataTables_wrapper .dt-buttons .btn {
+            border-radius: 8px !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            padding: 6px 14px !important;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+            color: #ffffff !important;
+            border: none !important;
+            box-shadow: 0 2px 6px rgba(79, 70, 229, 0.2) !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .dataTables_wrapper .dt-buttons .btn:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3) !important;
+        }
+
+        /* --- Strict Centered "No Data Found" Styling --- */
+        .dataTables_empty,
+        td.no-data-found-cell {
+            text-align: center !important;
+            vertical-align: middle !important;
+            padding: 38px 20px !important;
+            color: #64748b !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.3px !important;
+            background: transparent !important;
+        }
     </style>
 
 </head>
