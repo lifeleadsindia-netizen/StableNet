@@ -1099,58 +1099,124 @@
             border-radius: var(--ft-radius-md);
             border: 1px solid var(--ft-border-subtle);
             box-shadow: var(--ft-shadow-card);
-            padding: 22px 24px;
-            margin-top: 20px;
+            padding: 24px 26px;
+            margin-top: 24px;
         }
 
         .ft-btn-new-slot {
             background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
             color: #FFFFFF !important;
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: 700;
-            padding: 7px 20px;
-            border-radius: 20px;
+            padding: 8px 22px;
+            border-radius: 24px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.32);
+            transition: all 0.22s ease;
         }
 
         .ft-btn-new-slot:hover {
             background: linear-gradient(135deg, #6D28D9 0%, #4F46E5 100%);
             transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.42);
         }
 
         .ft-matrix-slot-item {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-top: 3px solid #F59E0B;
-            border-radius: 14px;
-            padding: 16px;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-            transition: all 0.2s ease;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .ft-matrix-slot-item:hover {
             transform: translateY(-3px);
-            box-shadow: var(--ft-shadow-hover);
+            border-color: #CBD5E1;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .ft-slot-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #EFF6FF;
+            color: #2563EB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .ft-slot-badge-id {
+            background: #F1F5F9;
+            color: #475569;
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .ft-slot-status-pill {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1.3;
+        }
+
+        .ft-status-open {
+            background: #ECFDF5;
+            color: #059669;
+            border: 1px solid #A7F3D0;
+        }
+
+        .ft-status-closed {
+            background: #F1F5F9;
+            color: #64748B;
+            border: 1px solid #E2E8F0;
+        }
+
+        .ft-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            background: currentColor;
+        }
+
+        .ft-slot-progress-card {
+            background: #F8FAFC;
+            border: 1px solid #F1F5F9;
+            border-radius: 12px;
+            padding: 14px;
         }
 
         .ft-progress-track {
-            height: 6px;
-            background: #F1F5F9;
+            height: 7px;
+            background: #E2E8F0;
             border-radius: 10px;
             overflow: hidden;
+            width: 100%;
             margin: 8px 0;
         }
 
         .ft-progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #F59E0B 0%, #10B981 100%);
+            background: linear-gradient(90deg, #3B82F6 0%, #7C3AED 55%, #10B981 100%);
             border-radius: 10px;
-            transition: width 0.6s ease;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* Modal Customization */
@@ -1871,12 +1937,19 @@
                  ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS (MATCHING REFERENCE 1)
                  -------------------------------------------------------------------------- -->
             <div class="ft-matrix-section">
-                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <img src="{{ asset('user_assets/images/dashboard_3d/matrix_cube_icon.png') }}" alt="Matrix Cube" style="width: 28px; height: 28px; object-fit: contain;">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 pb-3" style="border-bottom: 1px solid #F1F5F9;">
+                    <div class="d-flex align-items-center gap-2.5">
+                        <span class="avatar avatar-sm avatar-rounded" style="background: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%); color: #FFFFFF; width: 36px; height: 36px;">
+                            <i class="ti ti-cube fs-18"></i>
+                        </span>
                         <div>
-                            <h6 class="fw-bold text-dark mb-0 fs-15">Global Autopool Matrix Slots</h6>
-                            <span class="text-muted fs-11">Activate your matrix slots for unlimited earning potential</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <h6 class="fw-bold text-dark mb-0 fs-16">Global Autopool Matrix Slots</h6>
+                                <span class="badge rounded-pill" style="background: #EDE9FE; color: #7C3AED; font-size: 11px; font-weight: 700; padding: 3px 9px;">
+                                    {{ count($matrix) }} Active {{ count($matrix) == 1 ? 'Slot' : 'Slots' }}
+                                </span>
+                            </div>
+                            <span class="text-muted" style="font-size: 11.5px;">Activate your matrix slots for unlimited earning potential & 32-node cycle yields</span>
                         </div>
                     </div>
                     <a href="{{ url('/member/invest-slot') }}" class="ft-btn-new-slot">
@@ -1889,46 +1962,76 @@
                         @php
                             $poolCount = getPoolCount($value['id']);
                             $progressPct = min(100, round(($poolCount / 32) * 100));
+                            $statusText = !empty($value['status']) ? $value['status'] : ($poolCount >= 32 ? 'Completed' : 'Active');
+                            $createdTimestamp = !empty($value['created_at']) ? strtotime($value['created_at']) : time();
                         @endphp
-                        <div class="col-xxl-4 col-xl-4 col-md-6 col-12">
-                            <div class="ft-matrix-slot-item">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <span class="badge" style="background: #EFF6FF; color: #2563EB; font-size: 11.5px; font-weight: 700; border-radius: 6px; padding: 3px 9px;">
-                                        Slot #{{ $value['id'] }}
-                                    </span>
-                                    <span class="badge" style="background: {{ $value['status'] == 'Open' ? '#ECFDF5' : '#F1F5F9' }}; color: {{ $value['status'] == 'Open' ? '#047857' : '#64748B' }}; border: 1px solid {{ $value['status'] == 'Open' ? '#A7F3D0' : '#E2E8F0' }}; font-size: 11px; padding: 2px 8px; border-radius: 20px;">
-                                        ● {{ $value['status'] }}
-                                    </span>
-                                </div>
-
-                                <div class="my-2">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <span class="text-muted fs-11">Pool Progress</span>
-                                        <span class="fw-bold fs-11 text-dark">{{ $poolCount }} / 32 Members ({{ $progressPct }}%)</span>
+                        <div class="col-xxl-4 col-xl-4 col-md-6 col-12 d-flex">
+                            <div class="ft-matrix-slot-item w-100">
+                                <div>
+                                    <!-- Top Header Line -->
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-slot-icon-box">
+                                                <i class="ti ti-grid-dots"></i>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex align-items-center gap-1.5">
+                                                    <h6 class="fw-bold text-dark mb-0 fs-14">Slot #{{ $value['id'] }}</h6>
+                                                    <span class="badge rounded-pill ft-slot-badge-id">2x5 Matrix</span>
+                                                </div>
+                                                <span class="text-muted fs-11">Reward Yield: <strong class="text-success">$100.00</strong></span>
+                                            </div>
+                                        </div>
+                                        <span class="badge rounded-pill ft-slot-status-pill {{ $statusText == 'Closed' || $statusText == 'Completed' ? 'ft-status-closed' : 'ft-status-open' }}">
+                                            <span class="ft-status-dot"></span> {{ $statusText }}
+                                        </span>
                                     </div>
-                                    <div class="ft-progress-track">
-                                        <div class="ft-progress-bar-fill" style="width: {{ $progressPct }}%;"></div>
+
+                                    <!-- Progress Pod -->
+                                    <div class="ft-slot-progress-card mb-3">
+                                        <div class="d-flex align-items-center justify-content-between mb-1">
+                                            <span class="text-muted fs-12 fw-semibold">
+                                                <i class="ti ti-users me-1 text-primary"></i> Pool Progress
+                                            </span>
+                                            <div class="d-flex align-items-center gap-1.5">
+                                                <span class="fw-bold fs-12 text-dark">{{ $poolCount }}/32 Nodes</span>
+                                                <span class="badge bg-primary text-white rounded-pill px-2 py-0.5 fs-11 font-monospace">{{ $progressPct }}%</span>
+                                            </div>
+                                        </div>
+                                        <div class="ft-progress-track">
+                                            <div class="ft-progress-bar-fill" style="width: {{ $progressPct }}%;"></div>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between text-muted fs-11 mt-2">
+                                            <span><i class="ti ti-calendar me-1"></i> {{ date('d-m-Y', $createdTimestamp) }}</span>
+                                            <span><i class="ti ti-clock me-1"></i> {{ date('H:i:s', $createdTimestamp) }}</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="d-flex align-items-center justify-content-between text-muted fs-11 mt-1">
-                                    <span><i class="ti ti-calendar me-1"></i> {{ date('d-m-Y', strtotime($value['created_at'])) }}</span>
-                                    <span><i class="ti ti-clock me-1"></i> {{ date('H:i:s', strtotime($value['created_at'])) }}</span>
-                                </div>
-
-                                <div class="mt-3 pt-2" style="border-top: 1px solid #F1F5F9;">
-                                    @if ($poolCount >= 32 && $value['status'] == 'Open')
-                                        <a href="{{ url('/member/profit-withdrawal') }}/{{ $value['id'] }}" class="btn btn-sm btn-success w-100 fw-bold" style="border-radius: 8px;">
-                                            <i class="ti ti-sparkles me-1"></i> Claim & Sell Profit ($100)
+                                <!-- Bottom Action Status -->
+                                <div class="mt-auto pt-2" style="border-top: 1px solid #F1F5F9;">
+                                    @if ($poolCount >= 32 && ($value['status'] == 'Open' || empty($value['status'])))
+                                        <a href="{{ url('/member/profit-withdrawal') }}/{{ $value['id'] }}" class="btn btn-sm btn-success w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-1.5" style="border-radius: 10px;">
+                                            <i class="ti ti-sparkles"></i> Claim & Sell Profit ($100)
                                         </a>
                                     @elseif ($poolCount >= 32 && $value['status'] == 'Closed')
-                                        <button class="btn btn-sm btn-light border w-100 text-muted fw-bold" style="border-radius: 8px;" disabled>
-                                            <i class="ti ti-lock me-1"></i> Slot Completed
-                                        </button>
+                                        <div class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light border text-muted">
+                                            <span class="d-flex align-items-center gap-1.5 fw-semibold text-success fs-12">
+                                                <i class="ti ti-circle-check-filled fs-15"></i> Completed ($100)
+                                            </span>
+                                            <a href="{{ url('/member/globalpool/globalpool-matrix') }}/{{ $value['id'] }}" class="text-primary fw-semibold fs-11 text-decoration-none">
+                                                View Tree <i class="ti ti-chevron-right"></i>
+                                            </a>
+                                        </div>
                                     @else
-                                        <button class="btn btn-sm btn-light border w-100 text-muted fw-semibold" style="border-radius: 8px;" disabled>
-                                            <i class="ti ti-hourglass-low me-1 text-warning"></i> In Progress ({{ $poolCount }}/32 Nodes)
-                                        </button>
+                                        <div class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light border text-muted">
+                                            <span class="d-flex align-items-center gap-1.5 fw-semibold text-dark fs-12">
+                                                <i class="ti ti-hourglass-high text-warning"></i> {{ 32 - $poolCount }} Nodes Left
+                                            </span>
+                                            <a href="{{ url('/member/globalpool/globalpool-matrix') }}/{{ $value['id'] }}" class="text-primary fw-semibold fs-11 text-decoration-none">
+                                                View Tree <i class="ti ti-chevron-right"></i>
+                                            </a>
+                                        </div>
                                     @endif
                                 </div>
                             </div>
