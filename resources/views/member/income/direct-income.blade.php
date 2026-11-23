@@ -40,12 +40,10 @@
                                     <tr>
                                         <th>S.No</th>
                                         <th>Date</th>
-                                        <th>Member Id</th>
-                                        <th>Investment</th>
-                                        <th>Profit </th>
+                                        <th>Member ID</th>
+                                        <th>Activate ID </th>
+                                        <th>Package</th>
                                         <th>Amount</th>
-                                        <th>Pool Id</th>
-                                        <th>Buy No</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -56,11 +54,9 @@
                                             <td>{{ $i }}</td>
                                             <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
                                             <td>{{ $list['memberid'] }}</td>
-                                            <td>$ {{ number_format((float)$list['investment'], 2) }}</td>
-                                            <td>$ {{ number_format((float)$list['profit'], 2) }}</td>
+                                            <td>{{ $list['activate_id'] }}</td>
+                                            <td>$ {{ $list['package'] }}</td>
                                             <td>$ {{ number_format($list['amount'],2) }}</td>
-                                            <td>{{ $list['pool_id'] }}</td>
-                                            <td>{{ $list['buy_no'] }}</td>
 
                                             <td>
                                                 @if ($list['status'] == 'Paid')

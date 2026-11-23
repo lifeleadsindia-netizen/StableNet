@@ -34,8 +34,8 @@
                                         <th>S.No</th>
                                         <th>Date</th>
                                         <th>Memberid</th>
-                                        <th>package</th>
-                                        <th>buy_no</th>
+                                        <th>Package</th>
+                                        <th>Pool No</th>
                                         <th>Amount</th>
                                         <th>Status</th>
                                     </tr>
@@ -48,7 +48,7 @@
                                             <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
                                             <td>{{ $list['memberid'] }}</td>
                                             <td>$ {{ number_format((float)$list['package'], 2) }}</td>
-                                            <td>{{ $list['buy_no'] }}</td>
+                                            <td>{{ $list['pool_no'] }}</td>
                                             <td>$ {{ number_format($list['amount'], 2) }}</td>
                                             <td>
                                                 @if ($list['status'] == 'Unpaid')
