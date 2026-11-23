@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light"
-    data-menu-styles="light" data-toggled="close">
+    data-menu-styles="light">
 
 
 
@@ -340,7 +340,58 @@
             background: #FFFFFF !important;
             border-right: 1px solid #E2E8F0 !important;
             box-shadow: 2px 0 24px rgba(15, 23, 42, 0.04) !important;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        @media (min-width: 992px) {
+            .app-sidebar {
+                width: 16.5rem !important;
+                min-width: 16.5rem !important;
+                max-width: 16.5rem !important;
+                transform: none !important;
+                margin-left: 0 !important;
+                transition: none !important;
+            }
+
+            .app-sidebar:hover {
+                width: 16.5rem !important;
+                min-width: 16.5rem !important;
+                max-width: 16.5rem !important;
+                transform: none !important;
+                margin-left: 0 !important;
+            }
+
+            .app-sidebar .main-sidebar-header {
+                width: 16.5rem !important;
+                min-width: 16.5rem !important;
+                max-width: 16.5rem !important;
+            }
+
+            .app-header {
+                padding-inline-start: 16.5rem !important;
+            }
+
+            .main-content.app-content {
+                margin-inline-start: 16.5rem !important;
+            }
+
+            .footer {
+                padding-inline-start: 16.5rem !important;
+            }
+        }
+
+        /* Prevent Horizontal Shift / Horizontal Scroll in Sidebar */
+        .app-sidebar #sidebar-scroll,
+        .app-sidebar .main-sidebar,
+        .app-sidebar .main-menu-container,
+        .app-sidebar .main-menu {
+            overflow-x: hidden !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        .slide-left,
+        .slide-right {
+            display: none !important;
         }
 
         .app-sidebar .main-sidebar-header {
@@ -363,7 +414,7 @@
             font-size: 13.5px !important;
             font-weight: 500 !important;
             position: relative;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            transition: background-color 0.15s ease, color 0.15s ease !important;
         }
 
         .app-sidebar .side-menu__icon {
@@ -384,13 +435,13 @@
         .app-sidebar .side-menu__item:hover {
             background-color: #F1F5F9 !important;
             color: #0F172A !important;
-            transform: translateX(4px);
+            transform: none !important;
         }
 
         .app-sidebar .side-menu__item:hover .side-menu__icon {
             color: #4338CA !important;
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .app-sidebar .side-menu__item:hover .side-menu__angle {
@@ -475,7 +526,7 @@
         .app-sidebar .slide-menu.child1 .side-menu__item:hover {
             background-color: #EEF2F6 !important;
             color: #5267F2 !important;
-            transform: translateX(3px);
+            transform: none !important;
         }
 
         .app-sidebar .slide-menu.child1 .side-menu__item:hover:before {
