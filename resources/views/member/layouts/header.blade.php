@@ -148,9 +148,17 @@
         }
 
         @keyframes snPulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-            70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
         }
 
         .sn-status-text {
@@ -201,8 +209,17 @@
         }
 
         @keyframes notifBlink {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.85);
+            }
         }
 
         /* User Profile Pill in Navbar */
@@ -292,8 +309,15 @@
         }
 
         @keyframes dropdownFade {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header-profile-dropdown .dropdown-item {
@@ -374,8 +398,8 @@
         }
 
         /* Top-level Active / Open state with Gradient Highlight */
-        .app-sidebar .slide.active > .side-menu__item,
-        .app-sidebar .slide.has-sub.open > .side-menu__item {
+        .app-sidebar .slide.active>.side-menu__item,
+        .app-sidebar .slide.has-sub.open>.side-menu__item {
             background: linear-gradient(135deg, rgba(82, 103, 242, 0.09) 0%, rgba(128, 85, 232, 0.12) 100%) !important;
             color: #5267F2 !important;
             font-weight: 600 !important;
@@ -383,14 +407,14 @@
             box-shadow: 0 3px 12px rgba(82, 103, 242, 0.08) !important;
         }
 
-        .app-sidebar .slide.active > .side-menu__item .side-menu__icon,
-        .app-sidebar .slide.has-sub.open > .side-menu__item .side-menu__icon {
+        .app-sidebar .slide.active>.side-menu__item .side-menu__icon,
+        .app-sidebar .slide.has-sub.open>.side-menu__item .side-menu__icon {
             color: #5267F2 !important;
             filter: drop-shadow(0 0 4px rgba(82, 103, 242, 0.3));
             opacity: 1;
         }
 
-        .app-sidebar .slide.has-sub.open > .side-menu__item .side-menu__angle {
+        .app-sidebar .slide.has-sub.open>.side-menu__item .side-menu__angle {
             color: #5267F2 !important;
             transform: rotate(90deg);
         }
@@ -407,8 +431,15 @@
         }
 
         @keyframes submenuSlide {
-            from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Submenu Child Item */
@@ -1051,7 +1082,8 @@
 
                     <!-- Notification Button with Ping Badge -->
                     <div class="header-element d-flex align-items-center">
-                        <a href="{{ url('member/support/support-tickets') }}" class="sn-notif-btn" title="Notifications & Support">
+                        <a href="{{ url('member/support/support-tickets') }}" class="sn-notif-btn"
+                            title="Notifications & Support">
                             <i class="ri-notification-3-line"></i>
                             <span class="sn-notif-ping"></span>
                         </a>
@@ -1059,18 +1091,22 @@
 
                     <!-- User Profile Card Pill -->
                     <div class="header-element sn-profile-element">
-                        <a href="javascript:void(0);" class="header-link dropdown-toggle sn-profile-card" id="mainHeaderProfile"
-                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        <a href="javascript:void(0);" class="header-link dropdown-toggle sn-profile-card"
+                            id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                            aria-expanded="false">
                             <div class="sn-avatar-wrap">
                                 @if ($data['profile_image'] == '')
-                                    <img src="{{ asset('user_assets/images/faces/9.jpg') }}" alt="img" class="sn-profile-img">
+                                    <img src="{{ asset('user_assets/images/faces/9.jpg') }}" alt="img"
+                                        class="sn-profile-img">
                                 @else
-                                    <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" alt="img" class="sn-profile-img">
+                                    <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" alt="img"
+                                        class="sn-profile-img">
                                 @endif
                                 <span class="sn-avatar-badge"></span>
                             </div>
                             <div class="d-sm-flex d-none flex-column text-start">
-                                <span class="fw-bold text-dark fs-12 font-monospace lh-1">{{ $data['memberid'] }}</span>
+                                <span
+                                    class="fw-bold text-dark fs-12 font-monospace lh-1">{{ $data['memberid'] }}</span>
                                 <span class="text-muted fs-11 mt-1 lh-1">{{ $data['name'] }}</span>
                             </div>
                             <i class="ri-arrow-down-s-line sn-chevron ms-1 d-sm-block d-none"></i>
@@ -1080,30 +1116,38 @@
                             <li class="p-3 bg-light border-bottom mb-1" style="border-radius: 10px 10px 0 0;">
                                 <div class="d-flex align-items-center justify-content-between mb-1">
                                     <span class="fw-bold text-dark fs-13 text-truncate">{{ $data['name'] }}</span>
-                                    <span class="badge bg-success-transparent text-success rounded-pill px-2 py-0.5 fs-10 fw-semibold">Active Member</span>
+                                    <span
+                                        class="badge bg-success-transparent text-success rounded-pill px-2 py-0.5 fs-10 fw-semibold">Active
+                                        Member</span>
                                 </div>
                                 <span class="badge bg-white text-dark font-monospace border px-2 py-0.5 fs-11">
                                     ID: {{ $data['memberid'] }}
                                 </span>
                             </li>
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ url('member/profile/user-summary') }}">
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="{{ url('member/profile/user-summary') }}">
                                     <i class="ri-user-3-line fs-16 me-2 text-primary"></i>My Profile
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ url('member/profile/wallet-address') }}">
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="{{ url('member/profile/wallet-address') }}">
                                     <i class="ri-wallet-3-line fs-16 me-2 text-info"></i>Wallet Address
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ url('member/support/support-tickets') }}">
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="{{ url('member/support/support-tickets') }}">
                                     <i class="ri-customer-service-2-line fs-16 me-2 text-warning"></i>Support Desk
                                 </a>
                             </li>
-                            <li><hr class="dropdown-divider my-1"></li>
                             <li>
-                                <a class="dropdown-item d-flex align-items-center text-danger" href="{{ url('/member/logout') }}">
+                                <hr class="dropdown-divider my-1">
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center text-danger"
+                                    href="{{ url('/member/logout') }}">
                                     <i class="ri-logout-box-r-line fs-16 me-2"></i>Log Out
                                 </a>
                             </li>
@@ -1256,19 +1300,22 @@
                                     <a href="javascript:void(0);">Pool Section</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/globalpool/globelpool-incomes') }}" class="side-menu__item">Global Pool Income</a>
+                                    <a href="{{ url('/member/globalpool/globelpool-incomes') }}"
+                                        class="side-menu__item">Global Pool Income</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/globalpool/globalpool-matrix/1') }}" class="side-menu__item">Global Pool Matrix</a>
+                                    <a href="{{ url('/member/globalpool/globalpool-matrix/1') }}"
+                                        class="side-menu__item">Global Pool Matrix</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="{{ url('/member/globalpool/globalpool-members/1/5') }}" class="side-menu__item">Global Pool Members</a>
+                                    <a href="{{ url('/member/globalpool/globalpool-members/1/5') }}"
+                                        class="side-menu__item">Global Pool Members</a>
                                 </li>
 
                             </ul>
                         </li>
                         <!-- End::slide -->
-                        
+
                         <!-- End::slide -->
 
                         <!-- Start::slide -->
@@ -1290,10 +1337,10 @@
                                     <a href="{{ url('/member/income/direct-incomes') }}"
                                         class="side-menu__item">Direct Income</a>
                                 </li>
-                                <li class="slide">
+                                {{-- <li class="slide">
                                     <a href="{{ url('/member/income/global-autopool-incomes') }}"
                                         class="side-menu__item">Global Autopool Income</a>
-                                </li>
+                                </li> --}}
                                 <li class="slide">
                                     <a href="{{ url('/member/income/withdrawal-incomes') }}"
                                         class="side-menu__item">Withdrawal Income</a>
