@@ -59,7 +59,6 @@
 <script type="module" src="{{ asset('user_assets/crm-dashboard-5975eef2.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
-<script src="{{ asset('user_assets/block.js') }}"></script>
 
 <!-- STICKY JS -->
 <script src="{{ asset('user_assets/sticky.js') }}"></script>
