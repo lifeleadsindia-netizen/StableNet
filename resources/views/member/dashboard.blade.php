@@ -1933,9 +1933,10 @@
                 </div>
             </div>
 
-            <!-- --------------------------------------------------------------------------
-                 ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS (MATCHING REFERENCE 1)
-                 -------------------------------------------------------------------------- -->
+            {{-- --------------------------------------------------------------------------
+                 ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS (CURRENTLY HIDDEN AS REQUESTED)
+                 -------------------------------------------------------------------------- --}}
+            @if(false)
             <div class="ft-matrix-section">
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 pb-3" style="border-bottom: 1px solid #F1F5F9;">
                     <div class="d-flex align-items-center gap-2.5">
@@ -2052,6 +2053,7 @@
                     @endforelse
                 </div>
             </div>
+            @endif
 
         </div>
     </div>
