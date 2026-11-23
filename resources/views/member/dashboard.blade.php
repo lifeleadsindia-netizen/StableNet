@@ -1659,12 +1659,12 @@
             </div>
 
             <!-- --------------------------------------------------------------------------
-                 ROW 4: TODAY'S EARNINGS COMMAND CENTER (LEFT) & LIFETIME OVERVIEW (RIGHT)
-                 (BALANCED LUXURY FINTECH LAYOUT WITH MATCHING HERO BANNERS & SPATIOUS TILES)
+                 ROW 4: TODAY'S EARNINGS COMMAND CENTER (TOP) & LIFETIME OVERVIEW (BOTTOM)
+                 (BALANCED LUXURY FINTECH LAYOUT - FULL WIDTH COL-12 STACKED)
                  -------------------------------------------------------------------------- -->
-            <div class="row g-3 mb-3 align-items-stretch">
-                <!-- Left: Today's Earnings Command Center (Matching Lifetime Overview Layout) -->
-                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12 d-flex">
+            <div class="row g-4 mb-4 align-items-stretch">
+                <!-- Top: Today's Earnings Command Center (Full Width col-12) -->
+                <div class="col-12 d-flex">
                     <div class="ft-lifetime-card-shell w-100">
                         <div class="d-flex align-items-center justify-content-between pb-2" style="border-bottom: 1px solid #F1F5F9;">
                             <div class="d-flex align-items-center gap-2">
@@ -1716,10 +1716,10 @@
                             </div>
                         </div>
 
-                        <!-- Bottom 4 Modern Stream Pods (2x2 Grid) - Spacious & Khule Khule -->
+                        <!-- Bottom 4 Modern Stream Pods - Spacious Full Width Grid -->
                         <div class="row g-3">
                             <!-- Stream 1: Today's Level Income -->
-                            <div class="col-sm-6 col-12">
+                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-blue">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
@@ -1738,7 +1738,7 @@
                             </div>
 
                             <!-- Stream 2: Today's Direct Income -->
-                            <div class="col-sm-6 col-12">
+                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-purple">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
@@ -1757,7 +1757,7 @@
                             </div>
 
                             <!-- Stream 3: Today's Global Autopool -->
-                            <div class="col-sm-6 col-12">
+                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-green">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
@@ -1776,7 +1776,7 @@
                             </div>
 
                             <!-- Stream 4: Today's Withdrawal Income -->
-                            <div class="col-sm-6 col-12">
+                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-amber">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
@@ -1797,8 +1797,8 @@
                     </div>
                 </div>
 
-                <!-- Right: Lifetime Total Earnings Overview (Luxury Modern Fintech Redesign) -->
-                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12 d-flex">
+                <!-- Bottom: Lifetime Total Earnings Overview (Full Width col-12) -->
+                <div class="col-12 d-flex">
                     <div class="ft-lifetime-card-shell w-100">
                         <div class="d-flex align-items-center justify-content-between pb-2" style="border-bottom: 1px solid #F1F5F9;">
                             <div class="d-flex align-items-center gap-2">
@@ -1851,10 +1851,10 @@
                             $withShare = $rawTot > 0 ? round(($withVal / $rawTot) * 100) : 0;
                         @endphp
 
-                        <!-- Bottom 4 Modern Stream Pods (2x2 Grid) - Spacious & Khule Khule -->
+                        <!-- Bottom 4 Modern Stream Pods - Spacious Full Width Grid -->
                         <div class="row g-3">
                             <!-- Stream 1: Level Income -->
-                            <div class="col-sm-6 col-12">
+                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-blue">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
@@ -1873,7 +1873,7 @@
                             </div>
 
                             <!-- Stream 2: Direct Income -->
-                            <div class="col-sm-6 col-12">
+                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-purple">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
@@ -1892,7 +1892,7 @@
                             </div>
 
                             <!-- Stream 3: Global Autopool -->
-                            <div class="col-sm-6 col-12">
+                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-green">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
@@ -1911,7 +1911,7 @@
                             </div>
 
                             <!-- Stream 4: Withdrawal Income -->
-                            <div class="col-sm-6 col-12">
+                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-amber">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
