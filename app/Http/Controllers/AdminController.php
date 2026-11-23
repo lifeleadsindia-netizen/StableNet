@@ -171,24 +171,30 @@ class AdminController extends Controller
     public function retrivePassword(Request $request)
     {
         $data = Admin::find(1);
-        $email = $data->email;
+        if (!$data) {
+            session()->flash('failedMsg', 'No Admin account found.');
+            return redirect()->back();
+        }
+
         $password = rand(100000, 999999);
         $data->password = Hash::make($password);
         $data->save();
 
-        if ($email != '') {
-            $mailData = [
-                'email' => $email,
-                'password' => $password
-            ];
-            $user['to'] = $email;
-            Mail::send('admin.mails.forget-password-mail', $mailData, function ($message) use ($user) {
+        // Email sending commented out as requested
+        // $email = $data->email;
+        // if ($email != '') {
+        //     $mailData = [
+        //         'email' => $email,
+        //         'password' => $password
+        //     ];
+        //     $user['to'] = $email;
+        //     Mail::send('admin.mails.forget-password-mail', $mailData, function ($message) use ($user) {
+        //         $message->to($user['to']);
+        //         $message->subject('StableCoin Admin Account Password');
+        //     });
+        // }
 
-                $message->to($user['to']);
-                $message->subject('StableCoin Admin Account Password');
-            });
-        }
-        session()->flash('succMsg', 'Your Account Password has been sent to your registered email.');
+        session()->flash('succMsg', 'Your Account Password has been reset successfully! New Password: ' . $password);
         return redirect()->back();
     }
 
@@ -299,19 +305,28 @@ class AdminController extends Controller
         $txnpassword = $request->post('txnpassword');
         $var = MemberDetail::find($request->post('id'));
 
-        if ($password != Null && $txnpassword != Null) {
-            $var->password = Hash::make($password);
-            $var->txn_password = Hash::make($txnpassword);
-            $var->save();
-        } elseif ($password == Null && $txnpassword != Null) {
-            $var->txn_password = Hash::make($txnpassword);
-            $var->save();
-        } elseif ($password != Null && $txnpassword == Null) {
-            $var->password = Hash::make($password);
-            $var->save();
+        if (!$var) {
+            session()->flash('error', 'Member not found!');
+            return redirect()->back();
         }
 
-        session()->flash('message', 'Security Details have been updated successfully!');
+        $updated = [];
+        if (!empty($password)) {
+            $var->password = Hash::make($password);
+            $updated[] = 'Login Password';
+        }
+        if (!empty($txnpassword)) {
+            $var->txn_password = Hash::make($txnpassword);
+            $updated[] = 'Transaction Password';
+        }
+
+        if (!empty($updated)) {
+            $var->save();
+            session()->flash('message', implode(' & ', $updated) . ' updated successfully for ' . $var->memberid . '!');
+        } else {
+            session()->flash('error', 'Please enter a Login Password or Transaction Password to update.');
+        }
+
         return redirect()->back();
     }
 
@@ -472,9 +487,13 @@ class AdminController extends Controller
     public function updateWallet(Request $request)
     {
         $var = MemberDetail::find($request->post('id'));
+        if (!$var) {
+            session()->flash('error', 'Member not found!');
+            return redirect()->back();
+        }
         $var->wallet_address = $request->post('address');
         $var->save();
-        session()->flash('update', 'Wallet Address has been updated successfully.');
+        session()->flash('update', 'Wallet Address has been updated successfully for ' . $var->memberid . '.');
         return redirect()->back();
     }
 
@@ -1267,7 +1286,9 @@ class AdminController extends Controller
             $search = trim($request->search);
             $query->where(function ($q) use ($search) {
                 $q->where('memberid', 'like', "%{$search}%")
-                  ->orWhere('pool_id', 'like', "%{$search}%");
+                  ->orWhere('pool_no', 'like', "%{$search}%")
+                  ->orWhere('activatingId', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%");
             });
         }
 
@@ -1296,7 +1317,9 @@ class AdminController extends Controller
                 $query->where(function ($q) use ($search) {
                     $q->where('memberid', 'like', "%{$search}%")
                       ->orWhere('level_id', 'like', "%{$search}%")
-                      ->orWhere('name', 'like', "%{$search}%");
+                      ->orWhere('name', 'like', "%{$search}%")
+                      ->orWhere('type', 'like', "%{$search}%")
+                      ->orWhere('status', 'like', "%{$search}%");
                 });
             }
 

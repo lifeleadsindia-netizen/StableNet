@@ -170,14 +170,16 @@
                                     <thead class="dash-table-head">
                                         <tr>
                                             <th class="text-center" style="width: 50px;">#</th>
-                                            <th style="min-width: 140px;">Date & Time</th>
+                                            <th style="min-width: 130px;">Date & Time</th>
                                             <th style="width: 130px;">Member ID</th>
-                                            <th>Level Id</th>
-                                            <th>Name</th>
-                                            <th class="text-end" style="width: 130px;">Withdrawal Amount</th>
-                                            <th>Income Type</th>
+                                            <th>Member Name</th>
+                                            <th style="width: 120px;">Level ID</th>
                                             <th class="text-center" style="width: 90px;">Level</th>
-                                            <th class="text-end" style="width: 120px;">Amount</th>
+                                            <th class="text-end" style="width: 130px;">Withdrawal Amount</th>
+                                            <th class="text-end" style="width: 125px;">Withdrawal Charge</th>
+                                            <th class="text-end" style="width: 110px;">Share</th>
+                                            <th class="text-end" style="width: 120px;">Income Amount</th>
+                                            <th>Income Type</th>
                                             <th class="text-center" style="width: 100px;">Status</th>
                                         </tr>
                                     </thead>
@@ -200,29 +202,41 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <span class="font-monospace text-muted fs-12">{{ $list['level_id'] ?? '-' }}</span>
+                                                    <span class="fw-bold text-dark fs-13">{{ getName($list['memberid']) }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="fw-bold text-dark fs-13">{{ !empty($list['level_id']) ? getName($list['level_id']) : ($list['name'] ?? '-') }}</span>
+                                                    <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2.5 py-0.5 fs-11 font-monospace">
+                                                        {{ $list['level_id'] ?? '-' }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="badge bg-indigo-subtle text-indigo border border-indigo-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-bold">
+                                                        Level {{ $list['level'] ?? 1 }}
+                                                    </span>
                                                 </td>
                                                 <td class="text-end">
                                                     <span class="text-muted fs-13">
                                                         $ {{ number_format((float) ($list['withdrawal_amount'] ?? 0), 2) }}
                                                     </span>
                                                 </td>
-                                                <td>
-                                                    <span class="badge bg-blue-subtle text-blue border border-blue-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-semibold">
-                                                        {{ $list['type'] ?? 'Withdrawal Income' }}
+                                                <td class="text-end">
+                                                    <span class="text-danger fs-13 fw-semibold">
+                                                        $ {{ number_format((float) ($list['withdrawal_charge'] ?? 0), 2) }}
                                                     </span>
                                                 </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light text-dark border rounded-pill px-2 py-0.5 fs-11 fw-semibold">
-                                                        {{ $list['level'] ?? '-' }}
+                                                <td class="text-end">
+                                                    <span class="text-info fs-13 fw-semibold">
+                                                        $ {{ number_format((float) ($list['share'] ?? 0), 2) }}
                                                     </span>
                                                 </td>
                                                 <td class="text-end">
                                                     <span class="fw-bold text-success fs-13">
                                                         $ {{ number_format((float) ($list['amount'] ?? 0), 2) }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-blue-subtle text-blue border border-blue-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-semibold">
+                                                        {{ $list['type'] ?? 'Withdrawal Income' }}
                                                     </span>
                                                 </td>
                                                 <td class="text-center">
@@ -240,7 +254,7 @@
                                             @php $i++; @endphp
                                         @empty
                                             <tr>
-                                                <td colspan="10" class="text-center py-5">
+                                                <td colspan="12" class="text-center py-5">
                                                     <div class="empty-state py-4">
                                                         <span class="avatar avatar-xl avatar-rounded bg-light text-muted mb-3">
                                                             <i class="bx bx-money-withdraw fs-28"></i>

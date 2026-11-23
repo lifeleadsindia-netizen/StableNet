@@ -45,15 +45,32 @@
             </div>
 
             <!-- Alerts Section -->
-            @if (session()->has('update'))
+            @if (session()->has('update') || session()->has('message'))
                 <div class="alert custom-alert custom-alert-success alert-dismissible fade show d-flex align-items-center justify-content-between mb-4" role="alert">
                     <div class="d-flex align-items-center">
                         <i class="bx bx-check-circle fs-20 me-2 text-success"></i>
-                        <span><strong>Success!</strong> {{ session('update') }}</span>
+                        <span><strong>Success!</strong> {{ session('update') ?? session('message') }}</span>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+
+            @if (session()->has('error'))
+                <div class="alert custom-alert custom-alert-danger alert-dismissible fade show d-flex align-items-center justify-content-between mb-4" role="alert">
+                    <div class="d-flex align-items-center">
+                        <i class="bx bx-error-circle fs-20 me-2 text-danger"></i>
+                        <span><strong>Error!</strong> {{ session('error') }}</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <!-- Hidden Master Form for Reliable Wallet Updates -->
+            <form id="globalWalletUpdateForm" action="{{ route('updateWallet') }}" method="post" style="display: none;">
+                @csrf
+                <input type="hidden" name="id" id="walletForm_id" value="">
+                <input type="hidden" name="address" id="walletForm_address" value="">
+            </form>
 
             <!-- Page-Specific Filters Card: Member ID & Date Filters -->
             <div class="card custom-card card-filter">
@@ -177,12 +194,6 @@
                                     <tbody>
                                         @php $i = 1; @endphp
                                         @forelse ($data as $list)
-                                            <!-- Separate HTML5 Form for clean table structure -->
-                                            <form id="walletForm_{{ $list['id'] }}" action="{{ route('updateWallet') }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $list['id'] }}">
-                                            </form>
-
                                             <tr class="dash-table-row">
                                                 <td class="text-center fw-semibold text-muted">{{ $i }}</td>
                                                 <td class="text-center">
@@ -222,7 +233,7 @@
                                                 <td>
                                                     <div class="input-group wallet-input-group">
                                                         <span class="input-group-text"><i class="bx bx-wallet text-muted"></i></span>
-                                                        <input type="text" form="walletForm_{{ $list['id'] }}" name="address"
+                                                        <input type="text" name="address"
                                                             id="walletAddr_{{ $list['id'] }}"
                                                             class="form-control"
                                                             placeholder="Enter Wallet Address (e.g. 0x... or T...)"
@@ -249,9 +260,9 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <button type="submit" form="walletForm_{{ $list['id'] }}"
+                                                    <button type="button"
                                                             class="btn btn-sm btn-signin px-3 py-1.5 rounded-pill shadow-sm d-inline-flex align-items-center gap-1"
-                                                            onclick="return confirm('Update wallet address for member {{ $list['memberid'] }}?');">
+                                                            onclick="submitWalletUpdate('{{ $list['id'] }}', '{{ $list['memberid'] }}')">
                                                         <i class="bx bx-save fs-14"></i> Update
                                                     </button>
                                                 </td>
@@ -339,6 +350,19 @@
                     }, 1800);
                 }
             });
+        }
+
+        function submitWalletUpdate(id, memberId) {
+            const addrInput = document.getElementById('walletAddr_' + id);
+            const address = addrInput ? addrInput.value.trim() : '';
+
+            if (!confirm('Are you sure you want to update the wallet address for member ' + memberId + '?')) {
+                return;
+            }
+
+            document.getElementById('walletForm_id').value = id;
+            document.getElementById('walletForm_address').value = address;
+            document.getElementById('globalWalletUpdateForm').submit();
         }
     </script>
 @endsection

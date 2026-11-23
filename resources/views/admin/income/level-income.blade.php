@@ -179,10 +179,10 @@
                                             <th style="min-width: 130px;">Date</th>
                                             <th style="width: 130px;">Member ID</th>
                                             <th>Member Name</th>
-                                            <th class="text-end" style="width: 120px;">Amount</th>
+                                            <th style="width: 130px;">Level ID</th>
                                             <th class="text-center" style="width: 100px;">Level</th>
-                                            <th style="width: 120px;">Level ID</th>
                                             <th class="text-end" style="width: 120px;">Package</th>
+                                            <th class="text-end" style="width: 120px;">Amount</th>
                                             <th class="text-center" style="width: 100px;">Status</th>
                                         </tr>
                                     </thead>
@@ -207,9 +207,9 @@
                                                 <td>
                                                     <span class="fw-bold text-dark fs-13">{{ getName($list['memberid']) }}</span>
                                                 </td>
-                                                <td class="text-end">
-                                                    <span class="fw-bold text-success fs-13">
-                                                        $ {{ number_format((float)$list['amount'], 2) }}
+                                                <td>
+                                                    <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2.5 py-0.5 fs-11 font-monospace">
+                                                        {{ $list['level_id'] ?? '-' }}
                                                     </span>
                                                 </td>
                                                 <td class="text-center">
@@ -217,12 +217,14 @@
                                                         Level {{ $list['level'] }}
                                                     </span>
                                                 </td>
-                                                <td>
-                                                    <span class="font-monospace text-muted fs-12">{{ $list['level_id'] ?? '-' }}</span>
-                                                </td>
                                                 <td class="text-end">
                                                     <span class="text-muted fs-13">
                                                         $ {{ number_format((float)($list['package'] ?? 0), 2) }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <span class="fw-bold text-success fs-13">
+                                                        $ {{ number_format((float)$list['amount'], 2) }}
                                                     </span>
                                                 </td>
                                                 <td class="text-center">

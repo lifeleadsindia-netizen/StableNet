@@ -947,6 +947,14 @@ body.admin-auth-page {
 .text-teal { color: #0d9488 !important; }
 .border-teal-subtle { border-color: #99f6e4 !important; }
 
+.bg-emerald-subtle { background-color: #ecfdf5 !important; }
+.text-emerald { color: #047857 !important; }
+.border-emerald-subtle { border-color: #a7f3d0 !important; }
+
+.bg-blue-subtle { background-color: #eff6ff !important; }
+.text-blue { color: #2563eb !important; }
+.border-blue-subtle { border-color: #bfdbfe !important; }
+
 .bg-primary-subtle { background-color: #eff6ff !important; }
 .border-primary-subtle { border-color: #bfdbfe !important; }
 
@@ -1453,6 +1461,24 @@ body.admin-auth-page {
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.04) !important;
 }
 
+@media (min-width: 992px) {
+    .app-sidebar {
+        width: 17rem !important;
+    }
+    .app-sidebar .main-sidebar-header {
+        width: 17rem !important;
+    }
+    .app-header {
+        padding-inline-start: 17rem !important;
+    }
+    .main-content.app-content {
+        margin-inline-start: 17rem !important;
+    }
+    .footer {
+        padding-inline-start: 17rem !important;
+    }
+}
+
 .main-sidebar-header {
     height: 3.75rem !important;
     background: transparent !important;
@@ -1476,13 +1502,42 @@ body.admin-auth-page {
 .side-menu__item {
     border-radius: 10px !important;
     margin: 3px 0 !important;
-    padding: 10px 14px !important;
+    padding: 10px 34px 10px 14px !important;
     color: #94a3b8 !important;
-    font-size: 13px !important;
+    font-size: 13.5px !important;
     font-weight: 500 !important;
     display: flex !important;
     align-items: center !important;
+    position: relative !important;
+    white-space: nowrap !important;
     transition: all 0.2s ease !important;
+    overflow: visible !important;
+}
+
+.side-menu__label {
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    flex: 1 1 auto !important;
+    line-height: 1.4 !important;
+}
+
+.side-menu__angle {
+    position: absolute !important;
+    right: 12px !important;
+    inset-inline-end: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 14px !important;
+    color: #94a3b8 !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+    flex-shrink: 0 !important;
+    line-height: 1 !important;
+    pointer-events: none !important;
+}
+
+.slide.has-sub.open > .side-menu__item .side-menu__angle {
+    transform: translateY(-50%) rotate(90deg) !important;
 }
 
 .side-menu__icon {
@@ -1491,6 +1546,7 @@ body.admin-auth-page {
     margin-right: 11px !important;
     color: #94a3b8 !important;
     transition: all 0.2s ease !important;
+    flex-shrink: 0 !important;
 }
 
 .side-menu__item:hover {

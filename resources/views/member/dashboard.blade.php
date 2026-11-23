@@ -75,6 +75,8 @@
             padding: 26px 30px;
             color: #FFFFFF;
             min-height: 205px;
+            height: 100%;
+            width: 100%;
             display: flex;
             align-items: center;
             border: 1px solid rgba(147, 197, 253, 0.45);
@@ -180,10 +182,12 @@
         .ft-profile-card {
             background: var(--ft-card-bg);
             border-radius: var(--ft-radius-lg);
-            padding: 20px 22px;
+            padding: 22px 24px;
             border: 1px solid var(--ft-border-subtle);
             box-shadow: var(--ft-shadow-card);
             min-height: 205px;
+            height: 100%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -216,8 +220,8 @@
         }
 
         .ft-avatar-gradient-ring {
-            width: 78px;
-            height: 78px;
+            width: 84px;
+            height: 84px;
             border-radius: 50%;
             padding: 3px;
             background: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
@@ -242,18 +246,41 @@
         .ft-profile-info-pod {
             background: #F8FAFC;
             border: 1px solid #E2E8F0;
-            border-radius: 10px;
-            padding: 6px 10px;
+            border-radius: 12px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            width: 100%;
             height: 100%;
-            transition: all 0.2s ease;
+            min-height: 60px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
 
         .ft-profile-info-pod:hover {
             background: #FFFFFF;
-            border-color: #C7D2FE;
+            border-color: #818CF8;
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .ft-profile-info-pod:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(99, 102, 241, 0.08);
+        }
+
+        .ft-pod-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
         }
 
         .ft-active-dot {
@@ -266,58 +293,81 @@
         }
 
         /* --------------------------------------------------------------------------
-           ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER (EXACT MATCH REFERENCE 1)
+           ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER — MODERN LUXURY REDESIGN
            -------------------------------------------------------------------------- */
         .ft-referral-banner {
-            background: linear-gradient(90deg, #FFFFFF 0%, #FAF8FF 30%, #F5F3FF 70%, #FFFFFF 100%);
-            border-radius: var(--ft-radius-md);
-            padding: 16px 24px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF8FF 35%, #F5F3FF 70%, #FFFFFF 100%);
+            border-radius: var(--ft-radius-lg);
+            padding: 18px 24px;
             border: 1px solid #E0E7FF;
-            box-shadow: var(--ft-shadow-card);
-            position: relative;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.06);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
             flex-wrap: wrap;
-            gap: 16px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ft-referral-banner::before {
+            content: "";
+            position: absolute;
+            top: -60px; right: 180px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .ft-referral-banner:hover {
             transform: translateY(-2px);
-            box-shadow: var(--ft-shadow-hover);
+            box-shadow: 0 10px 28px rgba(124, 58, 237, 0.12);
             border-color: #C7D2FE;
         }
 
-        .ft-ref-left-group {
+        .ft-ref-brand-col {
             display: flex;
             align-items: center;
             gap: 16px;
-            flex: 1 1 520px;
-            min-width: 0;
+            flex: 1 1 300px;
+            min-width: 240px;
         }
 
         .ft-ref-gift-art {
-            height: 76px;
+            height: 68px;
             width: auto;
+            max-width: 78px;
             object-fit: contain;
             flex-shrink: 0;
-            filter: drop-shadow(0 6px 14px rgba(124, 58, 237, 0.2));
-            animation: floatSubtle 4.5s ease-in-out infinite;
+            filter: drop-shadow(0 8px 18px rgba(124, 58, 237, 0.22));
+            animation: idle3DFloat 4s ease-in-out infinite alternate;
+        }
+
+        .ft-ref-actions-col {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1 1 auto;
+            flex-wrap: wrap;
+            justify-content: flex-start;
         }
 
         .ft-ref-input-shell {
             background: #FFFFFF;
             border: 1.5px solid #E2E8F0;
             border-radius: 12px;
-            padding: 5px 8px 5px 14px;
+            padding: 7px 12px 7px 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            flex: 1 1 260px;
+            gap: 10px;
+            min-width: 270px;
             max-width: 380px;
-            min-width: 220px;
-            transition: border-color 0.2s ease;
+            flex: 1;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+            transition: all 0.2s ease;
+            height: 44px;
         }
 
         .ft-ref-input-shell:focus-within {
@@ -329,26 +379,30 @@
             border: none;
             outline: none;
             background: transparent;
-            font-size: 12.5px;
+            font-size: 13px;
+            font-weight: 600;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            color: #334155;
+            color: #1E293B;
             width: 100%;
         }
 
         .ft-ref-copy-icon-btn {
-            background: none;
+            background: #F1F5F9;
             border: none;
             color: #64748B;
-            padding: 4px;
+            width: 28px;
+            height: 28px;
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: color 0.2s ease;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
         }
 
         .ft-ref-copy-icon-btn:hover {
+            background: #EDE9FE;
             color: #7C3AED;
         }
 
@@ -359,20 +413,21 @@
             border-radius: 12px;
             font-size: 13px;
             font-weight: 700;
-            padding: 9px 20px;
+            padding: 9px 18px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             transition: all 0.2s ease;
-            box-shadow: 0 3px 12px rgba(124, 58, 237, 0.35);
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
             white-space: nowrap;
             cursor: pointer;
+            height: 44px;
         }
 
         .ft-btn-copy-purple:hover {
             background: linear-gradient(135deg, #6D28D9 0%, #4F46E5 100%);
             transform: translateY(-1px);
-            box-shadow: 0 5px 16px rgba(124, 58, 237, 0.5);
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
         }
 
         .ft-btn-whatsapp-green {
@@ -382,40 +437,61 @@
             border-radius: 12px;
             font-size: 13px;
             font-weight: 700;
-            padding: 9px 20px;
+            padding: 9px 18px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             text-decoration: none;
             transition: all 0.2s ease;
-            box-shadow: 0 3px 12px rgba(16, 185, 129, 0.35);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
             white-space: nowrap;
+            height: 44px;
         }
 
         .ft-btn-whatsapp-green:hover {
             background: linear-gradient(135deg, #059669 0%, #047857 100%);
             transform: translateY(-1px);
-            box-shadow: 0 5px 16px rgba(16, 185, 129, 0.5);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
         }
 
         .ft-earn-up-to-capsule {
-            background: linear-gradient(135deg, #2E1065 0%, #4C1D95 50%, #6D28D9 100%);
-            border: 1px solid rgba(192, 132, 252, 0.4);
-            border-radius: 18px;
-            padding: 10px 18px;
+            background: linear-gradient(135deg, #1e0b4b 0%, #3b0764 50%, #581c87 100%);
+            border: 1px solid rgba(216, 180, 254, 0.35);
+            border-radius: 16px;
+            padding: 8px 18px;
             color: #FFFFFF;
             display: flex;
             align-items: center;
-            gap: 14px;
-            box-shadow: 0 6px 20px rgba(76, 29, 149, 0.3);
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(59, 7, 100, 0.3);
             flex-shrink: 0;
+            height: 56px;
+        }
+
+        .ft-earn-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 700;
+            display: block;
+            line-height: 1.1;
+        }
+
+        .ft-earn-amount {
+            font-size: 22px;
+            font-weight: 900;
+            color: #FDE047;
+            line-height: 1.15;
+            text-shadow: 0 2px 10px rgba(253, 224, 71, 0.4);
         }
 
         .ft-earn-coins-img {
-            height: 50px;
+            height: 46px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35));
+            animation: idle3DFloat 3.8s ease-in-out infinite alternate;
         }
 
         /* --------------------------------------------------------------------------
@@ -816,7 +892,7 @@
         .ft-pod-amber .ft-pod-icon-box { background: #FFFBEB; color: #D97706; }
 
         /* --------------------------------------------------------------------------
-           LIFETIME TOTAL EARNINGS OVERVIEW — LUXURY FINTECH REDESIGN
+           LIFETIME & TODAY'S TOTAL EARNINGS OVERVIEW — LUXURY FINTECH REDESIGN
            -------------------------------------------------------------------------- */
         .ft-lifetime-card-shell {
             background: #FFFFFF;
@@ -837,7 +913,7 @@
             box-shadow: var(--ft-shadow-hover);
         }
 
-        /* Top Hero Cumulative Spotlight Banner */
+        /* Top Hero Cumulative Spotlight Banner - Right Card (Lifetime Purple) */
         .ft-lifetime-hero-banner {
             background: linear-gradient(135deg, #18093d 0%, #2e0854 45%, #4a0e78 80%, #6d28d9 100%);
             border-radius: 18px;
@@ -863,6 +939,43 @@
             pointer-events: none;
         }
 
+        /* Top Hero Cumulative Spotlight Banner - Left Card (Today Blue/Indigo) */
+        .ft-today-hero-banner {
+            background: linear-gradient(135deg, #091a4a 0%, #0d2875 45%, #1d4ed8 80%, #3b82f6 100%);
+            border-radius: 18px;
+            padding: 18px 22px;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(147, 197, 253, 0.35);
+            box-shadow: 0 10px 28px -4px rgba(13, 40, 117, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ft-today-hero-banner::before {
+            content: "";
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+        }
+
+        .ft-today-growth-art {
+            height: 90px;
+            width: auto;
+            max-width: 130px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+            animation: idle3DFloat 4s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+
         .ft-lifetime-trophy-art {
             height: 90px;
             width: auto;
@@ -885,40 +998,114 @@
             z-index: 2;
         }
 
-        /* Stream Pod Tiles */
+        /* Stream Pod Tiles - Spacious, Large 2x2 Luxury Fintech Design */
         .ft-stream-tile {
             background: #FFFFFF;
-            border-radius: 14px;
-            padding: 12px 14px;
-            border: 1px solid var(--ft-border-subtle);
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-            transition: all 0.2s ease;
+            border-radius: 18px;
+            padding: 20px 22px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             height: 100%;
+            min-height: 135px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
         }
 
         .ft-stream-tile:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.09);
+            border-color: #CBD5E1;
         }
 
-        .ft-stream-tile-blue { border-left: 4px solid #2563EB; }
-        .ft-stream-tile-purple { border-left: 4px solid #7C3AED; }
-        .ft-stream-tile-green { border-left: 4px solid #059669; }
-        .ft-stream-tile-amber { border-left: 4px solid #D97706; }
+        .ft-stream-tile-blue { border-left: 5px solid #2563EB; }
+        .ft-stream-tile-purple { border-left: 5px solid #7C3AED; }
+        .ft-stream-tile-green { border-left: 5px solid #059669; }
+        .ft-stream-tile-amber { border-left: 5px solid #D97706; }
+
+        .ft-stream-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .ft-stream-tile:hover .ft-stream-icon-box {
+            transform: scale(1.08);
+        }
+
+        .ft-stream-icon-blue { background: #EFF6FF; color: #2563EB; }
+        .ft-stream-icon-purple { background: #F5F3FF; color: #7C3AED; }
+        .ft-stream-icon-green { background: #ECFDF5; color: #059669; }
+        .ft-stream-icon-amber { background: #FFFBEB; color: #D97706; }
+
+        .ft-stream-label {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #1E293B;
+            letter-spacing: -0.2px;
+            line-height: 1.25;
+        }
+
+        .ft-stream-sublabel {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: #64748B;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        .ft-stream-pill {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        .ft-stream-pill-blue { background: #EFF6FF; color: #2563EB; border: 1px solid rgba(37, 99, 235, 0.2); }
+        .ft-stream-pill-purple { background: #F5F3FF; color: #7C3AED; border: 1px solid rgba(124, 58, 237, 0.2); }
+        .ft-stream-pill-green { background: #ECFDF5; color: #059669; border: 1px solid rgba(5, 150, 105, 0.2); }
+        .ft-stream-pill-amber { background: #FFFBEB; color: #D97706; border: 1px solid rgba(217, 119, 6, 0.2); }
+
+        .ft-stream-amount {
+            font-size: 26px;
+            font-weight: 900;
+            color: #0F172A;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            margin-top: 12px;
+            margin-bottom: 10px;
+        }
 
         .ft-stream-progress-track {
-            height: 4px;
+            height: 7px;
             background: #F1F5F9;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            margin-top: 6px;
+            width: 100%;
         }
 
         .ft-stream-progress-bar {
             height: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
             transition: width 0.6s ease;
         }
+
+        .ft-progress-blue { background: linear-gradient(90deg, #3B82F6 0%, #1D4ED8 100%); }
+        .ft-progress-purple { background: linear-gradient(90deg, #8B5CF6 0%, #6D28D9 100%); }
+        .ft-progress-green { background: linear-gradient(90deg, #10B981 0%, #047857 100%); }
+        .ft-progress-amber { background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%); }
 
         /* --------------------------------------------------------------------------
            ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS
@@ -928,58 +1115,124 @@
             border-radius: var(--ft-radius-md);
             border: 1px solid var(--ft-border-subtle);
             box-shadow: var(--ft-shadow-card);
-            padding: 22px 24px;
-            margin-top: 20px;
+            padding: 24px 26px;
+            margin-top: 24px;
         }
 
         .ft-btn-new-slot {
             background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
             color: #FFFFFF !important;
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: 700;
-            padding: 7px 20px;
-            border-radius: 20px;
+            padding: 8px 22px;
+            border-radius: 24px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.32);
+            transition: all 0.22s ease;
         }
 
         .ft-btn-new-slot:hover {
             background: linear-gradient(135deg, #6D28D9 0%, #4F46E5 100%);
             transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.42);
         }
 
         .ft-matrix-slot-item {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            border-top: 3px solid #F59E0B;
-            border-radius: 14px;
-            padding: 16px;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-            transition: all 0.2s ease;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .ft-matrix-slot-item:hover {
             transform: translateY(-3px);
-            box-shadow: var(--ft-shadow-hover);
+            border-color: #CBD5E1;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .ft-slot-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #EFF6FF;
+            color: #2563EB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .ft-slot-badge-id {
+            background: #F1F5F9;
+            color: #475569;
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .ft-slot-status-pill {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1.3;
+        }
+
+        .ft-status-open {
+            background: #ECFDF5;
+            color: #059669;
+            border: 1px solid #A7F3D0;
+        }
+
+        .ft-status-closed {
+            background: #F1F5F9;
+            color: #64748B;
+            border: 1px solid #E2E8F0;
+        }
+
+        .ft-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            background: currentColor;
+        }
+
+        .ft-slot-progress-card {
+            background: #F8FAFC;
+            border: 1px solid #F1F5F9;
+            border-radius: 12px;
+            padding: 14px;
         }
 
         .ft-progress-track {
-            height: 6px;
-            background: #F1F5F9;
+            height: 7px;
+            background: #E2E8F0;
             border-radius: 10px;
             overflow: hidden;
+            width: 100%;
             margin: 8px 0;
         }
 
         .ft-progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #F59E0B 0%, #10B981 100%);
+            background: linear-gradient(90deg, #3B82F6 0%, #7C3AED 55%, #10B981 100%);
             border-radius: 10px;
-            transition: width 0.6s ease;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* Modal Customization */
@@ -991,20 +1244,53 @@
         }
 
         .ft-modal-header {
-            background: #0d1252;
+            background: linear-gradient(135deg, #0d1252 0%, #1e3bb5 100%);
             color: #FFFFFF;
-            padding: 16px 20px;
+            padding: 18px 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .ft-modal-row {
             background: #FFFFFF;
             border: 1px solid #F1F5F9;
             border-radius: 10px;
-            padding: 10px 14px;
-            margin-bottom: 7px;
+            padding: 11px 15px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: all 0.25s ease;
+        }
+
+        .ft-modal-row-highlighted {
+            animation: highlightPulse 1.4s ease-in-out 2;
+            border-color: #6366F1 !important;
+            background: #EEF2FF !important;
+        }
+
+        @keyframes highlightPulse {
+            0% { background: #EEF2FF; border-color: #6366F1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25); }
+            50% { background: #E0E7FF; border-color: #4F46E5; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.35); }
+            100% { background: #EEF2FF; border-color: #6366F1; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2); }
+        }
+
+        .ft-copy-inline {
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            border: none;
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+        .ft-copy-inline:hover {
+            background: #EDE9FE !important;
+            color: #7C3AED !important;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1044,10 +1330,10 @@
             <!-- --------------------------------------------------------------------------
                  ROW 1: HERO MEMBERSHIP CARD (LEFT) + MEMBER PROFILE CARD (RIGHT)
                  -------------------------------------------------------------------------- -->
-            <div class="row g-3 mb-3">
+            <div class="row g-3 mb-3 align-items-stretch">
                 <!-- Left: Royal Membership Card with 3D Crown on Pedestal & Growth Bars -->
-                <div class="col-xxl-8 col-xl-7 col-lg-12 col-12">
-                    <div class="ft-membership-card">
+                <div class="col-xxl-8 col-xl-7 col-lg-12 col-12 d-flex">
+                    <div class="ft-membership-card w-100 h-100">
                         <div style="position: relative; z-index: 2; max-width: 52%;">
                             <div class="ft-badge-premium mb-2">
                                 <i class="ti ti-crown fs-13"></i> PREMIUM MEMBER
@@ -1080,8 +1366,8 @@
                 </div>
 
                 <!-- Right: Member Profile Card (Exact Match Reference 1) -->
-                <div class="col-xxl-4 col-xl-5 col-lg-12 col-12">
-                    <div class="ft-profile-card">
+                <div class="col-xxl-4 col-xl-5 col-lg-12 col-12 d-flex">
+                    <div class="ft-profile-card w-100 h-100">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
@@ -1094,57 +1380,71 @@
                             </a>
                         </div>
 
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="ft-avatar-gradient-ring">
-                                <div class="ft-avatar-inner">
-                                    @if(!empty($data['profile_image']))
-                                        <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" class="w-100 h-100" alt="profile" style="object-fit: cover;">
-                                    @else
-                                        <div style="font-size: 24px; font-weight: 800; color: #7C3AED;">
-                                            {{ strtoupper(substr($data['name'] ?? 'M', 0, 1)) }}
-                                        </div>
-                                    @endif
+                        <div class="d-flex align-items-center gap-3 flex-grow-1 mt-1">
+                            <div class="d-flex flex-column align-items-center justify-content-center flex-shrink-0" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" title="Click to view profile" style="cursor: pointer;">
+                                <div class="ft-avatar-gradient-ring">
+                                    <div class="ft-avatar-inner">
+                                        @if(!empty($data['profile_image']))
+                                            <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" class="w-100 h-100" alt="profile" style="object-fit: cover;">
+                                        @else
+                                            <div style="font-size: 26px; font-weight: 800; color: #7C3AED;">
+                                                {{ strtoupper(substr($data['name'] ?? 'M', 0, 1)) }}
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
+                                <span class="badge rounded-pill px-2.5 py-1 mt-2 fs-10 fw-semibold text-uppercase d-inline-flex align-items-center gap-1"
+                                    style="background: rgba(16, 185, 129, 0.12); color: #047857; border: 1px solid rgba(16, 185, 129, 0.25);">
+                                    <i class="ti ti-circle-check-filled fs-11"></i> Active
+                                </span>
                             </div>
 
-                            <div class="flex-grow-1" style="min-width: 0;">
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <div class="ft-profile-info-pod">
-                                            <i class="ti ti-user fs-14 text-primary"></i>
+                            <div class="flex-grow-1 h-100 d-flex flex-column justify-content-between" style="min-width: 0;">
+                                <div class="row g-2 h-100 align-items-stretch">
+                                    <div class="col-6 d-flex">
+                                        <div class="ft-profile-info-pod w-100" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" data-focus-row="fullname" title="Click to view full details in popup">
+                                            <div class="ft-pod-icon-box" style="background: rgba(99, 102, 241, 0.12); color: #6366f1;">
+                                                <i class="ti ti-user"></i>
+                                            </div>
                                             <div class="overflow-hidden" style="min-width: 0;">
-                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Full Name</span>
-                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['name'] }}</strong>
+                                                <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.3px; line-height: 1.1;">Full Name</span>
+                                                <strong class="d-block text-dark text-truncate mt-0.5" style="font-size: 13px;">{{ $data['name'] }}</strong>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
-                                        <div class="ft-profile-info-pod">
-                                            <i class="ti ti-phone fs-14 text-success"></i>
+                                    <div class="col-6 d-flex">
+                                        <div class="ft-profile-info-pod w-100" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" data-focus-row="mobile" title="Click to view full details in popup">
+                                            <div class="ft-pod-icon-box" style="background: rgba(16, 185, 129, 0.12); color: #10b981;">
+                                                <i class="ti ti-phone"></i>
+                                            </div>
                                             <div class="overflow-hidden" style="min-width: 0;">
-                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Mobile Number</span>
-                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['mobile'] ?? 'N/A' }}</strong>
+                                                <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.3px; line-height: 1.1;">Mobile Number</span>
+                                                <strong class="d-block text-dark text-truncate mt-0.5" style="font-size: 13px;">{{ $data['mobile'] ?? 'N/A' }}</strong>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
-                                        <div class="ft-profile-info-pod">
-                                            <i class="ti ti-mail fs-14 text-info"></i>
+                                    <div class="col-6 d-flex">
+                                        <div class="ft-profile-info-pod w-100" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" data-focus-row="email" title="Click to view full details in popup">
+                                            <div class="ft-pod-icon-box" style="background: rgba(14, 165, 233, 0.12); color: #0ea5e9;">
+                                                <i class="ti ti-mail"></i>
+                                            </div>
                                             <div class="overflow-hidden" style="min-width: 0;">
-                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Email Address</span>
-                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;" title="{{ $data['email'] }}">{{ $data['email'] }}</strong>
+                                                <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.3px; line-height: 1.1;">Email Address</span>
+                                                <strong class="d-block text-dark text-truncate mt-0.5" style="font-size: 13px;" title="{{ $data['email'] }}">{{ $data['email'] }}</strong>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
-                                        <div class="ft-profile-info-pod">
-                                            <i class="ti ti-users fs-14 text-purple"></i>
+                                    <div class="col-6 d-flex">
+                                        <div class="ft-profile-info-pod w-100" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" data-focus-row="sponsor" title="Click to view full details in popup">
+                                            <div class="ft-pod-icon-box" style="background: rgba(139, 92, 246, 0.12); color: #8b5cf6;">
+                                                <i class="ti ti-users"></i>
+                                            </div>
                                             <div class="overflow-hidden" style="min-width: 0;">
-                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Sponsor ID</span>
-                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['sponsor'] ?? 'System Direct' }}</strong>
+                                                <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.3px; line-height: 1.1;">Sponsor ID</span>
+                                                <strong class="d-block text-dark text-truncate mt-0.5" style="font-size: 13px;">{{ $data['sponsor'] ?? 'System Direct' }}</strong>
                                             </div>
                                         </div>
                                     </div>
@@ -1156,21 +1456,30 @@
             </div>
 
             <!-- --------------------------------------------------------------------------
-                 ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER (EXACT MATCH REFERENCE 1)
+                 ROW 2: FULL-WIDTH REFER & EARN REWARDS BANNER (MODERN LUXURY REDESIGN)
                  -------------------------------------------------------------------------- -->
             <div class="row g-3 mb-3">
                 <div class="col-12">
                     <div class="ft-referral-banner">
-                        <div class="ft-ref-left-group">
-                            <img src="{{ asset('user_assets/images/dashboard_3d/new_purple_gift_ring_hd.png') }}" alt="3D Gift Box" class="ft-ref-gift-art">
-
+                        <!-- Left: 3D Art & Info -->
+                        <div class="ft-ref-brand-col">
+                            <img src="{{ asset('user_assets/images/dashboard_3d/new_purple_gift_ring_clean.png') }}" alt="3D Gift Box" class="ft-ref-gift-art">
                             <div>
-                                <h6 class="fw-bold text-dark mb-1 fs-16">Refer & Earn Rewards</h6>
-                                <span class="text-muted fs-12">Share your exclusive invitation link and earn amazing rewards!</span>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h6 class="fw-bold text-dark mb-0 fs-16">Refer & Earn Rewards</h6>
+                                    <span class="badge rounded-pill fs-10 px-2 py-0.5 fw-semibold" style="background: rgba(124, 58, 237, 0.1); color: #7C3AED; border: 1px solid rgba(124, 58, 237, 0.25);">
+                                        <i class="ti ti-sparkles me-0.5"></i> Bonus Program
+                                    </span>
+                                </div>
+                                <span class="text-muted fs-12">Share your exclusive invite link with friends & earn unlimited rewards!</span>
                             </div>
+                        </div>
 
+                        <!-- Center: Referral Link Input & Action Buttons -->
+                        <div class="ft-ref-actions-col">
                             <!-- Link input box with inline copy icon -->
-                            <div class="ft-ref-input-shell ms-xl-2">
+                            <div class="ft-ref-input-shell">
+                                <i class="ti ti-link text-primary fs-14"></i>
                                 <input type="text" readonly value="{{ config('detailsApp.url') }}?ref={{ $data['memberid'] }}" id="refInputDisplay" class="ft-ref-input-text">
                                 <button type="button" class="ft-ref-copy-icon-btn" id="btnCopyIcon" title="Copy Link">
                                     <i class="ti ti-copy fs-14"></i>
@@ -1178,21 +1487,19 @@
                             </div>
 
                             <button type="button" class="ft-btn-copy-purple" id="btnCopyRef">
-                                <i class="ti ti-link"></i> <span id="btnCopyLabel">Copy Link</span>
+                                <i class="ti ti-copy fs-14"></i> <span id="btnCopyLabel">Copy Link</span>
                             </button>
 
                             <a href="https://api.whatsapp.com/send?text=Join%20our%20stable%20earning%20platform%20now:%20{{ urlencode(config('detailsApp.url') . '?ref=' . $data['memberid']) }}" target="_blank" class="ft-btn-whatsapp-green" title="Share on WhatsApp">
-                                <i class="ti ti-brand-whatsapp fs-14"></i> Share on WhatsApp
+                                <i class="ti ti-brand-whatsapp fs-15"></i> Share on WhatsApp
                             </a>
                         </div>
 
-                        <!-- Right Highlight Capsule matching Reference 1 -->
+                        <!-- Right: Highlight Reward Capsule -->
                         <div class="ft-earn-up-to-capsule">
                             <div>
-                                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; font-weight: 700;">Earn up to</span>
-                                <div style="font-size: 22px; font-weight: 900; color: #FDE047; line-height: 1.1; text-shadow: 0 2px 8px rgba(253, 224, 71, 0.4);">
-                                    ₹1000+
-                                </div>
+                                <span class="ft-earn-label">EARN UP TO</span>
+                                <div class="ft-earn-amount">₹1000+</div>
                             </div>
                             <img src="{{ asset('user_assets/images/dashboard_3d/coins_hd.png') }}" alt="Gold Coins" class="ft-earn-coins-img">
                         </div>
@@ -1204,12 +1511,12 @@
             <input type="hidden" id="refLinkText" value="{{ config('detailsApp.url') }}?ref={{ $data['memberid'] }}">
 
             <!-- --------------------------------------------------------------------------
-                 ROW 3: FOUR VIBRANT 3D STATISTIC CARDS (PREMIUM ANIMATED 3D PARALLAX)
+                 ROW 3: FOUR VIBRANT 3D STATISTIC CARDS (PREMIUM 2x2 GRID LAYOUT)
                  Cyan, Purple, Emerald, Amber gradients with rotating cyber rings & floating particles
                  -------------------------------------------------------------------------- -->
             <div class="row g-3 mb-3 align-items-stretch">
                 <!-- Card 1: Account Status (Cyan to Electric Blue) -->
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 d-flex">
                     <div class="ft-stat-card-vibrant ft-stat-cyan-glow ft-stat-interactive w-100">
                         <div class="ft-card-orb ft-card-orb-top"></div>
                         <div class="ft-card-orb ft-card-orb-bottom"></div>
@@ -1247,7 +1554,7 @@
                 </div>
 
                 <!-- Card 2: Total Referrals (Purple to Violet) -->
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 d-flex">
                     <div class="ft-stat-card-vibrant ft-stat-purple-glow ft-stat-interactive w-100">
                         <div class="ft-card-orb ft-card-orb-top"></div>
                         <div class="ft-card-orb ft-card-orb-bottom"></div>
@@ -1287,7 +1594,7 @@
                 </div>
 
                 <!-- Card 3: Fund Wallet (Emerald to Deep Green) -->
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 d-flex">
                     <div class="ft-stat-card-vibrant ft-stat-green-glow ft-stat-interactive w-100">
                         <div class="ft-card-orb ft-card-orb-top"></div>
                         <div class="ft-card-orb ft-card-orb-bottom"></div>
@@ -1327,7 +1634,7 @@
                 </div>
 
                 <!-- Card 4: Income Wallet (Amber to Orange) -->
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 d-flex">
                     <div class="ft-stat-card-vibrant ft-stat-orange-glow ft-stat-interactive w-100">
                         <div class="ft-card-orb ft-card-orb-top"></div>
                         <div class="ft-card-orb ft-card-orb-bottom"></div>
@@ -1368,14 +1675,14 @@
             </div>
 
             <!-- --------------------------------------------------------------------------
-                 ROW 4: TODAY'S EARNINGS COMMAND CENTER (LEFT) & LIFETIME OVERVIEW (RIGHT)
-                 (EXACT CLOSE-UP MATCH FROM IMAGE 2 & IMAGE 1)
+                 ROW 4: TODAY'S EARNINGS COMMAND CENTER (TOP) & LIFETIME OVERVIEW (BOTTOM)
+                 (BALANCED LUXURY FINTECH LAYOUT - FULL WIDTH COL-12 STACKED)
                  -------------------------------------------------------------------------- -->
-            <div class="row g-3 mb-3">
-                <!-- Left: Today's Earnings Command Center -->
-                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12">
-                    <div class="ft-overview-card">
-                        <div class="d-flex align-items-center justify-content-between mb-3 pb-2" style="border-bottom: 1px solid #F1F5F9;">
+            <div class="row g-4 mb-4 align-items-stretch">
+                <!-- Top: Today's Earnings Command Center (Full Width col-12) -->
+                <div class="col-12 d-flex">
+                    <div class="ft-lifetime-card-shell w-100">
+                        <div class="d-flex align-items-center justify-content-between pb-2" style="border-bottom: 1px solid #F1F5F9;">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
                                     <i class="ti ti-calendar-stats fs-15"></i>
@@ -1390,73 +1697,143 @@
                             </a>
                         </div>
 
-                        <div class="row align-items-center g-3">
-                            <!-- Left: 3D Gold Coins stack on platform with growth chart -->
-                            <div class="col-sm-4 col-12 text-center">
-                                <img src="{{ asset('user_assets/images/dashboard_3d/today_growth_perfect.png') }}" alt="Today Growth" style="max-height: 125px; width: auto; object-fit: contain;">
+                        @php
+                            $tLvl = (float)todayLevelIncome($data['memberid']);
+                            $tDir = (float)todayDirectIncome($data['memberid']);
+                            $tPool = (float)todayGlobalAutopoolIncome($data['memberid']);
+                            $tWith = (float)todayWithdrawalIncome($data['memberid']);
+                            $todayTotalEarnings = $tLvl + $tDir + $tPool + $tWith;
+                            $tMax = max(1, $todayTotalEarnings);
+                            $tLvlPct = min(100, max(8, round(($tLvl / $tMax) * 100)));
+                            $tDirPct = min(100, max(8, round(($tDir / $tMax) * 100)));
+                            $tPoolPct = min(100, max(8, round(($tPool / $tMax) * 100)));
+                            $tWithPct = min(100, max(8, round(($tWith / $tMax) * 100)));
+                            $tLvlShare = $todayTotalEarnings > 0 ? round(($tLvl / $todayTotalEarnings) * 100) : 0;
+                            $tDirShare = $todayTotalEarnings > 0 ? round(($tDir / $todayTotalEarnings) * 100) : 0;
+                            $tPoolShare = $todayTotalEarnings > 0 ? round(($tPool / $todayTotalEarnings) * 100) : 0;
+                            $tWithShare = $todayTotalEarnings > 0 ? round(($tWith / $todayTotalEarnings) * 100) : 0;
+                        @endphp
+
+                        <!-- Top Spotlight Banner (Matching Right Card) -->
+                        <div class="ft-today-hero-banner">
+                            <div style="position: relative; z-index: 2; max-width: 62%;">
+                                <span class="badge" style="background: rgba(56, 189, 248, 0.22); color: #7DD3FC; font-size: 11px; font-weight: 700; border-radius: 20px; padding: 4px 12px; border: 1px solid rgba(56, 189, 248, 0.45);">
+                                    <i class="ti ti-calendar-event me-1"></i> TODAY'S TOTAL EARNINGS
+                                </span>
+                                <div class="fw-900 mt-2 mb-1" style="font-size: 32px; letter-spacing: -0.5px; color: #FFFFFF; line-height: 1.15;">
+                                    $ <span class="exact-counter" data-target="{{ (float)$todayTotalEarnings }}" data-decimal="2">{{ number_format($todayTotalEarnings, 2) }}</span>
+                                </div>
+                                <div class="fs-12 text-white-50 d-flex align-items-center gap-1" style="color: rgba(255, 255, 255, 0.9) !important;">
+                                    <i class="ti ti-circle-check-filled text-success"></i> Real-time multi-stream daily earnings
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center" style="position: relative; z-index: 2;">
+                                <img src="{{ asset('user_assets/images/dashboard_3d/today_growth_perfect.png') }}" alt="Today Growth" class="ft-today-growth-art">
+                            </div>
+                        </div>
+
+                        <!-- Bottom 4 Modern Stream Pods - Spacious Large 2x2 Grid -->
+                        <div class="row g-3">
+                            <!-- Stream 1: Today's Level Income -->
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-blue w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-blue">
+                                                <i class="ti ti-chart-bar"></i>
+                                            </div>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Level Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Tiered community matrix commissions</span>
+                                            </div>
+                                        </div>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-blue">{{ $tLvlShare }}%</span>
+                                    </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($tLvl, 2) }}</div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar ft-progress-blue" style="width: {{ $todayTotalEarnings > 0 ? $tLvlPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-bolt text-primary me-1"></i> Multi-tier Yield</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tLvlShare }}%</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Right: 2x2 Grid of Modern Cards matching Image 2 -->
-                            <div class="col-sm-8 col-12">
-                                <div class="row g-2">
-                                    <!-- Pod 1: Today's Level Income -->
-                                    <div class="col-6">
-                                        <div class="ft-income-pod-v2 ft-pod-blue">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Level Income</span>
-                                                <div class="ft-pod-icon-box">
-                                                    <i class="ti ti-chart-bar"></i>
-                                                </div>
+                            <!-- Stream 2: Today's Direct Income -->
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-purple w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-purple">
+                                                <i class="ti ti-users"></i>
                                             </div>
-                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
-                                                $ <span class="exact-counter" data-target="{{ (float)todayLevelIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayLevelIncome($data['memberid']), 2) }}</span>
-                                            </h5>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Direct Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Direct sponsor referral earnings</span>
+                                            </div>
                                         </div>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-purple">{{ $tDirShare }}%</span>
                                     </div>
-
-                                    <!-- Pod 2: Today's Direct Income -->
-                                    <div class="col-6">
-                                        <div class="ft-income-pod-v2 ft-pod-purple">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Direct Income</span>
-                                                <div class="ft-pod-icon-box">
-                                                    <i class="ti ti-users"></i>
-                                                </div>
-                                            </div>
-                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
-                                                $ <span class="exact-counter" data-target="{{ (float)todayDirectIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayDirectIncome($data['memberid']), 2) }}</span>
-                                            </h5>
-                                        </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($tDir, 2) }}</div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar ft-progress-purple" style="width: {{ $todayTotalEarnings > 0 ? $tDirPct : 0 }}%;"></div>
                                     </div>
-
-                                    <!-- Pod 3: Today's Global Autopool -->
-                                    <div class="col-6">
-                                        <div class="ft-income-pod-v2 ft-pod-green">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Global Autopool</span>
-                                                <div class="ft-pod-icon-box">
-                                                    <i class="ti ti-world"></i>
-                                                </div>
-                                            </div>
-                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
-                                                $ <span class="exact-counter" data-target="{{ (float)todayGlobalAutopoolIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayGlobalAutopoolIncome($data['memberid']), 2) }}</span>
-                                            </h5>
-                                        </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-user-check text-purple me-1"></i> Direct Referral Bonus</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tDirShare }}%</span>
                                     </div>
+                                </div>
+                            </div>
 
-                                    <!-- Pod 4: Today's Withdrawal Income -->
-                                    <div class="col-6">
-                                        <div class="ft-income-pod-v2 ft-pod-amber">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Withdrawal Income</span>
-                                                <div class="ft-pod-icon-box">
-                                                    <i class="ti ti-wallet"></i>
-                                                </div>
+                            <!-- Stream 3: Today's Global Autopool -->
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-green w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-green">
+                                                <i class="ti ti-world"></i>
                                             </div>
-                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
-                                                $ <span class="exact-counter" data-target="{{ (float)todayWithdrawalIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayWithdrawalIncome($data['memberid']), 2) }}</span>
-                                            </h5>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Autopool Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Automated matrix slot distributions</span>
+                                            </div>
                                         </div>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-green">{{ $tPoolShare }}%</span>
+                                    </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($tPool, 2) }}</div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar ft-progress-green" style="width: {{ $todayTotalEarnings > 0 ? $tPoolPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-cpu text-success me-1"></i> Matrix Distribution</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tPoolShare }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stream 4: Today's Withdrawal Income -->
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-amber w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-amber">
+                                                <i class="ti ti-wallet"></i>
+                                            </div>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Withdrawn Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Daily realized wallet payouts</span>
+                                            </div>
+                                        </div>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-amber">{{ $tWithShare }}%</span>
+                                    </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($tWith, 2) }}</div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar ft-progress-amber" style="width: {{ $todayTotalEarnings > 0 ? $tWithPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-circle-check text-warning me-1"></i> Realized Payout</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tWithShare }}%</span>
                                     </div>
                                 </div>
                             </div>
@@ -1464,9 +1841,9 @@
                     </div>
                 </div>
 
-                <!-- Right: Lifetime Total Earnings Overview (Luxury Modern Fintech Redesign) -->
-                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12">
-                    <div class="ft-lifetime-card-shell">
+                <!-- Bottom: Lifetime Total Earnings Overview (Full Width col-12) -->
+                <div class="col-12 d-flex">
+                    <div class="ft-lifetime-card-shell w-100">
                         <div class="d-flex align-items-center justify-content-between pb-2" style="border-bottom: 1px solid #F1F5F9;">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="avatar avatar-xs avatar-rounded" style="background: #EDE9FE; color: #7C3AED;">
@@ -1507,82 +1884,119 @@
                             $poolVal = (float)totalGlobalAutopoolIncome($data['memberid']);
                             $withVal = (float)totalWithdrawalIncome($data['memberid']);
                             $totInc = max(1, (float)totalIncome($data['memberid']));
-                            $lvlPct = min(100, max(6, round(($lvlVal / $totInc) * 100)));
-                            $dirPct = min(100, max(6, round(($dirVal / $totInc) * 100)));
-                            $poolPct = min(100, max(6, round(($poolVal / $totInc) * 100)));
-                            $withPct = min(100, max(6, round(($withVal / $totInc) * 100)));
+                            $lvlPct = min(100, max(8, round(($lvlVal / $totInc) * 100)));
+                            $dirPct = min(100, max(8, round(($dirVal / $totInc) * 100)));
+                            $poolPct = min(100, max(8, round(($poolVal / $totInc) * 100)));
+                            $withPct = min(100, max(8, round(($withVal / $totInc) * 100)));
+                            $rawTot = (float)totalIncome($data['memberid']);
+                            $lvlShare = $rawTot > 0 ? round(($lvlVal / $rawTot) * 100) : 0;
+                            $dirShare = $rawTot > 0 ? round(($dirVal / $rawTot) * 100) : 0;
+                            $poolShare = $rawTot > 0 ? round(($poolVal / $rawTot) * 100) : 0;
+                            $withShare = $rawTot > 0 ? round(($withVal / $rawTot) * 100) : 0;
                         @endphp
 
-                        <!-- Bottom 4 Modern Stream Pods (2x2 Grid) -->
-                        <div class="row g-2">
+                        <!-- Bottom 4 Modern Stream Pods - Spacious Large 2x2 Grid -->
+                        <div class="row g-3">
                             <!-- Stream 1: Level Income -->
-                            <div class="col-sm-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-blue">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
-                                                <i class="ti ti-chart-bar fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Level Income</span>
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-blue w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-blue">
+                                                <i class="ti ti-chart-bar"></i>
+                                            </div>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Level Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Cumulative multi-tier matrix rewards</span>
+                                            </div>
                                         </div>
-                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($lvlVal, 2) }}</strong>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-blue">{{ $lvlShare }}%</span>
                                     </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($lvlVal, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $lvlPct }}%; background: #2563EB;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-blue" style="width: {{ $rawTot > 0 ? $lvlPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-chart-dots text-primary me-1"></i> Lifetime Yield</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $lvlShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 2: Direct Income -->
-                            <div class="col-sm-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-purple">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
-                                                <i class="ti ti-users fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Direct Income</span>
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-purple w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-purple">
+                                                <i class="ti ti-users"></i>
+                                            </div>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Direct Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Lifetime direct sponsor yield</span>
+                                            </div>
                                         </div>
-                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($dirVal, 2) }}</strong>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-purple">{{ $dirShare }}%</span>
                                     </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($dirVal, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $dirPct }}%; background: #7C3AED;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-purple" style="width: {{ $rawTot > 0 ? $dirPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-user-check text-purple me-1"></i> Direct Referral Yield</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $dirShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 3: Global Autopool -->
-                            <div class="col-sm-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-green">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #ECFDF5; color: #059669;">
-                                                <i class="ti ti-world fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Global Autopool</span>
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-green w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-green">
+                                                <i class="ti ti-world"></i>
+                                            </div>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Global Autopool</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Universal matrix pool distribution</span>
+                                            </div>
                                         </div>
-                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($poolVal, 2) }}</strong>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-green">{{ $poolShare }}%</span>
                                     </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($poolVal, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $poolPct }}%; background: #059669;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-green" style="width: {{ $rawTot > 0 ? $poolPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-cpu text-success me-1"></i> Global Pool Distribution</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $poolShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 4: Withdrawal Income -->
-                            <div class="col-sm-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-amber">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #FFFBEB; color: #D97706;">
-                                                <i class="ti ti-wallet fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Total Withdrawn</span>
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-amber w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-amber">
+                                                <i class="ti ti-wallet"></i>
+                                            </div>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Total Withdrawn</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Lifetime realized payout balance</span>
+                                            </div>
                                         </div>
-                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($withVal, 2) }}</strong>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-amber">{{ $withShare }}%</span>
                                     </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($withVal, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $withPct }}%; background: #D97706;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-amber" style="width: {{ $rawTot > 0 ? $withPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-circle-check text-warning me-1"></i> Realized Payouts</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $withShare }}%</span>
                                     </div>
                                 </div>
                             </div>
@@ -1591,16 +2005,24 @@
                 </div>
             </div>
 
-            <!-- --------------------------------------------------------------------------
-                 ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS (MATCHING REFERENCE 1)
-                 -------------------------------------------------------------------------- -->
+            {{-- --------------------------------------------------------------------------
+                 ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS (CURRENTLY HIDDEN AS REQUESTED)
+                 -------------------------------------------------------------------------- --}}
+            @if(false)
             <div class="ft-matrix-section">
-                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <img src="{{ asset('user_assets/images/dashboard_3d/matrix_cube_icon.png') }}" alt="Matrix Cube" style="width: 28px; height: 28px; object-fit: contain;">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 pb-3" style="border-bottom: 1px solid #F1F5F9;">
+                    <div class="d-flex align-items-center gap-2.5">
+                        <span class="avatar avatar-sm avatar-rounded" style="background: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%); color: #FFFFFF; width: 36px; height: 36px;">
+                            <i class="ti ti-cube fs-18"></i>
+                        </span>
                         <div>
-                            <h6 class="fw-bold text-dark mb-0 fs-15">Global Autopool Matrix Slots</h6>
-                            <span class="text-muted fs-11">Activate your matrix slots for unlimited earning potential</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <h6 class="fw-bold text-dark mb-0 fs-16">Global Autopool Matrix Slots</h6>
+                                <span class="badge rounded-pill" style="background: #EDE9FE; color: #7C3AED; font-size: 11px; font-weight: 700; padding: 3px 9px;">
+                                    {{ count($matrix) }} Active {{ count($matrix) == 1 ? 'Slot' : 'Slots' }}
+                                </span>
+                            </div>
+                            <span class="text-muted" style="font-size: 11.5px;">Activate your matrix slots for unlimited earning potential & 32-node cycle yields</span>
                         </div>
                     </div>
                     <a href="{{ url('/member/invest-slot') }}" class="ft-btn-new-slot">
@@ -1613,46 +2035,76 @@
                         @php
                             $poolCount = getPoolCount($value['id']);
                             $progressPct = min(100, round(($poolCount / 32) * 100));
+                            $statusText = !empty($value['status']) ? $value['status'] : ($poolCount >= 32 ? 'Completed' : 'Active');
+                            $createdTimestamp = !empty($value['created_at']) ? strtotime($value['created_at']) : time();
                         @endphp
-                        <div class="col-xxl-4 col-xl-4 col-md-6 col-12">
-                            <div class="ft-matrix-slot-item">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <span class="badge" style="background: #EFF6FF; color: #2563EB; font-size: 11.5px; font-weight: 700; border-radius: 6px; padding: 3px 9px;">
-                                        Slot #{{ $value['id'] }}
-                                    </span>
-                                    <span class="badge" style="background: {{ $value['status'] == 'Open' ? '#ECFDF5' : '#F1F5F9' }}; color: {{ $value['status'] == 'Open' ? '#047857' : '#64748B' }}; border: 1px solid {{ $value['status'] == 'Open' ? '#A7F3D0' : '#E2E8F0' }}; font-size: 11px; padding: 2px 8px; border-radius: 20px;">
-                                        ● {{ $value['status'] }}
-                                    </span>
-                                </div>
-
-                                <div class="my-2">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <span class="text-muted fs-11">Pool Progress</span>
-                                        <span class="fw-bold fs-11 text-dark">{{ $poolCount }} / 32 Members ({{ $progressPct }}%)</span>
+                        <div class="col-xxl-4 col-xl-4 col-md-6 col-12 d-flex">
+                            <div class="ft-matrix-slot-item w-100">
+                                <div>
+                                    <!-- Top Header Line -->
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-slot-icon-box">
+                                                <i class="ti ti-grid-dots"></i>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex align-items-center gap-1.5">
+                                                    <h6 class="fw-bold text-dark mb-0 fs-14">Slot #{{ $value['id'] }}</h6>
+                                                    <span class="badge rounded-pill ft-slot-badge-id">2x5 Matrix</span>
+                                                </div>
+                                                <span class="text-muted fs-11">Reward Yield: <strong class="text-success">$100.00</strong></span>
+                                            </div>
+                                        </div>
+                                        <span class="badge rounded-pill ft-slot-status-pill {{ $statusText == 'Closed' || $statusText == 'Completed' ? 'ft-status-closed' : 'ft-status-open' }}">
+                                            <span class="ft-status-dot"></span> {{ $statusText }}
+                                        </span>
                                     </div>
-                                    <div class="ft-progress-track">
-                                        <div class="ft-progress-bar-fill" style="width: {{ $progressPct }}%;"></div>
+
+                                    <!-- Progress Pod -->
+                                    <div class="ft-slot-progress-card mb-3">
+                                        <div class="d-flex align-items-center justify-content-between mb-1">
+                                            <span class="text-muted fs-12 fw-semibold">
+                                                <i class="ti ti-users me-1 text-primary"></i> Pool Progress
+                                            </span>
+                                            <div class="d-flex align-items-center gap-1.5">
+                                                <span class="fw-bold fs-12 text-dark">{{ $poolCount }}/32 Nodes</span>
+                                                <span class="badge bg-primary text-white rounded-pill px-2 py-0.5 fs-11 font-monospace">{{ $progressPct }}%</span>
+                                            </div>
+                                        </div>
+                                        <div class="ft-progress-track">
+                                            <div class="ft-progress-bar-fill" style="width: {{ $progressPct }}%;"></div>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between text-muted fs-11 mt-2">
+                                            <span><i class="ti ti-calendar me-1"></i> {{ date('d-m-Y', $createdTimestamp) }}</span>
+                                            <span><i class="ti ti-clock me-1"></i> {{ date('H:i:s', $createdTimestamp) }}</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="d-flex align-items-center justify-content-between text-muted fs-11 mt-1">
-                                    <span><i class="ti ti-calendar me-1"></i> {{ date('d-m-Y', strtotime($value['created_at'])) }}</span>
-                                    <span><i class="ti ti-clock me-1"></i> {{ date('H:i:s', strtotime($value['created_at'])) }}</span>
-                                </div>
-
-                                <div class="mt-3 pt-2" style="border-top: 1px solid #F1F5F9;">
-                                    @if ($poolCount >= 32 && $value['status'] == 'Open')
-                                        <a href="{{ url('/member/profit-withdrawal') }}/{{ $value['id'] }}" class="btn btn-sm btn-success w-100 fw-bold" style="border-radius: 8px;">
-                                            <i class="ti ti-sparkles me-1"></i> Claim & Sell Profit ($100)
+                                <!-- Bottom Action Status -->
+                                <div class="mt-auto pt-2" style="border-top: 1px solid #F1F5F9;">
+                                    @if ($poolCount >= 32 && ($value['status'] == 'Open' || empty($value['status'])))
+                                        <a href="{{ url('/member/profit-withdrawal') }}/{{ $value['id'] }}" class="btn btn-sm btn-success w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-1.5" style="border-radius: 10px;">
+                                            <i class="ti ti-sparkles"></i> Claim & Sell Profit ($100)
                                         </a>
                                     @elseif ($poolCount >= 32 && $value['status'] == 'Closed')
-                                        <button class="btn btn-sm btn-light border w-100 text-muted fw-bold" style="border-radius: 8px;" disabled>
-                                            <i class="ti ti-lock me-1"></i> Slot Completed
-                                        </button>
+                                        <div class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light border text-muted">
+                                            <span class="d-flex align-items-center gap-1.5 fw-semibold text-success fs-12">
+                                                <i class="ti ti-circle-check-filled fs-15"></i> Completed ($100)
+                                            </span>
+                                            <a href="{{ url('/member/globalpool/globalpool-matrix') }}/{{ $value['id'] }}" class="text-primary fw-semibold fs-11 text-decoration-none">
+                                                View Tree <i class="ti ti-chevron-right"></i>
+                                            </a>
+                                        </div>
                                     @else
-                                        <button class="btn btn-sm btn-light border w-100 text-muted fw-semibold" style="border-radius: 8px;" disabled>
-                                            <i class="ti ti-hourglass-low me-1 text-warning"></i> In Progress ({{ $poolCount }}/32 Nodes)
-                                        </button>
+                                        <div class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light border text-muted">
+                                            <span class="d-flex align-items-center gap-1.5 fw-semibold text-dark fs-12">
+                                                <i class="ti ti-hourglass-high text-warning"></i> {{ 32 - $poolCount }} Nodes Left
+                                            </span>
+                                            <a href="{{ url('/member/globalpool/globalpool-matrix') }}/{{ $value['id'] }}" class="text-primary fw-semibold fs-11 text-decoration-none">
+                                                View Tree <i class="ti ti-chevron-right"></i>
+                                            </a>
+                                        </div>
                                     @endif
                                 </div>
                             </div>
@@ -1673,6 +2125,7 @@
                     @endforelse
                 </div>
             </div>
+            @endif
 
         </div>
     </div>
@@ -1683,8 +2136,13 @@
             <div class="modal-content ft-modal-shell">
                 <div class="modal-header ft-modal-header">
                     <div class="d-flex align-items-center gap-2">
-                        <i class="ti ti-user-circle fs-18 text-warning"></i>
-                        <h6 class="modal-title fw-bold fs-15 mb-0 text-white" id="profileDetailModalLabel">Member Account Details</h6>
+                        <span class="avatar avatar-xs avatar-rounded" style="background: rgba(255, 255, 255, 0.18); color: #FDE047;">
+                            <i class="ti ti-user-circle fs-16"></i>
+                        </span>
+                        <div>
+                            <h6 class="modal-title fw-bold fs-15 mb-0 text-white" id="profileDetailModalLabel">Member Account Details</h6>
+                            <span class="text-white-50" style="font-size: 11px;">Complete verified account profile</span>
+                        </div>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -1710,45 +2168,80 @@
                         </div>
                     </div>
 
-                    <div class="ft-modal-row">
+                    <!-- Row 1: Full Name -->
+                    <div class="ft-modal-row" data-modal-row="fullname">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-user fs-16 text-primary me-2"></i> Full Name
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['name'] }}</span>
-                    </div>
-
-                    <div class="ft-modal-row">
-                        <div class="d-flex align-items-center text-muted fs-13">
-                            <i class="ti ti-mail fs-16 text-info me-2"></i> Email Address
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['name'] }}</span>
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['name'] }}" title="Copy Name">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['email'] }}</span>
                     </div>
 
-                    <div class="ft-modal-row">
+                    <!-- Row 2: Mobile Number -->
+                    <div class="ft-modal-row" data-modal-row="mobile">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-phone fs-16 text-warning me-2"></i> Mobile Number
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['mobile'] ?? 'N/A' }}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all font-monospace">{{ $data['mobile'] ?? 'N/A' }}</span>
+                            @if(!empty($data['mobile']))
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['mobile'] }}" title="Copy Mobile">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
+                            @endif
+                        </div>
                     </div>
 
-                    <div class="ft-modal-row">
+                    <!-- Row 3: Email Address -->
+                    <div class="ft-modal-row" data-modal-row="email">
+                        <div class="d-flex align-items-center text-muted fs-13">
+                            <i class="ti ti-mail fs-16 text-info me-2"></i> Email Address
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['email'] }}</span>
+                            @if(!empty($data['email']))
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['email'] }}" title="Copy Email">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Member ID -->
+                    <div class="ft-modal-row" data-modal-row="memberid">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-id fs-16 text-secondary me-2"></i> Member ID
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all font-monospace">{{ $data['memberid'] }}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all font-monospace">{{ $data['memberid'] }}</span>
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['memberid'] }}" title="Copy Member ID">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
+                        </div>
                     </div>
 
+                    <!-- Row 5: Sponsor ID -->
                     @if(!empty($data['sponsor']))
-                    <div class="ft-modal-row">
+                    <div class="ft-modal-row" data-modal-row="sponsor">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-users fs-16 text-purple me-2"></i> Sponsor ID
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end font-monospace">{{ $data['sponsor'] }}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end font-monospace">{{ $data['sponsor'] }}</span>
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['sponsor'] }}" title="Copy Sponsor ID">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
+                        </div>
                     </div>
                     @endif
 
+                    <!-- Row 6: Joined On -->
                     @if(!empty($data['created_at']))
-                    <div class="ft-modal-row">
+                    <div class="ft-modal-row" data-modal-row="joined">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-calendar fs-16 text-success me-2"></i> Joined On
                         </div>
@@ -1905,6 +2398,48 @@
                     }
                     if (shine) {
                         shine.style.opacity = '0';
+                    }
+                });
+            });
+
+            // 5. Member Profile Pod Focus & Modal Highlight Interaction
+            let activeFocusRow = null;
+            document.querySelectorAll('.ft-profile-info-pod[data-focus-row]').forEach(pod => {
+                pod.addEventListener('click', function () {
+                    activeFocusRow = this.getAttribute('data-focus-row');
+                });
+            });
+
+            const profileModalEl = document.getElementById('profileDetailModal');
+            if (profileModalEl) {
+                profileModalEl.addEventListener('shown.bs.modal', function () {
+                    document.querySelectorAll('.ft-modal-row').forEach(row => row.classList.remove('ft-modal-row-highlighted'));
+                    if (activeFocusRow) {
+                        const targetRow = profileModalEl.querySelector(`[data-modal-row="${activeFocusRow}"]`);
+                        if (targetRow) {
+                            targetRow.classList.add('ft-modal-row-highlighted');
+                            targetRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                        activeFocusRow = null;
+                    }
+                });
+            }
+
+            // 6. Modal Inline Copy Buttons
+            document.querySelectorAll('.ft-copy-inline').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const val = this.getAttribute('data-copy-val');
+                    const icon = this.querySelector('i');
+                    if (val) {
+                        copyText(val, function () {
+                            if (icon) {
+                                icon.className = 'ti ti-check text-success fs-13';
+                                setTimeout(() => {
+                                    icon.className = 'ti ti-copy fs-13';
+                                }, 2000);
+                            }
+                        });
                     }
                 });
             });
