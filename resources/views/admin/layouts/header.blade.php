@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
     <!-- Custom Admin Theme Css -->
-    <link href="{{ asset('a_assets/css/custom-admin.css') }}?v=1.2" rel="stylesheet">
+    <link href="{{ asset('a_assets/css/custom-admin.css') }}?v=1.3" rel="stylesheet">
 
     <!-- Core Pre-load Scripts -->
     <script src="{{ asset('a_assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
@@ -532,8 +532,7 @@
                     <!--    </ul>-->
                     <!--</li>-->
                     <li class="slide has-sub"> <a href="{{ url('admin/dash-messages') }}" class="side-menu__item">
-                            <i class="bx bx-file-blank side-menu__icon"></i> <span class="side-menu__label">Dasboard
-                                Messages</span> </a>
+                            <i class="bx bx-file-blank side-menu__icon"></i> <span class="side-menu__label">Dasboard Messages</span> </a>
                         <ul class="slide-menu child1">
                         </ul>
                     </li> <!-- End::slide --> <!-- Start::slide -->
@@ -559,8 +558,7 @@
                     {{-- <li class="slide__category"><span class="category-name">General</span></li> --}}
                     <!-- End::slide__category --> <!-- Start::slide -->
                     <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
-                                class="bx bx-id-card side-menu__icon"></i> <span class="side-menu__label">Member
-                                Management</span> <i class="fe fe-chevron-right side-menu__angle"></i> </a>
+                                class="bx bx-id-card side-menu__icon"></i> <span class="side-menu__label">Member Management</span> <i class="fe fe-chevron-right side-menu__angle"></i> </a>
                         <ul class="slide-menu child1 mega-menu">
                             <li class="slide side-menu__label1"> <a href="javascript:void(0)">Ui Elements</a>
                             </li>
@@ -587,8 +585,7 @@
                         </ul>
                     </li> <!-- End::slide --> <!-- Start::slide -->
                     <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
-                                class="bx bx-medal side-menu__icon"></i> <span class="side-menu__label">Funds
-                                Management</span> <i class="fe fe-chevron-right side-menu__angle"></i> </a>
+                                class="bx bx-medal side-menu__icon"></i> <span class="side-menu__label">Funds Management</span> <i class="fe fe-chevron-right side-menu__angle"></i> </a>
                         <ul class="slide-menu child1">
                             <li class="slide side-menu__label1"> <a href="javascript:void(0)">Utilities</a>
                             </li>
@@ -613,8 +610,7 @@
                     </ul>
                     </li> <!-- End::slide --> <!-- Start::slide -->
                     <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
-                                class="bx bx-file side-menu__icon"></i> <span class="side-menu__label">Pakage
-                                Section</span>
+                                class="bx bx-file side-menu__icon"></i> <span class="side-menu__label">Pakage Section</span>
                             <i class="fe fe-chevron-right side-menu__angle"></i> </a>
                         <ul class="slide-menu child1">
                             <li class="slide side-menu__label1"> <a href="javascript:void(0)">Forms</a> </li>
@@ -623,14 +619,13 @@
                             <!--        class="side-menu__item">Staking-->
                             <!--        Details</a> </li>-->
                             <li class="slide"> <a href="{{ url('admin/package-details') }}"
-                                    class="side-menu__item">Pakage
+                                     class="side-menu__item">Pakage
                                     Details</a>
                             </li>
                         </ul>
                     </li> <!-- End::slide --> <!-- Start::slide -->
                     <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
-                                class="bx bx-wallet-alt side-menu__icon"></i> <span class="side-menu__label">Income
-                                Section</span> <i class="fe fe-chevron-right side-menu__angle"></i> </a>
+                                class="bx bx-wallet-alt side-menu__icon"></i> <span class="side-menu__label">Income Section</span> <i class="fe fe-chevron-right side-menu__angle"></i> </a>
                         <ul class="slide-menu child1">
                             <li class="slide side-menu__label1"> <a href="javascript:void(0)">Income Section</a>
                             </li>
@@ -652,8 +647,7 @@
                         </ul>
                     </li> <!-- End::slide --> <!-- Start::slide -->
                     <li class="slide has-sub"> <a href="javascript:void(0);" class="side-menu__item"> <i
-                                class="bx bx-layer side-menu__icon"></i> <span class="side-menu__label">Payment
-                                Management</span> <i class="fe fe-chevron-right side-menu__angle"></i> </a>
+                                class="bx bx-layer side-menu__icon"></i> <span class="side-menu__label">Payment Management</span> <i class="fe fe-chevron-right side-menu__angle"></i> </a>
                         <ul class="slide-menu child1">
                             <li class="slide side-menu__label1"> <a href="javascript:void(0)">Nested Menu</a>
                             </li>

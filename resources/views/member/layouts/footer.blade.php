@@ -88,6 +88,26 @@
 <!-- END SCRIPTS -->
 
 <script>
+    // Ensure member sidebar stays firmly fixed without hover collapse or side-to-side jitter
+    (function() {
+        function stabilizeSidebar() {
+            var html = document.documentElement;
+            if (window.innerWidth >= 992) {
+                if (html.getAttribute('data-toggled') === 'close') {
+                    html.removeAttribute('data-toggled');
+                }
+                ['ynexverticalstyles', 'ynextoggled', 'data-toggled'].forEach(function(k) {
+                    try { localStorage.removeItem(k); } catch(e) {}
+                });
+            }
+        }
+        document.addEventListener('DOMContentLoaded', stabilizeSidebar);
+        window.addEventListener('resize', stabilizeSidebar);
+        stabilizeSidebar();
+    })();
+</script>
+
+<script>
     $(document).ready(function() {
 
         //package selection code
