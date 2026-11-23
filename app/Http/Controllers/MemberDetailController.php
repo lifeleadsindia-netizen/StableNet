@@ -66,7 +66,7 @@ class MemberDetailController extends Controller
             'mobile' => 'required|min:10|max:10',
             'country' => 'required',
             'password' => 'required|min:5|max:50',
-            // 'txn_password' => 'required|min:5|max:50',
+            'transaction_password' => 'required|min:5|max:50',
         ]);
         $sponsorid = strtoupper($request->post('sponsor'));
         $spon = MemberDetail::where('memberid', $sponsorid)->first();
@@ -91,7 +91,7 @@ class MemberDetailController extends Controller
         $var->mobile = $request->post('mobile');
         $password =  $request->post('password');
         $var->password = Hash::make($password);
-        $txnpass = 123456; //rand(100000, 999999);
+        $txnpass =  $request->post('transaction_password');
         $var->txn_password = Hash::make($txnpass);
         $var->country = $request->post('country');
         $var->p2p_wallet = 1000;
@@ -108,7 +108,7 @@ class MemberDetailController extends Controller
                 'mobile' => $mobile,
                 'memberid' => $userid,
                 'password' => $password,
-                'txn_password' => $txnpass
+                'transaction_password' => $txnpass
             ];
             $user['to'] = $email;
             // Mail::send('member.mails.mail', $mailData, function ($message) use ($user) {
@@ -123,8 +123,8 @@ class MemberDetailController extends Controller
         $request->session()->put('mobile', $mobile);
         $request->session()->put('country', $country);
         $request->session()->put('password', $request->post('password'));
-        $request->session()->put('txn_password', $txnpass);
-        
+        $request->session()->put('transaction_password', $txnpass);
+
         // updateUpline($sponsorid, $userid);
         session()->flash('successMsg', 'Account has been created Successfully!.');
         return redirect('member/account-created');
@@ -134,7 +134,7 @@ class MemberDetailController extends Controller
     {
         return view('member.account-created');
     }
-    
+
     public function dashboard(Request $request)
     {
         $memberid = session('MEMBER_ID');
@@ -290,7 +290,7 @@ class MemberDetailController extends Controller
             'email' => 'required|email',
             'mobile' => 'required|min:10|max:10',
             'password' => 'required',
-            'country'=>'required'
+            'country' => 'required'
         ]);
         $sponsorid = strtoupper($request->post('sponsor'));
         $spon = MemberDetail::where('memberid', $sponsorid)->first();
@@ -356,7 +356,7 @@ class MemberDetailController extends Controller
         $request->session()->put('country', $country);
         $request->session()->put('password', $request->post('password'));
         $request->session()->put('txn_password', $txnpass);
-        
+
         updateUpline($sponsorid, $userid);
         session()->flash('successMsg', 'Your account has been created successfully. Please login to your account using email and password!.');
         return redirect()->back();
@@ -486,7 +486,7 @@ class MemberDetailController extends Controller
         return redirect()->back();
     }
 
-   public function insertWalletAddress(Request $request)
+    public function insertWalletAddress(Request $request)
     {
 
         $request->validate([
@@ -578,7 +578,7 @@ class MemberDetailController extends Controller
         $title = $request->post('title');
 
         $var = Gallery::where('memberid', $memberid)->first();
-        if($var){
+        if ($var) {
             $var->memberid = $memberid;
             $var->title = $title;
             if ($request->hasfile('image')) {
@@ -596,7 +596,7 @@ class MemberDetailController extends Controller
 
             session()->flash('updateErr', 'Your Gallery have been updated');
             return redirect()->back();
-        }else{
+        } else {
             $new = new Gallery();
             $new->memberid = $memberid;
             $new->title = $title;
@@ -617,6 +617,4 @@ class MemberDetailController extends Controller
             return redirect()->back();
         }
     }
-
-
 }

@@ -227,16 +227,16 @@
                                                 $lvlIncome = $amount[$l] ?? 0;
                                             @endphp
                                             <tr>
-                                                <td class="text-center">
+                                                <td class="text-center" data-order="{{ sprintf('%02d', $l) }}" data-sort="{{ sprintf('%02d', $l) }}">
                                                     <span class="badge bg-primary-transparent text-primary px-2.5 py-1 fs-12 fw-bold">
                                                         Level {{ $l }}
                                                     </span>
                                                 </td>
-                                                <td>
+                                                <td data-order="{{ $required }}" data-sort="{{ $required }}">
                                                     <span class="fw-semibold text-dark">{{ number_format($required) }}</span>
                                                     <span class="text-muted fs-11">members</span>
                                                 </td>
-                                                <td>
+                                                <td data-order="{{ $achieved }}" data-sort="{{ $achieved }}">
                                                     <div class="d-flex align-items-center">
                                                         <span class="fw-bold fs-13 {{ $achieved > 0 ? 'text-primary' : 'text-muted' }}">
                                                             {{ number_format($achieved) }}
@@ -244,7 +244,7 @@
                                                         <span class="text-muted fs-11 ms-1">/ {{ number_format($required) }}</span>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td data-order="{{ $percent }}" data-sort="{{ $percent }}">
                                                     <div class="d-flex align-items-center gap-2">
                                                         <div class="progress progress-xs flex-grow-1" style="height: 6px; border-radius: 10px; background: #e2e8f0;">
                                                             <div class="progress-bar {{ $percent >= 100 ? 'bg-success' : 'bg-primary' }}"
@@ -256,17 +256,17 @@
                                                         </span>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td data-order="{{ $perMemberIncome }}" data-sort="{{ $perMemberIncome }}">
                                                     <span class="badge bg-light text-secondary border px-2 py-1 fs-11 fw-medium">
                                                         ${{ number_format($perMemberIncome, 2) }} / member
                                                     </span>
                                                 </td>
-                                                <td>
+                                                <td data-order="{{ $lvlIncome }}" data-sort="{{ $lvlIncome }}">
                                                     <span class="badge bg-success-transparent text-success px-2.5 py-1.5 fs-12 fw-bold">
                                                         ${{ number_format($lvlIncome, 2) }}
                                                     </span>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center" data-order="{{ $achieved >= $required ? 2 : ($achieved > 0 ? 1 : 0) }}">
                                                     @if ($achieved >= $required)
                                                         <span class="badge bg-success text-white px-2.5 py-1 fs-11 fw-semibold">
                                                             <i class="ri-checkbox-circle-line me-1"></i> Completed

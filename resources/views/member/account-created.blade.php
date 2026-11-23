@@ -61,7 +61,7 @@
                         </span>
                     </div>
                     <h1 class="auth-title">Congratulations!</h1>
-                    <p class="auth-subtitle text-white fw-semibold">
+                    <p class="auth-subtitle text-white fw-semibold" style="color: rgb(248, 248, 248) !important">
                         {{ session('name', 'Valued Member') }}
                     </p>
                     <p class="text-muted small mt-1">
@@ -87,10 +87,10 @@
                         <th>Login Password</th>
                         <td class="text-warning font-monospace">{{ session('password', '••••••••') }}</td>
                     </tr>
-                    @if (session('txn_password'))
+                    @if (session('transaction_password'))
                     <tr>
                         <th>Transaction Password</th>
-                        <td class="text-warning font-monospace">{{ session('txn_password') }}</td>
+                        <td class="text-warning font-monospace">{{ session('transaction_password') }}</td>
                     </tr>
                     @endif
                     <tr>
