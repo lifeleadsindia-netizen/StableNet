@@ -947,6 +947,14 @@ body.admin-auth-page {
 .text-teal { color: #0d9488 !important; }
 .border-teal-subtle { border-color: #99f6e4 !important; }
 
+.bg-emerald-subtle { background-color: #ecfdf5 !important; }
+.text-emerald { color: #047857 !important; }
+.border-emerald-subtle { border-color: #a7f3d0 !important; }
+
+.bg-blue-subtle { background-color: #eff6ff !important; }
+.text-blue { color: #2563eb !important; }
+.border-blue-subtle { border-color: #bfdbfe !important; }
+
 .bg-primary-subtle { background-color: #eff6ff !important; }
 .border-primary-subtle { border-color: #bfdbfe !important; }
 

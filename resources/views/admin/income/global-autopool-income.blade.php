@@ -171,12 +171,13 @@
                                         <tr>
                                             <th class="text-center" style="width: 50px;">#</th>
                                             <th style="min-width: 130px;">Date</th>
-                                            <th style="width: 140px;">Member ID</th>
-                                            <th class="text-end" style="width: 120px;">Investment</th>
-                                            <th class="text-end" style="width: 120px;">Profit</th>
+                                            <th style="width: 130px;">Member ID</th>
+                                            <th>Member Name</th>
+                                            <th style="width: 130px;">Activating ID</th>
+                                            <th class="text-center" style="width: 100px;">Pool No</th>
+                                            <th class="text-center" style="width: 90px;">Level</th>
+                                            <th class="text-end" style="width: 120px;">Package</th>
                                             <th class="text-end" style="width: 120px;">Amount</th>
-                                            <th class="text-center" style="width: 110px;">Pool ID</th>
-                                            <th class="text-center" style="width: 110px;">Buy No</th>
                                             <th class="text-center" style="width: 100px;">Status</th>
                                         </tr>
                                     </thead>
@@ -198,28 +199,33 @@
                                                         <i class="bx bx-id-card"></i> {{ $list['memberid'] }}
                                                     </span>
                                                 </td>
-                                                <td class="text-end">
-                                                    <span class="text-muted fs-13">
-                                                        $ {{ number_format((float) ($list['investment'] ?? $list['package'] ?? 0), 2) }}
+                                                <td>
+                                                    <span class="fw-bold text-dark fs-13">{{ getName($list['memberid']) ?? $list['name'] }}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2.5 py-0.5 fs-11 font-monospace">
+                                                        {{ $list['activatingId'] ?? $list['activatingid'] ?? '-' }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="badge bg-emerald-subtle text-emerald border border-emerald-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-bold" style="background-color: #ecfdf5 !important; color: #047857 !important; border: 1px solid #a7f3d0 !important;">
+                                                        Pool {{ $list['pool_no'] ?? $list['pool_id'] ?? '-' }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="badge bg-indigo-subtle text-indigo border border-indigo-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-bold">
+                                                        Level {{ $list['level'] ?? 1 }}
                                                     </span>
                                                 </td>
                                                 <td class="text-end">
-                                                    <span class="fw-bold text-primary fs-13">
-                                                        $ {{ number_format((float) ($list['profit'] ?? 0), 2) }}
+                                                    <span class="text-muted fs-13">
+                                                        $ {{ number_format((float) ($list['package'] ?? $list['investment'] ?? 0), 2) }}
                                                     </span>
                                                 </td>
                                                 <td class="text-end">
                                                     <span class="fw-bold text-success fs-13">
                                                         $ {{ number_format((float) ($list['amount'] ?? 0), 2) }}
                                                     </span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-emerald-subtle text-emerald border border-emerald-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-bold">
-                                                        {{ $list['pool_id'] ?? '-' }}
-                                                    </span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="font-monospace text-muted fs-12">#{{ $list['buy_no'] ?? '-' }}</span>
                                                 </td>
                                                 <td class="text-center">
                                                     @if (($list['status'] ?? '') == 'Paid')
@@ -236,7 +242,7 @@
                                             @php $i++; @endphp
                                         @empty
                                             <tr>
-                                                <td colspan="9" class="text-center py-5">
+                                                <td colspan="10" class="text-center py-5">
                                                     <div class="empty-state py-4">
                                                         <span class="avatar avatar-xl avatar-rounded bg-light text-muted mb-3">
                                                             <i class="bx bx-globe fs-28"></i>
