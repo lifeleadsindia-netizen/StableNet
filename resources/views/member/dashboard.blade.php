@@ -220,8 +220,8 @@
         }
 
         .ft-avatar-gradient-ring {
-            width: 78px;
-            height: 78px;
+            width: 84px;
+            height: 84px;
             border-radius: 50%;
             padding: 3px;
             background: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
@@ -246,18 +246,33 @@
         .ft-profile-info-pod {
             background: #F8FAFC;
             border: 1px solid #E2E8F0;
-            border-radius: 10px;
-            padding: 8px 12px;
+            border-radius: 12px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            width: 100%;
             height: 100%;
+            min-height: 60px;
             transition: all 0.2s ease;
         }
 
         .ft-profile-info-pod:hover {
             background: #FFFFFF;
             border-color: #C7D2FE;
+            box-shadow: 0 4px 12px rgba(17, 28, 67, 0.06);
+            transform: translateY(-1px);
+        }
+
+        .ft-pod-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
         }
 
         .ft-active-dot {
@@ -1098,57 +1113,71 @@
                             </a>
                         </div>
 
-                        <div class="d-flex align-items-center gap-3 my-auto">
-                            <div class="ft-avatar-gradient-ring">
-                                <div class="ft-avatar-inner">
-                                    @if(!empty($data['profile_image']))
-                                        <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" class="w-100 h-100" alt="profile" style="object-fit: cover;">
-                                    @else
-                                        <div style="font-size: 24px; font-weight: 800; color: #7C3AED;">
-                                            {{ strtoupper(substr($data['name'] ?? 'M', 0, 1)) }}
-                                        </div>
-                                    @endif
+                        <div class="d-flex align-items-center gap-3 flex-grow-1 mt-1">
+                            <div class="d-flex flex-column align-items-center justify-content-center flex-shrink-0">
+                                <div class="ft-avatar-gradient-ring">
+                                    <div class="ft-avatar-inner">
+                                        @if(!empty($data['profile_image']))
+                                            <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" class="w-100 h-100" alt="profile" style="object-fit: cover;">
+                                        @else
+                                            <div style="font-size: 26px; font-weight: 800; color: #7C3AED;">
+                                                {{ strtoupper(substr($data['name'] ?? 'M', 0, 1)) }}
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
+                                <span class="badge rounded-pill px-2.5 py-1 mt-2 fs-10 fw-semibold text-uppercase d-inline-flex align-items-center gap-1"
+                                    style="background: rgba(16, 185, 129, 0.12); color: #047857; border: 1px solid rgba(16, 185, 129, 0.25);">
+                                    <i class="ti ti-circle-check-filled fs-11"></i> Active
+                                </span>
                             </div>
 
-                            <div class="flex-grow-1" style="min-width: 0;">
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <div class="ft-profile-info-pod">
-                                            <i class="ti ti-user fs-14 text-primary"></i>
+                            <div class="flex-grow-1 h-100 d-flex flex-column justify-content-between" style="min-width: 0;">
+                                <div class="row g-2 h-100 align-items-stretch">
+                                    <div class="col-6 d-flex">
+                                        <div class="ft-profile-info-pod w-100">
+                                            <div class="ft-pod-icon-box" style="background: rgba(99, 102, 241, 0.12); color: #6366f1;">
+                                                <i class="ti ti-user"></i>
+                                            </div>
                                             <div class="overflow-hidden" style="min-width: 0;">
-                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Full Name</span>
-                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['name'] }}</strong>
+                                                <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.3px; line-height: 1.1;">Full Name</span>
+                                                <strong class="d-block text-dark text-truncate mt-0.5" style="font-size: 13px;">{{ $data['name'] }}</strong>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
-                                        <div class="ft-profile-info-pod">
-                                            <i class="ti ti-phone fs-14 text-success"></i>
+                                    <div class="col-6 d-flex">
+                                        <div class="ft-profile-info-pod w-100">
+                                            <div class="ft-pod-icon-box" style="background: rgba(16, 185, 129, 0.12); color: #10b981;">
+                                                <i class="ti ti-phone"></i>
+                                            </div>
                                             <div class="overflow-hidden" style="min-width: 0;">
-                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Mobile Number</span>
-                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['mobile'] ?? 'N/A' }}</strong>
+                                                <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.3px; line-height: 1.1;">Mobile Number</span>
+                                                <strong class="d-block text-dark text-truncate mt-0.5" style="font-size: 13px;">{{ $data['mobile'] ?? 'N/A' }}</strong>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
-                                        <div class="ft-profile-info-pod">
-                                            <i class="ti ti-mail fs-14 text-info"></i>
+                                    <div class="col-6 d-flex">
+                                        <div class="ft-profile-info-pod w-100">
+                                            <div class="ft-pod-icon-box" style="background: rgba(14, 165, 233, 0.12); color: #0ea5e9;">
+                                                <i class="ti ti-mail"></i>
+                                            </div>
                                             <div class="overflow-hidden" style="min-width: 0;">
-                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Email Address</span>
-                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;" title="{{ $data['email'] }}">{{ $data['email'] }}</strong>
+                                                <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.3px; line-height: 1.1;">Email Address</span>
+                                                <strong class="d-block text-dark text-truncate mt-0.5" style="font-size: 13px;" title="{{ $data['email'] }}">{{ $data['email'] }}</strong>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
-                                        <div class="ft-profile-info-pod">
-                                            <i class="ti ti-users fs-14 text-purple"></i>
+                                    <div class="col-6 d-flex">
+                                        <div class="ft-profile-info-pod w-100">
+                                            <div class="ft-pod-icon-box" style="background: rgba(139, 92, 246, 0.12); color: #8b5cf6;">
+                                                <i class="ti ti-users"></i>
+                                            </div>
                                             <div class="overflow-hidden" style="min-width: 0;">
-                                                <span class="d-block text-muted" style="font-size: 9.5px; line-height: 1.1;">Sponsor ID</span>
-                                                <strong class="d-block text-dark text-truncate" style="font-size: 11.5px;">{{ $data['sponsor'] ?? 'System Direct' }}</strong>
+                                                <span class="d-block text-muted text-uppercase fw-semibold" style="font-size: 10px; letter-spacing: 0.3px; line-height: 1.1;">Sponsor ID</span>
+                                                <strong class="d-block text-dark text-truncate mt-0.5" style="font-size: 13px;">{{ $data['sponsor'] ?? 'System Direct' }}</strong>
                                             </div>
                                         </div>
                                     </div>
