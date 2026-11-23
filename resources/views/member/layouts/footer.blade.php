@@ -37,8 +37,8 @@
 
 <!-- SIMPLEBAR JS -->
 <script src="{{ asset('user_assets/libs/simplebar/simplebar.min.js') }}"></script>
-<link rel="modulepreload" href="{{ asset('user_assets/simplebar-635bad04.js') }}" />
-<script type="module" src="{{ asset('user_assets/simplebar-635bad04.js') }}"></script>
+{{-- <link rel="modulepreload" href="{{ asset('user_assets/simplebar-635bad04.js') }}" />
+<script type="module" src="{{ asset('user_assets/simplebar-635bad04.js') }}"></script> --}}
 
 <!-- COLOR PICKER JS -->
 <script src="{{ asset('user_assets/libs/%40simonwep/pickr/pickr.es5.min.js') }}"></script>
@@ -421,37 +421,51 @@
             }
         });
 
-        // Submenu accordion dropdown handlers
+        // Submenu accordion dropdown handlers - Silky Smooth jQuery Slide with Capture Phase
         const subMenuItems = document.querySelectorAll(".app-sidebar .slide.has-sub > .side-menu__item");
         subMenuItems.forEach(function(item) {
             item.addEventListener("click", function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
                 const parentSlide = this.closest(".slide.has-sub");
                 if (!parentSlide) return;
 
                 const isOpen = parentSlide.classList.contains("open");
+                const childMenu = parentSlide.querySelector(":scope > .slide-menu.child1");
 
-                // Close other open sibling submenus for accordion layout
+                // Smoothly close sibling open menus
                 const siblings = parentSlide.parentElement.querySelectorAll(":scope > .slide.has-sub.open");
                 siblings.forEach(function(sib) {
                     if (sib !== parentSlide) {
                         sib.classList.remove("open");
                         const sibMenu = sib.querySelector(":scope > .slide-menu.child1");
-                        if (sibMenu) sibMenu.style.display = "none";
+                        if (sibMenu && window.jQuery) {
+                            $(sibMenu).stop(true, true).slideUp(180);
+                        } else if (sibMenu) {
+                            sibMenu.style.display = "none";
+                        }
                     }
                 });
 
-                // Toggle selected submenu
+                // Smoothly toggle current menu
                 if (isOpen) {
                     parentSlide.classList.remove("open");
-                    const childMenu = parentSlide.querySelector(":scope > .slide-menu.child1");
-                    if (childMenu) childMenu.style.display = "none";
+                    if (childMenu && window.jQuery) {
+                        $(childMenu).stop(true, true).slideUp(180);
+                    } else if (childMenu) {
+                        childMenu.style.display = "none";
+                    }
                 } else {
                     parentSlide.classList.add("open");
-                    const childMenu = parentSlide.querySelector(":scope > .slide-menu.child1");
-                    if (childMenu) childMenu.style.display = "block";
+                    if (childMenu && window.jQuery) {
+                        $(childMenu).stop(true, true).slideDown(180);
+                    } else if (childMenu) {
+                        childMenu.style.display = "block";
+                    }
                 }
-            });
+            }, true);
         });
 
         // Client-side active URL matcher & auto-drawer-close on mobile navigation

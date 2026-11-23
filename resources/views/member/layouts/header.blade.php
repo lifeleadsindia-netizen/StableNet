@@ -453,31 +453,36 @@
             object-fit: contain !important;
         }
 
-        /* Sidebar Scroll Area */
+        /* Sidebar Scroll Area - Pure Native GPU-Accelerated Smooth Scrolling */
         .app-sidebar .main-sidebar {
             flex: 1 1 auto !important;
             height: calc(100vh - var(--sn-header-height)) !important;
             margin: 0 !important;
-            padding: 10px 0 30px 0 !important;
+            padding: 10px 0 40px 0 !important;
             overflow-y: auto !important;
             overflow-x: hidden !important;
             position: relative !important;
-            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth !important;
+            overscroll-behavior: contain !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: thin;
+            scrollbar-color: #CBD5E1 transparent;
+            transform: translateZ(0);
         }
 
         /* Sleek Modern Scrollbar */
         .app-sidebar .main-sidebar::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
         .app-sidebar .main-sidebar::-webkit-scrollbar-track {
             background: transparent;
         }
         .app-sidebar .main-sidebar::-webkit-scrollbar-thumb {
-            background: #E2E8F0;
+            background: #CBD5E1;
             border-radius: 4px;
         }
         .app-sidebar .main-sidebar::-webkit-scrollbar-thumb:hover {
-            background: #CBD5E1;
+            background: #94A3B8;
         }
 
         /* Nav & Menu List */
@@ -553,7 +558,7 @@
         .app-sidebar .side-menu__item:hover .side-menu__icon {
             color: #4338CA !important;
             opacity: 1;
-            transform: scale(1.08);
+            transform: none !important;
         }
 
         .app-sidebar .side-menu__item:hover .side-menu__angle {
@@ -574,38 +579,25 @@
         .app-sidebar .slide.active>.side-menu__item .side-menu__icon,
         .app-sidebar .slide.has-sub.open>.side-menu__item .side-menu__icon {
             color: #5267F2 !important;
-            filter: drop-shadow(0 0 4px rgba(82, 103, 242, 0.3));
             opacity: 1;
         }
 
         .app-sidebar .slide.has-sub.open>.side-menu__item .side-menu__angle {
             color: #5267F2 !important;
-            transform: rotate(90deg);
+            transform: rotate(90deg) !important;
         }
 
-        /* Submenu Dropdown Container */
+        /* Submenu Dropdown Container - Smooth, Clean, No Animation Conflict */
         .app-sidebar .slide-menu.child1 {
             display: none;
             list-style: none !important;
             background-color: #F8FAFD !important;
             border-radius: 10px !important;
             margin: 3px 0 6px 0 !important;
-            padding: 6px 0 !important;
+            padding: 5px 0 !important;
             border: 1px solid #EEF2F6 !important;
             border-left: 3px solid var(--sn-primary-color) !important;
             overflow: hidden !important;
-        }
-
-        @keyframes submenuSlide {
-            from {
-                opacity: 0;
-                transform: translateY(-6px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         /* Submenu Child Item */
