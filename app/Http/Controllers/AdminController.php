@@ -299,19 +299,28 @@ class AdminController extends Controller
         $txnpassword = $request->post('txnpassword');
         $var = MemberDetail::find($request->post('id'));
 
-        if ($password != Null && $txnpassword != Null) {
-            $var->password = Hash::make($password);
-            $var->txn_password = Hash::make($txnpassword);
-            $var->save();
-        } elseif ($password == Null && $txnpassword != Null) {
-            $var->txn_password = Hash::make($txnpassword);
-            $var->save();
-        } elseif ($password != Null && $txnpassword == Null) {
-            $var->password = Hash::make($password);
-            $var->save();
+        if (!$var) {
+            session()->flash('error', 'Member not found!');
+            return redirect()->back();
         }
 
-        session()->flash('message', 'Security Details have been updated successfully!');
+        $updated = [];
+        if (!empty($password)) {
+            $var->password = Hash::make($password);
+            $updated[] = 'Login Password';
+        }
+        if (!empty($txnpassword)) {
+            $var->txn_password = Hash::make($txnpassword);
+            $updated[] = 'Transaction Password';
+        }
+
+        if (!empty($updated)) {
+            $var->save();
+            session()->flash('message', implode(' & ', $updated) . ' updated successfully for ' . $var->memberid . '!');
+        } else {
+            session()->flash('error', 'Please enter a Login Password or Transaction Password to update.');
+        }
+
         return redirect()->back();
     }
 
@@ -472,9 +481,13 @@ class AdminController extends Controller
     public function updateWallet(Request $request)
     {
         $var = MemberDetail::find($request->post('id'));
+        if (!$var) {
+            session()->flash('error', 'Member not found!');
+            return redirect()->back();
+        }
         $var->wallet_address = $request->post('address');
         $var->save();
-        session()->flash('update', 'Wallet Address has been updated successfully.');
+        session()->flash('update', 'Wallet Address has been updated successfully for ' . $var->memberid . '.');
         return redirect()->back();
     }
 
