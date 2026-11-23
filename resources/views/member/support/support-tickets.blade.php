@@ -201,18 +201,7 @@
                                         @php $i++; @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center py-5">
-                                                <div class="py-3">
-                                                    <div class="avatar avatar-xl rounded-circle bg-light text-muted mx-auto mb-3 d-flex align-items-center justify-content-center">
-                                                        <i class="ri-customer-service-2-line fs-32 text-muted"></i>
-                                                    </div>
-                                                    <h6 class="fw-bold text-dark mb-1">No Support Tickets Yet</h6>
-                                                    <p class="text-muted fs-12 mb-3">You haven't submitted any inquiries. Have a question or facing an issue? Contact our team anytime.</p>
-                                                    <a href="{{ url('member/support/create-ticket') }}" class="btn btn-primary btn-sm px-4">
-                                                        <i class="ri-add-line me-1"></i> Create Your First Ticket
-                                                    </a>
-                                                </div>
-                                            </td>
+                                            <td colspan="7" class="no-data-found-cell">No Data Found</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

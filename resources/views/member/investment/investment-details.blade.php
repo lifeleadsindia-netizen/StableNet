@@ -31,7 +31,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="file-export" class="table table-bordered text-nowrap w-100">
+                                <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
                                     <thead>
                                         <tr>
                                             <th>S.No.</th>
@@ -45,7 +45,7 @@
                                     </thead>
                                     <tbody>
                                         @php $i = 1;  @endphp
-                                        @foreach ($sdata as $list)
+                                        @forelse ($sdata as $list)
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td>{{ date('d-m-Y', strtotime($list['txn_date'])) }}</td>
@@ -67,7 +67,11 @@
                                                 </td>
                                             </tr>
                                             @php $i++;  @endphp
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="7" class="no-data-found-cell">No Data Found</td>
+                                            </tr>
+                                        @endforelse
 
                                     </tbody>
                                 </table>

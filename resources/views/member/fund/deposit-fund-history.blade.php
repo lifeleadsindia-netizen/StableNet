@@ -169,10 +169,7 @@
                                         @php $i++; @endphp
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center py-4 text-muted">
-                                                <i class="ti ti-inbox fs-32 d-block mb-1 text-muted opacity-50"></i>
-                                                No fund import records found
-                                            </td>
+                                            <td colspan="7" class="no-data-found-cell">No Data Found</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

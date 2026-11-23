@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <table id="example" class="display responsive nowrap w-100">
+                                    <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
                                         <thead>
                                             <tr>
                                                 <th>S.No</th>
@@ -31,7 +31,7 @@
                                             @php
                                                 $i = 1;
                                             @endphp
-                                            @foreach ($package_data as $list)
+                                            @forelse ($package_data as $list)
                                                 <tr>
                                                     <td>{{ $i }}</td>
                                                     <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
@@ -51,7 +51,11 @@
                                                 @php
                                                     $i++;
                                                 @endphp
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="8" class="no-data-found-cell">No Data Found</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>

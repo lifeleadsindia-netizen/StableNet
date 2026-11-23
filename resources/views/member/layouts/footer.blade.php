@@ -69,6 +69,7 @@
 <script type="module" src="{{ asset('user_assets/app-3cade095.js') }}"></script>
 
 <!-- DataTables Scripts -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
@@ -78,9 +79,52 @@
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
-
-
 <script src="{{ asset('user_assets/datatables.js') }}"></script>
+<script>
+    // Global fallback initializer for all visible member tables
+    $(document).ready(function() {
+        if (typeof $.fn.DataTable !== 'undefined') {
+            $.fn.dataTable.ext.errMode = 'none';
+
+            $('table#file-export, table#example, table.data-table, table.table-bordered').each(function(index) {
+                var $t = $(this);
+                if ($.fn.DataTable.isDataTable(this) || $t.hasClass('glass-summary-table') || $t.hasClass('trade-history-table') || $t.find('thead th').length === 0) {
+                    return;
+                }
+
+                var tid = $t.attr('id');
+                if (!tid || $('table#' + tid).length > 1) {
+                    tid = 'member-dt-' + (index + 1);
+                    $t.attr('id', tid);
+                }
+
+                var $tbody = $t.find('tbody');
+                if ($tbody.find('tr td[colspan]').length > 0) {
+                    $tbody.empty();
+                }
+
+                $t.DataTable({
+                    dom: "Bfrtip",
+                    buttons: ["copy", "csv", "excel", "pdf", "print"],
+                    scrollX: true,
+                    pageLength: 10,
+                    language: {
+                        searchPlaceholder: "Search...",
+                        sSearch: "",
+                        emptyTable: "No Data Found",
+                        zeroRecords: "No Data Found",
+                        infoEmpty: "Showing 0 to 0 of 0 entries",
+                        info: "Showing _START_ to _END_ of _TOTAL_ entries",
+                        paginate: {
+                            previous: "Previous",
+                            next: "Next"
+                        }
+                    }
+                });
+            });
+        }
+    });
+</script>
 <script src="{{ asset('user_assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
 <!-- MAIN JS -->
 <script src="{{ asset('user_assets/main.js') }}"></script>
