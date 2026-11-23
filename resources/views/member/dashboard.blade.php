@@ -835,7 +835,7 @@
         .ft-pod-amber .ft-pod-icon-box { background: #FFFBEB; color: #D97706; }
 
         /* --------------------------------------------------------------------------
-           LIFETIME TOTAL EARNINGS OVERVIEW — LUXURY FINTECH REDESIGN
+           LIFETIME & TODAY'S TOTAL EARNINGS OVERVIEW — LUXURY FINTECH REDESIGN
            -------------------------------------------------------------------------- */
         .ft-lifetime-card-shell {
             background: #FFFFFF;
@@ -856,7 +856,7 @@
             box-shadow: var(--ft-shadow-hover);
         }
 
-        /* Top Hero Cumulative Spotlight Banner */
+        /* Top Hero Cumulative Spotlight Banner - Right Card (Lifetime Purple) */
         .ft-lifetime-hero-banner {
             background: linear-gradient(135deg, #18093d 0%, #2e0854 45%, #4a0e78 80%, #6d28d9 100%);
             border-radius: 18px;
@@ -882,6 +882,43 @@
             pointer-events: none;
         }
 
+        /* Top Hero Cumulative Spotlight Banner - Left Card (Today Blue/Indigo) */
+        .ft-today-hero-banner {
+            background: linear-gradient(135deg, #091a4a 0%, #0d2875 45%, #1d4ed8 80%, #3b82f6 100%);
+            border-radius: 18px;
+            padding: 18px 22px;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(147, 197, 253, 0.35);
+            box-shadow: 0 10px 28px -4px rgba(13, 40, 117, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ft-today-hero-banner::before {
+            content: "";
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+        }
+
+        .ft-today-growth-art {
+            height: 90px;
+            width: auto;
+            max-width: 130px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+            animation: idle3DFloat 4s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+
         .ft-lifetime-trophy-art {
             height: 90px;
             width: auto;
@@ -904,15 +941,18 @@
             z-index: 2;
         }
 
-        /* Stream Pod Tiles */
+        /* Stream Pod Tiles - Spacious & Khule Khule Design */
         .ft-stream-tile {
             background: #FFFFFF;
             border-radius: 14px;
-            padding: 12px 14px;
+            padding: 14px 18px;
             border: 1px solid var(--ft-border-subtle);
             box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
             transition: all 0.2s ease;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .ft-stream-tile:hover {
@@ -926,11 +966,11 @@
         .ft-stream-tile-amber { border-left: 4px solid #D97706; }
 
         .ft-stream-progress-track {
-            height: 4px;
+            height: 5px;
             background: #F1F5F9;
             border-radius: 10px;
             overflow: hidden;
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         .ft-stream-progress-bar {
@@ -1402,13 +1442,13 @@
 
             <!-- --------------------------------------------------------------------------
                  ROW 4: TODAY'S EARNINGS COMMAND CENTER (LEFT) & LIFETIME OVERVIEW (RIGHT)
-                 (EXACT CLOSE-UP MATCH FROM IMAGE 2 & IMAGE 1)
+                 (BALANCED LUXURY FINTECH LAYOUT WITH MATCHING HERO BANNERS & SPATIOUS TILES)
                  -------------------------------------------------------------------------- -->
-            <div class="row g-3 mb-3">
-                <!-- Left: Today's Earnings Command Center -->
-                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12">
-                    <div class="ft-overview-card">
-                        <div class="d-flex align-items-center justify-content-between mb-3 pb-2" style="border-bottom: 1px solid #F1F5F9;">
+            <div class="row g-3 mb-3 align-items-stretch">
+                <!-- Left: Today's Earnings Command Center (Matching Lifetime Overview Layout) -->
+                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12 d-flex">
+                    <div class="ft-lifetime-card-shell w-100">
+                        <div class="d-flex align-items-center justify-content-between pb-2" style="border-bottom: 1px solid #F1F5F9;">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
                                     <i class="ti ti-calendar-stats fs-15"></i>
@@ -1423,73 +1463,107 @@
                             </a>
                         </div>
 
-                        <div class="row align-items-center g-3">
-                            <!-- Left: 3D Gold Coins stack on platform with growth chart -->
-                            <div class="col-sm-4 col-12 text-center">
-                                <img src="{{ asset('user_assets/images/dashboard_3d/today_growth_perfect.png') }}" alt="Today Growth" style="max-height: 125px; width: auto; object-fit: contain;">
+                        @php
+                            $tLvl = (float)todayLevelIncome($data['memberid']);
+                            $tDir = (float)todayDirectIncome($data['memberid']);
+                            $tPool = (float)todayGlobalAutopoolIncome($data['memberid']);
+                            $tWith = (float)todayWithdrawalIncome($data['memberid']);
+                            $todayTotalEarnings = $tLvl + $tDir + $tPool + $tWith;
+                            $tMax = max(1, $todayTotalEarnings);
+                            $tLvlPct = min(100, max(8, round(($tLvl / $tMax) * 100)));
+                            $tDirPct = min(100, max(8, round(($tDir / $tMax) * 100)));
+                            $tPoolPct = min(100, max(8, round(($tPool / $tMax) * 100)));
+                            $tWithPct = min(100, max(8, round(($tWith / $tMax) * 100)));
+                        @endphp
+
+                        <!-- Top Spotlight Banner (Matching Right Card) -->
+                        <div class="ft-today-hero-banner">
+                            <div style="position: relative; z-index: 2; max-width: 62%;">
+                                <span class="badge" style="background: rgba(56, 189, 248, 0.22); color: #7DD3FC; font-size: 11px; font-weight: 700; border-radius: 20px; padding: 4px 12px; border: 1px solid rgba(56, 189, 248, 0.45);">
+                                    <i class="ti ti-calendar-event me-1"></i> TODAY'S TOTAL EARNINGS
+                                </span>
+                                <div class="fw-900 mt-2 mb-1" style="font-size: 32px; letter-spacing: -0.5px; color: #FFFFFF; line-height: 1.15;">
+                                    $ <span class="exact-counter" data-target="{{ (float)$todayTotalEarnings }}" data-decimal="2">{{ number_format($todayTotalEarnings, 2) }}</span>
+                                </div>
+                                <div class="fs-12 text-white-50 d-flex align-items-center gap-1" style="color: rgba(255, 255, 255, 0.9) !important;">
+                                    <i class="ti ti-circle-check-filled text-success"></i> Real-time multi-stream daily earnings
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center" style="position: relative; z-index: 2;">
+                                <img src="{{ asset('user_assets/images/dashboard_3d/today_growth_perfect.png') }}" alt="Today Growth" class="ft-today-growth-art">
+                            </div>
+                        </div>
+
+                        <!-- Bottom 4 Modern Stream Pods (2x2 Grid) - Spacious & Khule Khule -->
+                        <div class="row g-3">
+                            <!-- Stream 1: Today's Level Income -->
+                            <div class="col-sm-6 col-12">
+                                <div class="ft-stream-tile ft-stream-tile-blue">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
+                                                <i class="ti ti-chart-bar fs-14"></i>
+                                            </span>
+                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Today's Level</span>
+                                        </div>
+                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($tLvl, 2) }}</strong>
+                                    </div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar" style="width: {{ $tLvlPct }}%; background: #2563EB;"></div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Right: 2x2 Grid of Modern Cards matching Image 2 -->
-                            <div class="col-sm-8 col-12">
-                                <div class="row g-2">
-                                    <!-- Pod 1: Today's Level Income -->
-                                    <div class="col-6">
-                                        <div class="ft-income-pod-v2 ft-pod-blue">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Level Income</span>
-                                                <div class="ft-pod-icon-box">
-                                                    <i class="ti ti-chart-bar"></i>
-                                                </div>
-                                            </div>
-                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
-                                                $ <span class="exact-counter" data-target="{{ (float)todayLevelIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayLevelIncome($data['memberid']), 2) }}</span>
-                                            </h5>
+                            <!-- Stream 2: Today's Direct Income -->
+                            <div class="col-sm-6 col-12">
+                                <div class="ft-stream-tile ft-stream-tile-purple">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
+                                                <i class="ti ti-users fs-14"></i>
+                                            </span>
+                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Today's Direct</span>
                                         </div>
+                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($tDir, 2) }}</strong>
                                     </div>
-
-                                    <!-- Pod 2: Today's Direct Income -->
-                                    <div class="col-6">
-                                        <div class="ft-income-pod-v2 ft-pod-purple">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Direct Income</span>
-                                                <div class="ft-pod-icon-box">
-                                                    <i class="ti ti-users"></i>
-                                                </div>
-                                            </div>
-                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
-                                                $ <span class="exact-counter" data-target="{{ (float)todayDirectIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayDirectIncome($data['memberid']), 2) }}</span>
-                                            </h5>
-                                        </div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar" style="width: {{ $tDirPct }}%; background: #7C3AED;"></div>
                                     </div>
+                                </div>
+                            </div>
 
-                                    <!-- Pod 3: Today's Global Autopool -->
-                                    <div class="col-6">
-                                        <div class="ft-income-pod-v2 ft-pod-green">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Global Autopool</span>
-                                                <div class="ft-pod-icon-box">
-                                                    <i class="ti ti-world"></i>
-                                                </div>
-                                            </div>
-                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
-                                                $ <span class="exact-counter" data-target="{{ (float)todayGlobalAutopoolIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayGlobalAutopoolIncome($data['memberid']), 2) }}</span>
-                                            </h5>
+                            <!-- Stream 3: Today's Global Autopool -->
+                            <div class="col-sm-6 col-12">
+                                <div class="ft-stream-tile ft-stream-tile-green">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-xs avatar-rounded" style="background: #ECFDF5; color: #059669;">
+                                                <i class="ti ti-world fs-14"></i>
+                                            </span>
+                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Today's Autopool</span>
                                         </div>
+                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($tPool, 2) }}</strong>
                                     </div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar" style="width: {{ $tPoolPct }}%; background: #059669;"></div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                    <!-- Pod 4: Today's Withdrawal Income -->
-                                    <div class="col-6">
-                                        <div class="ft-income-pod-v2 ft-pod-amber">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <span class="text-muted fw-semibold" style="font-size: 11px;">Today's Withdrawal Income</span>
-                                                <div class="ft-pod-icon-box">
-                                                    <i class="ti ti-wallet"></i>
-                                                </div>
-                                            </div>
-                                            <h5 class="fw-bold mb-0 text-dark" style="font-size: 16px;">
-                                                $ <span class="exact-counter" data-target="{{ (float)todayWithdrawalIncome($data['memberid']) }}" data-decimal="2">{{ number_format(todayWithdrawalIncome($data['memberid']), 2) }}</span>
-                                            </h5>
+                            <!-- Stream 4: Today's Withdrawal Income -->
+                            <div class="col-sm-6 col-12">
+                                <div class="ft-stream-tile ft-stream-tile-amber">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="avatar avatar-xs avatar-rounded" style="background: #FFFBEB; color: #D97706;">
+                                                <i class="ti ti-wallet fs-14"></i>
+                                            </span>
+                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Today's Withdrawn</span>
                                         </div>
+                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($tWith, 2) }}</strong>
+                                    </div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar" style="width: {{ $tWithPct }}%; background: #D97706;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1498,8 +1572,8 @@
                 </div>
 
                 <!-- Right: Lifetime Total Earnings Overview (Luxury Modern Fintech Redesign) -->
-                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12">
-                    <div class="ft-lifetime-card-shell">
+                <div class="col-xxl-6 col-xl-6 col-lg-12 col-12 d-flex">
+                    <div class="ft-lifetime-card-shell w-100">
                         <div class="d-flex align-items-center justify-content-between pb-2" style="border-bottom: 1px solid #F1F5F9;">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="avatar avatar-xs avatar-rounded" style="background: #EDE9FE; color: #7C3AED;">
@@ -1540,14 +1614,14 @@
                             $poolVal = (float)totalGlobalAutopoolIncome($data['memberid']);
                             $withVal = (float)totalWithdrawalIncome($data['memberid']);
                             $totInc = max(1, (float)totalIncome($data['memberid']));
-                            $lvlPct = min(100, max(6, round(($lvlVal / $totInc) * 100)));
-                            $dirPct = min(100, max(6, round(($dirVal / $totInc) * 100)));
-                            $poolPct = min(100, max(6, round(($poolVal / $totInc) * 100)));
-                            $withPct = min(100, max(6, round(($withVal / $totInc) * 100)));
+                            $lvlPct = min(100, max(8, round(($lvlVal / $totInc) * 100)));
+                            $dirPct = min(100, max(8, round(($dirVal / $totInc) * 100)));
+                            $poolPct = min(100, max(8, round(($poolVal / $totInc) * 100)));
+                            $withPct = min(100, max(8, round(($withVal / $totInc) * 100)));
                         @endphp
 
-                        <!-- Bottom 4 Modern Stream Pods (2x2 Grid) -->
-                        <div class="row g-2">
+                        <!-- Bottom 4 Modern Stream Pods (2x2 Grid) - Spacious & Khule Khule -->
+                        <div class="row g-3">
                             <!-- Stream 1: Level Income -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-blue">
@@ -1556,9 +1630,9 @@
                                             <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
                                                 <i class="ti ti-chart-bar fs-14"></i>
                                             </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Level Income</span>
+                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Level Income</span>
                                         </div>
-                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($lvlVal, 2) }}</strong>
+                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($lvlVal, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $lvlPct }}%; background: #2563EB;"></div>
@@ -1574,9 +1648,9 @@
                                             <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
                                                 <i class="ti ti-users fs-14"></i>
                                             </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Direct Income</span>
+                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Direct Income</span>
                                         </div>
-                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($dirVal, 2) }}</strong>
+                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($dirVal, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $dirPct }}%; background: #7C3AED;"></div>
@@ -1592,9 +1666,9 @@
                                             <span class="avatar avatar-xs avatar-rounded" style="background: #ECFDF5; color: #059669;">
                                                 <i class="ti ti-world fs-14"></i>
                                             </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Global Autopool</span>
+                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Global Autopool</span>
                                         </div>
-                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($poolVal, 2) }}</strong>
+                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($poolVal, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $poolPct }}%; background: #059669;"></div>
@@ -1610,9 +1684,9 @@
                                             <span class="avatar avatar-xs avatar-rounded" style="background: #FFFBEB; color: #D97706;">
                                                 <i class="ti ti-wallet fs-14"></i>
                                             </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 11.5px;">Total Withdrawn</span>
+                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Total Withdrawn</span>
                                         </div>
-                                        <strong class="text-dark fs-14 font-monospace">$ {{ number_format($withVal, 2) }}</strong>
+                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($withVal, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $withPct }}%; background: #D97706;"></div>
