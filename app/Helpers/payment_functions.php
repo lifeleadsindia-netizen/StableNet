@@ -56,6 +56,8 @@ function p2pwalletTransfer($memberid, $amount, $type, $p2pwallet, $walletType, $
 function levelIncome($sponsorid, $memberid, $name, $package)
 {
     if ($sponsorid != 'Root') {
+        $firstSpon = MemberDetail::where('memberid', $sponsorid)->first();
+        $sponsorid = $firstSpon->sponsorid;
 
         for ($i = 2; $i < 16; $i++) {
             $level = $i;
@@ -74,7 +76,7 @@ function levelIncome($sponsorid, $memberid, $name, $package)
                 $insert->name = $name;
 
                 if (
-                    ($level >= 1 && $level <= 5 && $downline >= 1) ||
+                    ($level > 1 && $level <= 5 && $downline >= 1) ||
                     ($level >= 6 && $level <= 10 && $downline >= 2) ||
                     ($level >= 11 && $level <= 15 && $downline >= 3)
                 ) {
