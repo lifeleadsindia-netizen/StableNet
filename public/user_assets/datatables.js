@@ -63,7 +63,8 @@ $(function () {
                 dom: "Bfrtip",
                 buttons: ["copy", "csv", "excel", "pdf", "print"],
                 scrollX: true,
-                pageLength: 10
+                pageLength: 10,
+                order: []
             });
         }
     });

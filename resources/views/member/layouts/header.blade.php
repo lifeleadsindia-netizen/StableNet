@@ -351,7 +351,8 @@
         }
 
         /* Prevent horizontal overflow globally */
-        html, body {
+        html,
+        body {
             max-width: 100% !important;
             overflow-x: hidden !important;
         }
@@ -474,13 +475,16 @@
         .app-sidebar .main-sidebar::-webkit-scrollbar {
             width: 4px;
         }
+
         .app-sidebar .main-sidebar::-webkit-scrollbar-track {
             background: transparent;
         }
+
         .app-sidebar .main-sidebar::-webkit-scrollbar-thumb {
             background: #CBD5E1;
             border-radius: 4px;
         }
+
         .app-sidebar .main-sidebar::-webkit-scrollbar-thumb:hover {
             background: #94A3B8;
         }
@@ -664,6 +668,7 @@
             background-color: #FEF2F2 !important;
             color: #DC2626 !important;
         }
+
         .app-sidebar a[href*="logout"]:hover .side-menu__icon {
             color: #DC2626 !important;
         }
@@ -1486,11 +1491,11 @@
                             aria-expanded="false">
                             <div class="sn-avatar-wrap">
                                 @if ($data['profile_image'] == '')
-                                    <img src="{{ asset('user_assets/images/faces/9.jpg') }}" alt="img"
-                                        class="sn-profile-img">
+                                <img src="{{ asset('user_assets/images/faces/9.jpg') }}" alt="img"
+                                    class="sn-profile-img">
                                 @else
-                                    <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" alt="img"
-                                        class="sn-profile-img">
+                                <img src="{{ asset('uploads') }}/{{ $data['profile_image'] }}" alt="img"
+                                    class="sn-profile-img">
                                 @endif
                                 <span class="sn-avatar-badge"></span>
                             </div>
@@ -1624,12 +1629,12 @@
                         <li class="slide has-sub {{ request()->is('member/fund*') ? 'open active' : '' }}">
                             <a href="javascript:void(0);" class="side-menu__item {{ request()->is('member/fund*') ? 'active' : '' }}">
                                 <i class="bx bx-task side-menu__icon"></i>
-                                <span class="side-menu__label">Import Section</span>
+                                <span class="side-menu__label">Import Fund</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1" style="{{ request()->is('member/fund*') ? 'display: block;' : '' }}">
                                 <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Import Section</a>
+                                    <a href="javascript:void(0);">Import Fund</a>
                                 </li>
                                 <li class="slide {{ (request()->is('member/fund/deposit-fund') && !request()->is('member/fund/deposit-fund-history*')) ? 'active' : '' }}">
                                     <a href="{{ url('/member/fund/deposit-fund') }}" class="side-menu__item {{ (request()->is('member/fund/deposit-fund') && !request()->is('member/fund/deposit-fund-history*')) ? 'active' : '' }}">Import Fund</a>
@@ -1643,7 +1648,7 @@
 
                         <!-- Start::slide: Investment -->
                         @php
-                            $isInvestActive = request()->is('member/invest*') || request()->is('member/investment*');
+                        $isInvestActive = request()->is('member/invest*') || request()->is('member/investment*');
                         @endphp
                         <li class="slide has-sub {{ $isInvestActive ? 'open active' : '' }}">
                             <a href="javascript:void(0);" class="side-menu__item {{ $isInvestActive ? 'active' : '' }}">
@@ -1696,7 +1701,7 @@
 
                         <!-- Start::slide: Income Section -->
                         @php
-                            $isIncomeActive = request()->is('member/income*') && !request()->is('member/income/reward*');
+                        $isIncomeActive = request()->is('member/income*') && !request()->is('member/income/reward*');
                         @endphp
                         <li class="slide has-sub {{ $isIncomeActive ? 'open active' : '' }}">
                             <a href="javascript:void(0);" class="side-menu__item {{ $isIncomeActive ? 'active' : '' }}">
@@ -1716,126 +1721,126 @@
                                 </li>
                                 {{-- <li class="slide">
                                     <a href="{{ url('/member/income/global-autopool-incomes') }}"
-                                        class="side-menu__item">Global Autopool Income</a>
-                                </li> --}}
-                                <li class="slide">
-                                    <a href="{{ url('/member/income/withdrawal-incomes') }}"
-                                        class="side-menu__item">Withdrawal Income</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- End::slide -->
-
-                        <!-- Start::slide: Reward Section -->
-                        @php
-                            $isRewardActive = request()->is('member/income/reward*') || request()->is('member/reward*');
-                        @endphp
-                        <li class="slide has-sub {{ $isRewardActive ? 'open active' : '' }}">
-                            <a href="javascript:void(0);" class="side-menu__item {{ $isRewardActive ? 'active' : '' }}">
-                                <i class="bx bx-gift side-menu__icon"></i>
-                                <span class="side-menu__label">Reward Section</span>
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1" style="{{ $isRewardActive ? 'display: block;' : '' }}">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Reward Section</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/income/reward-incomes*') ? 'active' : '' }}">
-                                    <a href="{{ url('/member/income/reward-incomes') }}" class="side-menu__item {{ request()->is('member/income/reward-incomes*') ? 'active' : '' }}">Reward Income</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/income/reward-details*') ? 'active' : '' }}">
-                                    <a href="{{ url('/member/income/reward-details') }}" class="side-menu__item {{ request()->is('member/income/reward-details*') ? 'active' : '' }}">Reward Details</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- End::slide -->
-
-                        <!-- Start::slide: Wallet -->
-                        <li class="slide has-sub {{ request()->is('member/wallet*') ? 'open active' : '' }}">
-                            <a href="javascript:void(0);" class="side-menu__item {{ request()->is('member/wallet*') ? 'active' : '' }}">
-                                <i class="bx bx-wallet side-menu__icon"></i>
-                                <span class="side-menu__label">Wallet</span>
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1" style="{{ request()->is('member/wallet*') ? 'display: block;' : '' }}">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Wallet</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/wallet/main-wallet*') ? 'active' : '' }}">
-                                    <a href="{{ url('member/wallet/main-wallet') }}" class="side-menu__item {{ request()->is('member/wallet/main-wallet*') ? 'active' : '' }}">Main Wallet</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/wallet/withdrawal-history*') ? 'active' : '' }}">
-                                    <a href="{{ url('member/wallet/withdrawal-history') }}" class="side-menu__item {{ request()->is('member/wallet/withdrawal-history*') ? 'active' : '' }}">Withdrawal History</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/wallet/all-transaction*') ? 'active' : '' }}">
-                                    <a href="{{ url('member/wallet/all-transaction') }}" class="side-menu__item {{ request()->is('member/wallet/all-transaction*') ? 'active' : '' }}">All Transactions</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- End::slide -->
-
-                        <!-- Start::slide: My Referral -->
-                        @php
-                            $isReferralActive = request()->is('member/team*') || request()->is('member/levels*');
-                        @endphp
-                        <li class="slide has-sub {{ $isReferralActive ? 'open active' : '' }}">
-                            <a href="javascript:void(0);" class="side-menu__item {{ $isReferralActive ? 'active' : '' }}">
-                                <i class="bx bx-file side-menu__icon"></i>
-                                <span class="side-menu__label">My Referral</span>
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1" style="{{ $isReferralActive ? 'display: block;' : '' }}">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">My Referral</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/team/geneology*') ? 'active' : '' }}">
-                                    <a href="{{ url('member/team/geneology') }}" class="side-menu__item {{ request()->is('member/team/geneology*') ? 'active' : '' }}">Geneology</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/levels/direct-members*') ? 'active' : '' }}">
-                                    <a href="{{ url('member/levels/direct-members') }}" class="side-menu__item {{ request()->is('member/levels/direct-members*') ? 'active' : '' }}">Direct Members</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/levels/level-members-table*') ? 'active' : '' }}">
-                                    <a href="{{ url('member/levels/level-members-table') }}" class="side-menu__item {{ request()->is('member/levels/level-members-table*') ? 'active' : '' }}">Level Member Table</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- End::slide -->
-
-                        <!-- Start::slide: Support -->
-                        <li class="slide has-sub {{ request()->is('member/support*') ? 'open active' : '' }}">
-                            <a href="javascript:void(0);" class="side-menu__item {{ request()->is('member/support*') ? 'active' : '' }}">
-                                <i class="bx bx-message side-menu__icon"></i>
-                                <span class="side-menu__label">Support</span>
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1" style="{{ request()->is('member/support*') ? 'display: block;' : '' }}">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Support</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/support/create-ticket*') ? 'active' : '' }}">
-                                    <a href="{{ url('member/support/create-ticket') }}" class="side-menu__item {{ request()->is('member/support/create-ticket*') ? 'active' : '' }}">Create New Ticket</a>
-                                </li>
-                                <li class="slide {{ request()->is('member/support/support-tickets*') ? 'active' : '' }}">
-                                    <a href="{{ url('member/support/support-tickets') }}" class="side-menu__item {{ request()->is('member/support/support-tickets*') ? 'active' : '' }}">Support Ticket</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- End::slide -->
-
-                        <!-- Start::slide: Logout -->
+                                class="side-menu__item">Global Autopool Income</a>
+                        </li> --}}
                         <li class="slide">
-                            <a href="{{ url('/member/logout') }}" class="side-menu__item">
-                                <i class="bx bx-log-out side-menu__icon"></i>
-                                <span class="side-menu__label">Logout</span>
-                            </a>
+                            <a href="{{ url('/member/income/withdrawal-incomes') }}"
+                                class="side-menu__item">Withdrawal Income</a>
                         </li>
-                        <!-- End::slide -->
+                    </ul>
+                    </li>
+                    <!-- End::slide -->
 
-                        <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg"
-                                fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z">
-                                </path>
-                            </svg></div>
+                    <!-- Start::slide: Reward Section -->
+                    @php
+                    $isRewardActive = request()->is('member/income/reward*') || request()->is('member/reward*');
+                    @endphp
+                    <li class="slide has-sub {{ $isRewardActive ? 'open active' : '' }}">
+                        <a href="javascript:void(0);" class="side-menu__item {{ $isRewardActive ? 'active' : '' }}">
+                            <i class="bx bx-gift side-menu__icon"></i>
+                            <span class="side-menu__label">Reward Section</span>
+                            <i class="fe fe-chevron-right side-menu__angle"></i>
+                        </a>
+                        <ul class="slide-menu child1" style="{{ $isRewardActive ? 'display: block;' : '' }}">
+                            <li class="slide side-menu__label1">
+                                <a href="javascript:void(0);">Reward Section</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/income/reward-incomes*') ? 'active' : '' }}">
+                                <a href="{{ url('/member/income/reward-incomes') }}" class="side-menu__item {{ request()->is('member/income/reward-incomes*') ? 'active' : '' }}">Reward Income</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/income/reward-details*') ? 'active' : '' }}">
+                                <a href="{{ url('/member/income/reward-details') }}" class="side-menu__item {{ request()->is('member/income/reward-details*') ? 'active' : '' }}">Reward Details</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End::slide -->
+
+                    <!-- Start::slide: Wallet -->
+                    <li class="slide has-sub {{ request()->is('member/wallet*') ? 'open active' : '' }}">
+                        <a href="javascript:void(0);" class="side-menu__item {{ request()->is('member/wallet*') ? 'active' : '' }}">
+                            <i class="bx bx-wallet side-menu__icon"></i>
+                            <span class="side-menu__label">Wallet</span>
+                            <i class="fe fe-chevron-right side-menu__angle"></i>
+                        </a>
+                        <ul class="slide-menu child1" style="{{ request()->is('member/wallet*') ? 'display: block;' : '' }}">
+                            <li class="slide side-menu__label1">
+                                <a href="javascript:void(0);">Wallet</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/wallet/main-wallet*') ? 'active' : '' }}">
+                                <a href="{{ url('member/wallet/main-wallet') }}" class="side-menu__item {{ request()->is('member/wallet/main-wallet*') ? 'active' : '' }}">Main Wallet</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/wallet/withdrawal-history*') ? 'active' : '' }}">
+                                <a href="{{ url('member/wallet/withdrawal-history') }}" class="side-menu__item {{ request()->is('member/wallet/withdrawal-history*') ? 'active' : '' }}">Withdrawal History</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/wallet/all-transaction*') ? 'active' : '' }}">
+                                <a href="{{ url('member/wallet/all-transaction') }}" class="side-menu__item {{ request()->is('member/wallet/all-transaction*') ? 'active' : '' }}">All Transactions</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End::slide -->
+
+                    <!-- Start::slide: My Referral -->
+                    @php
+                    $isReferralActive = request()->is('member/team*') || request()->is('member/levels*');
+                    @endphp
+                    <li class="slide has-sub {{ $isReferralActive ? 'open active' : '' }}">
+                        <a href="javascript:void(0);" class="side-menu__item {{ $isReferralActive ? 'active' : '' }}">
+                            <i class="bx bx-file side-menu__icon"></i>
+                            <span class="side-menu__label">My Referral</span>
+                            <i class="fe fe-chevron-right side-menu__angle"></i>
+                        </a>
+                        <ul class="slide-menu child1" style="{{ $isReferralActive ? 'display: block;' : '' }}">
+                            <li class="slide side-menu__label1">
+                                <a href="javascript:void(0);">My Referral</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/team/geneology*') ? 'active' : '' }}">
+                                <a href="{{ url('member/team/geneology') }}" class="side-menu__item {{ request()->is('member/team/geneology*') ? 'active' : '' }}">Geneology</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/levels/direct-members*') ? 'active' : '' }}">
+                                <a href="{{ url('member/levels/direct-members') }}" class="side-menu__item {{ request()->is('member/levels/direct-members*') ? 'active' : '' }}">Direct Members</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/levels/level-members-table*') ? 'active' : '' }}">
+                                <a href="{{ url('member/levels/level-members-table') }}" class="side-menu__item {{ request()->is('member/levels/level-members-table*') ? 'active' : '' }}">Level Member Table</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End::slide -->
+
+                    <!-- Start::slide: Support -->
+                    <li class="slide has-sub {{ request()->is('member/support*') ? 'open active' : '' }}">
+                        <a href="javascript:void(0);" class="side-menu__item {{ request()->is('member/support*') ? 'active' : '' }}">
+                            <i class="bx bx-message side-menu__icon"></i>
+                            <span class="side-menu__label">Support</span>
+                            <i class="fe fe-chevron-right side-menu__angle"></i>
+                        </a>
+                        <ul class="slide-menu child1" style="{{ request()->is('member/support*') ? 'display: block;' : '' }}">
+                            <li class="slide side-menu__label1">
+                                <a href="javascript:void(0);">Support</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/support/create-ticket*') ? 'active' : '' }}">
+                                <a href="{{ url('member/support/create-ticket') }}" class="side-menu__item {{ request()->is('member/support/create-ticket*') ? 'active' : '' }}">Create New Ticket</a>
+                            </li>
+                            <li class="slide {{ request()->is('member/support/support-tickets*') ? 'active' : '' }}">
+                                <a href="{{ url('member/support/support-tickets') }}" class="side-menu__item {{ request()->is('member/support/support-tickets*') ? 'active' : '' }}">Support Ticket</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End::slide -->
+
+                    <!-- Start::slide: Logout -->
+                    <li class="slide">
+                        <a href="{{ url('/member/logout') }}" class="side-menu__item">
+                            <i class="bx bx-log-out side-menu__icon"></i>
+                            <span class="side-menu__label">Logout</span>
+                        </a>
+                    </li>
+                    <!-- End::slide -->
+
+                    <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg"
+                            fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z">
+                            </path>
+                        </svg></div>
                 </nav>
                 <!-- End::nav -->
 

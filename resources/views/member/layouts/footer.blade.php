@@ -24,7 +24,7 @@
     <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
 </div>
 <div id="responsive-overlay"></div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 <!-- POPPER JS -->
 <script src="{{ asset('user_assets/libs/%40popperjs/core/umd/popper.min.js') }}"></script>
@@ -107,6 +107,7 @@
                     buttons: ["copy", "csv", "excel", "pdf", "print"],
                     scrollX: true,
                     pageLength: 10,
+                    order: [],
                     language: {
                         searchPlaceholder: "Search...",
                         sSearch: "",
@@ -140,7 +141,9 @@
                     html.removeAttribute('data-toggled');
                 }
                 ['ynexverticalstyles', 'ynextoggled', 'data-toggled'].forEach(function(k) {
-                    try { localStorage.removeItem(k); } catch(e) {}
+                    try {
+                        localStorage.removeItem(k);
+                    } catch (e) {}
                 });
             }
         }
@@ -351,223 +354,226 @@
 
 <!-- STABLENET MEMBER SIDEBAR CONTROLLER -->
 <script>
-(function() {
-    'use strict';
+    (function() {
+        'use strict';
 
-    function initMemberSidebar() {
-        const html = document.documentElement;
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.getElementById("responsive-overlay");
-        const toggleButtons = document.querySelectorAll(".sidemenu-toggle, [data-bs-toggle='sidebar']");
-        const closeButtons = document.querySelectorAll(".sidebar-close-btn");
+        function initMemberSidebar() {
+            const html = document.documentElement;
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("responsive-overlay");
+            const toggleButtons = document.querySelectorAll(".sidemenu-toggle, [data-bs-toggle='sidebar']");
+            const closeButtons = document.querySelectorAll(".sidebar-close-btn");
 
-        const isDesktop = function() {
-            return window.innerWidth >= 992;
-        };
+            const isDesktop = function() {
+                return window.innerWidth >= 992;
+            };
 
-        // Reset any conflicting template localStorage state
-        try {
-            localStorage.removeItem("ynexverticalstyles");
-            localStorage.removeItem("ynexlayout");
-            localStorage.removeItem("ynexnavstyles");
-        } catch(e) {}
+            // Reset any conflicting template localStorage state
+            try {
+                localStorage.removeItem("ynexverticalstyles");
+                localStorage.removeItem("ynexlayout");
+                localStorage.removeItem("ynexnavstyles");
+            } catch (e) {}
 
-        html.setAttribute("data-nav-layout", "vertical");
-        html.setAttribute("data-vertical-style", "default");
-        if (isDesktop()) {
-            html.removeAttribute("data-toggled");
-            html.classList.remove("sidebar-collapsed");
-        } else {
-            html.setAttribute("data-toggled", "close");
-            html.classList.remove("sidebar-open");
-        }
-
-        function openSidebar() {
+            html.setAttribute("data-nav-layout", "vertical");
+            html.setAttribute("data-vertical-style", "default");
             if (isDesktop()) {
                 html.removeAttribute("data-toggled");
                 html.classList.remove("sidebar-collapsed");
             } else {
-                html.setAttribute("data-toggled", "open");
-                html.classList.add("sidebar-open");
-                if (overlay) {
-                    overlay.classList.add("active");
-                    overlay.style.display = "block";
-                }
-            }
-        }
-
-        function closeSidebar() {
-            if (isDesktop()) {
-                html.setAttribute("data-toggled", "close-menu-close");
-                html.classList.add("sidebar-collapsed");
-            } else {
                 html.setAttribute("data-toggled", "close");
                 html.classList.remove("sidebar-open");
-                if (overlay) {
-                    overlay.classList.remove("active");
-                    overlay.style.display = "none";
-                }
             }
-        }
 
-        function toggleSidebar(e) {
-            if (e) e.preventDefault();
-            if (isDesktop()) {
-                if (html.getAttribute("data-toggled") === "close-menu-close" || html.classList.contains("sidebar-collapsed")) {
-                    openSidebar();
-                } else {
-                    closeSidebar();
-                }
-            } else {
-                if (html.getAttribute("data-toggled") === "open" || html.classList.contains("sidebar-open")) {
-                    closeSidebar();
-                } else {
-                    openSidebar();
-                }
-            }
-        }
-
-        // Attach hamburger toggle handlers
-        toggleButtons.forEach(function(btn) {
-            btn.removeEventListener("click", toggleSidebar);
-            btn.addEventListener("click", toggleSidebar);
-        });
-
-        // Attach mobile close button handlers
-        closeButtons.forEach(function(btn) {
-            btn.addEventListener("click", function(e) {
-                e.preventDefault();
-                closeSidebar();
-            });
-        });
-
-        // Overlay backdrop click closes mobile drawer
-        if (overlay) {
-            overlay.addEventListener("click", function() {
-                closeSidebar();
-            });
-        }
-
-        // Handle window resize cleanly
-        window.addEventListener("resize", function() {
-            if (isDesktop()) {
-                html.classList.remove("sidebar-open");
-                if (html.getAttribute("data-toggled") === "open") {
+            function openSidebar() {
+                if (isDesktop()) {
                     html.removeAttribute("data-toggled");
+                    html.classList.remove("sidebar-collapsed");
+                } else {
+                    html.setAttribute("data-toggled", "open");
+                    html.classList.add("sidebar-open");
+                    if (overlay) {
+                        overlay.classList.add("active");
+                        overlay.style.display = "block";
+                    }
                 }
-                if (overlay) {
-                    overlay.classList.remove("active");
-                    overlay.style.display = "none";
-                }
-            } else {
-                html.classList.remove("sidebar-collapsed");
             }
-        });
 
-        // Submenu accordion dropdown handlers - Silky Smooth jQuery Slide with Capture Phase
-        const subMenuItems = document.querySelectorAll(".app-sidebar .slide.has-sub > .side-menu__item");
-        subMenuItems.forEach(function(item) {
-            item.addEventListener("click", function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            function closeSidebar() {
+                if (isDesktop()) {
+                    html.setAttribute("data-toggled", "close-menu-close");
+                    html.classList.add("sidebar-collapsed");
+                } else {
+                    html.setAttribute("data-toggled", "close");
+                    html.classList.remove("sidebar-open");
+                    if (overlay) {
+                        overlay.classList.remove("active");
+                        overlay.style.display = "none";
+                    }
+                }
+            }
 
-                const parentSlide = this.closest(".slide.has-sub");
-                if (!parentSlide) return;
+            function toggleSidebar(e) {
+                if (e) e.preventDefault();
+                if (isDesktop()) {
+                    if (html.getAttribute("data-toggled") === "close-menu-close" || html.classList.contains("sidebar-collapsed")) {
+                        openSidebar();
+                    } else {
+                        closeSidebar();
+                    }
+                } else {
+                    if (html.getAttribute("data-toggled") === "open" || html.classList.contains("sidebar-open")) {
+                        closeSidebar();
+                    } else {
+                        openSidebar();
+                    }
+                }
+            }
 
-                const isOpen = parentSlide.classList.contains("open");
-                const childMenu = parentSlide.querySelector(":scope > .slide-menu.child1");
+            // Attach hamburger toggle handlers
+            toggleButtons.forEach(function(btn) {
+                btn.removeEventListener("click", toggleSidebar);
+                btn.addEventListener("click", toggleSidebar);
+            });
 
-                // Smoothly close sibling open menus
-                const siblings = parentSlide.parentElement.querySelectorAll(":scope > .slide.has-sub.open");
-                siblings.forEach(function(sib) {
-                    if (sib !== parentSlide) {
-                        sib.classList.remove("open");
-                        const sibMenu = sib.querySelector(":scope > .slide-menu.child1");
-                        if (sibMenu && window.jQuery) {
-                            $(sibMenu).stop(true, true).slideUp(180);
-                        } else if (sibMenu) {
-                            sibMenu.style.display = "none";
+            // Attach mobile close button handlers
+            closeButtons.forEach(function(btn) {
+                btn.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    closeSidebar();
+                });
+            });
+
+            // Overlay backdrop click closes mobile drawer
+            if (overlay) {
+                overlay.addEventListener("click", function() {
+                    closeSidebar();
+                });
+            }
+
+            // Handle window resize cleanly
+            window.addEventListener("resize", function() {
+                if (isDesktop()) {
+                    html.classList.remove("sidebar-open");
+                    if (html.getAttribute("data-toggled") === "open") {
+                        html.removeAttribute("data-toggled");
+                    }
+                    if (overlay) {
+                        overlay.classList.remove("active");
+                        overlay.style.display = "none";
+                    }
+                } else {
+                    html.classList.remove("sidebar-collapsed");
+                }
+            });
+
+            // Submenu accordion dropdown handlers - Silky Smooth jQuery Slide with Capture Phase
+            const subMenuItems = document.querySelectorAll(".app-sidebar .slide.has-sub > .side-menu__item");
+            subMenuItems.forEach(function(item) {
+                item.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+                    const parentSlide = this.closest(".slide.has-sub");
+                    if (!parentSlide) return;
+
+                    const isOpen = parentSlide.classList.contains("open");
+                    const childMenu = parentSlide.querySelector(":scope > .slide-menu.child1");
+
+                    // Smoothly close sibling open menus
+                    const siblings = parentSlide.parentElement.querySelectorAll(":scope > .slide.has-sub.open");
+                    siblings.forEach(function(sib) {
+                        if (sib !== parentSlide) {
+                            sib.classList.remove("open");
+                            const sibMenu = sib.querySelector(":scope > .slide-menu.child1");
+                            if (sibMenu && window.jQuery) {
+                                $(sibMenu).stop(true, true).slideUp(180);
+                            } else if (sibMenu) {
+                                sibMenu.style.display = "none";
+                            }
+                        }
+                    });
+
+                    // Smoothly toggle current menu
+                    if (isOpen) {
+                        parentSlide.classList.remove("open");
+                        if (childMenu && window.jQuery) {
+                            $(childMenu).stop(true, true).slideUp(180);
+                        } else if (childMenu) {
+                            childMenu.style.display = "none";
+                        }
+                    } else {
+                        parentSlide.classList.add("open");
+                        if (childMenu && window.jQuery) {
+                            $(childMenu).stop(true, true).slideDown(180);
+                        } else if (childMenu) {
+                            childMenu.style.display = "block";
                         }
                     }
-                });
-
-                // Smoothly toggle current menu
-                if (isOpen) {
-                    parentSlide.classList.remove("open");
-                    if (childMenu && window.jQuery) {
-                        $(childMenu).stop(true, true).slideUp(180);
-                    } else if (childMenu) {
-                        childMenu.style.display = "none";
-                    }
-                } else {
-                    parentSlide.classList.add("open");
-                    if (childMenu && window.jQuery) {
-                        $(childMenu).stop(true, true).slideDown(180);
-                    } else if (childMenu) {
-                        childMenu.style.display = "block";
-                    }
-                }
-            }, true);
-        });
-
-        // Client-side active URL matcher & auto-drawer-close on mobile navigation
-        const currentPath = window.location.pathname.replace(/\/+$/, "");
-        const allLinks = document.querySelectorAll(".app-sidebar .side-menu__item[href]");
-        allLinks.forEach(function(link) {
-            const href = link.getAttribute("href");
-            if (!href || href === "javascript:void(0);") return;
-
-            let linkPath = "";
-            try {
-                linkPath = new URL(href, window.location.origin).pathname.replace(/\/+$/, "");
-            } catch (err) {
-                linkPath = href;
-            }
-
-            if (linkPath === currentPath || (linkPath !== "" && linkPath !== "/member" && linkPath !== "/member/dashboard" && currentPath.startsWith(linkPath))) {
-                link.classList.add("active");
-                const parentLi = link.closest("li.slide");
-                if (parentLi) parentLi.classList.add("active");
-
-                const parentMenu = link.closest(".slide-menu.child1");
-                if (parentMenu) {
-                    parentMenu.style.display = "block";
-                    const parentSub = parentMenu.closest(".slide.has-sub");
-                    if (parentSub) {
-                        parentSub.classList.add("open", "active");
-                    }
-                }
-            }
-
-            // On mobile, clicking a navigation link closes the drawer
-            link.addEventListener("click", function() {
-                if (!isDesktop() && href !== "javascript:void(0);") {
-                    closeSidebar();
-                }
+                }, true);
             });
-        });
 
-        // Smoothly scroll active item into view inside sidebar if needed
-        setTimeout(function() {
-            const activeItem = document.querySelector(".app-sidebar .side-menu__item.active");
-            const scrollContainer = document.getElementById("sidebar-scroll");
-            if (activeItem && scrollContainer) {
-                const rect = activeItem.getBoundingClientRect();
-                const containerRect = scrollContainer.getBoundingClientRect();
-                if (rect.top < containerRect.top || rect.bottom > containerRect.bottom) {
-                    activeItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            // Client-side active URL matcher & auto-drawer-close on mobile navigation
+            const currentPath = window.location.pathname.replace(/\/+$/, "");
+            const allLinks = document.querySelectorAll(".app-sidebar .side-menu__item[href]");
+            allLinks.forEach(function(link) {
+                const href = link.getAttribute("href");
+                if (!href || href === "javascript:void(0);") return;
+
+                let linkPath = "";
+                try {
+                    linkPath = new URL(href, window.location.origin).pathname.replace(/\/+$/, "");
+                } catch (err) {
+                    linkPath = href;
                 }
-            }
-        }, 150);
-    }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initMemberSidebar);
-    } else {
-        initMemberSidebar();
-    }
-})();
+                if (linkPath === currentPath || (linkPath !== "" && linkPath !== "/member" && linkPath !== "/member/dashboard" && currentPath.startsWith(linkPath))) {
+                    link.classList.add("active");
+                    const parentLi = link.closest("li.slide");
+                    if (parentLi) parentLi.classList.add("active");
+
+                    const parentMenu = link.closest(".slide-menu.child1");
+                    if (parentMenu) {
+                        parentMenu.style.display = "block";
+                        const parentSub = parentMenu.closest(".slide.has-sub");
+                        if (parentSub) {
+                            parentSub.classList.add("open", "active");
+                        }
+                    }
+                }
+
+                // On mobile, clicking a navigation link closes the drawer
+                link.addEventListener("click", function() {
+                    if (!isDesktop() && href !== "javascript:void(0);") {
+                        closeSidebar();
+                    }
+                });
+            });
+
+            // Smoothly scroll active item into view inside sidebar if needed
+            setTimeout(function() {
+                const activeItem = document.querySelector(".app-sidebar .side-menu__item.active");
+                const scrollContainer = document.getElementById("sidebar-scroll");
+                if (activeItem && scrollContainer) {
+                    const rect = activeItem.getBoundingClientRect();
+                    const containerRect = scrollContainer.getBoundingClientRect();
+                    if (rect.top < containerRect.top || rect.bottom > containerRect.bottom) {
+                        activeItem.scrollIntoView({
+                            behavior: "smooth",
+                            block: "nearest"
+                        });
+                    }
+                }
+            }, 150);
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initMemberSidebar);
+        } else {
+            initMemberSidebar();
+        }
+    })();
 </script>
 
 </body>
