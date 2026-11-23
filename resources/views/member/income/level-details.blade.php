@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example" class="display table text-center">
+                                <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
@@ -41,7 +41,7 @@
                                         @php
                                         $i=1;
                                         @endphp
-                                    @foreach ($levelData as $list)
+                                    @forelse ($levelData as $list)
                                         @php
                                             $mdata = getAllData($list['memberid']);
                                         @endphp
@@ -68,7 +68,11 @@
                                         @php
                                         $i++;
                                         @endphp
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="11" class="no-data-found-cell">No Data Found</td>
+                                        </tr>
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>

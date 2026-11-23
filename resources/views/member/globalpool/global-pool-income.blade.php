@@ -206,13 +206,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="10" class="text-center py-5">
-                                                    <div class="text-muted">
-                                                        <i class="ri-inbox-line fs-36 text-muted mb-2 d-block"></i>
-                                                        <h6 class="fw-bold mb-1">No Global Pool Income Yet</h6>
-                                                        <p class="fs-12 mb-0">Earnings from autopool activations will automatically reflect here.</p>
-                                                    </div>
-                                                </td>
+                                                <td colspan="10" class="no-data-found-cell">No Data Found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

@@ -34,8 +34,7 @@
                             <div class="card-title">Withdrawal Income </div>
                         </div>
                         <div class="card-body" style="overflow: auto;">
-                            <table id="file-export" class="table table-bordered text-nowrap w-100 dataTable no-footer"
-                                aria-describedby="file-export_info">
+                            <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
@@ -52,7 +51,7 @@
                                 </thead>
                                 <tbody>
                                     @php $i = 1;  @endphp
-                                    @foreach ($directData as $list)
+                                    @forelse ($directData as $list)
                                         <tr>
                                             <td>{{ $i }}</td>
                                             <td>{{ date('d-m-Y H:i', strtotime($list['created_at'])) }}</td>
@@ -76,7 +75,11 @@
                                             </td>
                                         </tr>
                                         @php $i++;  @endphp
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="10" class="no-data-found-cell">No Data Found</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -142,7 +145,6 @@
     </div> <!-- Footer Start -->
 
     {{-- @push('script') --}}
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         $(document).ready(function () {
             //fund transfer memberid check
