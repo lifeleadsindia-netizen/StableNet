@@ -254,14 +254,22 @@
             width: 100%;
             height: 100%;
             min-height: 60px;
-            transition: all 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
 
         .ft-profile-info-pod:hover {
             background: #FFFFFF;
-            border-color: #C7D2FE;
-            box-shadow: 0 4px 12px rgba(17, 28, 67, 0.06);
-            transform: translateY(-1px);
+            border-color: #818CF8;
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .ft-profile-info-pod:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(99, 102, 241, 0.08);
         }
 
         .ft-pod-icon-box {
@@ -1050,20 +1058,53 @@
         }
 
         .ft-modal-header {
-            background: #0d1252;
+            background: linear-gradient(135deg, #0d1252 0%, #1e3bb5 100%);
             color: #FFFFFF;
-            padding: 16px 20px;
+            padding: 18px 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .ft-modal-row {
             background: #FFFFFF;
             border: 1px solid #F1F5F9;
             border-radius: 10px;
-            padding: 10px 14px;
-            margin-bottom: 7px;
+            padding: 11px 15px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: all 0.25s ease;
+        }
+
+        .ft-modal-row-highlighted {
+            animation: highlightPulse 1.4s ease-in-out 2;
+            border-color: #6366F1 !important;
+            background: #EEF2FF !important;
+        }
+
+        @keyframes highlightPulse {
+            0% { background: #EEF2FF; border-color: #6366F1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25); }
+            50% { background: #E0E7FF; border-color: #4F46E5; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.35); }
+            100% { background: #EEF2FF; border-color: #6366F1; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2); }
+        }
+
+        .ft-copy-inline {
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            border: none;
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+        .ft-copy-inline:hover {
+            background: #EDE9FE !important;
+            color: #7C3AED !important;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1154,7 +1195,7 @@
                         </div>
 
                         <div class="d-flex align-items-center gap-3 flex-grow-1 mt-1">
-                            <div class="d-flex flex-column align-items-center justify-content-center flex-shrink-0">
+                            <div class="d-flex flex-column align-items-center justify-content-center flex-shrink-0" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" title="Click to view profile" style="cursor: pointer;">
                                 <div class="ft-avatar-gradient-ring">
                                     <div class="ft-avatar-inner">
                                         @if(!empty($data['profile_image']))
@@ -1175,7 +1216,7 @@
                             <div class="flex-grow-1 h-100 d-flex flex-column justify-content-between" style="min-width: 0;">
                                 <div class="row g-2 h-100 align-items-stretch">
                                     <div class="col-6 d-flex">
-                                        <div class="ft-profile-info-pod w-100">
+                                        <div class="ft-profile-info-pod w-100" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" data-focus-row="fullname" title="Click to view full details in popup">
                                             <div class="ft-pod-icon-box" style="background: rgba(99, 102, 241, 0.12); color: #6366f1;">
                                                 <i class="ti ti-user"></i>
                                             </div>
@@ -1187,7 +1228,7 @@
                                     </div>
 
                                     <div class="col-6 d-flex">
-                                        <div class="ft-profile-info-pod w-100">
+                                        <div class="ft-profile-info-pod w-100" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" data-focus-row="mobile" title="Click to view full details in popup">
                                             <div class="ft-pod-icon-box" style="background: rgba(16, 185, 129, 0.12); color: #10b981;">
                                                 <i class="ti ti-phone"></i>
                                             </div>
@@ -1199,7 +1240,7 @@
                                     </div>
 
                                     <div class="col-6 d-flex">
-                                        <div class="ft-profile-info-pod w-100">
+                                        <div class="ft-profile-info-pod w-100" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" data-focus-row="email" title="Click to view full details in popup">
                                             <div class="ft-pod-icon-box" style="background: rgba(14, 165, 233, 0.12); color: #0ea5e9;">
                                                 <i class="ti ti-mail"></i>
                                             </div>
@@ -1211,7 +1252,7 @@
                                     </div>
 
                                     <div class="col-6 d-flex">
-                                        <div class="ft-profile-info-pod w-100">
+                                        <div class="ft-profile-info-pod w-100" role="button" tabindex="0" data-bs-toggle="modal" data-bs-target="#profileDetailModal" data-focus-row="sponsor" title="Click to view full details in popup">
                                             <div class="ft-pod-icon-box" style="background: rgba(139, 92, 246, 0.12); color: #8b5cf6;">
                                                 <i class="ti ti-users"></i>
                                             </div>
@@ -1790,8 +1831,13 @@
             <div class="modal-content ft-modal-shell">
                 <div class="modal-header ft-modal-header">
                     <div class="d-flex align-items-center gap-2">
-                        <i class="ti ti-user-circle fs-18 text-warning"></i>
-                        <h6 class="modal-title fw-bold fs-15 mb-0 text-white" id="profileDetailModalLabel">Member Account Details</h6>
+                        <span class="avatar avatar-xs avatar-rounded" style="background: rgba(255, 255, 255, 0.18); color: #FDE047;">
+                            <i class="ti ti-user-circle fs-16"></i>
+                        </span>
+                        <div>
+                            <h6 class="modal-title fw-bold fs-15 mb-0 text-white" id="profileDetailModalLabel">Member Account Details</h6>
+                            <span class="text-white-50" style="font-size: 11px;">Complete verified account profile</span>
+                        </div>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -1817,45 +1863,80 @@
                         </div>
                     </div>
 
-                    <div class="ft-modal-row">
+                    <!-- Row 1: Full Name -->
+                    <div class="ft-modal-row" data-modal-row="fullname">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-user fs-16 text-primary me-2"></i> Full Name
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['name'] }}</span>
-                    </div>
-
-                    <div class="ft-modal-row">
-                        <div class="d-flex align-items-center text-muted fs-13">
-                            <i class="ti ti-mail fs-16 text-info me-2"></i> Email Address
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end">{{ $data['name'] }}</span>
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['name'] }}" title="Copy Name">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['email'] }}</span>
                     </div>
 
-                    <div class="ft-modal-row">
+                    <!-- Row 2: Mobile Number -->
+                    <div class="ft-modal-row" data-modal-row="mobile">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-phone fs-16 text-warning me-2"></i> Mobile Number
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['mobile'] ?? 'N/A' }}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all font-monospace">{{ $data['mobile'] ?? 'N/A' }}</span>
+                            @if(!empty($data['mobile']))
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['mobile'] }}" title="Copy Mobile">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
+                            @endif
+                        </div>
                     </div>
 
-                    <div class="ft-modal-row">
+                    <!-- Row 3: Email Address -->
+                    <div class="ft-modal-row" data-modal-row="email">
+                        <div class="d-flex align-items-center text-muted fs-13">
+                            <i class="ti ti-mail fs-16 text-info me-2"></i> Email Address
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all">{{ $data['email'] }}</span>
+                            @if(!empty($data['email']))
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['email'] }}" title="Copy Email">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Member ID -->
+                    <div class="ft-modal-row" data-modal-row="memberid">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-id fs-16 text-secondary me-2"></i> Member ID
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end user-select-all font-monospace">{{ $data['memberid'] }}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end user-select-all font-monospace">{{ $data['memberid'] }}</span>
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['memberid'] }}" title="Copy Member ID">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
+                        </div>
                     </div>
 
+                    <!-- Row 5: Sponsor ID -->
                     @if(!empty($data['sponsor']))
-                    <div class="ft-modal-row">
+                    <div class="ft-modal-row" data-modal-row="sponsor">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-users fs-16 text-purple me-2"></i> Sponsor ID
                         </div>
-                        <span class="fw-bold text-dark fs-13 text-break text-end font-monospace">{{ $data['sponsor'] }}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold text-dark fs-13 text-break text-end font-monospace">{{ $data['sponsor'] }}</span>
+                            <button type="button" class="ft-copy-inline" data-copy-val="{{ $data['sponsor'] }}" title="Copy Sponsor ID">
+                                <i class="ti ti-copy fs-13"></i>
+                            </button>
+                        </div>
                     </div>
                     @endif
 
+                    <!-- Row 6: Joined On -->
                     @if(!empty($data['created_at']))
-                    <div class="ft-modal-row">
+                    <div class="ft-modal-row" data-modal-row="joined">
                         <div class="d-flex align-items-center text-muted fs-13">
                             <i class="ti ti-calendar fs-16 text-success me-2"></i> Joined On
                         </div>
@@ -2012,6 +2093,48 @@
                     }
                     if (shine) {
                         shine.style.opacity = '0';
+                    }
+                });
+            });
+
+            // 5. Member Profile Pod Focus & Modal Highlight Interaction
+            let activeFocusRow = null;
+            document.querySelectorAll('.ft-profile-info-pod[data-focus-row]').forEach(pod => {
+                pod.addEventListener('click', function () {
+                    activeFocusRow = this.getAttribute('data-focus-row');
+                });
+            });
+
+            const profileModalEl = document.getElementById('profileDetailModal');
+            if (profileModalEl) {
+                profileModalEl.addEventListener('shown.bs.modal', function () {
+                    document.querySelectorAll('.ft-modal-row').forEach(row => row.classList.remove('ft-modal-row-highlighted'));
+                    if (activeFocusRow) {
+                        const targetRow = profileModalEl.querySelector(`[data-modal-row="${activeFocusRow}"]`);
+                        if (targetRow) {
+                            targetRow.classList.add('ft-modal-row-highlighted');
+                            targetRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                        activeFocusRow = null;
+                    }
+                });
+            }
+
+            // 6. Modal Inline Copy Buttons
+            document.querySelectorAll('.ft-copy-inline').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const val = this.getAttribute('data-copy-val');
+                    const icon = this.querySelector('i');
+                    if (val) {
+                        copyText(val, function () {
+                            if (icon) {
+                                icon.className = 'ti ti-check text-success fs-13';
+                                setTimeout(() => {
+                                    icon.className = 'ti ti-copy fs-13';
+                                }, 2000);
+                            }
+                        });
                     }
                 });
             });
