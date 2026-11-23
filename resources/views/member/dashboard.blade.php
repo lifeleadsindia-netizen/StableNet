@@ -998,39 +998,42 @@
             z-index: 2;
         }
 
-        /* Stream Pod Tiles - Spacious & Khule Khule Luxury Design */
+        /* Stream Pod Tiles - Spacious, Large 2x2 Luxury Fintech Design */
         .ft-stream-tile {
             background: #FFFFFF;
-            border-radius: 14px;
-            padding: 13px 15px;
+            border-radius: 18px;
+            padding: 20px 22px;
             border: 1px solid #E2E8F0;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             height: 100%;
-            min-height: 94px;
+            min-height: 135px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
+            overflow: hidden;
         }
 
         .ft-stream-tile:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.09);
+            border-color: #CBD5E1;
         }
 
-        .ft-stream-tile-blue { border-left: 4px solid #2563EB; }
-        .ft-stream-tile-purple { border-left: 4px solid #7C3AED; }
-        .ft-stream-tile-green { border-left: 4px solid #059669; }
-        .ft-stream-tile-amber { border-left: 4px solid #D97706; }
+        .ft-stream-tile-blue { border-left: 5px solid #2563EB; }
+        .ft-stream-tile-purple { border-left: 5px solid #7C3AED; }
+        .ft-stream-tile-green { border-left: 5px solid #059669; }
+        .ft-stream-tile-amber { border-left: 5px solid #D97706; }
 
         .ft-stream-icon-box {
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 15px;
+            font-size: 20px;
             flex-shrink: 0;
             transition: transform 0.2s ease;
         }
@@ -1045,18 +1048,26 @@
         .ft-stream-icon-amber { background: #FFFBEB; color: #D97706; }
 
         .ft-stream-label {
-            font-size: 12.5px;
-            font-weight: 600;
-            color: #475569;
-            letter-spacing: -0.1px;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #1E293B;
+            letter-spacing: -0.2px;
+            line-height: 1.25;
+        }
+
+        .ft-stream-sublabel {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: #64748B;
             line-height: 1.2;
+            margin-top: 2px;
         }
 
         .ft-stream-pill {
-            font-size: 10.5px;
+            font-size: 11.5px;
             font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
             line-height: 1.2;
             flex-shrink: 0;
         }
@@ -1067,29 +1078,34 @@
         .ft-stream-pill-amber { background: #FFFBEB; color: #D97706; border: 1px solid rgba(217, 119, 6, 0.2); }
 
         .ft-stream-amount {
-            font-size: 18px;
-            font-weight: 800;
+            font-size: 26px;
+            font-weight: 900;
             color: #0F172A;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            letter-spacing: -0.3px;
-            line-height: 1.2;
-            margin-top: 6px;
-            margin-bottom: 7px;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            margin-top: 12px;
+            margin-bottom: 10px;
         }
 
         .ft-stream-progress-track {
-            height: 5px;
+            height: 7px;
             background: #F1F5F9;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             width: 100%;
         }
 
         .ft-stream-progress-bar {
             height: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
             transition: width 0.6s ease;
         }
+
+        .ft-progress-blue { background: linear-gradient(90deg, #3B82F6 0%, #1D4ED8 100%); }
+        .ft-progress-purple { background: linear-gradient(90deg, #8B5CF6 0%, #6D28D9 100%); }
+        .ft-progress-green { background: linear-gradient(90deg, #10B981 0%, #047857 100%); }
+        .ft-progress-amber { background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%); }
 
         /* --------------------------------------------------------------------------
            ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS
@@ -1716,80 +1732,108 @@
                             </div>
                         </div>
 
-                        <!-- Bottom 4 Modern Stream Pods - Spacious Full Width Grid -->
+                        <!-- Bottom 4 Modern Stream Pods - Spacious Large 2x2 Grid -->
                         <div class="row g-3">
                             <!-- Stream 1: Today's Level Income -->
-                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-blue">
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-blue w-100">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
                                             <div class="ft-stream-icon-box ft-stream-icon-blue">
                                                 <i class="ti ti-chart-bar"></i>
                                             </div>
-                                            <span class="ft-stream-label text-truncate">Today's Level</span>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Level Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Tiered community matrix commissions</span>
+                                            </div>
                                         </div>
-                                        <span class="ft-stream-pill ft-stream-pill-blue">{{ $tLvlShare }}%</span>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-blue">{{ $tLvlShare }}%</span>
                                     </div>
                                     <div class="ft-stream-amount text-truncate">$ {{ number_format($tLvl, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $todayTotalEarnings > 0 ? $tLvlPct : 0 }}%; background: #2563EB;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-blue" style="width: {{ $todayTotalEarnings > 0 ? $tLvlPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-bolt text-primary me-1"></i> Multi-tier Yield</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tLvlShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 2: Today's Direct Income -->
-                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-purple">
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-purple w-100">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
                                             <div class="ft-stream-icon-box ft-stream-icon-purple">
                                                 <i class="ti ti-users"></i>
                                             </div>
-                                            <span class="ft-stream-label text-truncate">Today's Direct</span>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Direct Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Direct sponsor referral earnings</span>
+                                            </div>
                                         </div>
-                                        <span class="ft-stream-pill ft-stream-pill-purple">{{ $tDirShare }}%</span>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-purple">{{ $tDirShare }}%</span>
                                     </div>
                                     <div class="ft-stream-amount text-truncate">$ {{ number_format($tDir, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $todayTotalEarnings > 0 ? $tDirPct : 0 }}%; background: #7C3AED;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-purple" style="width: {{ $todayTotalEarnings > 0 ? $tDirPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-user-check text-purple me-1"></i> Direct Referral Bonus</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tDirShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 3: Today's Global Autopool -->
-                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-green">
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-green w-100">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
                                             <div class="ft-stream-icon-box ft-stream-icon-green">
                                                 <i class="ti ti-world"></i>
                                             </div>
-                                            <span class="ft-stream-label text-truncate">Today's Autopool</span>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Autopool Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Automated matrix slot distributions</span>
+                                            </div>
                                         </div>
-                                        <span class="ft-stream-pill ft-stream-pill-green">{{ $tPoolShare }}%</span>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-green">{{ $tPoolShare }}%</span>
                                     </div>
                                     <div class="ft-stream-amount text-truncate">$ {{ number_format($tPool, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $todayTotalEarnings > 0 ? $tPoolPct : 0 }}%; background: #059669;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-green" style="width: {{ $todayTotalEarnings > 0 ? $tPoolPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-cpu text-success me-1"></i> Matrix Distribution</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tPoolShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 4: Today's Withdrawal Income -->
-                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-amber">
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-amber w-100">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
                                             <div class="ft-stream-icon-box ft-stream-icon-amber">
                                                 <i class="ti ti-wallet"></i>
                                             </div>
-                                            <span class="ft-stream-label text-truncate">Today's Withdrawn</span>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Withdrawn Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Daily realized wallet payouts</span>
+                                            </div>
                                         </div>
-                                        <span class="ft-stream-pill ft-stream-pill-amber">{{ $tWithShare }}%</span>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-amber">{{ $tWithShare }}%</span>
                                     </div>
                                     <div class="ft-stream-amount text-truncate">$ {{ number_format($tWith, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $todayTotalEarnings > 0 ? $tWithPct : 0 }}%; background: #D97706;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-amber" style="width: {{ $todayTotalEarnings > 0 ? $tWithPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-circle-check text-warning me-1"></i> Realized Payout</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tWithShare }}%</span>
                                     </div>
                                 </div>
                             </div>
@@ -1851,80 +1895,108 @@
                             $withShare = $rawTot > 0 ? round(($withVal / $rawTot) * 100) : 0;
                         @endphp
 
-                        <!-- Bottom 4 Modern Stream Pods - Spacious Full Width Grid -->
+                        <!-- Bottom 4 Modern Stream Pods - Spacious Large 2x2 Grid -->
                         <div class="row g-3">
                             <!-- Stream 1: Level Income -->
-                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-blue">
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-blue w-100">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
                                             <div class="ft-stream-icon-box ft-stream-icon-blue">
                                                 <i class="ti ti-chart-bar"></i>
                                             </div>
-                                            <span class="ft-stream-label text-truncate">Level Income</span>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Level Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Cumulative multi-tier matrix rewards</span>
+                                            </div>
                                         </div>
-                                        <span class="ft-stream-pill ft-stream-pill-blue">{{ $lvlShare }}%</span>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-blue">{{ $lvlShare }}%</span>
                                     </div>
                                     <div class="ft-stream-amount text-truncate">$ {{ number_format($lvlVal, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $rawTot > 0 ? $lvlPct : 0 }}%; background: #2563EB;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-blue" style="width: {{ $rawTot > 0 ? $lvlPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-chart-dots text-primary me-1"></i> Lifetime Yield</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $lvlShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 2: Direct Income -->
-                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-purple">
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-purple w-100">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
                                             <div class="ft-stream-icon-box ft-stream-icon-purple">
                                                 <i class="ti ti-users"></i>
                                             </div>
-                                            <span class="ft-stream-label text-truncate">Direct Income</span>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Direct Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Lifetime direct sponsor yield</span>
+                                            </div>
                                         </div>
-                                        <span class="ft-stream-pill ft-stream-pill-purple">{{ $dirShare }}%</span>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-purple">{{ $dirShare }}%</span>
                                     </div>
                                     <div class="ft-stream-amount text-truncate">$ {{ number_format($dirVal, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $rawTot > 0 ? $dirPct : 0 }}%; background: #7C3AED;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-purple" style="width: {{ $rawTot > 0 ? $dirPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-user-check text-purple me-1"></i> Direct Referral Yield</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $dirShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 3: Global Autopool -->
-                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-green">
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-green w-100">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
                                             <div class="ft-stream-icon-box ft-stream-icon-green">
                                                 <i class="ti ti-world"></i>
                                             </div>
-                                            <span class="ft-stream-label text-truncate">Global Autopool</span>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Global Autopool</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Universal matrix pool distribution</span>
+                                            </div>
                                         </div>
-                                        <span class="ft-stream-pill ft-stream-pill-green">{{ $poolShare }}%</span>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-green">{{ $poolShare }}%</span>
                                     </div>
                                     <div class="ft-stream-amount text-truncate">$ {{ number_format($poolVal, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $rawTot > 0 ? $poolPct : 0 }}%; background: #059669;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-green" style="width: {{ $rawTot > 0 ? $poolPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-cpu text-success me-1"></i> Global Pool Distribution</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $poolShare }}%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Stream 4: Withdrawal Income -->
-                            <div class="col-xxl-3 col-xl-3 col-md-6 col-12">
-                                <div class="ft-stream-tile ft-stream-tile-amber">
+                            <div class="col-md-6 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-amber w-100">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2 overflow-hidden" style="min-width: 0;">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
                                             <div class="ft-stream-icon-box ft-stream-icon-amber">
                                                 <i class="ti ti-wallet"></i>
                                             </div>
-                                            <span class="ft-stream-label text-truncate">Total Withdrawn</span>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Total Withdrawn</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Lifetime realized payout balance</span>
+                                            </div>
                                         </div>
-                                        <span class="ft-stream-pill ft-stream-pill-amber">{{ $withShare }}%</span>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-amber">{{ $withShare }}%</span>
                                     </div>
                                     <div class="ft-stream-amount text-truncate">$ {{ number_format($withVal, 2) }}</div>
                                     <div class="ft-stream-progress-track">
-                                        <div class="ft-stream-progress-bar" style="width: {{ $rawTot > 0 ? $withPct : 0 }}%; background: #D97706;"></div>
+                                        <div class="ft-stream-progress-bar ft-progress-amber" style="width: {{ $rawTot > 0 ? $withPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-circle-check text-warning me-1"></i> Realized Payouts</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $withShare }}%</span>
                                     </div>
                                 </div>
                             </div>
