@@ -75,6 +75,8 @@
             padding: 26px 30px;
             color: #FFFFFF;
             min-height: 205px;
+            height: 100%;
+            width: 100%;
             display: flex;
             align-items: center;
             border: 1px solid rgba(147, 197, 253, 0.45);
@@ -180,10 +182,12 @@
         .ft-profile-card {
             background: var(--ft-card-bg);
             border-radius: var(--ft-radius-lg);
-            padding: 20px 22px;
+            padding: 22px 24px;
             border: 1px solid var(--ft-border-subtle);
             box-shadow: var(--ft-shadow-card);
             min-height: 205px;
+            height: 100%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -243,7 +247,7 @@
             background: #F8FAFC;
             border: 1px solid #E2E8F0;
             border-radius: 10px;
-            padding: 6px 10px;
+            padding: 8px 12px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -1044,10 +1048,10 @@
             <!-- --------------------------------------------------------------------------
                  ROW 1: HERO MEMBERSHIP CARD (LEFT) + MEMBER PROFILE CARD (RIGHT)
                  -------------------------------------------------------------------------- -->
-            <div class="row g-3 mb-3">
+            <div class="row g-3 mb-3 align-items-stretch">
                 <!-- Left: Royal Membership Card with 3D Crown on Pedestal & Growth Bars -->
-                <div class="col-xxl-8 col-xl-7 col-lg-12 col-12">
-                    <div class="ft-membership-card">
+                <div class="col-xxl-8 col-xl-7 col-lg-12 col-12 d-flex">
+                    <div class="ft-membership-card w-100 h-100">
                         <div style="position: relative; z-index: 2; max-width: 52%;">
                             <div class="ft-badge-premium mb-2">
                                 <i class="ti ti-crown fs-13"></i> PREMIUM MEMBER
@@ -1080,8 +1084,8 @@
                 </div>
 
                 <!-- Right: Member Profile Card (Exact Match Reference 1) -->
-                <div class="col-xxl-4 col-xl-5 col-lg-12 col-12">
-                    <div class="ft-profile-card">
+                <div class="col-xxl-4 col-xl-5 col-lg-12 col-12 d-flex">
+                    <div class="ft-profile-card w-100 h-100">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
@@ -1094,7 +1098,7 @@
                             </a>
                         </div>
 
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center gap-3 my-auto">
                             <div class="ft-avatar-gradient-ring">
                                 <div class="ft-avatar-inner">
                                     @if(!empty($data['profile_image']))
