@@ -263,19 +263,12 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <div class="d-inline-flex align-items-center gap-1">
-                                                        <a href="{{ url('admin/member-login') }}/{{ $item['id'] }}"
-                                                           target="_blank"
-                                                           class="btn btn-sm btn-outline-primary rounded-pill px-2.5 py-1 d-inline-flex align-items-center gap-1 shadow-sm"
-                                                           title="Login to Member Dashboard">
-                                                            <i class="bx bx-log-in-circle fs-14"></i> Login
-                                                        </a>
-                                                        <a href="{{ url('admin/member-update') }}/{{ $item['id'] }}"
-                                                           class="btn btn-sm btn-light border rounded-pill px-2 py-1 text-muted d-inline-flex align-items-center"
-                                                           title="Edit Member Details">
-                                                            <i class="bx bx-edit fs-14"></i>
-                                                        </a>
-                                                    </div>
+                                                    <a href="{{ url('admin/member-login') }}/{{ $item['id'] }}"
+                                                       target="_blank"
+                                                       class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1 d-inline-flex align-items-center gap-1 shadow-sm"
+                                                       title="Login to Member Dashboard">
+                                                        <i class="bx bx-log-in-circle fs-14"></i> Login
+                                                    </a>
                                                 </td>
                                             </tr>
                                             @php $i++; @endphp
