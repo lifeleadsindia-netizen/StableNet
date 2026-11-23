@@ -150,12 +150,12 @@
                 </div>
 
                 <!-- Divider -->
-                <div class="auth-divider">
+                {{-- <div class="auth-divider">
                     <span>or connect with</span>
-                </div>
+                </div> --}}
 
                 <!-- Social Icons -->
-                <div class="auth-social-list">
+                {{-- <div class="auth-social-list">
                     <button type="button" class="auth-social-btn facebook" title="Facebook">
                         <i class="ri-facebook-fill"></i>
                     </button>
@@ -165,7 +165,7 @@
                     <button type="button" class="auth-social-btn twitter" title="Twitter / X">
                         <i class="ri-twitter-x-fill"></i>
                     </button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
