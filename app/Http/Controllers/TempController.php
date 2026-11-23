@@ -367,7 +367,7 @@ class TempController extends Controller
     // }
 
 
-    public function rewardStatusUpdate()
+    public function rewardIncomeDis()
     {
         // Maximum execution time target: 58 seconds
         $startTime = microtime(true);
