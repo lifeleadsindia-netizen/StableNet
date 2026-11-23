@@ -998,36 +998,74 @@
             z-index: 2;
         }
 
-        /* Stream Pod Tiles - Spacious & Khule Khule Design */
+        /* Stream Pod Tiles - Spacious & Khule Khule Luxury Design */
         .ft-stream-tile {
             background: #FFFFFF;
-            border-radius: 14px;
-            padding: 14px 18px;
-            border: 1px solid var(--ft-border-subtle);
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-            transition: all 0.2s ease;
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
             height: 100%;
+            min-height: 92px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
         }
 
         .ft-stream-tile:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.09);
         }
 
-        .ft-stream-tile-blue { border-left: 4px solid #2563EB; }
-        .ft-stream-tile-purple { border-left: 4px solid #7C3AED; }
-        .ft-stream-tile-green { border-left: 4px solid #059669; }
-        .ft-stream-tile-amber { border-left: 4px solid #D97706; }
+        .ft-stream-tile-blue { border-left: 5px solid #2563EB; }
+        .ft-stream-tile-purple { border-left: 5px solid #7C3AED; }
+        .ft-stream-tile-green { border-left: 5px solid #059669; }
+        .ft-stream-tile-amber { border-left: 5px solid #D97706; }
+
+        .ft-stream-icon-box {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .ft-stream-tile:hover .ft-stream-icon-box {
+            transform: scale(1.08);
+        }
+
+        .ft-stream-icon-blue { background: #EFF6FF; color: #2563EB; }
+        .ft-stream-icon-purple { background: #F5F3FF; color: #7C3AED; }
+        .ft-stream-icon-green { background: #ECFDF5; color: #059669; }
+        .ft-stream-icon-amber { background: #FFFBEB; color: #D97706; }
+
+        .ft-stream-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        .ft-stream-amount {
+            font-size: 19px;
+            font-weight: 800;
+            color: #0F172A;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            white-space: nowrap;
+            letter-spacing: -0.3px;
+        }
 
         .ft-stream-progress-track {
-            height: 5px;
+            height: 6px;
             background: #F1F5F9;
             border-radius: 10px;
             overflow: hidden;
-            margin-top: 8px;
+            margin-top: 12px;
         }
 
         .ft-stream-progress-bar {
@@ -1596,14 +1634,14 @@
                             <!-- Stream 1: Today's Level Income -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-blue">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
-                                                <i class="ti ti-chart-bar fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Today's Level</span>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-stream-icon-box ft-stream-icon-blue">
+                                                <i class="ti ti-chart-bar"></i>
+                                            </div>
+                                            <span class="ft-stream-label">Today's Level</span>
                                         </div>
-                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($tLvl, 2) }}</strong>
+                                        <strong class="ft-stream-amount">$ {{ number_format($tLvl, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $tLvlPct }}%; background: #2563EB;"></div>
@@ -1614,14 +1652,14 @@
                             <!-- Stream 2: Today's Direct Income -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-purple">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
-                                                <i class="ti ti-users fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Today's Direct</span>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-stream-icon-box ft-stream-icon-purple">
+                                                <i class="ti ti-users"></i>
+                                            </div>
+                                            <span class="ft-stream-label">Today's Direct</span>
                                         </div>
-                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($tDir, 2) }}</strong>
+                                        <strong class="ft-stream-amount">$ {{ number_format($tDir, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $tDirPct }}%; background: #7C3AED;"></div>
@@ -1632,14 +1670,14 @@
                             <!-- Stream 3: Today's Global Autopool -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-green">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #ECFDF5; color: #059669;">
-                                                <i class="ti ti-world fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Today's Autopool</span>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-stream-icon-box ft-stream-icon-green">
+                                                <i class="ti ti-world"></i>
+                                            </div>
+                                            <span class="ft-stream-label">Today's Autopool</span>
                                         </div>
-                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($tPool, 2) }}</strong>
+                                        <strong class="ft-stream-amount">$ {{ number_format($tPool, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $tPoolPct }}%; background: #059669;"></div>
@@ -1650,14 +1688,14 @@
                             <!-- Stream 4: Today's Withdrawal Income -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-amber">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #FFFBEB; color: #D97706;">
-                                                <i class="ti ti-wallet fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Today's Withdrawn</span>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-stream-icon-box ft-stream-icon-amber">
+                                                <i class="ti ti-wallet"></i>
+                                            </div>
+                                            <span class="ft-stream-label">Today's Withdrawn</span>
                                         </div>
-                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($tWith, 2) }}</strong>
+                                        <strong class="ft-stream-amount">$ {{ number_format($tWith, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $tWithPct }}%; background: #D97706;"></div>
@@ -1722,14 +1760,14 @@
                             <!-- Stream 1: Level Income -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-blue">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #EFF6FF; color: #2563EB;">
-                                                <i class="ti ti-chart-bar fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Level Income</span>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-stream-icon-box ft-stream-icon-blue">
+                                                <i class="ti ti-chart-bar"></i>
+                                            </div>
+                                            <span class="ft-stream-label">Level Income</span>
                                         </div>
-                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($lvlVal, 2) }}</strong>
+                                        <strong class="ft-stream-amount">$ {{ number_format($lvlVal, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $lvlPct }}%; background: #2563EB;"></div>
@@ -1740,14 +1778,14 @@
                             <!-- Stream 2: Direct Income -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-purple">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #F5F3FF; color: #7C3AED;">
-                                                <i class="ti ti-users fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Direct Income</span>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-stream-icon-box ft-stream-icon-purple">
+                                                <i class="ti ti-users"></i>
+                                            </div>
+                                            <span class="ft-stream-label">Direct Income</span>
                                         </div>
-                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($dirVal, 2) }}</strong>
+                                        <strong class="ft-stream-amount">$ {{ number_format($dirVal, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $dirPct }}%; background: #7C3AED;"></div>
@@ -1758,14 +1796,14 @@
                             <!-- Stream 3: Global Autopool -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-green">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #ECFDF5; color: #059669;">
-                                                <i class="ti ti-world fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Global Autopool</span>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-stream-icon-box ft-stream-icon-green">
+                                                <i class="ti ti-world"></i>
+                                            </div>
+                                            <span class="ft-stream-label">Global Autopool</span>
                                         </div>
-                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($poolVal, 2) }}</strong>
+                                        <strong class="ft-stream-amount">$ {{ number_format($poolVal, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $poolPct }}%; background: #059669;"></div>
@@ -1776,14 +1814,14 @@
                             <!-- Stream 4: Withdrawal Income -->
                             <div class="col-sm-6 col-12">
                                 <div class="ft-stream-tile ft-stream-tile-amber">
-                                    <div class="d-flex align-items-center justify-content-between mb-1">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="avatar avatar-xs avatar-rounded" style="background: #FFFBEB; color: #D97706;">
-                                                <i class="ti ti-wallet fs-14"></i>
-                                            </span>
-                                            <span class="text-muted fw-semibold" style="font-size: 12px;">Total Withdrawn</span>
+                                    <div class="d-flex align-items-center justify-content-between gap-2">
+                                        <div class="d-flex align-items-center gap-2.5">
+                                            <div class="ft-stream-icon-box ft-stream-icon-amber">
+                                                <i class="ti ti-wallet"></i>
+                                            </div>
+                                            <span class="ft-stream-label">Total Withdrawn</span>
                                         </div>
-                                        <strong class="text-dark fs-15 font-monospace">$ {{ number_format($withVal, 2) }}</strong>
+                                        <strong class="ft-stream-amount">$ {{ number_format($withVal, 2) }}</strong>
                                     </div>
                                     <div class="ft-stream-progress-track">
                                         <div class="ft-stream-progress-bar" style="width: {{ $withPct }}%; background: #D97706;"></div>
