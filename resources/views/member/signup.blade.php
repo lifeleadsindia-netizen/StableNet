@@ -64,10 +64,10 @@
 
                 <!-- Flash Alert Messages -->
                 @if (session()->has('failedMsg'))
-                    <div class="glass-alert glass-alert-danger" role="alert">
-                        <i class="ri-error-warning-fill glass-alert-icon"></i>
-                        <div>{{ session('failedMsg') }}</div>
-                    </div>
+                <div class="glass-alert glass-alert-danger" role="alert">
+                    <i class="ri-error-warning-fill glass-alert-icon"></i>
+                    <div>{{ session('failedMsg') }}</div>
+                </div>
                 @endif
 
                 <!-- Form -->
@@ -84,16 +84,16 @@
                                 </label>
                                 <div class="glass-input-wrapper">
                                     <i class="ri-user-shared-line glass-input-icon"></i>
-                                    <input type="text" 
-                                           class="glass-input @error('sponsor') is-invalid @enderror" 
-                                           id="sponsor"
-                                           placeholder="Sponsor ID" 
-                                           name="sponsor"
-                                           value="{{ old('sponsor', $sdata != '1' ? $sdata : '') }}"
-                                           required>
+                                    <input type="text"
+                                        class="glass-input @error('sponsor') is-invalid @enderror"
+                                        id="sponsor"
+                                        placeholder="Sponsor ID"
+                                        name="sponsor"
+                                        value="{{ old('sponsor', $sdata != '1' ? $sdata : '') }}"
+                                        required>
                                 </div>
                                 @error('sponsor')
-                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
+                                <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -104,16 +104,16 @@
                                 <label for="name" class="glass-label">Full Name</label>
                                 <div class="glass-input-wrapper">
                                     <i class="ri-user-line glass-input-icon"></i>
-                                    <input type="text" 
-                                           class="glass-input @error('name') is-invalid @enderror" 
-                                           id="name"
-                                           placeholder="Your Name" 
-                                           name="name"
-                                           value="{{ old('name') }}"
-                                           required>
+                                    <input type="text"
+                                        class="glass-input @error('name') is-invalid @enderror"
+                                        id="name"
+                                        placeholder="Your Name"
+                                        name="name"
+                                        value="{{ old('name') }}"
+                                        required>
                                 </div>
                                 @error('name')
-                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
+                                <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -124,16 +124,16 @@
                                 <label for="email" class="glass-label">Email Address</label>
                                 <div class="glass-input-wrapper">
                                     <i class="ri-mail-line glass-input-icon"></i>
-                                    <input type="email" 
-                                           class="glass-input @error('email') is-invalid @enderror" 
-                                           id="email"
-                                           placeholder="name@email.com" 
-                                           name="email"
-                                           value="{{ old('email') }}"
-                                           required>
+                                    <input type="email"
+                                        class="glass-input @error('email') is-invalid @enderror"
+                                        id="email"
+                                        placeholder="name@email.com"
+                                        name="email"
+                                        value="{{ old('email') }}"
+                                        required>
                                 </div>
                                 @error('email')
-                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
+                                <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -144,42 +144,23 @@
                                 <label for="mobile" class="glass-label">Mobile Number</label>
                                 <div class="glass-input-wrapper">
                                     <i class="ri-phone-line glass-input-icon"></i>
-                                    <input type="tel" 
-                                           minlength="10" 
-                                           maxlength="10"
-                                           class="glass-input @error('mobile') is-invalid @enderror" 
-                                           id="mobile"
-                                           placeholder="10 digit number" 
-                                           name="mobile"
-                                           value="{{ old('mobile') }}"
-                                           required>
+                                    <input type="tel"
+                                        minlength="10"
+                                        maxlength="10"
+                                        class="glass-input @error('mobile') is-invalid @enderror"
+                                        id="mobile"
+                                        placeholder="10 digit number"
+                                        name="mobile"
+                                        value="{{ old('mobile') }}"
+                                        required>
                                 </div>
                                 @error('mobile')
-                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
+                                <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
 
-                        <!-- Country Selection Field -->
-                        <div class="col-md-6 col-12">
-                            <div class="glass-form-group mb-0">
-                                <label for="country" class="glass-label">Country</label>
-                                <div class="glass-input-wrapper">
-                                    <i class="ri-global-line glass-input-icon"></i>
-                                    <select name="country" id="country" class="glass-select @error('country') is-invalid @enderror" required>
-                                        <option value="">Select Country</option>
-                                        @foreach ($cdata as $country)
-                                            <option value="{{ $country['nicename'] }}" {{ old('country') == $country['nicename'] ? 'selected' : '' }}>
-                                                {{ $country['nicename'] }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @error('country')
-                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+
 
                         <!-- Password Field -->
                         <div class="col-md-6 col-12">
@@ -187,21 +168,66 @@
                                 <label for="signup-password" class="glass-label">Password</label>
                                 <div class="glass-input-wrapper">
                                     <i class="ri-lock-password-line glass-input-icon"></i>
-                                    <input type="password" 
-                                           class="glass-input @error('password') is-invalid @enderror" 
-                                           id="signup-password"
-                                           placeholder="Choose password" 
-                                           name="password"
-                                           required>
-                                    <button class="glass-pw-toggle" 
-                                            type="button"
-                                            aria-label="Toggle password visibility"
-                                            onclick="togglePasswordVisibility('signup-password', this)">
+                                    <input type="password"
+                                        class="glass-input @error('password') is-invalid @enderror"
+                                        id="signup-password"
+                                        placeholder="Choose password"
+                                        name="password"
+                                        required>
+                                    <button class="glass-pw-toggle"
+                                        type="button"
+                                        aria-label="Toggle password visibility"
+                                        onclick="togglePasswordVisibility('signup-password', this)">
                                         <i class="ri-eye-off-line align-middle"></i>
                                     </button>
                                 </div>
                                 @error('password')
-                                    <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
+                                <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <div class="glass-form-group mb-0">
+                                <label for="signup-transaction-password" class="glass-label">Transaction Password</label>
+                                <div class="glass-input-wrapper">
+                                    <i class="ri-lock-password-line glass-input-icon"></i>
+                                    <input type="password"
+                                        class="glass-input @error('transaction_password') is-invalid @enderror"
+                                        id="signup-transaction-password"
+                                        placeholder="Choose txn password"
+                                        name="transaction_password"
+                                        required>
+                                    <button class="glass-pw-toggle"
+                                        type="button"
+                                        aria-label="Toggle password visibility"
+                                        onclick="togglePasswordVisibility('signup-transaction-password', this)">
+                                        <i class="ri-eye-off-line align-middle"></i>
+                                    </button>
+                                </div>
+                                @error('transaction_password')
+                                <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Country Selection Field -->
+                        <div class="col-md-12 col-12">
+                            <div class="glass-form-group mb-0">
+                                <label for="country" class="glass-label">Country</label>
+                                <div class="glass-input-wrapper">
+                                    <i class="ri-global-line glass-input-icon"></i>
+                                    <select name="country" id="country" class="glass-select @error('country') is-invalid @enderror" required>
+                                        <option value="">Select Country</option>
+                                        @foreach ($cdata as $country)
+                                        <option value="{{ $country['nicename'] }}" {{ old('country') == $country['nicename'] ? 'selected' : '' }}>
+                                            {{ $country['nicename'] }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('country')
+                                <div class="text-danger small mt-1 ps-1" style="font-size: 0.725rem;">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -216,7 +242,7 @@
 
                 <!-- Footer Navigation -->
                 <div class="auth-footer">
-                    <p>Already have an account? 
+                    <p>Already have an account?
                         <a href="{{ url('/member') }}" class="auth-footer-link">Sign In</a>
                     </p>
                 </div>
