@@ -55,6 +55,24 @@
                 </div>
             @endif
 
+            @if (session()->has('error'))
+                <div class="alert custom-alert custom-alert-danger alert-dismissible fade show d-flex align-items-center justify-content-between mb-4" role="alert">
+                    <div class="d-flex align-items-center">
+                        <i class="bx bx-error-circle fs-20 me-2 text-danger"></i>
+                        <span><strong>Error!</strong> {{ session('error') }}</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <!-- Hidden Master Form for Reliable Security Updates -->
+            <form id="globalSecurityUpdateForm" action="{{ route('securityUpdate') }}" method="post" style="display: none;">
+                @csrf
+                <input type="hidden" name="id" id="secForm_id" value="">
+                <input type="hidden" name="password" id="secForm_password" value="">
+                <input type="hidden" name="txnpassword" id="secForm_txnpassword" value="">
+            </form>
+
             <!-- Member Security Specific Filters Card -->
             <div class="card custom-card card-filter">
                 <div class="filter-header d-flex align-items-center justify-content-between flex-wrap gap-2">
@@ -177,12 +195,6 @@
                                     <tbody>
                                         @php $i = 1; @endphp
                                         @forelse ($data as $list)
-                                            <!-- Separate HTML5 Form for clean table structure -->
-                                            <form id="secForm_{{ $list['id'] }}" action="{{ route('securityUpdate') }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $list['id'] }}">
-                                            </form>
-
                                             <tr class="dash-table-row">
                                                 <td class="text-center fw-semibold text-muted">{{ $i }}</td>
                                                 <td class="text-center">
@@ -218,7 +230,7 @@
                                                 <td>
                                                     <div class="input-group sec-input-group">
                                                         <span class="input-group-text"><i class="bx bx-lock-alt"></i></span>
-                                                        <input type="password" form="secForm_{{ $list['id'] }}" name="password" id="pw_{{ $list['id'] }}"
+                                                        <input type="password" name="password" id="pw_{{ $list['id'] }}"
                                                             class="form-control" placeholder="New Password" autocomplete="new-password">
                                                         <button class="btn btn-toggle-pw" type="button" onclick="togglePw('pw_{{ $list['id'] }}', 'pwIcon_{{ $list['id'] }}')">
                                                             <i class="bx bx-show" id="pwIcon_{{ $list['id'] }}"></i>
@@ -228,7 +240,7 @@
                                                 <td>
                                                     <div class="input-group sec-input-group">
                                                         <span class="input-group-text"><i class="bx bx-key"></i></span>
-                                                        <input type="password" form="secForm_{{ $list['id'] }}" name="txnpassword" id="txnPw_{{ $list['id'] }}"
+                                                        <input type="password" name="txnpassword" id="txnPw_{{ $list['id'] }}"
                                                             class="form-control" placeholder="New Txn Password" autocomplete="new-password">
                                                         <button class="btn btn-toggle-pw" type="button" onclick="togglePw('txnPw_{{ $list['id'] }}', 'txnIcon_{{ $list['id'] }}')">
                                                             <i class="bx bx-show" id="txnIcon_{{ $list['id'] }}"></i>
@@ -236,9 +248,9 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button type="submit" form="secForm_{{ $list['id'] }}"
+                                                    <button type="button"
                                                             class="btn btn-sm btn-signin px-3 py-1.5 rounded-pill shadow-sm d-inline-flex align-items-center gap-1"
-                                                            onclick="return confirm('Update credentials for {{ $list['memberid'] }}?');">
+                                                            onclick="submitSecurityUpdate('{{ $list['id'] }}', '{{ $list['memberid'] }}')">
                                                         <i class="bx bx-check-shield fs-14"></i> Update
                                                     </button>
                                                 </td>
@@ -328,6 +340,28 @@
                 icon.classList.remove('bx-hide');
                 icon.classList.add('bx-show');
             }
+        }
+
+        function submitSecurityUpdate(id, memberId) {
+            const pwInput = document.getElementById('pw_' + id);
+            const txnPwInput = document.getElementById('txnPw_' + id);
+            const pw = pwInput ? pwInput.value.trim() : '';
+            const txnPw = txnPwInput ? txnPwInput.value.trim() : '';
+
+            if (!pw && !txnPw) {
+                alert('Please enter a new Login Password or Transaction Password for ' + memberId + ' before clicking Update.');
+                if (pwInput) pwInput.focus();
+                return;
+            }
+
+            if (!confirm('Are you sure you want to update credentials for member ' + memberId + '?')) {
+                return;
+            }
+
+            document.getElementById('secForm_id').value = id;
+            document.getElementById('secForm_password').value = pw;
+            document.getElementById('secForm_txnpassword').value = txnPw;
+            document.getElementById('globalSecurityUpdateForm').submit();
         }
     </script>
 @endsection
