@@ -1318,12 +1318,12 @@
             <input type="hidden" id="refLinkText" value="{{ config('detailsApp.url') }}?ref={{ $data['memberid'] }}">
 
             <!-- --------------------------------------------------------------------------
-                 ROW 3: FOUR VIBRANT 3D STATISTIC CARDS (PREMIUM ANIMATED 3D PARALLAX)
+                 ROW 3: FOUR VIBRANT 3D STATISTIC CARDS (PREMIUM 2x2 GRID LAYOUT)
                  Cyan, Purple, Emerald, Amber gradients with rotating cyber rings & floating particles
                  -------------------------------------------------------------------------- -->
             <div class="row g-3 mb-3 align-items-stretch">
                 <!-- Card 1: Account Status (Cyan to Electric Blue) -->
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 d-flex">
                     <div class="ft-stat-card-vibrant ft-stat-cyan-glow ft-stat-interactive w-100">
                         <div class="ft-card-orb ft-card-orb-top"></div>
                         <div class="ft-card-orb ft-card-orb-bottom"></div>
@@ -1361,7 +1361,7 @@
                 </div>
 
                 <!-- Card 2: Total Referrals (Purple to Violet) -->
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 d-flex">
                     <div class="ft-stat-card-vibrant ft-stat-purple-glow ft-stat-interactive w-100">
                         <div class="ft-card-orb ft-card-orb-top"></div>
                         <div class="ft-card-orb ft-card-orb-bottom"></div>
@@ -1401,7 +1401,7 @@
                 </div>
 
                 <!-- Card 3: Fund Wallet (Emerald to Deep Green) -->
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 d-flex">
                     <div class="ft-stat-card-vibrant ft-stat-green-glow ft-stat-interactive w-100">
                         <div class="ft-card-orb ft-card-orb-top"></div>
                         <div class="ft-card-orb ft-card-orb-bottom"></div>
@@ -1441,7 +1441,7 @@
                 </div>
 
                 <!-- Card 4: Income Wallet (Amber to Orange) -->
-                <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12 d-flex">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-12 d-flex">
                     <div class="ft-stat-card-vibrant ft-stat-orange-glow ft-stat-interactive w-100">
                         <div class="ft-card-orb ft-card-orb-top"></div>
                         <div class="ft-card-orb ft-card-orb-bottom"></div>
