@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stablenet</title>
+    <title>KnoxBit Crypto Crowdfunding</title>
     <!-- favicons Icons -->
     <link rel="icon" type="image/png" href="{{asset('logo/favicon/favicon-96x96.png')}}" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{asset('logo/favicon/favicon.svg')}}" />
@@ -162,10 +162,10 @@
     <!-- Preloader Start -->
 <div class="preloader">
   <div class="loader-logo">
-    <img src="{{asset('f_assets/images/logo-light.png')}}" alt="StableNet Logo">
+    <img src="{{asset('logo/logo.png')}}" alt="KnoxBit Crypto Crowdfunding Logo">
   </div>
   <div class="loader-circle"></div>
-  <div class="loader-text">Loading StableNet...</div>
+  <div class="loader-text">Loading KnoxBit Crypto Crowdfunding...</div>
 </div>
 <!-- Preloader End -->
     <!-- /.preloader -->
@@ -206,7 +206,7 @@
                 <div class="main-header__inner">
                     <div class="main-header__logo logo-retina">
                         <a href="index.html">
-                            <img src="{{asset('f_assets/images/logo-dark.png')}}" alt="Eolexi HTML" width="219">
+                            <img src="{{asset('logo/logo.png')}}" alt="Eolexi HTML" width="219">
                         </a>
                     </div><!-- /.main-header__logo -->
                     <div class="main-header__right">
@@ -270,7 +270,7 @@
 
     <!-- Main Headline -->
     <h2 class="main-slider__title">
-        Your Stablecoins Can Finally Earn. <br> Invest Securely with Stablenet.
+        Your Stablecoins Can Finally Earn. <br> Invest Securely with KnoxBit Crypto Crowdfunding.
     </h2>
 
     <!-- Sub-headline -->
@@ -283,7 +283,7 @@
     <!-- Key Description -->
     <div class="main-slider__description">
         <p class="main-slider__text">
-            Stablenet offers a solution for idle stablecoins like USDT. Our expert team strategically invests your pooled funds 
+            KnoxBit Crypto Crowdfunding offers a solution for idle stablecoins like USDT. Our expert team strategically invests your pooled funds 
             in various <em>DeFi projects</em>, such as <strong>lending protocols, liquidity pools, and yield farming platforms</strong>, 
             to generate returns. These profits are then distributed to you as additional SBT tokens.
         </p>
@@ -342,7 +342,7 @@
 
     <!-- Main Headline -->
     <h2 class="main-slider__title">
-        Your Stablecoins Can Finally Earn. <br> Invest Securely with Stablenet.
+        Your Stablecoins Can Finally Earn. <br> Invest Securely with KnoxBit Crypto Crowdfunding.
     </h2>
 
     <!-- Sub-headline -->
@@ -355,7 +355,7 @@
     <!-- Key Description -->
     <div class="main-slider__description">
         <p class="main-slider__text">
-            Stablenet offers a solution for idle stablecoins like USDT. Our expert team strategically invests your pooled funds 
+            KnoxBit Crypto Crowdfunding offers a solution for idle stablecoins like USDT. Our expert team strategically invests your pooled funds 
             in <em>DeFi projects</em>, such as <strong>lending protocols, liquidity pools, and yield farming platforms</strong>, 
             to generate returns. These profits are then distributed to you as additional SBT tokens.
         </p>
@@ -414,7 +414,7 @@
 
     <!-- Main Headline -->
     <h2 class="main-slider__title">
-        Your Stablecoins Can Finally Earn. <br> Invest Securely with Stablenet.
+        Your Stablecoins Can Finally Earn. <br> Invest Securely with KnoxBit Crypto Crowdfunding.
     </h2>
 
     <!-- Sub-headline -->
@@ -427,7 +427,7 @@
     <!-- Key Description -->
     <div class="main-slider__description">
         <p class="main-slider__text">
-            Stablenet offers a solution for idle stablecoins like USDT. Our expert team strategically invests your pooled funds 
+            KnoxBit Crypto Crowdfunding offers a solution for idle stablecoins like USDT. Our expert team strategically invests your pooled funds 
             in <em>DeFi projects</em>, such as <strong>lending protocols, liquidity pools, and yield farming platforms</strong>, 
             to generate returns. These profits are then distributed to you as additional SBT tokens.
         </p>
@@ -545,10 +545,10 @@
                         </h3>
                     </div>
 
-                    <!-- What is Stablenet -->
+                    <!-- What is KnoxBit Crypto Crowdfunding -->
                     <p class="about-one__text wow fadeInUp" data-wow-duration="1500ms">
-                        <strong>What is Stablenet?</strong> <br>
-                        Stablenet was founded to solve a common problem in the crypto space: a lack of passive income for stablecoin holders. 
+                        <strong>What is KnoxBit Crypto Crowdfunding?</strong> <br>
+                        KnoxBit Crypto Crowdfunding was founded to solve a common problem in the crypto space: a lack of passive income for stablecoin holders. 
                         Our mission is to provide a simple, secure, and profitable way for anyone to earn returns on their stablecoin investments.
                     </p>
 
@@ -607,11 +607,11 @@
                             <img src="{{asset('f_assets/images/shapes/sec-title-shape-1-1.png')}}" alt="How It Works" class="sec-title__shape">
                             <h6 class="sec-title__tagline bw-split-in-up-fast">How It Works</h6>
                         </div>
-                        <h3 class="sec-title__title bw-split-in-up">Your Journey with <br> Stablenet</h3>
+                        <h3 class="sec-title__title bw-split-in-up">Your Journey with <br> KnoxBit Crypto Crowdfunding</h3>
                     </div>
 
                     <p class="how-it-works__text wow fadeInUp" data-wow-duration="1500ms">
-                        Stablenet makes DeFi investing simple, secure, and rewarding. Here’s how the process works step by step:
+                        KnoxBit Crypto Crowdfunding makes DeFi investing simple, secure, and rewarding. Here’s how the process works step by step:
                     </p>
 
                     <div class="how-it-works__steps">
@@ -623,7 +623,7 @@
                                     <div class="progress-box__number count-text">Step 1</div>
                                 </div>
                             </div>
-                            <p class="progress-box__desc">Deposit your USDT into the Stablenet platform and receive equivalent SBT tokens.</p>
+                            <p class="progress-box__desc">Deposit your USDT into the KnoxBit Crypto Crowdfunding platform and receive equivalent SBT tokens.</p>
                         </div>
 
                         <!-- Step 2 -->
@@ -676,7 +676,7 @@
             <div class="col-lg-6">
                 <div class="how-it-works__image">
                     <div class="how-it-works__logo">
-                        <img src="{{asset('f_assets/images/shapes/skill-logo-1-1.png')}}" alt="Stablenet Logo">
+                        <img src="{{asset('logo/logo.png')}}" alt="KnoxBit Crypto Crowdfunding Logo">
                     </div>
                     <img src="{{asset('f_assets/images/resources/skill-1-1.jpg')}}" alt="How It Works" class="how-it-works__image__img">
                 </div>
@@ -797,12 +797,12 @@
                             <div class="faq-item">
                                 <button class="faq-question">1. What is the Stablenet Token (SBT)?</button>
                                 <div class="faq-answer">
-                                    <p>The SBT token is a stablecoin issued directly by Stablenet, pegged to $1. Unlike other stablecoins, your SBT balance grows over time, representing profits from your investment.</p>
+                                    <p>The SBT token is a stablecoin issued directly by KnoxBit Crypto Crowdfunding, pegged to $1. Unlike other stablecoins, your SBT balance grows over time, representing profits from your investment.</p>
                                 </div>
                             </div>
 
                             <div class="faq-item">
-                                <button class="faq-question">2. How does Stablenet generate profit?</button>
+                                <button class="faq-question">2. How does KnoxBit Crypto Crowdfunding generate profit?</button>
                                 <div class="faq-answer">
                                     <p>Our expert team invests pooled USDT funds into <em>lending protocols, liquidity pools, and yield farming</em>. Profits are distributed to you as additional SBT tokens.</p>
                                 </div>
@@ -823,9 +823,9 @@
                             </div>
 
                             <div class="faq-item">
-                                <button class="faq-question">5. How do I get started with Stablenet?</button>
+                                <button class="faq-question">5. How do I get started with KnoxBit Crypto Crowdfunding?</button>
                                 <div class="faq-answer">
-                                    <p>Simply connect a crypto wallet like <em>TokenPocket</em> to the Stablenet platform. It’s quick and user-friendly.</p>
+                                    <p>Simply connect a crypto wallet like <em>TokenPocket</em> to the KnoxBit Crypto Crowdfunding platform. It’s quick and user-friendly.</p>
                                 </div>
                             </div>
 
@@ -987,7 +987,7 @@
                         <div class="col-xl-4 col-lg-5 wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="00ms">
                             <div class="footer-widget footer-widget--about">
                                 <a href="https://stablenet.live/" class="footer-widget__logo logo-retina">
-                                    <img src="{{asset('f_assets/images/logo-light.png')}}" width="219" alt="Eolexi HTML Template">
+                                    <img src="{{asset('logo/logo.png')}}" width="219" alt="Eolexi HTML Template">
                                 </a>
                                <p class="footer-widget__text">
     Discover the full potential of our platform—built to simplify, secure, and enhance your journey in the digital finance world.  
@@ -1061,7 +1061,7 @@
                 <div class="container">
                     <div class="main-footer__bottom__inner">
                         <p class="main-footer__copyright">
-                            &copy; Copyright <span class="dynamic-year"></span> STABLENET
+                            &copy; Copyright <span class="dynamic-year"></span> KNOXBIT CRYPTO CROWDFUNDING
                         </p>
                     </div><!-- /.main-footer__inner -->
                 </div><!-- /.container -->
@@ -1078,7 +1078,7 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"><i class="icon-close"></i></span>
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="{{asset('f_assets/images/logo-light.png')}}" width="219" alt="Eolexi HTML" /></a>
+                <a href="index.html" aria-label="logo image"><img src="{{asset('logo/logo.png')}}" width="219" alt="Eolexi HTML" /></a>
             </div><!-- /.logo-box -->
             <div class="mobile-nav__container"></div><!-- /.mobile-nav__container -->
             <ul class="mobile-nav__contact list-unstyled">

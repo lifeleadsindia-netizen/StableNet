@@ -13,7 +13,7 @@
 
     <h5>With Regard</h5>
     <h4>Team {{config('detailsApp.name')}}</h4>
-    <img src="{{ $message->embed(public_path().'/f_assets/images/logo-light.png') }}"  width="150"/>
+    <img src="{{ $message->embed(public_path('logo/logo.png')) }}" width="150"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>

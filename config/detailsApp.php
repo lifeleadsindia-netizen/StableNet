@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'name' => 'KnoxBit',
+    'name' => 'KnoxBit Crypto Crowdfunding',
     'url' => 'https://knoxbit.live/',
 ];

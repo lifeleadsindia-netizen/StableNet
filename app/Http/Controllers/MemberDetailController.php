@@ -346,7 +346,7 @@ class MemberDetailController extends Controller
             Mail::send('member.mails.mail', $mailData, function ($message) use ($user) {
 
                 $message->to($user['to']);
-                $message->subject('Robo9 Member Login Credentials');
+                $message->subject(config('detailsApp.name').' Member Login Credentials');
             });
         }
         $request->session()->put('name', $request->post('name'));
@@ -478,7 +478,7 @@ class MemberDetailController extends Controller
         //     Mail::send('member.mails.withdrawal-mail', $mailData, function ($message) use ($user) {
 
         //         $message->to($user['to']);
-        //         $message->subject('Robo9 Member Withdrawal OTP');
+        //         $message->subject(config('detailsApp.name').' Member Withdrawal OTP');
         //     });
         // }
 
@@ -548,7 +548,7 @@ class MemberDetailController extends Controller
                 Mail::send('member.mails.forget-password-mail', $mailData, function ($message) use ($user) {
 
                     $message->to($user['to']);
-                    $message->subject('Robo9 Member Account Password');
+                    $message->subject(config('detailsApp.name').' Member Account Password');
                 });
             }
             session()->flash('succMsg', 'Your Account Password has been sent to your registered email.');
