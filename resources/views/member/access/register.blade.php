@@ -57,7 +57,7 @@
                                 <div class="login-form style-2 card mt-5" style="background-color: rgba( 0, 0, 0,0.5)">
                                     <div class="card-body ">
                                         <div class="py-4 text-center">
-                                            <img src="{{asset('f_assets/images/logo-full-white.png')}}" width="200" alt=""
+                                            <img src="{{asset('logo/logo.png')}}" width="200" alt=""
                                                 class="text-center ">
                                         </div>
 

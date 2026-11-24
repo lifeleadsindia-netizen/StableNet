@@ -64,7 +64,7 @@ class AdminController extends Controller
             //     Mail::send('admin.mails.login-mail', $mailData, function ($message) use ($user) {
 
             //         $message->to($user['to']);
-            //         $message->subject('Robo9 Admin Login OTP');
+            //         $message->subject(config('detailsApp.name').' Admin Login OTP');
             //     });
             // }
             session()->flash('OtpMsg', 'Your OTP has been sent to admin email');

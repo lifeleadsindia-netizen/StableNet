@@ -110,7 +110,7 @@
     <div class="container-fluid">
         <!-- AI Robo Animation -->
         <div class="text-center my-4">
-            <img src="{{asset('f_assets/images/logo-full-white.png')}}" alt="Robo9" style="height: 100px; width: 100px" class="robo-animation">
+            <img src="{{asset('logo/logo.png')}}" alt="{{ config('detailsApp.name') }}" style="height: 100px; width: 100px" class="robo-animation">
         </div>
 
         <!-- Blinking Live Trading Text -->

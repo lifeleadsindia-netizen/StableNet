@@ -1622,7 +1622,7 @@
                                 </div>
                             </div>
                             <div>
-                                <a href="{{ url('/member/p2pWallet/activation-wallet') }}" class="ft-stat-action-capsule">
+                                <a href="{{ url('/member/fund/deposit-fund') }}" class="ft-stat-action-capsule">
                                     Add Money <i class="ti ti-arrow-right fs-10"></i>
                                 </a>
                             </div>
