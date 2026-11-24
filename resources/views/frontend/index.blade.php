@@ -162,7 +162,7 @@
     <!-- Preloader Start -->
 <div class="preloader">
   <div class="loader-logo">
-    <img src="{{asset('f_assets/images/logo-light.png')}}" alt="StableNet Logo">
+    <img src="{{asset('logo/logo.png')}}" alt="StableNet Logo">
   </div>
   <div class="loader-circle"></div>
   <div class="loader-text">Loading StableNet...</div>
@@ -206,7 +206,7 @@
                 <div class="main-header__inner">
                     <div class="main-header__logo logo-retina">
                         <a href="index.html">
-                            <img src="{{asset('f_assets/images/logo-dark.png')}}" alt="Eolexi HTML" width="219">
+                            <img src="{{asset('logo/logo.png')}}" alt="Eolexi HTML" width="219">
                         </a>
                     </div><!-- /.main-header__logo -->
                     <div class="main-header__right">
@@ -676,7 +676,7 @@
             <div class="col-lg-6">
                 <div class="how-it-works__image">
                     <div class="how-it-works__logo">
-                        <img src="{{asset('f_assets/images/shapes/skill-logo-1-1.png')}}" alt="Stablenet Logo">
+                        <img src="{{asset('logo/logo.png')}}" alt="Stablenet Logo">
                     </div>
                     <img src="{{asset('f_assets/images/resources/skill-1-1.jpg')}}" alt="How It Works" class="how-it-works__image__img">
                 </div>
@@ -987,7 +987,7 @@
                         <div class="col-xl-4 col-lg-5 wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="00ms">
                             <div class="footer-widget footer-widget--about">
                                 <a href="https://stablenet.live/" class="footer-widget__logo logo-retina">
-                                    <img src="{{asset('f_assets/images/logo-light.png')}}" width="219" alt="Eolexi HTML Template">
+                                    <img src="{{asset('logo/logo.png')}}" width="219" alt="Eolexi HTML Template">
                                 </a>
                                <p class="footer-widget__text">
     Discover the full potential of our platform—built to simplify, secure, and enhance your journey in the digital finance world.  
@@ -1078,7 +1078,7 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"><i class="icon-close"></i></span>
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="{{asset('f_assets/images/logo-light.png')}}" width="219" alt="Eolexi HTML" /></a>
+                <a href="index.html" aria-label="logo image"><img src="{{asset('logo/logo.png')}}" width="219" alt="Eolexi HTML" /></a>
             </div><!-- /.logo-box -->
             <div class="mobile-nav__container"></div><!-- /.mobile-nav__container -->
             <ul class="mobile-nav__contact list-unstyled">

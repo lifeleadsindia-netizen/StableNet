@@ -461,8 +461,8 @@
         <div class="navbar navbar-full navbar-expand-lg is-transparent" id="mainnav">
             <a class="navbar-brand animated" data-animate="fadeInDown" data-delay=".65"
                 href="https://americantradeai.com/">
-                <img class="logo logo-dark" alt="logo" src="{{ asset('f_assets/images/logo-full-white.png') }}">
-                <img class="logo logo-light" alt="logo" src="{{ asset('f_assets/images/logo-full-white.png') }}"
+                <img class="logo logo-dark" alt="logo" src="{{ asset('logo/logo.png') }}">
+                <img class="logo logo-light" alt="logo" src="{{ asset('logo/logo.png') }}"
                     style="width: 120px;max-height: 104px;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
