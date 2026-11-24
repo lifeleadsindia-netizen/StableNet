@@ -531,7 +531,7 @@ html{scroll-behavior:smooth}
       <span class="hero-tag">Helping Plan</span>
       <p class="hero-lead">A forward-thinking, community-driven crowdfunding platform built on collaboration, innovation, and trust — bringing people together to grow, together.</p>
       <div class="hero-cta">
-        <a href="#signup" class="btn btn-gold">Join Now</a>
+        <a href="{{url('/member/register/1')}}" class="btn btn-gold">Join Now</a>
         <a href="#how" class="btn btn-ghost">Explore the Plan</a>
       </div>
       <a class="domain-chip" href="https://www.knoxbit.live" target="_blank" rel="noopener">
