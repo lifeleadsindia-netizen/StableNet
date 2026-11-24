@@ -34,7 +34,7 @@
       </tr>
       <tr>
         <th>{{config('detailsApp.name')}} Url</th>
-        <td>https://robo9live.com/</td>
+        <td>{{config('detailsApp.url')}}</td>
       </tr>
     </table>
     <h5>With Regard</h5>
