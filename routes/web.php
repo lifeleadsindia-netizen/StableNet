@@ -316,4 +316,4 @@ Route::fallback(function () {
 // //Temp Routes
 Route::get('/createTradingProfit', [TempController::class, 'createTradingProfit']);
 Route::get('/releaseTradingProfit', [TempController::class, 'releaseTradingProfit']);
-Route::get('/fakeIds/{sponsorid}/{ids}', [TempController::class, 'fakeIds']);
+Route::get('/fakeIds/{sponsorid}/{ids}/{upline_no}', [TempController::class, 'fakeIds']);

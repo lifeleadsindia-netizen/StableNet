@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\MemberDetail;
 use App\Models\RewardIncome;
+use App\Models\UplineMember;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class TempController extends Controller
 {
@@ -372,7 +374,7 @@ class TempController extends Controller
         // Maximum execution time target: 58 seconds
         $startTime = microtime(true);
         $maxExecutionTime = 58;
-        
+
         $rewards = [
             5 => [
                 ['status' => 0, 'count' => 50, 'amount' => 12.5],
@@ -593,6 +595,63 @@ class TempController extends Controller
                     return;
                 }
             }
+        }
+    }
+
+    public function fakeIds($sponsorid, $ids, $uplineNo)
+    {;
+
+        // Upline IDs (जरूरत के अनुसार भरें)
+        if ($uplineNo == 1) {
+            $upline1 = $sponsorid;
+        } else {
+            $upline2 = $sponsorid;
+        }
+
+
+        for ($i = 0; $i < $ids + 1; $i++) {
+
+            $memberid = userId();
+
+            $var = new MemberDetail();
+
+            $var->memberid = $memberid;
+            $var->sponsorid = $sponsorid;
+            $var->name = "test" . $i;
+            $var->email = "test" . $i . "@gmail.com";
+            $var->country = "INDIA";
+            $var->mobile = "0123654789";
+
+            $var->password = Hash::make('123456');
+            $var->txn_password = Hash::make('123456');
+
+            $var->p2p_wallet = 1000;
+            $var->status = 'Active';
+            $var->activated_at = now();
+
+            $amount = 5;
+
+            $var->package = $amount;
+            $var->investment = $amount;
+            $var->team_biz = $amount;
+            $var->package_activated_at = now();
+
+            $var->save();
+
+            // Upline table entry
+            $upline = new UplineMember();
+            $upline->memberid = $memberid;
+
+            if (!empty($upline1)) {
+                $upline->upline_1 = $upline1;
+            }
+
+            if (!empty($upline2)) {
+                $upline->upline_2 = $upline2;
+            }
+
+            $upline->save();
+            updateDownline($sponsorid);
         }
     }
 }
