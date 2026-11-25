@@ -42,10 +42,12 @@
                                         <th>Member Id</th>
                                         <th>Level Id</th>
                                         <th>Name</th>
-                                        <th>Withdrawal Amount</th>
-                                        <th>Income Type</th>
                                         <th>Level</th>
-                                        <th>Amount</th>
+                                        <th>Withdrawal Amount</th>
+                                        <th>Withdrawal Charge</th>
+                                        <th>Share</th>
+                                        <th>Income Amount</th>
+                                        <th>Income Type</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -57,14 +59,26 @@
                                             <td>{{ date('d-m-Y H:i', strtotime($list['created_at'])) }}</td>
                                             <td>{{ $list['memberid'] }}</td>
                                             <td>{{ $list['level_id'] ?? '-' }}</td>
-                                            <td>{{ !empty($list['level_id']) ? getName($list['level_id']) : ($list['name'] ?? '-') }}</td>
+                                            <td>{{ $list['name'] }}</td>
+                                            <td>{{ $list['level'] ?? '-' }}</td>
                                             <td>$ {{ number_format((float) ($list['withdrawal_amount'] ?? 0), 2) }}</td>
+                                            <td class="text-end">
+                                                <span class="text-danger fs-13 fw-semibold">
+                                                    $ {{ number_format((float) ($list['withdrawal_charge'] ?? 0), 2) }}
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <span class="text-info fs-13 fw-semibold">
+                                                    $ {{ number_format((float) ($list['share'] ?? 0), 2) }}
+                                                </span>
+                                            </td>
+                                            <td><strong class="text-success">$
+                                                    {{ number_format((float) ($list['amount'] ?? 0), 2) }}</strong></td>
+
+
                                             <td><span
                                                     class="badge bg-info-transparent">{{ $list['type'] ?? 'Withdrawal Income' }}</span>
                                             </td>
-                                            <td>{{ $list['level'] ?? '-' }}</td>
-                                            <td><strong class="text-success">$
-                                                    {{ number_format((float) ($list['amount'] ?? 0), 2) }}</strong></td>
 
                                             <td>
                                                 @if ($list['status'] == 'Paid')

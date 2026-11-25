@@ -172,8 +172,8 @@
                                             <th class="text-center" style="width: 50px;">#</th>
                                             <th style="min-width: 130px;">Date & Time</th>
                                             <th style="width: 130px;">Member ID</th>
-                                            <th>Member Name</th>
                                             <th style="width: 120px;">Level ID</th>
+                                            <th>Name</th>
                                             <th class="text-center" style="width: 90px;">Level</th>
                                             <th class="text-end" style="width: 130px;">Withdrawal Amount</th>
                                             <th class="text-end" style="width: 125px;">Withdrawal Charge</th>
@@ -202,12 +202,12 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <span class="fw-bold text-dark fs-13">{{ getName($list['memberid']) }}</span>
-                                                </td>
-                                                <td>
                                                     <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2.5 py-0.5 fs-11 font-monospace">
                                                         {{ $list['level_id'] ?? '-' }}
                                                     </span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-bold text-dark fs-13">{{ $list['name'] }}</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <span class="badge bg-indigo-subtle text-indigo border border-indigo-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-bold">

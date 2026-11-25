@@ -41,6 +41,7 @@
                                         <th>Date</th>
                                         <th>Member ID</th>
                                         <th>Activate ID </th>
+                                        <th>Name</th>
                                         <th>Package</th>
                                         <th>Amount</th>
                                         <th>Status</th>
@@ -53,7 +54,8 @@
                                             <td>{{ $i }}</td>
                                             <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
                                             <td>{{ $list['memberid'] }}</td>
-                                            <td>{{ $list['activate_id'] }}</td>
+                                            <td>{{ $list['activatingId'] }}</td>
+                                            <td>{{ $list['name'] }}</td>
                                             <td>$ {{ $list['package'] }}</td>
                                             <td>$ {{ number_format($list['amount'],2) }}</td>
 
