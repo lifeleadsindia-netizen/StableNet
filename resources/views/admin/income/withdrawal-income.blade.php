@@ -169,18 +169,18 @@
                                     aria-describedby="file-export_info">
                                     <thead class="dash-table-head">
                                         <tr>
-                                            <th class="text-center" style="width: 50px;">#</th>
-                                            <th style="min-width: 130px;">Date & Time</th>
-                                            <th style="width: 130px;">Member ID</th>
-                                            <th style="width: 120px;">Level ID</th>
-                                            <th>Name</th>
-                                            <th class="text-center" style="width: 90px;">Level</th>
-                                            <th class="text-end" style="width: 130px;">Withdrawal Amount</th>
-                                            <th class="text-end" style="width: 125px;">Withdrawal Charge</th>
-                                            <th class="text-end" style="width: 110px;">Share</th>
-                                            <th class="text-end" style="width: 120px;">Income Amount</th>
-                                            <th>Income Type</th>
-                                            <th class="text-center" style="width: 100px;">Status</th>
+                                            <th class="text-center" style="width: 50px; min-width: 50px;">#</th>
+                                            <th style="width: 140px; min-width: 135px;">Date & Time</th>
+                                            <th style="width: 130px; min-width: 120px;">Member ID</th>
+                                            <th style="width: 120px; min-width: 110px;">Level ID</th>
+                                            <th style="width: 140px; min-width: 130px;">Name</th>
+                                            <th class="text-center" style="width: 85px; min-width: 80px;">Level</th>
+                                            <th class="text-end" style="width: 145px; min-width: 135px;">Withdrawal Amount</th>
+                                            <th class="text-end" style="width: 145px; min-width: 135px;">Withdrawal Charge</th>
+                                            <th class="text-end" style="width: 110px; min-width: 95px;">Share</th>
+                                            <th class="text-end" style="width: 130px; min-width: 120px;">Income Amount</th>
+                                            <th style="width: 140px; min-width: 125px;">Income Type</th>
+                                            <th class="text-center" style="width: 100px; min-width: 90px;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -322,4 +322,38 @@
             document.getElementById('withdrawalFilterForm').submit();
         }
     </script>
+
+    <style>
+        .dash-table-wrapper {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #file-export,
+        .dataTables_scrollHeadInner,
+        .dataTables_scrollHeadInner table,
+        .dataTables_scrollBody table {
+            min-width: 1320px !important;
+        }
+
+        .dataTables_scrollBody {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .dataTables_scrollBody td.dataTables_empty,
+        .dataTables_scrollBody td[colspan] {
+            min-width: 1320px !important;
+        }
+
+        #file-export th,
+        #file-export td,
+        .dataTables_scrollHeadInner table th,
+        .dataTables_scrollBody table td {
+            display: table-cell !important;
+            visibility: visible !important;
+            white-space: nowrap !important;
+            vertical-align: middle !important;
+        }
+    </style>
 @endsection

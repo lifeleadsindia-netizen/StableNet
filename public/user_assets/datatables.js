@@ -63,8 +63,19 @@ $(function () {
                 dom: "Bfrtip",
                 buttons: ["copy", "csv", "excel", "pdf", "print"],
                 scrollX: true,
+                responsive: false,
+                autoWidth: false,
                 pageLength: 10,
                 order: []
+            });
+
+            // Allow mouse wheeling over the header to horizontally scroll the table
+            $t.closest('.dataTables_scroll').find('.dataTables_scrollHead').on('wheel', function (e) {
+                var $body = $(this).siblings('.dataTables_scrollBody');
+                if ($body.length) {
+                    var delta = e.originalEvent.deltaY || e.originalEvent.deltaX;
+                    $body.scrollLeft($body.scrollLeft() + delta);
+                }
             });
         }
     });

@@ -33,69 +33,71 @@
                         <div class="card-header justify-content-between">
                             <div class="card-title">Withdrawal Income </div>
                         </div>
-                        <div class="card-body" style="overflow: auto;">
-                            <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
-                                <thead>
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Date</th>
-                                        <th>Member Id</th>
-                                        <th>Level Id</th>
-                                        <th>Name</th>
-                                        <th>Level</th>
-                                        <th>Withdrawal Amount</th>
-                                        <th>Withdrawal Charge</th>
-                                        <th>Share</th>
-                                        <th>Income Amount</th>
-                                        <th>Income Type</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $i = 1;  @endphp
-                                    @forelse ($directData as $list)
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="file-export" class="table table-bordered table-hover text-nowrap w-100 align-middle">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $i }}</td>
-                                            <td>{{ date('d-m-Y H:i', strtotime($list['created_at'])) }}</td>
-                                            <td>{{ $list['memberid'] }}</td>
-                                            <td>{{ $list['level_id'] ?? '-' }}</td>
-                                            <td>{{ $list['name'] }}</td>
-                                            <td>{{ $list['level'] ?? '-' }}</td>
-                                            <td>$ {{ number_format((float) ($list['withdrawal_amount'] ?? 0), 2) }}</td>
-                                            <td class="text-end">
-                                                <span class="text-danger fs-13 fw-semibold">
-                                                    $ {{ number_format((float) ($list['withdrawal_charge'] ?? 0), 2) }}
-                                                </span>
-                                            </td>
-                                            <td class="text-end">
-                                                <span class="text-info fs-13 fw-semibold">
-                                                    $ {{ number_format((float) ($list['share'] ?? 0), 2) }}
-                                                </span>
-                                            </td>
-                                            <td><strong class="text-success">$
-                                                    {{ number_format((float) ($list['amount'] ?? 0), 2) }}</strong></td>
-
-
-                                            <td><span
-                                                    class="badge bg-info-transparent">{{ $list['type'] ?? 'Withdrawal Income' }}</span>
-                                            </td>
-
-                                            <td>
-                                                @if ($list['status'] == 'Paid')
-                                                    <label class="btn btn-sm btn-success">{{ $list['status'] }}</label>
-                                                @else
-                                                    <label class="btn btn-sm btn-danger">{{ $list['status'] }}</label>
-                                                @endif
-                                            </td>
+                                            <th class="text-center" style="width: 50px; min-width: 50px;">S.No</th>
+                                            <th style="width: 140px; min-width: 130px;">Date</th>
+                                            <th style="width: 130px; min-width: 120px;">Member Id</th>
+                                            <th style="width: 120px; min-width: 110px;">Level Id</th>
+                                            <th style="width: 140px; min-width: 130px;">Name</th>
+                                            <th class="text-center" style="width: 80px; min-width: 75px;">Level</th>
+                                            <th class="text-end" style="width: 145px; min-width: 135px;">Withdrawal Amount</th>
+                                            <th class="text-end" style="width: 145px; min-width: 135px;">Withdrawal Charge</th>
+                                            <th class="text-end" style="width: 110px; min-width: 95px;">Share</th>
+                                            <th class="text-end" style="width: 130px; min-width: 120px;">Income Amount</th>
+                                            <th style="width: 140px; min-width: 125px;">Income Type</th>
+                                            <th class="text-center" style="width: 100px; min-width: 90px;">Status</th>
                                         </tr>
-                                        @php $i++;  @endphp
-                                    @empty
-                                        <tr>
-                                            <td colspan="10" class="no-data-found-cell">No Data Found</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @php $i = 1;  @endphp
+                                        @forelse ($directData as $list)
+                                            <tr>
+                                                <td class="text-center">{{ $i }}</td>
+                                                <td>{{ date('d-m-Y H:i', strtotime($list['created_at'])) }}</td>
+                                                <td>{{ $list['memberid'] }}</td>
+                                                <td>{{ $list['level_id'] ?? '-' }}</td>
+                                                <td>{{ $list['name'] }}</td>
+                                                <td class="text-center">{{ $list['level'] ?? '-' }}</td>
+                                                <td class="text-end">$ {{ number_format((float) ($list['withdrawal_amount'] ?? 0), 2) }}</td>
+                                                <td class="text-end">
+                                                    <span class="text-danger fs-13 fw-semibold">
+                                                        $ {{ number_format((float) ($list['withdrawal_charge'] ?? 0), 2) }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-end">
+                                                    <span class="text-info fs-13 fw-semibold">
+                                                        $ {{ number_format((float) ($list['share'] ?? 0), 2) }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-end"><strong class="text-success">$
+                                                        {{ number_format((float) ($list['amount'] ?? 0), 2) }}</strong></td>
+
+
+                                                <td><span
+                                                        class="badge bg-info-transparent">{{ $list['type'] ?? 'Withdrawal Income' }}</span>
+                                                </td>
+
+                                                <td class="text-center">
+                                                    @if ($list['status'] == 'Paid')
+                                                        <label class="btn btn-sm btn-success">{{ $list['status'] }}</label>
+                                                    @else
+                                                        <label class="btn btn-sm btn-danger">{{ $list['status'] }}</label>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            @php $i++;  @endphp
+                                        @empty
+                                            <tr>
+                                                <td colspan="12" class="no-data-found-cell text-center py-4">No Data Found</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -169,4 +171,40 @@
         });
     </script>
     {{-- @endpush --}}
+    <style>
+        .table-responsive {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #file-export,
+        .dataTables_scrollHeadInner,
+        .dataTables_scrollHeadInner table,
+        .dataTables_scrollBody table {
+            min-width: 1320px !important;
+        }
+
+        .dataTables_scrollBody {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .dataTables_scrollBody td.dataTables_empty,
+        .dataTables_scrollBody td.no-data-found-cell {
+            min-width: 1320px !important;
+            text-align: center !important;
+            padding: 35px 15px !important;
+        }
+
+        /* Force all 12 th and td to stay visible and never be hidden by DataTables responsive */
+        #file-export th,
+        #file-export td,
+        .dataTables_scrollHeadInner table th,
+        .dataTables_scrollBody table td {
+            display: table-cell !important;
+            visibility: visible !important;
+            white-space: nowrap !important;
+            vertical-align: middle !important;
+        }
+    </style>
 @endsection

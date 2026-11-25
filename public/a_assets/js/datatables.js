@@ -56,7 +56,18 @@ $(function (e) {
             buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'
             ],
-            scrollX: true
+            scrollX: true,
+            responsive: false,
+            autoWidth: false
+        });
+
+        // Allow mouse wheeling over the header to horizontally scroll the table
+        $('#file-export').closest('.dataTables_scroll').find('.dataTables_scrollHead').on('wheel', function (e) {
+            var $body = $(this).siblings('.dataTables_scrollBody');
+            if ($body.length) {
+                var delta = e.originalEvent.deltaY || e.originalEvent.deltaX;
+                $body.scrollLeft($body.scrollLeft() + delta);
+            }
         });
     }
 
