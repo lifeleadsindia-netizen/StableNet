@@ -14,6 +14,7 @@ use App\Models\PackageDetail;
 use App\Models\UplineMember;
 use App\Models\ProfitDetail;
 use App\Models\SupportTicket;
+use App\Models\RewardIncome;
 
 
 function userId()
@@ -94,8 +95,18 @@ function updateUpline($sponsorid, $memberid)
 
 function totalIncome($memberid)
 {
-    $total = totalLevelIncome($memberid) + totalDirectIncome($memberid) + totalGlobalAutopoolIncome($memberid) + totalWithdrawalIncome($memberid);
+    $total = totalLevelIncome($memberid) + totalDirectIncome($memberid) + totalGlobalAutopoolIncome($memberid) + totalWithdrawalIncome($memberid) + totalRewardIncome($memberid);
     return $total;
+}
+
+function totalRewardIncome($memberid)
+{
+    try {
+        $var = RewardIncome::where([['status', 'Paid'], ['memberid', $memberid]])->sum('amount');
+        return $var ?? 0;
+    } catch (\Exception $e) {
+        return 0;
+    }
 }
 
 function totalLevelIncome($memberid)
@@ -169,7 +180,7 @@ function todayDeposit($memberid)
 
 function todayIncome($memberid)
 {
-    $total = todayLevelIncome($memberid) + todayDirectIncome($memberid) + todayGlobalAutopoolIncome($memberid) + todayWithdrawalIncome($memberid);
+    $total = todayLevelIncome($memberid) + todayDirectIncome($memberid) + todayGlobalAutopoolIncome($memberid) + todayWithdrawalIncome($memberid) + todayRewardIncome($memberid);
     return $total;
 }
 
@@ -200,6 +211,16 @@ function todayWithdrawalIncome($memberid)
 {
     try {
         $var = WithdrawalIncome::where('memberid', $memberid)->whereDate('created_at', date('Y-m-d'))->sum('amount');
+        return $var ?? 0;
+    } catch (\Exception $e) {
+        return 0;
+    }
+}
+
+function todayRewardIncome($memberid)
+{
+    try {
+        $var = RewardIncome::where([['status', 'Paid'], ['memberid', $memberid]])->whereDate('created_at', date('Y-m-d'))->sum('amount');
         return $var ?? 0;
     } catch (\Exception $e) {
         return 0;

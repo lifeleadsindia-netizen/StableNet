@@ -1025,6 +1025,7 @@
         .ft-stream-tile-purple { border-left: 5px solid #7C3AED; }
         .ft-stream-tile-green { border-left: 5px solid #059669; }
         .ft-stream-tile-amber { border-left: 5px solid #D97706; }
+        .ft-stream-tile-rose { border-left: 5px solid #E11D48; }
 
         .ft-stream-icon-box {
             width: 44px;
@@ -1046,6 +1047,7 @@
         .ft-stream-icon-purple { background: #F5F3FF; color: #7C3AED; }
         .ft-stream-icon-green { background: #ECFDF5; color: #059669; }
         .ft-stream-icon-amber { background: #FFFBEB; color: #D97706; }
+        .ft-stream-icon-rose { background: #FFF1F2; color: #E11D48; }
 
         .ft-stream-label {
             font-size: 14.5px;
@@ -1076,6 +1078,7 @@
         .ft-stream-pill-purple { background: #F5F3FF; color: #7C3AED; border: 1px solid rgba(124, 58, 237, 0.2); }
         .ft-stream-pill-green { background: #ECFDF5; color: #059669; border: 1px solid rgba(5, 150, 105, 0.2); }
         .ft-stream-pill-amber { background: #FFFBEB; color: #D97706; border: 1px solid rgba(217, 119, 6, 0.2); }
+        .ft-stream-pill-rose { background: #FFF1F2; color: #E11D48; border: 1px solid rgba(225, 29, 72, 0.2); }
 
         .ft-stream-amount {
             font-size: 26px;
@@ -1106,6 +1109,7 @@
         .ft-progress-purple { background: linear-gradient(90deg, #8B5CF6 0%, #6D28D9 100%); }
         .ft-progress-green { background: linear-gradient(90deg, #10B981 0%, #047857 100%); }
         .ft-progress-amber { background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%); }
+        .ft-progress-rose { background: linear-gradient(90deg, #F43F5E 0%, #BE123C 100%); }
 
         /* --------------------------------------------------------------------------
            ROW 5: GLOBAL AUTOPOOL MATRIX SLOTS
@@ -1702,16 +1706,19 @@
                             $tDir = (float)todayDirectIncome($data['memberid']);
                             $tPool = (float)todayGlobalAutopoolIncome($data['memberid']);
                             $tWith = (float)todayWithdrawalIncome($data['memberid']);
-                            $todayTotalEarnings = $tLvl + $tDir + $tPool + $tWith;
+                            $tRew = (float)todayRewardIncome($data['memberid']);
+                            $todayTotalEarnings = $tLvl + $tDir + $tPool + $tWith + $tRew;
                             $tMax = max(1, $todayTotalEarnings);
                             $tLvlPct = min(100, max(8, round(($tLvl / $tMax) * 100)));
                             $tDirPct = min(100, max(8, round(($tDir / $tMax) * 100)));
                             $tPoolPct = min(100, max(8, round(($tPool / $tMax) * 100)));
                             $tWithPct = min(100, max(8, round(($tWith / $tMax) * 100)));
+                            $tRewPct = min(100, max(8, round(($tRew / $tMax) * 100)));
                             $tLvlShare = $todayTotalEarnings > 0 ? round(($tLvl / $todayTotalEarnings) * 100) : 0;
                             $tDirShare = $todayTotalEarnings > 0 ? round(($tDir / $todayTotalEarnings) * 100) : 0;
                             $tPoolShare = $todayTotalEarnings > 0 ? round(($tPool / $todayTotalEarnings) * 100) : 0;
                             $tWithShare = $todayTotalEarnings > 0 ? round(($tWith / $todayTotalEarnings) * 100) : 0;
+                            $tRewShare = $todayTotalEarnings > 0 ? round(($tRew / $todayTotalEarnings) * 100) : 0;
                         @endphp
 
                         <!-- Top Spotlight Banner (Matching Right Card) -->
@@ -1787,7 +1794,7 @@
                             </div>
 
                             <!-- Stream 3: Today's Global Autopool -->
-                            <div class="col-md-6 col-12 d-flex">
+                            <div class="col-lg-4 col-md-4 col-12 d-flex">
                                 <div class="ft-stream-tile ft-stream-tile-green w-100">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
@@ -1813,7 +1820,7 @@
                             </div>
 
                             <!-- Stream 4: Today's Withdrawal Income -->
-                            <div class="col-md-6 col-12 d-flex">
+                            <div class="col-lg-4 col-md-4 col-12 d-flex">
                                 <div class="ft-stream-tile ft-stream-tile-amber w-100">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
@@ -1834,6 +1841,32 @@
                                     <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
                                         <span><i class="ti ti-circle-check text-warning me-1"></i> Realized Payout</span>
                                         <span class="fw-semibold text-dark">Share: {{ $tWithShare }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stream 5: Today's Reward Income -->
+                            <div class="col-lg-4 col-md-4 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-rose w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-rose">
+                                                <i class="ti ti-gift"></i>
+                                            </div>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Today's Reward Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Milestone & rank rewards</span>
+                                            </div>
+                                        </div>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-rose">{{ $tRewShare }}%</span>
+                                    </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($tRew, 2) }}</div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar ft-progress-rose" style="width: {{ $todayTotalEarnings > 0 ? $tRewPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-trophy text-danger me-1"></i> Reward Distribution</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $tRewShare }}%</span>
                                     </div>
                                 </div>
                             </div>
@@ -1883,19 +1916,22 @@
                             $dirVal = (float)totalDirectIncome($data['memberid']);
                             $poolVal = (float)totalGlobalAutopoolIncome($data['memberid']);
                             $withVal = (float)totalWithdrawalIncome($data['memberid']);
-                            $totInc = max(1, (float)totalIncome($data['memberid']));
+                            $rewVal = (float)totalRewardIncome($data['memberid']);
+                            $rawTot = (float)totalIncome($data['memberid']);
+                            $totInc = max(1, $rawTot);
                             $lvlPct = min(100, max(8, round(($lvlVal / $totInc) * 100)));
                             $dirPct = min(100, max(8, round(($dirVal / $totInc) * 100)));
                             $poolPct = min(100, max(8, round(($poolVal / $totInc) * 100)));
                             $withPct = min(100, max(8, round(($withVal / $totInc) * 100)));
-                            $rawTot = (float)totalIncome($data['memberid']);
+                            $rewPct = min(100, max(8, round(($rewVal / $totInc) * 100)));
                             $lvlShare = $rawTot > 0 ? round(($lvlVal / $rawTot) * 100) : 0;
                             $dirShare = $rawTot > 0 ? round(($dirVal / $rawTot) * 100) : 0;
                             $poolShare = $rawTot > 0 ? round(($poolVal / $rawTot) * 100) : 0;
                             $withShare = $rawTot > 0 ? round(($withVal / $rawTot) * 100) : 0;
+                            $rewShare = $rawTot > 0 ? round(($rewVal / $rawTot) * 100) : 0;
                         @endphp
 
-                        <!-- Bottom 4 Modern Stream Pods - Spacious Large 2x2 Grid -->
+                        <!-- Bottom 5 Modern Stream Pods -->
                         <div class="row g-3">
                             <!-- Stream 1: Level Income -->
                             <div class="col-md-6 col-12 d-flex">
@@ -1950,7 +1986,7 @@
                             </div>
 
                             <!-- Stream 3: Global Autopool -->
-                            <div class="col-md-6 col-12 d-flex">
+                            <div class="col-lg-4 col-md-4 col-12 d-flex">
                                 <div class="ft-stream-tile ft-stream-tile-green w-100">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
@@ -1976,7 +2012,7 @@
                             </div>
 
                             <!-- Stream 4: Withdrawal Income -->
-                            <div class="col-md-6 col-12 d-flex">
+                            <div class="col-lg-4 col-md-4 col-12 d-flex">
                                 <div class="ft-stream-tile ft-stream-tile-amber w-100">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
@@ -1997,6 +2033,32 @@
                                     <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
                                         <span><i class="ti ti-circle-check text-warning me-1"></i> Realized Payouts</span>
                                         <span class="fw-semibold text-dark">Share: {{ $withShare }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stream 5: Total Reward Income -->
+                            <div class="col-lg-4 col-md-4 col-12 d-flex">
+                                <div class="ft-stream-tile ft-stream-tile-rose w-100">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center gap-2.5 overflow-hidden" style="min-width: 0;">
+                                            <div class="ft-stream-icon-box ft-stream-icon-rose">
+                                                <i class="ti ti-gift"></i>
+                                            </div>
+                                            <div>
+                                                <span class="ft-stream-label d-block text-truncate">Total Reward Income</span>
+                                                <span class="ft-stream-sublabel d-block text-truncate">Cumulative milestone & rank rewards</span>
+                                            </div>
+                                        </div>
+                                        <span class="badge rounded-pill ft-stream-pill ft-stream-pill-rose">{{ $rewShare }}%</span>
+                                    </div>
+                                    <div class="ft-stream-amount text-truncate">$ {{ number_format($rewVal, 2) }}</div>
+                                    <div class="ft-stream-progress-track">
+                                        <div class="ft-stream-progress-bar ft-progress-rose" style="width: {{ $rawTot > 0 ? $rewPct : 0 }}%;"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-2 text-muted" style="font-size: 11px;">
+                                        <span><i class="ti ti-trophy text-danger me-1"></i> Lifetime Rewards</span>
+                                        <span class="fw-semibold text-dark">Share: {{ $rewShare }}%</span>
                                     </div>
                                 </div>
                             </div>
