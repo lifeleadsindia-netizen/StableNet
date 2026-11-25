@@ -78,3 +78,29 @@ function totalMembers($memberid, $package)
     $count = MemberDetail::whereIn('memberid', array_merge($upline1, $upline2))->where('package', '>=', $package)->count();
     return $count;
 }
+
+function totalUpline1Members($memberid, $package)
+{
+    $upline1 = UplineMember::where('upline_1', $memberid)
+        ->pluck('memberid')
+        ->toArray();
+
+    $count = MemberDetail::whereIn('memberid', $upline1)
+        ->where('package', '>=', $package)
+        ->count();
+
+    return $count;
+}
+
+function totalUpline2Members($memberid, $package)
+{
+    $upline2 = UplineMember::where('upline_2', $memberid)
+        ->pluck('memberid')
+        ->toArray();
+
+    $count = MemberDetail::whereIn('memberid', $upline2)
+        ->where('package', '>=', $package)
+        ->count();
+
+    return $count;
+}

@@ -96,8 +96,11 @@
                     $curPkg = 5;
                 }
 
+                $memberId = $data['memberid'] ?? session('MEMBER_ID');
                 $activeTiers = $rewardTiers ?? $allRewards[$curPkg];
-                $activeCount = $currentCount ?? (isset($data['memberid']) ? totalMembers($data['memberid'], $curPkg) : 0);
+                $activeCount = $currentCount ?? (!empty($memberId) ? totalMembers($memberId, $curPkg) : 0);
+                $u1Count = $upline1Count ?? (!empty($memberId) ? totalUpline1Members($memberId, $curPkg) : 0);
+                $u2Count = $upline2Count ?? (!empty($memberId) ? totalUpline2Members($memberId, $curPkg) : 0);
 
                 $myPaid = $paidRewards ?? (isset($data['memberid'])
                     ? \App\Models\RewardIncome::where('memberid', $data['memberid'])->where('status', 'Paid')->get()->keyBy('reward_status')
@@ -359,6 +362,8 @@
                                     <th class="text-center" style="width: 60px;">#</th>
                                     <th style="width: 140px;">Level / Slot</th>
                                     <th style="width: 160px;">Required Team</th>
+                                    <th style="width: 160px;">Upline1 Member</th>
+                                    <th style="width: 160px;">Upline2 Member</th>
                                     <th style="width: 160px;">Team Achieved</th>
                                     <th style="width: 220px;">Completion Progress</th>
                                     <th class="text-end" style="width: 140px;">Reward Amount</th>
@@ -393,6 +398,24 @@
                                             <div class="d-flex align-items-center gap-1.5">
                                                 <i class="ri-user-shared-line text-muted fs-14"></i>
                                                 <span class="fw-semibold text-dark fs-13">{{ number_format($reqCount) }}</span>
+                                                <span class="text-muted fs-11">members</span>
+                                            </div>
+                                        </td>
+
+                                        <!-- Upline1 Member -->
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1.5">
+                                                <i class="ri-team-line text-primary fs-14"></i>
+                                                <span class="fw-semibold text-dark fs-13">{{ number_format($u1Count) }}</span>
+                                                <span class="text-muted fs-11">members</span>
+                                            </div>
+                                        </td>
+
+                                        <!-- Upline2 Member -->
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1.5">
+                                                <i class="ri-team-line text-info fs-14"></i>
+                                                <span class="fw-semibold text-dark fs-13">{{ number_format($u2Count) }}</span>
                                                 <span class="text-muted fs-11">members</span>
                                             </div>
                                         </td>
@@ -455,7 +478,7 @@
                             <tfoot class="bg-light fw-bold">
                                 <tr>
                                     <td colspan="2" class="text-start ps-3">Total Potential Rewards</td>
-                                    <td colspan="3" class="text-muted fs-12">6 Progressive Milestones</td>
+                                    <td colspan="5" class="text-muted fs-12">6 Progressive Milestones</td>
                                     <td class="text-end text-success fs-14">
                                         ${{ number_format(array_sum(array_column($activeTiers, 'amount')), 2) }}
                                     </td>

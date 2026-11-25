@@ -134,8 +134,12 @@ class IncomeController extends Controller
         }
 
         $currentCount = 0;
+        $upline1Count = 0;
+        $upline2Count = 0;
         if (!empty($result['data']->memberid)) {
             $currentCount = totalMembers($result['data']->memberid, $selectedPackage);
+            $upline1Count = totalUpline1Members($result['data']->memberid, $selectedPackage);
+            $upline2Count = totalUpline2Members($result['data']->memberid, $selectedPackage);
         }
 
         $paidRewards = collect();
@@ -150,7 +154,8 @@ class IncomeController extends Controller
         $result['selectedPackage'] = $selectedPackage;
         $result['memberPackage'] = $memberPackage;
         $result['currentCount'] = $currentCount;
-        $result['paidRewards'] = $paidRewards;
+        $result['upline1Count'] = $upline1Count;
+        $result['upline2Count'] = $upline2Count;
         $result['rewardTiers'] = $rewards[$selectedPackage];
 
         return view('member.reward.reward-details')->with($result);
