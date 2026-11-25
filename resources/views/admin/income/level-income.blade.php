@@ -178,8 +178,8 @@
                                             <th class="text-center" style="width: 50px;">#</th>
                                             <th style="min-width: 130px;">Date</th>
                                             <th style="width: 130px;">Member ID</th>
-                                            <th>Member Name</th>
                                             <th style="width: 130px;">Level ID</th>
+                                            <th>Name</th>
                                             <th class="text-center" style="width: 100px;">Level</th>
                                             <th class="text-end" style="width: 120px;">Package</th>
                                             <th class="text-end" style="width: 120px;">Amount</th>
@@ -204,13 +204,14 @@
                                                         <i class="bx bx-id-card"></i> {{ $list['memberid'] }}
                                                     </span>
                                                 </td>
-                                                <td>
-                                                    <span class="fw-bold text-dark fs-13">{{ getName($list['memberid']) }}</span>
-                                                </td>
+                                                
                                                 <td>
                                                     <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2.5 py-0.5 fs-11 font-monospace">
                                                         {{ $list['level_id'] ?? '-' }}
                                                     </span>
+                                                </td>
+                                                <td>
+                                                    <span class="fw-bold text-dark fs-13">{{ $list['name'] }}</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <span class="badge bg-indigo-subtle text-indigo border border-indigo-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-bold">

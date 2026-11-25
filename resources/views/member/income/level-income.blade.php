@@ -36,13 +36,11 @@
                                                 <th>S.No</th>
                                                 <th>Date</th>
                                                 <th>Memberid</th>
-                                                <th>Name</th>
-                                                <th>Amount </th>
-                                                <th>Level</th>
-                                                <th>Downline</th>
-                                                <!--<th>Type</th>-->
                                                 <th>Level Id</th>
+                                                <th>Name</th>
+                                                <th>Level</th>
                                                 <th>Package</th>
+                                                <th>Amount </th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
@@ -53,13 +51,11 @@
                                                     <td>{{ $i }}</td>
                                                     <td>{{ date('d-m-Y', strtotime($list['created_at'])) }}</td>
                                                     <td>{{ $list['memberid'] }}</td>
-                                                    <td>{{ getName($list['memberid']) }}</td>
-                                                    <td>$ {{ number_format($list['amount'],2) }}</td>
-                                                    <td>{{ $list['level'] }}</td>
-                                                    <td>{{ $list['downline'] }}</td>
-                                                    <!--<td>{{ $list['type'] }}</td>-->
                                                     <td>{{ $list['level_id'] }}</td>
+                                                    <td>{{ $list['name'] }}</td>
+                                                    <td>{{ $list['level'] }}</td>
                                                     <td>$ {{ number_format($list['package'], 2) }}</td>
+                                                    <td>$ {{ number_format($list['amount'],2) }}</td>
         
                                                     <td>
                                                         @if ($list['status'] == 'Paid')
