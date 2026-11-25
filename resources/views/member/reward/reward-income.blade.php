@@ -24,9 +24,10 @@
                                         <th>S.No.</th>
                                         <th>Date</th>
                                         <th>Member Id</th>
-                                        <th>Rank</th>
-                                        <th>Team Business</th>
+                                        <th>Package</th>
+                                        <th>Members</th>
                                         <th>Amount</th>
+                                        <th>Reward Status</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -35,16 +36,36 @@
                                         $i = 1;
                                     @endphp
                                     @forelse ($rewData as $list)
-                                        
+
                                         <tr>
                                             <td>{{ $i }}</td>
                                             <td>{{date('d-m-Y', strtotime($list['created_at']))}}</td>
                                             <td>{{ $list['memberid'] }}</td>
-                                            <td>{{ $list['rank'] }}</td>
-                                            <td>$ {{ $list['team_biz'] }}</td>
+                                            <td>${{ $list['package'] }}</td>
+                                            <td>{{ $list['members'] }}</td>
                                             <td>$ {{ $list['amount'] }}</td>
+                                            <td class="text-center">
+                                                @if (($list['reward_status'] ?? '') == 1 || ($list['reward_status'] ?? '') === '1' || strtolower($list['reward_status'] ?? '') == 'achieved')
+                                                    <span
+                                                        class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2.5 py-1 fs-11 fw-bold">
+                                                        <i class="bx bx-check-circle me-0.5"></i> Achieved
+                                                    </span>
+                                                @elseif (($list['reward_status'] ?? '') === 0 || ($list['reward_status'] ?? '') === '0' || strtolower($list['reward_status'] ?? '') == 'pending')
+                                                    <span
+                                                        class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-2.5 py-1 fs-11 fw-bold">
+                                                        <i class="bx bx-time-five me-0.5"></i> Pending
+                                                    </span>
+                                                @elseif (!empty($list['reward_status']))
+                                                    <span
+                                                        class="badge bg-info-subtle text-info border border-info-subtle rounded-pill px-2.5 py-1 fs-11 fw-bold">
+                                                        {{ $list['reward_status'] }}
+                                                    </span>
+                                                @else
+                                                    <span class="text-muted fs-12">-</span>
+                                                @endif
+                                            </td>
                                             <td>
-                                                @if ($list['status']=='Paid')
+                                                @if ($list['status'] == 'Paid')
                                                     <span class="badge badge-success">{{ $list['status'] }}</span>
                                                 @else
                                                     <span class="badge badge-success">{{ $list['status'] }}</span>
@@ -71,8 +92,8 @@
     </div>
 
     <!--**********************************
-                                                                                                                                    Content body end
-                                                                                                                                ***********************************-->
+                                                                                                                                                    Content body end
+                                                                                                                                                ***********************************-->
 
 
 @endsection

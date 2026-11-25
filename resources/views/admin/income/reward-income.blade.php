@@ -182,10 +182,10 @@
                                             <th class="text-center" style="width: 50px;">#</th>
                                             <th style="min-width: 130px;">Date</th>
                                             <th style="width: 140px;">Member ID</th>
-                                            <th>Member Name</th>
-                                            <th class="text-center" style="width: 110px;">Team Count</th>
-                                            <th class="text-end" style="width: 130px;">Reward Amount</th>
-                                            <th class="text-center" style="width: 130px;">Reward Status</th>
+                                            <th class="text-center" style="width: 110px;">Package</th>
+                                            <th class="text-end" style="width: 130px;">Members</th>
+                                            <th class="text-center" style="width: 130px;">Amount</th>
+                                            <th class="text-center" style="width: 100px;">Reward Status</th>
                                             <th class="text-center" style="width: 100px;">Status</th>
                                         </tr>
                                     </thead>
@@ -207,21 +207,20 @@
                                                         <i class="bx bx-id-card"></i> {{ $list['memberid'] }}
                                                     </span>
                                                 </td>
+                                                <td class="text-center">
+                                                    <span class="badge bg-blue-subtle text-blue border border-blue-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-semibold">
+                                                        <i class="bx bx-group me-1"></i> $ {{ number_format((float)$list['package'], 2) }}
+                                                    </span>
+                                                </td>
+                                                
                                                 <td>
-                                                    <span class="fw-bold text-dark fs-13">{{ getName($list['memberid']) }}</span>
+                                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-1 fw-bold fs-12 d-inline-flex align-items-center gap-1">
+                                                        <i class="bx bx-id-card"></i> {{ $list['members'] }}
+                                                    </span>
                                                 </td>
                                                 <td class="text-center">
                                                     <span class="badge bg-blue-subtle text-blue border border-blue-subtle rounded-pill px-2.5 py-0.5 fs-11 fw-semibold">
-                                                        <i class="bx bx-group me-1"></i> {{ $list['team_count'] ?? 0 }}
-                                                    </span>
-                                                </td>
-                                                <td class="text-end">
-                                                    <span class="fw-bold text-success fs-13">
-                                                        @if (isset($list['reward']) && is_numeric($list['reward']))
-                                                            $ {{ number_format((float)$list['reward'], 2) }}
-                                                        @else
-                                                            {{ $list['reward'] ?? '-' }}
-                                                        @endif
+                                                        <i class="bx bx-group me-1"></i> $ {{ number_format((float)$list['amount'], 2) }}
                                                     </span>
                                                 </td>
                                                 <td class="text-center">

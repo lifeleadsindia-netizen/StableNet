@@ -138,8 +138,8 @@
                                             <th>Member ID</th>
                                             <th>Activating ID</th>
                                             <th>Activating Name</th>
-                                            <th>Pool No</th>
                                             <th>Level</th>
+                                            <th>Pool No</th>
                                             <th>Slot Package</th>
                                             <th>Earned Income</th>
                                             <th>Status</th>
@@ -169,13 +169,13 @@
                                                     <span class="text-secondary fw-medium">{{ $list['name'] ?? getName($list['activatingId'] ?? '') }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="badge bg-info-transparent text-info px-2 py-1 fs-11 fw-semibold">
-                                                        Pool {{ $list['pool_no'] ?? '-' }}
+                                                    <span class="badge bg-primary-transparent text-primary px-2 py-1 fs-11 fw-semibold">
+                                                        Level {{ $list['level'] }}
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <span class="badge bg-primary-transparent text-primary px-2 py-1 fs-11 fw-semibold">
-                                                        Level {{ $list['level'] }}
+                                                    <span class="badge bg-info-transparent text-info px-2 py-1 fs-11 fw-semibold">
+                                                        Pool {{ $list['pool_no'] ?? '-' }}
                                                     </span>
                                                 </td>
                                                 <td>
